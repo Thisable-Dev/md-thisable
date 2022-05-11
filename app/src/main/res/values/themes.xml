@@ -1,8 +1,8 @@
 <resources xmlns:tools="http://schemas.android.com/tools">
     <!-- Base application theme. -->
-    <style name="Theme.Thisable" parent="Theme.MaterialComponents.DayNight.DarkActionBar">
+    <style name="Theme.Thisable" parent="Theme.MaterialComponents.Light.NoActionBar">
         <!-- Primary brand color. -->
-        <item name="colorPrimary">@color/purple_500</item>
+        <item name="colorPrimary">@color/colorBlue</item>
         <item name="colorPrimaryVariant">@color/purple_700</item>
         <item name="colorOnPrimary">@color/white</item>
         <!-- Secondary brand color. -->
@@ -12,5 +12,74 @@
         <!-- Status bar color. -->
         <item name="android:statusBarColor" tools:targetApi="l">?attr/colorPrimaryVariant</item>
         <!-- Customize your theme here. -->
+        <item name="android:fontFamily">@font/nunito_sans</item>
     </style>
+
+    <style name="SplashTheme" parent="Theme.Thisable">
+        <item name="windowActionBar">false</item>
+        <item name="windowNoTitle">true</item>
+    </style>
+
+    <!--  Button Style  -->
+    <style name="ButtonContent">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:fontFamily">@font/nunito_sans_bold</item>
+    </style>
+
+    <!--  Text Style  -->
+    <style name="TextContent">
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:fontFamily">@font/nunito_sans</item>
+    </style>
+
+    <style name="TextContent.SemiBold">
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:fontFamily">@font/nunito_sans_semibold</item>
+    </style>
+
+    <style name="TextContent.Bold">
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:textStyle">bold</item>
+        <item name="android:fontFamily">@font/nunito_sans_bold</item>
+    </style>
+
+    <style name="TextContent.Title" parent="TextContent.Bold">
+        <item name="android:textSize">@dimen/dimen_16sp</item>
+        <item name="android:textColor">@color/black</item>
+    </style>
+
+    <style name="TextContent.SubTitle" parent="TextContent">
+        <item name="android:textSize">@dimen/dimen_16sp</item>
+        <item name="android:textColor">@color/black</item>
+    </style>
+
+    <style name="TextContent.Header" parent="TextContent.SemiBold">
+        <item name="android:textSize">@dimen/dimen_24sp</item>
+        <item name="android:textColor">@color/black</item>
+    </style>
+
+    <style name="TextContent.SubHeader" parent="TextContent.SemiBold">
+        <item name="android:textSize">@dimen/dimen_14sp</item>
+        <item name="android:textColor">@color/colorDarkGrey</item>
+    </style>
+
+    <style name="TextContent.EditTextStyle" parent="TextContent.SemiBold">
+        <item name="android:textColor">@color/colorDarkGrey</item>
+        <item name="android:textSize">@dimen/dimen_16sp</item>
+    </style>
+
+    <style name="TextContent.Small" parent="TextContent">
+        <item name="android:textSize">@dimen/dimen_14sp</item>
+        <item name="android:textColor">@color/black</item>
+    </style>
+
+    <style name="TextContent.SmallBold" parent="TextContent.Bold">
+        <item name="android:textSize">@dimen/dimen_14sp</item>
+        <item name="android:textColor">@color/black</item>
+    </style>
+
 </resources>

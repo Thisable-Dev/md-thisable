@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <declare-styleable name="ThisableSettingButton">
+        <attr name="menuIcon" format="reference" />
+        <attr name="menuTitle" format="string"/>
+    </declare-styleable>
+</resources>
