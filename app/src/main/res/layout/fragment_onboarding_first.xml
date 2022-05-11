@@ -1,0 +1,80 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <ImageView
+        android:id="@+id/imgIllustration"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:src="@drawable/ic_people_illustration_2"
+        android:layout_marginTop="@dimen/dimen_124dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/tvTitle"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/label_welcome_enablers"
+        android:layout_marginTop="@dimen/dimen_16dp"
+        style="@style/TextContent.Title"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/imgIllustration" />
+
+    <TextView
+        android:id="@+id/tvSubTitle"
+        android:text="@string/label_message_for_enablers"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/dimen_16dp"
+        android:textAlignment="center"
+        style="@style/TextContent.SubTitle"
+        app:layout_constraintEnd_toEndOf="@+id/imgIllustration"
+        app:layout_constraintStart_toStartOf="@+id/imgIllustration"
+        app:layout_constraintTop_toBottomOf="@+id/tvTitle" />
+
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="@dimen/dimen_32dp"
+        app:layout_constraintBottom_toTopOf="@+id/btnNext"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent">
+
+        <ImageButton
+            android:layout_width="@dimen/dimen_10dp"
+            android:layout_height="@dimen/dimen_10dp"
+            android:background="@android:color/transparent"
+            android:src="@drawable/bg_circle"
+            app:tint="@color/colorBlue"/>
+
+        <ImageButton
+            android:id="@+id/btnCircle2"
+            android:layout_width="@dimen/dimen_10dp"
+            android:layout_height="@dimen/dimen_10dp"
+            android:background="@android:color/transparent"
+            android:src="@drawable/bg_circle"
+            android:layout_marginStart="@dimen/dimen_8dp"
+            app:tint="@color/colorGrey" />
+
+    </LinearLayout>
+
+    <Button
+        android:id="@+id/btnNext"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginHorizontal="@dimen/dimen_16dp"
+        android:layout_marginBottom="@dimen/dimen_32dp"
+        android:background="@drawable/bg_button"
+        android:paddingTop="@dimen/dimen_12dp"
+        android:paddingBottom="@dimen/dimen_12dp"
+        android:text="@string/action_lanjut"
+        android:textAllCaps="false"
+        style="@style/ButtonContent"
+        app:layout_constraintBottom_toBottomOf="parent" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>
