@@ -83,6 +83,23 @@ dependencies {
     // Timber
     implementation 'com.jakewharton.timber:timber:5.0.1'
 
+
+    //Camerax
+    implementation "androidx.camera:camera-view:1.1.0-beta01"
+    implementation "androidx.camera:camera-lifecycle:1.1.0-beta01"
+    implementation "androidx.camera:camera-camera2:1.1.0-beta01"
+
+    // MLKIt
+    implementation "com.google.mlkit:object-detection-custom:17.0.0"
+
+    //Firebase
+    implementation 'com.google.mlkit:linkfirebase:17.0.0'
+
+    //Tensorflowlite
+    implementation "org.tensorflow:tensorflow-lite-support:0.1.0"
+    implementation "org.tensorflow:tensorflow-lite-metadata:0.1.0"
+    implementation "org.tensorflow:tensorflow-lite-gpu:2.3.0"
+
     implementation 'androidx.core:core-ktx:1.7.0'
     implementation 'androidx.appcompat:appcompat:1.4.1'
     implementation 'com.google.android.material:material:1.6.0'

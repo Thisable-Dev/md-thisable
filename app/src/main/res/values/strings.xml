@@ -46,4 +46,16 @@
     <string name="label_fqa">Frequenty Asked Question</string>
     <string name="label_report_bug">Laporkan Bug</string>
     <string name="action_logout">Logout</string>
+
+    <!-- String for question and response for core features-->
+    <string name="question_1_obj_detection"> Ada apa saja Didepan saya ?</string>
+    <string name="question_2_obj_detection">Ada berapa orang didepan saya</string>
+    <string name="response_1_obj_detection">Didepan anda terdapat  %s</string>
+
+    <string name="question_1_currency_detection">Lembaran uang berapa saja yang saya miliki ?</string>
+    <string name="question_2_currency_detection">Berapa banyak uang yang saya pegang ?</string>
+    <string name="response_1_currency_detection">Uang yang terdeteksi adalah %1$s dengan Total uang %2$s </string>
+    <string name="response_2_currency_detection">Total jumlah uang terdeteksi adalah %s Ribu Rupiah</string>
+
+
 </resources>
