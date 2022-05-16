@@ -10,6 +10,7 @@
         android:label="@string/app_name"
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
+        android:name=".base.ThisableApplication"
         android:theme="@style/Theme.Thisable">
         <activity
             android:name=".MainActivity"

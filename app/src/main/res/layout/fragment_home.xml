@@ -28,8 +28,8 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="@dimen/dimen_32dp"
-        tools:listitem="@layout/item_layout_banner"
         android:orientation="horizontal"
+        tools:listitem="@layout/item_layout_banner"
         app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
         app:cardCornerRadius="@dimen/dimen_16dp"
         app:layout_constraintStart_toStartOf="@+id/tvWelcomeWithName"
@@ -76,6 +76,7 @@
 
                 <TextView
                     android:text="@string/label_bisindo_translator"
+                    android:textColor="@color/black"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:maxLines="2"
@@ -106,6 +107,7 @@
 
                 <TextView
                     android:text="@string/label_object_detection"
+                    android:textColor="@color/black"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginStart="@dimen/dimen_8dp"/>
@@ -135,6 +137,7 @@
 
                 <TextView
                     android:text="@string/label_currency_detection"
+                    android:textColor="@color/black"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginStart="@dimen/dimen_8dp"/>
@@ -165,6 +168,7 @@
 
                 <TextView
                     android:text="@string/label_text_detection"
+                    android:textColor="@color/black"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginStart="@dimen/dimen_8dp"/>

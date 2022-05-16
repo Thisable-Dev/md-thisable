@@ -74,7 +74,7 @@
 
     <EditText
         android:id="@+id/edtPassword"
-        android:hint="@string/hint_email"
+        android:hint="@string/hint_password_login"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:padding="@dimen/dimen_16dp"
@@ -171,5 +171,24 @@
             style="@style/TextContent.SmallBold"/>
 
     </LinearLayout>
+
+    <View
+        android:id="@+id/bg_dim"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:visibility="gone"
+        android:background="@color/colorBlackDim"
+        android:elevation="@dimen/dimen_2dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <ProgressBar
+        android:id="@+id/progress_bar"
+        android:visibility="invisible"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent"
+        android:elevation="@dimen/dimen_4dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"/>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

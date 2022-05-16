@@ -8,6 +8,7 @@
         <entry key="..\:/Project/AndroidStudio/Bangkit/Capstone/thisable-app/app/src/main/res/drawable/bg_edit_text.xml" value="0.1655" />
         <entry key="..\:/Project/AndroidStudio/Bangkit/Capstone/thisable-app/app/src/main/res/drawable/bg_google_button.xml" value="0.1155" />
         <entry key="..\:/Project/AndroidStudio/Bangkit/Capstone/thisable-app/app/src/main/res/drawable/ic_bisindo_translator.xml" value="0.1095" />
+        <entry key="..\:/Project/AndroidStudio/Bangkit/Capstone/thisable-app/app/src/main/res/drawable/ic_currency_detection.xml" value="0.112" />
         <entry key="..\:/Project/AndroidStudio/Bangkit/Capstone/thisable-app/app/src/main/res/drawable/ic_home.xml" value="0.1155" />
         <entry key="..\:/Project/AndroidStudio/Bangkit/Capstone/thisable-app/app/src/main/res/drawable/ic_logo.xml" value="0.1655" />
         <entry key="..\:/Project/AndroidStudio/Bangkit/Capstone/thisable-app/app/src/main/res/drawable/ic_object_detection.xml" value="0.1655" />
@@ -15,7 +16,8 @@
         <entry key="..\:/Project/AndroidStudio/Bangkit/Capstone/thisable-app/app/src/main/res/drawable/ic_profile_settings.xml" value="0.1095" />
         <entry key="..\:/Project/AndroidStudio/Bangkit/Capstone/thisable-app/app/src/main/res/font/nunito_semibold.xml" value="0.23541666666666666" />
         <entry key="..\:/Project/AndroidStudio/Bangkit/Capstone/thisable-app/app/src/main/res/layout/activity_main.xml" value="0.18" />
-        <entry key="..\:/Project/AndroidStudio/Bangkit/Capstone/thisable-app/app/src/main/res/layout/fragment_home.xml" value="0.18" />
+        <entry key="..\:/Project/AndroidStudio/Bangkit/Capstone/thisable-app/app/src/main/res/layout/fragment_detail_profile.xml" value="0.17" />
+        <entry key="..\:/Project/AndroidStudio/Bangkit/Capstone/thisable-app/app/src/main/res/layout/fragment_home.xml" value="0.16" />
         <entry key="..\:/Project/AndroidStudio/Bangkit/Capstone/thisable-app/app/src/main/res/layout/fragment_login.xml" value="0.13" />
         <entry key="..\:/Project/AndroidStudio/Bangkit/Capstone/thisable-app/app/src/main/res/layout/fragment_onboarding.xml" value="0.14" />
         <entry key="..\:/Project/AndroidStudio/Bangkit/Capstone/thisable-app/app/src/main/res/layout/fragment_onboarding_first.xml" value="0.14" />

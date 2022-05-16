@@ -8,7 +8,9 @@ import com.bintangpoetra.thisable.databinding.ActivityMainBinding
 import com.bintangpoetra.thisable.utils.ext.gone
 import com.bintangpoetra.thisable.utils.ext.hide
 import com.bintangpoetra.thisable.utils.ext.show
+import dagger.hilt.android.AndroidEntryPoint
 
+@AndroidEntryPoint
 class MainActivity : AppCompatActivity() {
 
     private lateinit var _activityMainBinding: ActivityMainBinding

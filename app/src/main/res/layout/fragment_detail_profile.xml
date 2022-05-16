@@ -1,0 +1,115 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <androidx.appcompat.widget.Toolbar
+        android:id="@+id/toolbar"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <de.hdodenhof.circleimageview.CircleImageView
+        android:id="@+id/imgProfile"
+        android:layout_width="@dimen/dimen_124dp"
+        android:layout_height="@dimen/dimen_124dp"
+        android:src="@color/colorDarkGrey"
+        android:layout_marginTop="@dimen/dimen_32dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/toolbar" />
+
+    <TextView
+        android:id="@+id/tvFullName"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/label_dummy_name"
+        android:layout_marginTop="@dimen/dimen_16dp"
+        style="@style/TextContent.Header"
+        app:layout_constraintEnd_toEndOf="@+id/imgProfile"
+        app:layout_constraintStart_toStartOf="@+id/imgProfile"
+        app:layout_constraintTop_toBottomOf="@+id/imgProfile" />
+
+    <TextView
+        android:id="@+id/tvFullEmail"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/label_dummy_email"
+        style="@style/TextContent.SubTitle"
+        app:layout_constraintEnd_toEndOf="@+id/imgProfile"
+        app:layout_constraintStart_toStartOf="@+id/imgProfile"
+        app:layout_constraintTop_toBottomOf="@id/tvFullName"/>
+
+    <TextView
+        android:id="@+id/tvChangePassword"
+        android:text="@string/label_change_password"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/dimen_24dp"
+        android:layout_marginStart="@dimen/dimen_32dp"
+        style="@style/TextContent.Title"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/tvFullEmail"/>
+
+    <TextView
+        android:id="@+id/tvOldPassword"
+        android:text="@string/label_old_password"
+        android:textColor="@color/black"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/dimen_16dp"
+        android:layout_marginStart="@dimen/dimen_32dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/tvChangePassword"/>
+
+    <EditText
+        android:id="@+id/edtOldPassword"
+        android:hint="@string/hint_password_login"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:padding="@dimen/dimen_16dp"
+        android:layout_marginTop="@dimen/dimen_8dp"
+        android:layout_marginHorizontal="@dimen/dimen_32dp"
+        android:background="@drawable/bg_edit_text"
+        android:textSize="@dimen/dimen_14sp"
+        android:inputType="textPassword"
+        app:layout_constraintTop_toBottomOf="@+id/tvOldPassword" />
+
+    <TextView
+        android:id="@+id/tvNewPassword"
+        android:text="@string/label_new_password"
+        android:textColor="@color/black"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/dimen_16dp"
+        android:layout_marginStart="@dimen/dimen_32dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/edtOldPassword"/>
+
+    <EditText
+        android:id="@+id/edtNewPassword"
+        android:hint="@string/hint_password"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:padding="@dimen/dimen_16dp"
+        android:layout_marginTop="@dimen/dimen_8dp"
+        android:layout_marginHorizontal="@dimen/dimen_32dp"
+        android:background="@drawable/bg_edit_text"
+        android:textSize="@dimen/dimen_14sp"
+        android:inputType="textPassword"
+        app:layout_constraintTop_toBottomOf="@+id/tvNewPassword" />
+
+    <Button
+        android:id="@+id/btnRegister"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/dimen_16dp"
+        android:layout_marginHorizontal="@dimen/dimen_32dp"
+        android:background="@drawable/bg_button"
+        android:text="@string/action_save"
+        android:textAllCaps="false"
+        style="@style/ButtonContent"
+        app:layout_constraintTop_toBottomOf="@+id/edtNewPassword" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>

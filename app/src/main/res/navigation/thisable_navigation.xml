@@ -23,7 +23,12 @@
             app:destination="@id/loginFragment" />
         <action
             android:id="@+id/action_splashFragment_to_homeFragment"
-            app:destination="@id/homeFragment" />
+            app:destination="@id/homeFragment"
+            app:enterAnim="@anim/slide_in_right"
+            app:exitAnim="@anim/slide_out_left"
+            app:popUpTo="@id/thisable_navigation"
+            app:launchSingleTop="true"
+            app:popUpToInclusive="true" />
     </fragment>
     <fragment
         android:id="@+id/onBoardingFragment"
@@ -49,7 +54,12 @@
             app:destination="@id/registerFragment" />
         <action
             android:id="@+id/action_loginFragment_to_homeFragment"
-            app:destination="@id/homeFragment" />
+            app:destination="@id/homeFragment"
+            app:enterAnim="@anim/slide_in_right"
+            app:exitAnim="@anim/slide_out_left"
+            app:popUpTo="@id/thisable_navigation"
+            app:launchSingleTop="true"
+            app:popUpToInclusive="true"/>
     </fragment>
     <fragment
         android:id="@+id/homeFragment"
@@ -58,7 +68,19 @@
     <fragment
         android:id="@+id/profileFragment"
         android:name="com.bintangpoetra.thisable.presentation.profile.ProfileFragment"
-        android:label="ProfileFragment" />
+        android:label="ProfileFragment" >
+        <action
+            android:id="@+id/action_profileFragment_to_loginFragment"
+            app:destination="@id/loginFragment"
+            app:enterAnim="@animator/nav_default_enter_anim"
+            app:exitAnim="@animator/nav_default_pop_exit_anim"
+            app:popUpTo="@id/thisable_navigation"
+            app:launchSingleTop="true"
+            app:popUpToInclusive="true"/>
+        <action
+            android:id="@+id/action_profileFragment_to_detailProfileFragment"
+            app:destination="@id/detailProfileFragment" />
+    </fragment>
     <fragment
         android:id="@+id/thisableFragment"
         android:name="com.bintangpoetra.thisable.presentation.thisable.ThisableFragment"
@@ -72,4 +94,8 @@
             android:id="@+id/action_registerFragment_to_loginFragment"
             app:destination="@id/loginFragment" />
     </fragment>
+    <fragment
+        android:id="@+id/detailProfileFragment"
+        android:name="com.bintangpoetra.thisable.presentation.profile.detail.DetailProfileFragment"
+        android:label="DetailProfileFragment" />
 </navigation>

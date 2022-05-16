@@ -10,6 +10,7 @@ android {
     compileSdk 32
 
     defaultConfig {
+        buildConfigField("String", "BASE_URL", '"https://story-api.dicoding.dev/v1/"')
         applicationId "com.bintangpoetra.thisable"
         minSdk 26
         targetSdk 32

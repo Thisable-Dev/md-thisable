@@ -46,4 +46,14 @@
     <string name="label_fqa">Frequenty Asked Question</string>
     <string name="label_report_bug">Laporkan Bug</string>
     <string name="action_logout">Logout</string>
+    <string name="message_information">Informasi</string>
+    <string name="message_login_failed">Username atau Password salah, silahkan coba lagi</string>
+    <string name="message_unknown_state">Unknown State</string>
+    <string name="hint_password_login">*********</string>
+    <string name="message_logout_confirmation">Anda yakin ingin keluar ?</string>
+    <string name="label_change_password">Ganti Password</string>
+    <string name="label_old_password">Password Lama</string>
+    <string name="label_new_password">Password baru</string>
+    <string name="action_save">Simpan</string>
+    <string name="title_my_account">Akun Saya</string>
 </resources>

@@ -11,11 +11,14 @@ import androidx.navigation.fragment.findNavController
 import com.bintangpoetra.thisable.R
 import com.bintangpoetra.thisable.databinding.FragmentSplashBinding
 import com.bintangpoetra.thisable.utils.ConstVal.SPLASH_DELAY_TIME
+import com.bintangpoetra.thisable.utils.SharedPrefManager
 
 class SplashFragment : Fragment() {
 
     private var _fragmentSplashBinding: FragmentSplashBinding? = null
     private val binding get() = _fragmentSplashBinding!!
+
+    private lateinit var pref: SharedPrefManager
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         _fragmentSplashBinding = FragmentSplashBinding.inflate(inflater, container, false)
@@ -25,8 +28,22 @@ class SplashFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
+        pref = SharedPrefManager(requireContext())
+        val isLogin = pref.isLogin
+        val isIntro = pref.isIntro
+
         Handler(Looper.getMainLooper()).postDelayed({
-            findNavController().navigate(R.id.action_splashFragment_to_onBoardingFragment)
+            when {
+                !isIntro -> {
+                    findNavController().navigate(R.id.action_splashFragment_to_onBoardingFragment)
+                }
+                !isLogin -> {
+                    findNavController().navigate(R.id.action_splashFragment_to_loginFragment)
+                }
+                else -> {
+                    findNavController().navigate(R.id.action_splashFragment_to_homeFragment)
+                }
+            }
         }, SPLASH_DELAY_TIME)
     }
 
