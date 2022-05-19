@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".presentation.feature_currency.CurrencyFragment">
+
+    <FrameLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_weight="2"
+        android:padding="5dip"
+        tools:ignore="MissingConstraints">
+
+        <androidx.camera.view.PreviewView
+            android:id="@+id/viewFinder"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:layout_gravity="center" />
+
+
+        <ImageView
+            android:id="@+id/iv_volume"
+            android:padding="5dp"
+            android:layout_margin="10dp"
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+            android:contentDescription="Nyalakan / Matikan Output Suara"
+            android:src="@drawable/ic_action_volume_off"
+            />
+
+        <com.bintangpoetra.thisable.utils.GraphicOverlay
+            android:id="@+id/graphicOverlay"
+            android:layout_gravity="center"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" />
+
+    </FrameLayout>
+</FrameLayout>

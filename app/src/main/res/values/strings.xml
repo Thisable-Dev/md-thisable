@@ -56,4 +56,19 @@
     <string name="label_new_password">Password baru</string>
     <string name="action_save">Simpan</string>
     <string name="title_my_account">Akun Saya</string>
+
+
+    <string name="question_1_obj_detection"> Ada apa saja Didepan saya ?</string>
+    <string name="question_2_obj_detection">Ada berapa orang didepan saya</string>
+    <string name="response_1_obj_detection">Didepan anda terdapat  %s</string>
+
+    <string name="question_1_currency_detection">Lembaran uang berapa saja yang saya miliki ?</string>
+    <string name="question_2_currency_detection">Berapa banyak uang yang saya pegang ?</string>
+    <string name="response_1_currency_detection">Uang yang terdeteksi adalah %1$s dengan Total uang %2$s </string>
+    <string name="response_2_currency_detection">Total jumlah uang terdeteksi adalah %s Ribu Rupiah</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="tab_text_1">hellow</string>
+    <string name="tab_text_2">world</string>
+    <string name="tab_text_3">test</string>
+    <string name="tab_text_4">unyil</string>
 </resources>

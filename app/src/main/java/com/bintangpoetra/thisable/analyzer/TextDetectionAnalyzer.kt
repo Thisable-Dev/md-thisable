@@ -1,0 +1,37 @@
+package com.bintangpoetra.thisable.analyzer
+
+import android.annotation.SuppressLint
+import android.content.Context
+import android.graphics.Bitmap
+import android.util.Log
+import androidx.camera.core.ImageAnalysis
+import androidx.camera.core.ImageProxy
+import com.bintangpoetra.thisable.utils.image_utility.YuvToRgbConverter
+
+
+class TextDetectionAnalyzer(private val context: Context) : ImageAnalysis.Analyzer {
+
+    private lateinit var currImage : Bitmap
+    @SuppressLint("UnsafeOptInUsageError")
+    override fun analyze(image: ImageProxy) {
+        val desiredImage = image.image
+        if (desiredImage != null) {
+            val yuvToRgbConverter = YuvToRgbConverter(context)
+            val tempBitmap = Bitmap.createBitmap(desiredImage.width, desiredImage.height, Bitmap.Config.ARGB_8888)
+            yuvToRgbConverter.yuvToRgb(desiredImage, tempBitmap)
+            currImage = tempBitmap
+            Log.d("TAGEER", currImage.toString())
+        }
+        image.close()
+    }
+
+    @Synchronized
+    fun getDetectedImage() : Bitmap? {
+
+        return currImage
+    }
+
+
+
+
+}
