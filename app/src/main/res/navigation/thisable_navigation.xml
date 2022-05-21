@@ -43,6 +43,22 @@
             app:popUpTo="@id/thisable_navigation"
             app:launchSingleTop="true"
             app:popUpToInclusive="true"/>
+        <action
+            android:id="@+id/action_onBoardingFragment_to_homeFragment"
+            app:destination="@id/homeFragment"
+            app:enterAnim="@anim/slide_in_right"
+            app:exitAnim="@anim/slide_out_left"
+            app:popUpTo="@id/thisable_navigation"
+            app:launchSingleTop="true"
+            app:popUpToInclusive="true"/>
+        <action
+            android:id="@+id/action_onBoardingFragment_to_instructionFragment"
+            app:destination="@id/instructionFragment"
+            app:enterAnim="@anim/slide_in_right"
+            app:exitAnim="@anim/slide_out_left"
+            app:popUpTo="@id/thisable_navigation"
+            app:launchSingleTop="true"
+            app:popUpToInclusive="true"/>
     </fragment>
     <fragment
         android:id="@+id/loginFragment"
@@ -80,6 +96,9 @@
         <action
             android:id="@+id/action_profileFragment_to_detailProfileFragment"
             app:destination="@id/detailProfileFragment" />
+        <action
+            android:id="@+id/action_profileFragment_to_bugReportFragment"
+            app:destination="@id/bugReportFragment" />
     </fragment>
     <fragment
         android:id="@+id/thisableFragment"
@@ -98,4 +117,21 @@
         android:id="@+id/detailProfileFragment"
         android:name="com.bintangpoetra.thisable.presentation.profile.detail.DetailProfileFragment"
         android:label="DetailProfileFragment" />
+    <fragment
+        android:id="@+id/bugReportFragment"
+        android:name="com.bintangpoetra.thisable.presentation.bugreport.BugReportFragment"
+        android:label="BugReportFragment" />
+    <fragment
+        android:id="@+id/instructionFragment"
+        android:name="com.bintangpoetra.thisable.presentation.instruction.InstructionFragment"
+        android:label="InstructionFragment" >
+        <action
+            android:id="@+id/action_instructionFragment_to_homeFragment"
+            app:destination="@id/homeFragment"
+            app:enterAnim="@anim/slide_in_right"
+            app:exitAnim="@anim/slide_out_left"
+            app:popUpTo="@id/thisable_navigation"
+            app:launchSingleTop="true"
+            app:popUpToInclusive="true"/>
+    </fragment>
 </navigation>

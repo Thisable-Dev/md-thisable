@@ -45,10 +45,6 @@ class ProfileFragment : Fragment() {
     }
 
     private fun initAction() {
-        binding.btnMyAccount.setOnClickListener {
-            it.popTap()
-            it.findNavController().navigate(R.id.action_profileFragment_to_detailProfileFragment)
-        }
         binding.btnFqa.setOnClickListener {
             it.popTap()
         }
@@ -56,6 +52,10 @@ class ProfileFragment : Fragment() {
             it.popTap()
         }
         binding.btnReportBug.setOnClickListener {
+            it.popTap()
+            it.findNavController().navigate(R.id.action_profileFragment_to_bugReportFragment)
+        }
+        binding.btnAbout.setOnClickListener {
             it.popTap()
         }
         binding.btnLogout.setOnClickListener {

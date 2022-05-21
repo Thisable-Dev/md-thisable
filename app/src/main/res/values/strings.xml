@@ -3,7 +3,7 @@
     <string name="label_version">v.0.0.1</string>
     <string name="label_welcome">Selamat Datang !</string>
     <string name="label_login_with_email_and_password">Silakan masuk dengan email dan password kamu.</string>
-    <string name="label_email">Email</string>
+    <string name="label_email">Surel*</string>
     <string name="hint_email">Contoh : bintangputera@gmail.com</string>
     <string name="label_password">Password</string>
     <string name="action_login">Masuk</string>
@@ -27,25 +27,25 @@
     <string name="label_message_for_enablers">Salam hangat dari kami untuk para pengguna aplikasi ini, Enablers.</string>
     <string name="action_lanjut">Lanjut</string>
     <string name="label_enjoy_feature">Nikmati berbagai fitur aksesibilitas!</string>
-    <string name="label_enjoy_the_feature">Tersedia empat fitur untuk mempermudah para Enablers untuk berinteraksi hanya dalam satu aplikasi</string>
+    <string name="label_enjoy_the_feature">Aplikasi ini memiliki 4 fitur, yaitu Penerjemah BISINDO, Pendeteksi Mata Uang, Pendeteksi Objek, dan Pendeteksi Teks.</string>
     <string name="action_start">Mulai</string>
     <string name="action_finish">Selesai</string>
-    <string name="menu_home">Home</string>
+    <string name="menu_home">Beranda</string>
     <string name="menu_thisable">Thisable</string>
-    <string name="menu_profile">Profile</string>
+    <string name="menu_profile">Profil</string>
     <string name="label_dummy_welcome">Selamat Datang, Bintang !</string>
     <string name="label_feature">Fitur</string>
-    <string name="label_bisindo_translator">BISINDO Translator</string>
-    <string name="label_object_detection">Object Detection</string>
-    <string name="label_currency_detection">Currency Detection</string>
-    <string name="label_text_detection">Text Detection</string>
+    <string name="label_bisindo_translator">Penerjemah BISINDO</string>
+    <string name="label_object_detection">Pendeteksi Objek</string>
+    <string name="label_currency_detection">Pendeteksi Mata Uang</string>
+    <string name="label_text_detection">Pendeteksi Teks</string>
     <string name="label_dummy_name">Bintang Putera</string>
     <string name="label_dummy_email">bintangputera@gmail.com</string>
     <string name="label_my_account">Akun Saya</string>
     <string name="label_help">Bantuan</string>
-    <string name="label_fqa">Frequenty Asked Question</string>
-    <string name="label_report_bug">Laporkan Bug</string>
-    <string name="action_logout">Logout</string>
+    <string name="label_fqa">Tanya Jawab</string>
+    <string name="label_report_bug">Laporkan Masalah</string>
+    <string name="action_logout">Keluar</string>
     <string name="message_information">Informasi</string>
     <string name="message_login_failed">Username atau Password salah, silahkan coba lagi</string>
     <string name="message_unknown_state">Unknown State</string>
@@ -56,7 +56,18 @@
     <string name="label_new_password">Password baru</string>
     <string name="action_save">Simpan</string>
     <string name="title_my_account">Akun Saya</string>
-
+    <string name="label_activate_talkback">Ketuk disini untuk mengaktfikan fitur Talkback</string>
+    <string name="label_try_ayo_camera">Coba AYO Kamera!</string>
+    <string name="label_thisable_agreement">Dengan membuat akun berarti kamu setuju dengan Ketentuan Layanan Thisable</string>
+    <string name="label_about_thisable">Tentang Thisable</string>
+    <string name="label_bug_happen">Terjadi masalah ?</string>
+    <string name="label_help_to_report_bug">Bantu kami menjadi lebih baik dengan laporkan masalahmu!</string>
+    <string name="label_name">Nama*</string>
+    <string name="label_identity">Identitas</string>
+    <string name="label_report">Laporan</string>
+    <string name="label_required">*Wajib diisi</string>
+    <string name="label_user_understand">Saya Mengerti</string>
+    <string name="label_term_and_agreement"><b>Syarat &amp; Ketentuan</b>\nDiperbarui pada 2022-06-10\n\n<b>Ketentuan Umum</b>\nDengan mengakses dan melakukan pemesanan dengan , Anda mengonfirmasi bahwa Anda setuju dan terikat dengan persyaratan layanan yang tercantum dalam Syarat &amp; Ketentuan yang diuraikan di bawah ini. Persyaratan ini berlaku untuk seluruh situs web dan email atau jenis komunikasi lainnya antara Anda.\n\nDalam keadaan apa pun tim tidak bertanggung jawab atas segala kerusakan langsung, tidak langsung, khusus, insidental atau konsekuensial, termasuk, namun tidak terbatas pada, kehilangan data atau keuntungan, yang timbul dari penggunaan, atau ketidakmampuan untuk menggunakan, materi di situs ini. , bahkan jika tim atau perwakilan resmi telah diberitahu tentang kemungkinan kerusakan tersebut. Jika penggunaan Anda atas materi dari situs ini mengakibatkan perlunya servis, perbaikan, atau koreksi peralatan atau data, Anda menanggung semua biayanya.\n\nTidak akan bertanggung jawab atas hasil apa pun yang mungkin terjadi selama penggunaan sumber daya kami. Kami berhak untuk mengubah harga dan merevisi kebijakan penggunaan sumber daya setiap saat.\n\n<b>Lisensi</b>\nThisable memberi Anda lisensi terbatas yang dapat dibatalkan, non-eksklusif, tidak dapat dialihkan, untuk mengunduh, menginstal, dan menggunakan layanan kami secara ketat sesuai dengan ketentuan Perjanjian ini. Syarat &amp; Ketentuan ini adalah kontrak antara Anda dan Thisable (dalam Syarat &amp; Ketentuan ini disebut sebagai "Thisable", atau "milik kami"), penyedia situs web Thisable dan layanan yang dapat diakses dari situs web Thisable (yang secara bersama-sama disebut dalam Syarat &amp; Ketentuan ini sebagai "Layanan Thisable").\n\nAnda setuju untuk terikat dengan Syarat &amp; Ketentuan ini. Jika Anda tidak menyetujui Syarat &amp; Ketentuan ini, mohon untuk tidak menggunakan Layanan. Dalam Syarat &amp; Ketentuan ini, "Anda" merujuk kepada Anda sebagai individu dan entitas yang Anda wakili. Jika Anda melanggar salah satu dari Syarat &amp; Ketentuan ini, kami berhak untuk membatalkan akun Anda atau memblokir akses ke akun Anda tanpa pemberitahuan.</string>
 
     <string name="question_1_obj_detection"> Ada apa saja Didepan saya ?</string>
     <string name="question_2_obj_detection">Ada berapa orang didepan saya</string>
@@ -66,9 +77,18 @@
     <string name="question_2_currency_detection">Berapa banyak uang yang saya pegang ?</string>
     <string name="response_1_currency_detection">Uang yang terdeteksi adalah %1$s dengan Total uang %2$s </string>
     <string name="response_2_currency_detection">Total jumlah uang terdeteksi adalah %s Ribu Rupiah</string>
+
     <!-- TODO: Remove or change this placeholder text -->
     <string name="tab_text_1">hellow</string>
     <string name="tab_text_2">world</string>
     <string name="tab_text_3">test</string>
     <string name="tab_text_4">unyil</string>
+    <string name="label_hint_use">Petunjuk Penggunaan</string>
+    <string name="label_for_all_disabilities">Dapat digunakan semua jenis disabilitas.</string>
+    <string name="label_talkback_need_to_activate">Bagi penyandang tuna netra, aplikasi ini optimal digunakan dengan mengaktifkan fitur Talkback pada pengaturan.</string>
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="label_skip_login">Lewati Masuk</string>
+    <string name="label_warning">Perhatian !</string>
+    <string name="label_warning_message">Dengan melewati masuk, anda hanya bisa mengakses beberapa fitur.</string>
+    <string name="label_i_understand">Saya Mengerti</string>
 </resources>

@@ -1,0 +1,208 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <androidx.appcompat.widget.Toolbar
+        android:id="@+id/toolbar"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:layout_constraintTop_toBottomOf="@id/toolbar">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <TextView
+                android:id="@+id/tvBugHappen"
+                style="@style/TextContent.Header"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/dimen_16dp"
+                android:layout_marginTop="@dimen/dimen_32dp"
+                android:text="@string/label_bug_happen"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="@+id/imgIllustration" />
+
+            <TextView
+                android:id="@+id/tvBugHappenSubTitle"
+                style="@style/TextContent.SubHeader"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/dimen_10dp"
+                android:text="@string/label_help_to_report_bug"
+                app:layout_constraintEnd_toEndOf="@id/tvBugHappen"
+                app:layout_constraintStart_toStartOf="@+id/tvBugHappen"
+                app:layout_constraintTop_toBottomOf="@id/tvBugHappen" />
+
+            <ImageView
+                android:id="@+id/imgIllustration"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/dimen_16dp"
+                android:layout_marginTop="@dimen/dimen_32dp"
+                android:layout_marginEnd="@dimen/dimen_16dp"
+                android:src="@drawable/ic_people_illustration_1"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <TextView
+                android:id="@+id/tvIdentitySection"
+                style="@style/TextContent.Title"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/dimen_16dp"
+                android:layout_marginTop="@dimen/dimen_8dp"
+                android:text="@string/label_identity"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/imgIllustration" />
+
+            <TextView
+                android:id="@+id/tvNamaTitle"
+                style="@style/TextContent.EditTextStyle"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/dimen_16dp"
+                android:layout_marginTop="@dimen/dimen_8dp"
+                android:text="@string/label_name"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/tvIdentitySection" />
+
+            <EditText
+                android:id="@+id/edtName"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginHorizontal="@dimen/dimen_16dp"
+                android:layout_marginTop="@dimen/dimen_8dp"
+                android:background="@drawable/bg_edit_text"
+                android:hint="@string/hint_fullname"
+                android:inputType="text"
+                android:padding="@dimen/dimen_16dp"
+                android:textSize="@dimen/dimen_14sp"
+                app:layout_constraintTop_toBottomOf="@+id/tvNamaTitle" />
+
+            <TextView
+                android:id="@+id/tvEmailTitle"
+                style="@style/TextContent.EditTextStyle"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/dimen_16dp"
+                android:layout_marginTop="@dimen/dimen_16dp"
+                android:text="@string/label_email"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/edtName" />
+
+            <EditText
+                android:id="@+id/edtEmail"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginHorizontal="@dimen/dimen_16dp"
+                android:layout_marginTop="@dimen/dimen_8dp"
+                android:background="@drawable/bg_edit_text"
+                android:hint="@string/hint_email"
+                android:inputType="textEmailAddress"
+                android:padding="@dimen/dimen_16dp"
+                android:textSize="@dimen/dimen_14sp"
+                app:layout_constraintTop_toBottomOf="@+id/tvEmailTitle" />
+
+            <TextView
+                android:id="@+id/tvReport"
+                style="@style/TextContent.Title"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/dimen_16dp"
+                android:layout_marginTop="@dimen/dimen_8dp"
+                android:text="@string/label_report"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/edtEmail" />
+
+            <TextView
+                android:id="@+id/tvKeteranganTitle"
+                style="@style/TextContent.EditTextStyle"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/dimen_16dp"
+                android:layout_marginTop="@dimen/dimen_16dp"
+                android:text="@string/label_email"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/tvReport" />
+
+            <EditText
+                android:id="@+id/edtReport"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginHorizontal="@dimen/dimen_16dp"
+                android:layout_marginTop="@dimen/dimen_8dp"
+                android:background="@drawable/bg_edit_text"
+                android:gravity="top|start"
+                android:hint="@string/hint_email"
+                android:inputType="textMultiLine"
+                android:lines="7"
+                android:maxLength="300"
+                android:maxLines="7"
+                android:padding="@dimen/dimen_16dp"
+                android:textSize="@dimen/dimen_14sp"
+                app:layout_constraintTop_toBottomOf="@+id/tvKeteranganTitle" />
+
+            <TextView
+                android:id="@+id/tvRequired"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/label_required"
+                android:textSize="@dimen/dimen_14sp"
+                android:layout_marginTop="@dimen/dimen_16dp"
+                app:layout_constraintStart_toStartOf="@id/edtReport"
+                app:layout_constraintTop_toBottomOf="@id/edtReport" />
+
+            <TextView
+                android:id="@+id/tvCharCounter"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textSize="@dimen/dimen_14sp"
+                app:layout_constraintEnd_toEndOf="@id/edtReport"
+                app:layout_constraintTop_toTopOf="@+id/tvRequired" />
+
+            <Button
+                android:id="@+id/btnLogin"
+                style="@style/ButtonContent"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="@dimen/dimen_16dp"
+                android:background="@drawable/bg_button"
+                android:text="@string/action_login"
+                android:textAllCaps="false"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/tvRequired"
+                tools:layout_editor_absoluteX="16dp" />
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+    </ScrollView>
+
+    <View
+        android:id="@+id/bg_dim"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:background="@color/colorBlackDim"
+        android:elevation="@dimen/dimen_2dp"
+        android:visibility="gone"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <ProgressBar
+        android:id="@+id/progress_bar"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:elevation="@dimen/dimen_4dp"
+        android:visibility="invisible"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>

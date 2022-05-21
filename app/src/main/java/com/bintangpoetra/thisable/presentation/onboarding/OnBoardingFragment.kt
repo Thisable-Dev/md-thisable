@@ -5,9 +5,11 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
+import androidx.navigation.findNavController
+import com.bintangpoetra.thisable.R
 import com.bintangpoetra.thisable.databinding.FragmentOnboardingBinding
 
-class OnBoardingFragment: Fragment() {
+class OnBoardingFragment : Fragment() {
 
     private var _fragmentOnBoardingBinding: FragmentOnboardingBinding? = null
     private val binding get() = _fragmentOnBoardingBinding!!
@@ -20,8 +22,12 @@ class OnBoardingFragment: Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        val vpAdapter = OnBoardingViewPagerAdapter(requireActivity())
-        binding.vp2OnBoarding.adapter = vpAdapter
+        initAction()
     }
 
+    private fun initAction() {
+        binding.btnLoginGoogle.setOnClickListener {
+            it.findNavController().navigate(R.id.action_onBoardingFragment_to_instructionFragment)
+        }
+    }
 }

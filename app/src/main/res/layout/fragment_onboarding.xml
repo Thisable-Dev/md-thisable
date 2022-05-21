@@ -1,13 +1,90 @@
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:orientation="vertical"
+    android:gravity="center"
     tools:context=".presentation.onboarding.OnBoardingFragment">
 
-    <androidx.viewpager2.widget.ViewPager2
-        android:id="@+id/vp2OnBoarding"
-        android:background="@color/white"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent" />
+    <ImageView
+        android:id="@+id/imgIllustration"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:src="@drawable/ic_people_illustration_2"/>
 
-</FrameLayout>
+    <TextView
+        android:id="@+id/tvTitle"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/label_welcome_enablers"
+        android:layout_marginTop="@dimen/dimen_16dp"
+        style="@style/TextContent.Title" />
+
+    <TextView
+        android:id="@+id/tvSubTitle"
+        android:text="@string/label_message_for_enablers"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/dimen_16dp"
+        android:layout_marginHorizontal="@dimen/dimen_50dp"
+        android:textAlignment="center"
+        style="@style/TextContent.SubTitle" />
+
+    <com.google.android.material.button.MaterialButton
+        android:id="@+id/btnLoginGoogle"
+        android:text="@string/action_login_with_google"
+        android:textColor="@color/white"
+        android:textAllCaps="false"
+        android:textStyle="bold"
+        android:textSize="16sp"
+        android:elevation="0dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginHorizontal="@dimen/dimen_50dp"
+        android:layout_marginTop="@dimen/dimen_32dp"
+        android:background="@drawable/bg_google_button"
+        app:icon="@drawable/google"
+        app:iconTintMode="multiply"
+        app:backgroundTint="@color/colorBlue"
+        app:layout_constraintTop_toBottomOf="@+id/tvOr"
+        style="@style/ButtonContent" />
+
+    <Button
+        android:id="@+id/btnNext"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginHorizontal="@dimen/dimen_50dp"
+        android:layout_marginTop="@dimen/dimen_16dp"
+        android:background="@drawable/bg_white_button"
+        android:paddingTop="@dimen/dimen_12dp"
+        android:paddingBottom="@dimen/dimen_12dp"
+        android:text="@string/label_skip_login"
+        android:textAllCaps="false"
+        android:textColor="@color/black"
+        app:backgroundTint="@null"
+        style="@style/ButtonContent"/>
+
+    <TextView
+        android:text="@string/label_thisable_agreement"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/dimen_16dp"
+        android:layout_marginHorizontal="@dimen/dimen_50dp"
+        android:textAlignment="center" />
+
+    <com.google.android.material.divider.MaterialDivider
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/dimen_16dp"
+        android:layout_marginHorizontal="@dimen/dimen_50dp"/>
+
+    <TextView
+        android:text="@string/label_about_thisable"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/dimen_16dp"
+        android:clickable="true"
+        style="@style/TextContent.SmallBoldBlue"/>
+
+</LinearLayout>

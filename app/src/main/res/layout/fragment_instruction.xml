@@ -1,0 +1,31 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:orientation="vertical"
+    android:gravity="center"
+    tools:context=".presentation.onboarding.OnBoardingFragment">
+
+    <androidx.viewpager2.widget.ViewPager2
+        android:id="@+id/vp2Instruction"
+        android:background="@color/white"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"/>
+
+    <Button
+        android:id="@+id/btnUnderstand"
+        android:text="@string/label_user_understand"
+        android:textColor="@color/white"
+        android:textAllCaps="false"
+        android:textStyle="bold"
+        android:textSize="16sp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginHorizontal="@dimen/dimen_50dp"
+        android:layout_marginTop="@dimen/dimen_32dp"
+        android:background="@drawable/bg_button"
+        app:layout_constraintTop_toBottomOf="@+id/tvOr"
+        style="@style/ButtonContent" />
+
+</LinearLayout>
