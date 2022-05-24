@@ -1,6 +1,7 @@
 package com.bintangpoetra.thisable.di
 
 import com.bintangpoetra.thisable.data.remote.auth.AuthService
+import com.bintangpoetra.thisable.data.remote.general.GeneralService
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
@@ -13,5 +14,8 @@ class ServiceModule {
 
     @Provides
     fun provideAuthService(retrofit: Retrofit): AuthService = retrofit.create(AuthService::class.java)
+
+    @Provides
+    fun provideGeneralService(retrofit: Retrofit): GeneralService = retrofit.create(GeneralService::class.java)
 
 }

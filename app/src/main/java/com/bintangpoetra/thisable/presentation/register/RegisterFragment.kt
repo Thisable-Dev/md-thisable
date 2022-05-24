@@ -8,7 +8,7 @@ import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.navigation.findNavController
 import com.bintangpoetra.thisable.R
-import com.bintangpoetra.thisable.data.remote.auth.ApiResponse
+import com.bintangpoetra.thisable.data.remote.ApiResponse
 import com.bintangpoetra.thisable.data.remote.auth.register.RegisterBody
 import com.bintangpoetra.thisable.databinding.FragmentRegisterBinding
 import dagger.hilt.android.AndroidEntryPoint
