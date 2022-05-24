@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "98505400264",
+    "project_id": "thisable-proto",
+    "storage_bucket": "thisable-proto.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:98505400264:android:abf24f35d93d595f7d2afd",
+        "android_client_info": {
+          "package_name": "com.bintangpoetra.thisable"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "98505400264-m3cotmijo0dadn5rdnqtljn2nebq881l.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCKMfEdbzlcDgP5z66taINKz_M4CB5VI5s"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "98505400264-m3cotmijo0dadn5rdnqtljn2nebq881l.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

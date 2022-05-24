@@ -3,7 +3,8 @@ plugins {
     id 'org.jetbrains.kotlin.android'
     id 'kotlin-kapt'
     id 'dagger.hilt.android.plugin'
-    id 'androidx.navigation.safeargs'
+    id 'com.google.gms.google-services'
+//    id 'androidx.navigation.safeargs'
 }
 
 android {
@@ -39,6 +40,10 @@ android {
 }
 
 dependencies {
+
+    // Firebase Auth
+    implementation 'com.google.android.gms:play-services-auth:20.2.0'
+    implementation 'com.google.firebase:firebase-auth-ktx:21.0.4'
 
     //  MVVM
     implementation 'androidx.lifecycle:lifecycle-livedata-ktx:2.4.1'

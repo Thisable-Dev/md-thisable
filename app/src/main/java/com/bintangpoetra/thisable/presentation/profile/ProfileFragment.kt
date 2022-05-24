@@ -18,6 +18,13 @@ import com.bintangpoetra.thisable.utils.ConstVal.KEY_USER_ID
 import com.bintangpoetra.thisable.utils.ConstVal.KEY_USER_NAME
 import com.bintangpoetra.thisable.utils.SharedPrefManager
 import com.bintangpoetra.thisable.utils.ext.popTap
+import com.google.android.gms.auth.api.signin.GoogleSignIn
+import com.google.android.gms.auth.api.signin.GoogleSignInClient
+import com.google.android.gms.auth.api.signin.GoogleSignInOptions
+import com.google.android.gms.auth.api.signin.GoogleSignInOptions.Builder
+import com.google.firebase.auth.FirebaseAuth
+import com.google.firebase.auth.ktx.auth
+import com.google.firebase.ktx.Firebase
 
 class ProfileFragment : Fragment() {
 
@@ -25,6 +32,8 @@ class ProfileFragment : Fragment() {
     private val binding get() = _fragmentProfileBinding!!
 
     private lateinit var pref: SharedPrefManager
+    private lateinit var auth: FirebaseAuth
+    private lateinit var mGoogleSignInClient: GoogleSignInClient
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         _fragmentProfileBinding = FragmentProfileBinding.inflate(inflater, container, false)
@@ -34,6 +43,13 @@ class ProfileFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         pref = SharedPrefManager(requireContext())
+
+        auth = Firebase.auth
+
+        val gso = Builder(GoogleSignInOptions.DEFAULT_SIGN_IN)
+            .requestEmail()
+            .build()
+        mGoogleSignInClient = GoogleSignIn.getClient(requireActivity(), gso)
 
         initUI()
         initAction()
@@ -65,12 +81,15 @@ class ProfileFragment : Fragment() {
     }
 
     private fun logout() {
-        pref.apply {
-            clearPreferenceByKey(KEY_USER_ID)
-            clearPreferenceByKey(KEY_TOKEN)
-            clearPreferenceByKey(KEY_USER_NAME)
-            clearPreferenceByKey(KEY_IS_LOGIN)
-            clearPreferenceByKey(KEY_EMAIL)
+        auth.signOut()
+        mGoogleSignInClient.signOut().addOnCompleteListener {
+            pref.apply {
+                clearPreferenceByKey(KEY_USER_ID)
+                clearPreferenceByKey(KEY_TOKEN)
+                clearPreferenceByKey(KEY_USER_NAME)
+                clearPreferenceByKey(KEY_IS_LOGIN)
+                clearPreferenceByKey(KEY_EMAIL)
+            }
         }
     }
 
@@ -82,7 +101,7 @@ class ProfileFragment : Fragment() {
                 try {
                     logout()
                 } finally {
-                    findNavController().navigate(R.id.action_profileFragment_to_loginFragment)
+                    findNavController().navigate(R.id.action_profileFragment_to_onBoardingFragment)
                 }
             }
             setNegativeButton("Batal") { p0, _ ->

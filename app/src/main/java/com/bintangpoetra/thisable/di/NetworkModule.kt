@@ -1,6 +1,7 @@
 package com.bintangpoetra.thisable.di
 
 import com.bintangpoetra.thisable.BuildConfig
+import com.bintangpoetra.thisable.utils.ConstVal.BASE_URL
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
@@ -26,7 +27,7 @@ class NetworkModule {
 
     @Provides
     fun provideRetrofit(client: OkHttpClient): Retrofit = Retrofit.Builder()
-        .baseUrl(BuildConfig.BASE_URL)
+        .baseUrl(BASE_URL)
         .addConverterFactory(GsonConverterFactory.create())
         .client(client)
         .build()

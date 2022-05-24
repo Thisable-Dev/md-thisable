@@ -2,6 +2,8 @@ package com.bintangpoetra.thisable.utils
 
 object ConstVal {
 
+    const val BASE_URL = "http://34.101.210.170:5000/"
+
     const val PREFS_NAME = "thisable.pref"
 
     const val KEY_TOKEN = "key.token"

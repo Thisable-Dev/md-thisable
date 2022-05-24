@@ -12,6 +12,10 @@ import com.bintangpoetra.thisable.R
 import com.bintangpoetra.thisable.databinding.FragmentSplashBinding
 import com.bintangpoetra.thisable.utils.ConstVal.SPLASH_DELAY_TIME
 import com.bintangpoetra.thisable.utils.SharedPrefManager
+import com.bintangpoetra.thisable.utils.ext.showToast
+import com.google.firebase.auth.FirebaseAuth
+import com.google.firebase.auth.ktx.auth
+import com.google.firebase.ktx.Firebase
 
 class SplashFragment : Fragment() {
 
@@ -19,6 +23,7 @@ class SplashFragment : Fragment() {
     private val binding get() = _fragmentSplashBinding!!
 
     private lateinit var pref: SharedPrefManager
+    private lateinit var auth: FirebaseAuth
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         _fragmentSplashBinding = FragmentSplashBinding.inflate(inflater, container, false)
@@ -30,18 +35,18 @@ class SplashFragment : Fragment() {
 
         pref = SharedPrefManager(requireContext())
         val isLogin = pref.isLogin
-        val isIntro = pref.isIntro
+        context?.showToast(isLogin.toString())
+
+        auth = Firebase.auth
+        val user = auth.currentUser
 
         Handler(Looper.getMainLooper()).postDelayed({
             when {
-                !isIntro -> {
-                    findNavController().navigate(R.id.action_splashFragment_to_onBoardingFragment)
-                }
-                !isLogin -> {
-                    findNavController().navigate(R.id.action_splashFragment_to_loginFragment)
-                }
-                else -> {
+                isLogin -> {
                     findNavController().navigate(R.id.action_splashFragment_to_homeFragment)
+                }
+                user == null -> {
+                    findNavController().navigate(R.id.action_splashFragment_to_onBoardingFragment)
                 }
             }
         }, SPLASH_DELAY_TIME)

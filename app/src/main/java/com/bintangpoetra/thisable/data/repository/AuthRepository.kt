@@ -1,6 +1,6 @@
 package com.bintangpoetra.thisable.data.repository
 
-import com.bintangpoetra.thisable.data.remote.auth.ApiResponse
+import com.bintangpoetra.thisable.data.remote.ApiResponse
 import com.bintangpoetra.thisable.data.remote.auth.login.LoginBody
 import com.bintangpoetra.thisable.data.remote.auth.login.LoginResponse
 import com.bintangpoetra.thisable.data.remote.auth.register.RegisterBody

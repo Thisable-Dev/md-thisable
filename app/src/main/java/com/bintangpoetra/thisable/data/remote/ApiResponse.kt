@@ -1,4 +1,4 @@
-package com.bintangpoetra.thisable.data.remote.auth
+package com.bintangpoetra.thisable.data.remote
 
 sealed class ApiResponse<out R> {
     data class Success<out T>(val data: T) : ApiResponse<T>()
