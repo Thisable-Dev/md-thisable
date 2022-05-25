@@ -7,6 +7,7 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.activity.result.contract.ActivityResultContracts.StartActivityForResult
 import androidx.fragment.app.Fragment
+import androidx.navigation.findNavController
 import androidx.navigation.fragment.findNavController
 import com.bintangpoetra.thisable.R
 import com.bintangpoetra.thisable.databinding.FragmentOnboardingBinding
@@ -65,6 +66,9 @@ class OnBoardingFragment : Fragment() {
             it.popTap()
             signIn()
         }
+        binding.btnNext.setOnClickListener {
+            it.findNavController().navigate(R.id.action_onBoardingFragment_to_fragmentWarningCustomDialog)
+        }
     }
 
     private fun signIn() {
@@ -102,11 +106,12 @@ class OnBoardingFragment : Fragment() {
                         setStringPreference(ConstVal.KEY_EMAIL, user?.email.toString())
                         setBooleanPreference(ConstVal.KEY_IS_LOGIN, true)
                     }
-                    findNavController().navigate(R.id.action_onBoardingFragment_to_homeFragment)
+                    findNavController().navigate(R.id.action_onBoardingFragment_to_instructionFragment)
                 } else {
                     Timber.w("sign in with credential failure ${task.exception}")
                     context?.showToast("Error occured")
                 }
             }
     }
+
 }

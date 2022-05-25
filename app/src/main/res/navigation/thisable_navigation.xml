@@ -59,6 +59,9 @@
             app:popUpTo="@id/thisable_navigation"
             app:launchSingleTop="true"
             app:popUpToInclusive="true"/>
+        <action
+            android:id="@+id/action_onBoardingFragment_to_fragmentWarningCustomDialog"
+            app:destination="@id/fragmentWarningCustomDialog" />
     </fragment>
     <fragment
         android:id="@+id/loginFragment"
@@ -142,4 +145,17 @@
             app:launchSingleTop="true"
             app:popUpToInclusive="true"/>
     </fragment>
+    <dialog
+        android:id="@+id/fragmentWarningCustomDialog"
+        android:name="com.bintangpoetra.thisable.presentation.dialog.FragmentWarningCustomDialog"
+        android:label="FragmentWarningCustomDialog" >
+        <action
+            android:id="@+id/action_fragmentWarningCustomDialog_to_homeFragment"
+            app:destination="@id/homeFragment"
+            app:enterAnim="@anim/slide_in_right"
+            app:exitAnim="@anim/slide_out_left"
+            app:popUpTo="@id/thisable_navigation"
+            app:launchSingleTop="true"
+            app:popUpToInclusive="true"/>
+    </dialog>
 </navigation>

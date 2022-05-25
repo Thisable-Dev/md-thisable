@@ -94,7 +94,7 @@
     <string name="action_report">Laporkan</string>
 
     <string name="default_web_client">98505400264-m3cotmijo0dadn5rdnqtljn2nebq881l.apps.googleusercontent.com</string>
-    <string name="label_report_char_counter">0/100</string>
+    <string name="label_report_char_counter">0/300</string>
     <string name="title_report_bug">Laporkan Masalah</string>
     <string name="message_report_success">Laporan berhasil ditambahkan</string>
     <string name="message_must_not_null">Nama tidak boleh kosong</string>

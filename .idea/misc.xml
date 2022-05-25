@@ -3,6 +3,7 @@
   <component name="DesignSurface">
     <option name="filePathToZoomLevelMap">
       <map>
+        <entry key="..\:/Project/AndroidStudio/Bangkit/Capstone/thisable-app/app/src/main/res/drawable/bg_alert_dialog.xml" value="0.121" />
         <entry key="..\:/Project/AndroidStudio/Bangkit/Capstone/thisable-app/app/src/main/res/drawable/bg_button.xml" value="0.1335" />
         <entry key="..\:/Project/AndroidStudio/Bangkit/Capstone/thisable-app/app/src/main/res/drawable/bg_circle.xml" value="0.1155" />
         <entry key="..\:/Project/AndroidStudio/Bangkit/Capstone/thisable-app/app/src/main/res/drawable/bg_edit_text.xml" value="0.1655" />
@@ -22,7 +23,8 @@
         <entry key="..\:/Project/AndroidStudio/Bangkit/Capstone/thisable-app/app/src/main/res/font/nunito_sans_bold.xml" value="0.1472312703583062" />
         <entry key="..\:/Project/AndroidStudio/Bangkit/Capstone/thisable-app/app/src/main/res/font/nunito_semibold.xml" value="0.23541666666666666" />
         <entry key="..\:/Project/AndroidStudio/Bangkit/Capstone/thisable-app/app/src/main/res/layout/activity_core.xml" value="0.1611842105263158" />
-        <entry key="..\:/Project/AndroidStudio/Bangkit/Capstone/thisable-app/app/src/main/res/layout/activity_main.xml" value="0.18" />
+        <entry key="..\:/Project/AndroidStudio/Bangkit/Capstone/thisable-app/app/src/main/res/layout/activity_main.xml" value="0.14" />
+        <entry key="..\:/Project/AndroidStudio/Bangkit/Capstone/thisable-app/app/src/main/res/layout/custom_dialog_object.xml" value="0.12960526315789472" />
         <entry key="..\:/Project/AndroidStudio/Bangkit/Capstone/thisable-app/app/src/main/res/layout/fragment_bug_report.xml" value="0.18" />
         <entry key="..\:/Project/AndroidStudio/Bangkit/Capstone/thisable-app/app/src/main/res/layout/fragment_currency.xml" value="0.1611842105263158" />
         <entry key="..\:/Project/AndroidStudio/Bangkit/Capstone/thisable-app/app/src/main/res/layout/fragment_detail_profile.xml" value="0.17" />

@@ -136,7 +136,6 @@ class CurrencyFragment : Fragment() {
         cameraProviderFuture.addListener(runnableInterface, ContextCompat.getMainExecutor(requireContext()))
     }
 
-
     override fun onResume() {
         super.onResume()
         startCamera()
@@ -147,12 +146,10 @@ class CurrencyFragment : Fragment() {
         }
     }
 
-
     companion object {
         private val REQUIRED_PERMISSION = arrayOf(Manifest.permission.CAMERA)
         private val PERMISSION_CODE : Int = 10
         private val TAG : String = CurrencyFragment::class.java.simpleName
     }
-
 
 }

@@ -25,6 +25,7 @@ class MainActivity : AppCompatActivity() {
         val navControllerBottomBar = navHostBottomBar.navController
 
         binding.bottomNav.setupWithNavController(navControllerBottomBar)
+        binding.bottomNav.background = null
         navControllerBottomBar.addOnDestinationChangedListener { _, currentDestination, _ ->
             if (currentDestination.id == R.id.homeFragment || currentDestination.id == R.id.thisableFragment || currentDestination.id == R.id.profileFragment) {
                 binding.bottomNav.show()

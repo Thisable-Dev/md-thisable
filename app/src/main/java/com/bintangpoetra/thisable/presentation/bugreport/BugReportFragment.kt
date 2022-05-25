@@ -10,7 +10,6 @@ import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.navigation.findNavController
 import androidx.navigation.fragment.findNavController
-import com.bintangpoetra.thisable.R
 import com.bintangpoetra.thisable.R.string
 import com.bintangpoetra.thisable.data.remote.ApiResponse
 import com.bintangpoetra.thisable.data.source.report.ReportBugBody
@@ -23,7 +22,6 @@ import com.google.firebase.auth.ktx.auth
 import com.google.firebase.ktx.Firebase
 import dagger.hilt.android.AndroidEntryPoint
 import timber.log.Timber
-import timber.log.Timber.Forest
 
 @AndroidEntryPoint
 class BugReportFragment : Fragment() {
