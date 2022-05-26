@@ -88,7 +88,6 @@ class TextDetectionFragment : Fragment() {
                 if(image  != null) {
                     val metadata = FrameMetadata(image.width, image.height, 0)
                     val currImage = image
-                    Log.d("YOWEU", currImage.toString())
                     showToastMessage(requireContext(), "Bitmap IS NOT NULL!!!!")
                 }
                 else {
@@ -100,6 +99,10 @@ class TextDetectionFragment : Fragment() {
         binding.viewFinder.setOnLongClickListener {
             showAlertDialogObjDetection(requireContext(), ServeListQuestion.getListQuestion(requireContext()), subscriberItemListener = itemListener)
             true
+        }
+
+        binding.ivBack.setOnClickListener {
+            requireActivity().finish()
         }
     }
 

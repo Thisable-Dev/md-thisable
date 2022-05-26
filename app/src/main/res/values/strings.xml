@@ -79,10 +79,6 @@
     <string name="response_2_currency_detection">Total jumlah uang terdeteksi adalah %s Ribu Rupiah</string>
 
     <!-- TODO: Remove or change this placeholder text -->
-    <string name="tab_text_1">hellow</string>
-    <string name="tab_text_2">world</string>
-    <string name="tab_text_3">test</string>
-    <string name="tab_text_4">unyil</string>
     <string name="label_hint_use">Petunjuk Penggunaan</string>
     <string name="label_for_all_disabilities">Dapat digunakan semua jenis disabilitas.</string>
     <string name="label_talkback_need_to_activate">Bagi penyandang tuna netra, aplikasi ini optimal digunakan dengan mengaktifkan fitur Talkback pada pengaturan.</string>
@@ -100,4 +96,8 @@
     <string name="message_must_not_null">Nama tidak boleh kosong</string>
     <string name="message_email_not_null">Surel tidak boleh kosong</string>
     <string name="message_report_must_not_null">Pesan tidak boleh kosong</string>
+
+    <string name="action_object_detection">deteksiObjek</string>
+    <string name="action_text_detection">deteksiTeks</string>
+    <string name="action_currency_detection">deteksiUang</string>
 </resources>

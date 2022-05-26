@@ -33,6 +33,10 @@ class SignLanguageFragment : Fragment() {
         init()
         if (allPermissionGranted()) {
             startCamera()
+
+            binding.ivBack.setOnClickListener {
+                requireActivity().finish()
+            }
         }
         else {
             ActivityCompat.requestPermissions(requireActivity(), REQUIRED_PERMISSION, PERMISSION_CODE)

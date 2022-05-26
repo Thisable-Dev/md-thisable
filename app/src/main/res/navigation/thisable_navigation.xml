@@ -83,7 +83,23 @@
     <fragment
         android:id="@+id/homeFragment"
         android:name="com.devthisable.thisable.presentation.home.HomeFragment"
-        android:label="HomeFragment" />
+        android:label="HomeFragment" >
+        <action
+            android:id="@+id/action_homeFragment_to_textDetectionFragment"
+            app:destination="@id/textDetectionFragment" />
+        <action
+            android:id="@+id/action_homeFragment_to_signLanguageFragment"
+            app:destination="@id/signLanguageFragment" />
+        <action
+            android:id="@+id/action_homeFragment_to_objectDetectionFragment2"
+            app:destination="@id/objectDetectionFragment2" />
+        <action
+            android:id="@+id/action_homeFragment_to_currencyFragment"
+            app:destination="@id/currencyFragment" />
+        <action
+            android:id="@+id/action_homeFragment_to_coreActivity"
+            app:destination="@id/coreActivity" />
+    </fragment>
     <fragment
         android:id="@+id/profileFragment"
         android:name="com.devthisable.thisable.presentation.profile.ProfileFragment"
@@ -164,4 +180,40 @@
         android:name="com.devthisable.thisable.CoreActivity"
         android:label="activity_core"
         tools:layout="@layout/activity_core" />
+    <fragment
+        android:id="@+id/currencyFragment"
+        android:name="com.devthisable.thisable.presentation.feature_currency.CurrencyFragment"
+        android:label="fragment_currency"
+        tools:layout="@layout/fragment_currency" >
+        <action
+            android:id="@+id/action_currencyFragment_to_homeFragment"
+            app:destination="@id/homeFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/signLanguageFragment"
+        android:name="com.devthisable.thisable.presentation.feature_sign_language.SignLanguageFragment"
+        android:label="fragment_sign_language"
+        tools:layout="@layout/fragment_sign_language" >
+        <action
+            android:id="@+id/action_signLanguageFragment_to_homeFragment"
+            app:destination="@id/homeFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/textDetectionFragment"
+        android:name="com.devthisable.thisable.presentation.feature_text.TextDetectionFragment"
+        android:label="fragment_text_detection"
+        tools:layout="@layout/fragment_text_detection" >
+        <action
+            android:id="@+id/action_textDetectionFragment_to_homeFragment"
+            app:destination="@id/homeFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/objectDetectionFragment2"
+        android:name="com.devthisable.thisable.presentation.feature_object.ObjectDetectionFragment"
+        android:label="fragment_object_detection"
+        tools:layout="@layout/fragment_object_detection" >
+        <action
+            android:id="@+id/action_objectDetectionFragment2_to_homeFragment"
+            app:destination="@id/homeFragment" />
+    </fragment>
 </navigation>

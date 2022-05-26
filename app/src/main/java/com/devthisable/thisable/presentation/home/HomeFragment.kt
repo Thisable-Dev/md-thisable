@@ -5,8 +5,10 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
+import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.LinearSnapHelper
+import com.devthisable.thisable.R
 import com.devthisable.thisable.data.dummy.BannerDummy.getBannerList
 import com.devthisable.thisable.databinding.FragmentHomeBinding
 
@@ -24,12 +26,37 @@ class HomeFragment: Fragment() {
         super.onViewCreated(view, savedInstanceState)
         initUI()
         loadBanner()
+        setOnClickListener()
     }
 
     private fun initUI() {
         val snapHelper = LinearSnapHelper()
         snapHelper.attachToRecyclerView(binding.rvBanner)
         binding.rvBanner.layoutManager = LinearLayoutManager(context, LinearLayoutManager.HORIZONTAL, false)
+    }
+
+    private fun setOnClickListener () {
+
+        var bundleData = Bundle()
+        binding.cvDeteksiObjek.setOnClickListener {
+            bundleData.putString("EXTRA_DATA",resources.getString(R.string.action_object_detection))
+            findNavController().navigate(R.id.action_homeFragment_to_coreActivity,args=bundleData)
+        }
+        binding.cvDeteksiText.setOnClickListener {
+            bundleData.putString("EXTRA_DATA",resources.getString(R.string.action_text_detection))
+            findNavController().navigate(R.id.action_homeFragment_to_coreActivity,args=bundleData)
+        }
+        binding.cvDeteksiUang.setOnClickListener {
+
+            bundleData.putString("EXTRA_DATA",resources.getString(R.string.action_currency_detection))
+            findNavController().navigate(R.id.action_homeFragment_to_coreActivity,args=bundleData)
+        }
+
+        binding.cvPenerjemahBisindo.setOnClickListener {
+
+
+            findNavController().navigate(R.id.action_homeFragment_to_coreActivity)
+        }
     }
 
     private fun loadBanner() {
