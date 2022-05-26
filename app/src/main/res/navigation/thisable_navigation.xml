@@ -111,6 +111,7 @@
             app:launchSingleTop="true"
             app:popUpToInclusive="true"/>
     </fragment>
+
     <fragment
         android:id="@+id/thisableFragment"
         android:name="com.devthisable.thisable.presentation.thisable.ThisableFragment"
@@ -158,4 +159,9 @@
             app:launchSingleTop="true"
             app:popUpToInclusive="true"/>
     </dialog>
+    <activity
+        android:id="@+id/coreActivity"
+        android:name="com.devthisable.thisable.CoreActivity"
+        android:label="activity_core"
+        tools:layout="@layout/activity_core" />
 </navigation>

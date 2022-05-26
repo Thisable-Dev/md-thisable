@@ -89,7 +89,6 @@ class TextDetectionFragment : Fragment() {
                     val metadata = FrameMetadata(image.width, image.height, 0)
                     val currImage = image
                     Log.d("YOWEU", currImage.toString())
-                    binding.ivVolume.setImageBitmap(currImage)
                     showToastMessage(requireContext(), "Bitmap IS NOT NULL!!!!")
                 }
                 else {

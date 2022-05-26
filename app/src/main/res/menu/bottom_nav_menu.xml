@@ -7,7 +7,7 @@
         android:title="@string/menu_home"/>
 
     <item
-        android:id="@+id/thisableFragment"
+        android:id="@+id/coreActivity"
         android:icon="@drawable/ic_all_in_one_camera"
         android:iconTintMode="multiply"
         android:title="@string/menu_thisable"/>

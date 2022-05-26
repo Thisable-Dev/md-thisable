@@ -63,17 +63,7 @@ class ObjectDetectionFragment : Fragment() {
             showAlertDialog()
             true
         }
-        binding.ivVolume.setOnClickListener {
-            if (isSoundOn) {
-                //  iv_volume.setImageDrawable(getDrawable(R.drawable.ic_action_volume_off))
-                isSoundOn = false
-                startCamera(false)
-            } else {
-                //  iv_volume.setImageDrawable(getDrawable(R.drawable.ic_action_volume_on))
-                isSoundOn = true
-                startCamera(true)
-            }
-        }
+
         if (allPermissionsGranted()) {
             startCamera(false)
         } else {

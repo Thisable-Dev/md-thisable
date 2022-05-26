@@ -26,7 +26,7 @@ class MainActivity : AppCompatActivity() {
         binding.bottomNav.setupWithNavController(navControllerBottomBar)
         binding.bottomNav.background = null
         navControllerBottomBar.addOnDestinationChangedListener { _, currentDestination, _ ->
-            if (currentDestination.id == R.id.homeFragment || currentDestination.id == R.id.thisableFragment || currentDestination.id == R.id.profileFragment) {
+            if (currentDestination.id == R.id.homeFragment || currentDestination.id == R.id.coreActivity || currentDestination.id == R.id.profileFragment) {
                 binding.bottomNav.show()
             } else {
                 binding.bottomNav.gone()

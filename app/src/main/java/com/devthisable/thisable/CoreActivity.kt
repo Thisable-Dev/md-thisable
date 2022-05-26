@@ -2,6 +2,7 @@ package com.devthisable.thisable
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.widget.ImageView
 import androidx.annotation.StringRes
 import com.devthisable.thisable.adapter.SectionPagerAdapter
 import com.devthisable.thisable.databinding.ActivityCoreBinding
@@ -19,9 +20,13 @@ class CoreActivity : AppCompatActivity() {
         val tabs = binding.tabsCoreFeature
         val viewPager = binding.viewPager
         TabLayoutMediator(tabs, viewPager) { tab, position ->
-            tab.text = resources.getString(TAB_TITLES[position])
+            val view = layoutInflater.inflate(R.layout.custom_tab_layout, null)
+            view.findViewById<ImageView>(R.id.icon).setBackgroundResource(TAB_ICON[position])
+            tab.setCustomView(view)
         }.attach()
         supportActionBar?.elevation = 0f
+        supportActionBar?.hide()
+
     }
     /*
         fun performCloudVisionRequest(uri : Uri) {
@@ -39,12 +44,13 @@ class CoreActivity : AppCompatActivity() {
     */
     companion object {
         @StringRes
-        private val TAB_TITLES = intArrayOf(
-            R.string.tab_text_1,
-            R.string.tab_text_2,
-            R.string.tab_text_3,
-            R.string.tab_text_4
+        val TAB_ICON = intArrayOf(
+            R.drawable.ic_bisindo_translator,
+            R.drawable.ic_object_detection,
+            R.drawable.ic_currency_detection,
+            R.drawable.ic_text_detection
         )
+
         const val CAMERA_RESULT = 10
     }
 }
