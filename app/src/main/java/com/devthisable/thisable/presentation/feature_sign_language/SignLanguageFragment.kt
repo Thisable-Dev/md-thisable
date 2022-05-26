@@ -1,60 +1,114 @@
 package com.devthisable.thisable.presentation.feature_sign_language
 
+import android.Manifest
+import android.content.pm.PackageManager
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.camera.core.CameraSelector
+import androidx.camera.core.ImageAnalysis
+import androidx.camera.core.Preview
+import androidx.camera.lifecycle.ProcessCameraProvider
+import androidx.core.app.ActivityCompat
+import androidx.core.content.ContextCompat
 import com.devthisable.thisable.R
+import com.devthisable.thisable.analyzer.SignLanguageAnalyzer
+import com.devthisable.thisable.databinding.FragmentSignLanguageBinding
+import com.devthisable.thisable.utils.showToastMessage
+import java.util.concurrent.ExecutorService
+import java.util.concurrent.Executors
 
-// TODO: Rename parameter arguments, choose names that match
-// the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
-private const val ARG_PARAM1 = "param1"
-private const val ARG_PARAM2 = "param2"
-
-/**
- * A simple [Fragment] subclass.
- * Use the [SignLanguageFragment.newInstance] factory method to
- * create an instance of this fragment.
- */
 class SignLanguageFragment : Fragment() {
-    // TODO: Rename and change types of parameters
-    private var param1: String? = null
-    private var param2: String? = null
 
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-        arguments?.let {
-            param1 = it.getString(ARG_PARAM1)
-            param2 = it.getString(ARG_PARAM2)
+    private var binding_ : FragmentSignLanguageBinding? = null
+    private val binding : FragmentSignLanguageBinding get() = binding_!!
+    private lateinit var cameraExecutor : ExecutorService
+    private lateinit var signLanguageAnalyzer : SignLanguageAnalyzer
+
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+
+        init()
+        if (allPermissionGranted()) {
+            startCamera()
+        }
+        else {
+            ActivityCompat.requestPermissions(requireActivity(), REQUIRED_PERMISSION, PERMISSION_CODE)
         }
     }
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
-        savedInstanceState: Bundle?
-    ): View? {
-        // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_sign_language, container, false)
+        savedInstanceState: Bundle?): View {
+        binding_ = FragmentSignLanguageBinding.inflate(inflater)
+        return binding.root
     }
 
-    companion object {
-        /**
-         * Use this factory method to create a new instance of
-         * this fragment using the provided parameters.
-         *
-         * @param param1 Parameter 1.
-         * @param param2 Parameter 2.
-         * @return A new instance of fragment SignLanguageFragment.
-         */
-        // TODO: Rename and change types and number of parameters
-        @JvmStatic
-        fun newInstance(param1: String, param2: String) =
-            SignLanguageFragment().apply {
-                arguments = Bundle().apply {
-                    putString(ARG_PARAM1, param1)
-                    putString(ARG_PARAM2, param2)
-                }
+    private fun init() {
+        cameraExecutor = Executors.newSingleThreadExecutor()
+        signLanguageAnalyzer = SignLanguageAnalyzer(binding.graphicOverlay, requireContext())
+    }
+
+    override fun onRequestPermissionsResult(
+        requestCode: Int,
+        permissions: Array<out String>,
+        grantResults: IntArray
+    ) {
+        super.onRequestPermissionsResult(requestCode, permissions, grantResults)
+        if(requestCode == PERMISSION_CODE) {
+            if(allPermissionGranted()) {
+                startCamera()
             }
+            else {
+                showToastMessage(requireContext(), "Permission not Granted")
+                requireActivity().finish()
+            }
+        }
+    }
+
+    private fun startCamera() {
+        val cameraProviderFuture = ProcessCameraProvider.getInstance(requireContext())
+        val runnableInterface = Runnable {
+            val cameraProvider : ProcessCameraProvider = cameraProviderFuture.get()
+            val preview : Preview = Preview.Builder().build().also {
+                it.setSurfaceProvider(binding.viewFinder.surfaceProvider)
+            }
+            val cameraSelector = CameraSelector.DEFAULT_BACK_CAMERA
+
+            try {
+                cameraProvider.unbindAll()
+                val imageAnalyzer = ImageAnalysis.Builder()
+                    .setBackpressureStrategy(ImageAnalysis.STRATEGY_KEEP_ONLY_LATEST)
+                    .build()
+                    .also {
+                        it.setAnalyzer(cameraExecutor, signLanguageAnalyzer)
+                    }
+                cameraProvider.bindToLifecycle(this, cameraSelector, preview, imageAnalyzer)
+
+            }
+            catch (e : Exception){
+                e.printStackTrace()
+            }
+        }
+        cameraProviderFuture.addListener(runnableInterface, ContextCompat.getMainExecutor(requireContext()))
+    }
+
+
+    override fun onResume() {
+        super.onResume()
+        startCamera()
+    }
+    private fun allPermissionGranted() : Boolean {
+        return REQUIRED_PERMISSION.all {
+            ContextCompat.checkSelfPermission(requireContext(), it) == PackageManager.PERMISSION_GRANTED
+        }
+    }
+
+
+    companion object {
+        private val REQUIRED_PERMISSION = arrayOf(Manifest.permission.CAMERA)
+        private val PERMISSION_CODE : Int = 10
     }
 }

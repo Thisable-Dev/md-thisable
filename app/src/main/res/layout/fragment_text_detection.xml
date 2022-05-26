@@ -3,10 +3,11 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     tools:context=".presentation.feature_text.TextDetectionFragment">
 
 
-    <FrameLayout
+    <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_weight="2"
@@ -20,17 +21,31 @@
             android:layout_gravity="center" />
 
         <ImageView
-            android:id="@+id/iv_volume"
+            android:id="@+id/iv_back"
             android:padding="5dp"
             android:layout_margin="10dp"
-            android:layout_width="50dp"
-            android:layout_height="50dp"
-            android:contentDescription="Nyalakan / Matikan Output Suara"
-            android:src="@drawable/ic_action_volume_off"
+            android:layout_width="70dp"
+            android:layout_height="70dp"
+            android:contentDescription="Kembali ke Menu Utama"
+            android:src="@drawable/back_img"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
             />
+        <ImageView
+            android:layout_width="70dp"
+            android:layout_height="70dp"
+            android:padding="5dp"
+            android:layout_margin="10dp"
+            android:contentDescription="Login Menggunakan Google"
+            android:src="@drawable/google_img"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            />
+    </androidx.constraintlayout.widget.ConstraintLayout>
 
-    </FrameLayout>
-
-
-
+    <com.devthisable.thisable.utils.GraphicOverlay
+        android:id="@+id/graphicOverlay"
+        android:layout_gravity="center"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content" />
 </FrameLayout>
