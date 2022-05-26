@@ -12,7 +12,7 @@ android {
 
     defaultConfig {
         buildConfigField("String", "BASE_URL", '"https://story-api.dicoding.dev/v1/"')
-        applicationId "com.bintangpoetra.thisable"
+        applicationId "com.devthisable.thisable"
         minSdk 26
         targetSdk 32
         versionCode 1

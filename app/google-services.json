@@ -1,33 +1,41 @@
 {
   "project_info": {
-    "project_number": "98505400264",
-    "project_id": "thisable-proto",
-    "storage_bucket": "thisable-proto.appspot.com"
+    "project_number": "76310350536",
+    "project_id": "devthisable",
+    "storage_bucket": "devthisable.appspot.com"
   },
   "client": [
     {
       "client_info": {
-        "mobilesdk_app_id": "1:98505400264:android:abf24f35d93d595f7d2afd",
+        "mobilesdk_app_id": "1:76310350536:android:0e1fa0cd1ed77f2a3b73fd",
         "android_client_info": {
-          "package_name": "com.bintangpoetra.thisable"
+          "package_name": "com.devthisable.thisable"
         }
       },
       "oauth_client": [
         {
-          "client_id": "98505400264-m3cotmijo0dadn5rdnqtljn2nebq881l.apps.googleusercontent.com",
+          "client_id": "76310350536-advfloubb7egjr8j6tsa21nt8o5q7o5l.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.devthisable.thisable",
+            "certificate_hash": "8521a5c4ecd2c119e52636650fa7fb4c2241a045"
+          }
+        },
+        {
+          "client_id": "76310350536-ttu13i6g4j27lm8hg06dvp3fj771ha5t.apps.googleusercontent.com",
           "client_type": 3
         }
       ],
       "api_key": [
         {
-          "current_key": "AIzaSyCKMfEdbzlcDgP5z66taINKz_M4CB5VI5s"
+          "current_key": "AIzaSyACoViIfpnqRgohmBYZua3JcUB8BKsuFZE"
         }
       ],
       "services": {
         "appinvite_service": {
           "other_platform_oauth_client": [
             {
-              "client_id": "98505400264-m3cotmijo0dadn5rdnqtljn2nebq881l.apps.googleusercontent.com",
+              "client_id": "76310350536-ttu13i6g4j27lm8hg06dvp3fj771ha5t.apps.googleusercontent.com",
               "client_type": 3
             }
           ]

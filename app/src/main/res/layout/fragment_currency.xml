@@ -30,7 +30,7 @@
             android:src="@drawable/ic_action_volume_off"
             />
 
-        <com.bintangpoetra.thisable.utils.GraphicOverlay
+        <com.devthisable.thisable.utils.GraphicOverlay
             android:id="@+id/graphicOverlay"
             android:layout_gravity="center"
             android:layout_width="wrap_content"

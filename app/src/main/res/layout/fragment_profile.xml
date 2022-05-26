@@ -36,7 +36,7 @@
         app:layout_constraintStart_toStartOf="@+id/imgProfile"
         app:layout_constraintTop_toBottomOf="@id/tvFullName"/>
 
-    <com.bintangpoetra.thisable.presentation.view.ThisableSettingButton
+    <com.devthisable.thisable.presentation.view.ThisableSettingButton
         android:id="@+id/btnHelp"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -47,7 +47,7 @@
         app:menuTitle="@string/label_help"
         tools:layout_editor_absoluteX="32dp" />
 
-    <com.bintangpoetra.thisable.presentation.view.ThisableSettingButton
+    <com.devthisable.thisable.presentation.view.ThisableSettingButton
         android:id="@+id/btnFqa"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -57,7 +57,7 @@
         app:menuIcon="@drawable/ic_fqa"
         app:menuTitle="@string/label_fqa" />
 
-    <com.bintangpoetra.thisable.presentation.view.ThisableSettingButton
+    <com.devthisable.thisable.presentation.view.ThisableSettingButton
         android:id="@+id/btnReportBug"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -67,7 +67,7 @@
         app:menuIcon="@drawable/ic_report"
         app:menuTitle="@string/label_report_bug" />
 
-    <com.bintangpoetra.thisable.presentation.view.ThisableSettingButton
+    <com.devthisable.thisable.presentation.view.ThisableSettingButton
         android:id="@+id/btnAbout"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"

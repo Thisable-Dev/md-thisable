@@ -7,7 +7,7 @@
 
     <fragment
         android:id="@+id/splashFragment"
-        android:name="com.bintangpoetra.thisable.presentation.splash.SplashFragment"
+        android:name="com.devthisable.thisable.presentation.splash.SplashFragment"
         android:label="SplashFragment"
         tools:layout="@layout/fragment_splash">
         <action
@@ -32,7 +32,7 @@
     </fragment>
     <fragment
         android:id="@+id/onBoardingFragment"
-        android:name="com.bintangpoetra.thisable.presentation.onboarding.OnBoardingFragment"
+        android:name="com.devthisable.thisable.presentation.onboarding.OnBoardingFragment"
         android:label="fragment_onboarding"
         tools:layout="@layout/fragment_onboarding" >
         <action
@@ -65,7 +65,7 @@
     </fragment>
     <fragment
         android:id="@+id/loginFragment"
-        android:name="com.bintangpoetra.thisable.presentation.login.LoginFragment"
+        android:name="com.devthisable.thisable.presentation.login.LoginFragment"
         android:label="LoginFragment"
         tools:layout="@layout/fragment_login">
         <action
@@ -82,11 +82,11 @@
     </fragment>
     <fragment
         android:id="@+id/homeFragment"
-        android:name="com.bintangpoetra.thisable.presentation.home.HomeFragment"
+        android:name="com.devthisable.thisable.presentation.home.HomeFragment"
         android:label="HomeFragment" />
     <fragment
         android:id="@+id/profileFragment"
-        android:name="com.bintangpoetra.thisable.presentation.profile.ProfileFragment"
+        android:name="com.devthisable.thisable.presentation.profile.ProfileFragment"
         android:label="ProfileFragment" >
         <action
             android:id="@+id/action_profileFragment_to_loginFragment"
@@ -113,11 +113,11 @@
     </fragment>
     <fragment
         android:id="@+id/thisableFragment"
-        android:name="com.bintangpoetra.thisable.presentation.thisable.ThisableFragment"
+        android:name="com.devthisable.thisable.presentation.thisable.ThisableFragment"
         android:label="ThisableFragment" />
     <fragment
         android:id="@+id/registerFragment"
-        android:name="com.bintangpoetra.thisable.presentation.register.RegisterFragment"
+        android:name="com.devthisable.thisable.presentation.register.RegisterFragment"
         android:label="RegisterFragment"
         tools:layout="@layout/fragment_register">
         <action
@@ -126,15 +126,15 @@
     </fragment>
     <fragment
         android:id="@+id/detailProfileFragment"
-        android:name="com.bintangpoetra.thisable.presentation.profile.detail.DetailProfileFragment"
+        android:name="com.devthisable.thisable.presentation.profile.detail.DetailProfileFragment"
         android:label="DetailProfileFragment" />
     <fragment
         android:id="@+id/bugReportFragment"
-        android:name="com.bintangpoetra.thisable.presentation.bugreport.BugReportFragment"
+        android:name="com.devthisable.thisable.presentation.bugreport.BugReportFragment"
         android:label="BugReportFragment" />
     <fragment
         android:id="@+id/instructionFragment"
-        android:name="com.bintangpoetra.thisable.presentation.instruction.InstructionFragment"
+        android:name="com.devthisable.thisable.presentation.instruction.InstructionFragment"
         android:label="InstructionFragment" >
         <action
             android:id="@+id/action_instructionFragment_to_homeFragment"
@@ -147,7 +147,7 @@
     </fragment>
     <dialog
         android:id="@+id/fragmentWarningCustomDialog"
-        android:name="com.bintangpoetra.thisable.presentation.dialog.FragmentWarningCustomDialog"
+        android:name="com.devthisable.thisable.presentation.dialog.FragmentWarningCustomDialog"
         android:label="FragmentWarningCustomDialog" >
         <action
             android:id="@+id/action_fragmentWarningCustomDialog_to_homeFragment"
