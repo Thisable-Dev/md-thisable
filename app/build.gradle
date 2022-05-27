@@ -12,6 +12,7 @@ android {
 
     defaultConfig {
         buildConfigField("String", "BASE_URL", '"https://story-api.dicoding.dev/v1/"')
+        buildConfigField("String", "API_KEY", '"eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwibmFtZSI6IkhhemxhbiBNdWhhbW1hZCBRb2RyaSIsImlhdCI6MTY1MzU4NjgzNH0.NUuYL4smofmKVxmmka8-H3KdAFs2ZKbNY9b11bi1Z-s"')
         applicationId "com.devthisable.thisable"
         minSdk 26
         targetSdk 32

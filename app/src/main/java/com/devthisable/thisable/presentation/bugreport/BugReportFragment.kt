@@ -12,7 +12,7 @@ import androidx.navigation.findNavController
 import androidx.navigation.fragment.findNavController
 import com.devthisable.thisable.R.string
 import com.devthisable.thisable.data.remote.ApiResponse
-import com.devthisable.thisable.data.source.report.ReportBugBody
+import com.devthisable.thisable.data.remote.general.report.ReportBugBody
 import com.devthisable.thisable.databinding.FragmentBugReportBinding
 import com.devthisable.thisable.utils.ext.gone
 import com.devthisable.thisable.utils.ext.show
@@ -98,9 +98,9 @@ class BugReportFragment : Fragment() {
                 }
                 else -> {
                     val reportBody = ReportBugBody(
-                        nama = name,
+                        name = name,
                         email = email,
-                        isi = message
+                        message = message
                     )
 
                     addNewReportBug(reportBody)
