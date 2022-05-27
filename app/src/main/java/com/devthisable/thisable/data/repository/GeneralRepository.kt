@@ -3,7 +3,7 @@ package com.devthisable.thisable.data.repository
 import com.devthisable.thisable.data.remote.ApiResponse
 import com.devthisable.thisable.data.remote.general.BugReportResponse
 import com.devthisable.thisable.data.source.GeneralDataSource
-import com.devthisable.thisable.data.source.report.ReportBugBody
+import com.devthisable.thisable.data.remote.general.report.ReportBugBody
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.flowOn
