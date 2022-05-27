@@ -3,6 +3,9 @@ package com.devthisable.thisable.utils
 object ConstVal {
 
     const val BASE_URL = "http://34.101.210.170:5000/"
+    const val CLOUD_VISION_API = "https://vision.googleapis.com/v1/"
+
+    const val API_KEY = "AIzaSyCTwipOPeZdoMZ1da64TckdrH8XUH0g_4A"
 
     const val PREFS_NAME = "thisable.pref"
 
