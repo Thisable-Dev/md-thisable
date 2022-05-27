@@ -20,7 +20,7 @@ import kotlinx.coroutines.*
 class CurrencyAnalyzer(private val graphicOverlay: GraphicOverlay, private val context : Context,) : ImageAnalysis.Analyzer {
 
     private val localModel = LocalModel.Builder()
-        .setAssetFilePath("modeal.tflite")
+        .setAssetFilePath("ssd.tflite")
         .build()
 
     private val options = CustomObjectDetectorOptions.Builder(localModel)
