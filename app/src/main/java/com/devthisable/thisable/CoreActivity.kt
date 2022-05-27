@@ -2,46 +2,60 @@ package com.devthisable.thisable
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.util.Log
 import android.widget.ImageView
 import androidx.annotation.StringRes
+import androidx.navigation.navArgs
+import androidx.navigation.navArgument
+import androidx.viewpager2.widget.ViewPager2
 import com.devthisable.thisable.adapter.SectionPagerAdapter
 import com.devthisable.thisable.databinding.ActivityCoreBinding
+import com.google.android.material.tabs.TabLayout
 import com.google.android.material.tabs.TabLayoutMediator
 
 class CoreActivity : AppCompatActivity() {
     private lateinit  var binding : ActivityCoreBinding
-
+    private var argsBinding : String? = null
+    private lateinit var tabs : TabLayout
+    private lateinit var viewPager : ViewPager2
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = ActivityCoreBinding.inflate(layoutInflater)
         setContentView(binding.root)
         val sectionPagerAdapter = SectionPagerAdapter(this)
         binding.viewPager.adapter = sectionPagerAdapter
-        val tabs = binding.tabsCoreFeature
-        val viewPager = binding.viewPager
+        argsBinding = intent.extras?.getString("EXTRA_DATA")
+        tabs = binding.tabsCoreFeature
+        viewPager = binding.viewPager
+        if (argsBinding != null) {
+            changeTabLayoutIndicator()
+        }
         TabLayoutMediator(tabs, viewPager) { tab, position ->
             val view = layoutInflater.inflate(R.layout.custom_tab_layout, null)
             view.findViewById<ImageView>(R.id.icon).setBackgroundResource(TAB_ICON[position])
-            tab.setCustomView(view)
+            tab.customView = view
         }.attach()
+
         supportActionBar?.elevation = 0f
         supportActionBar?.hide()
 
     }
-    /*
-        fun performCloudVisionRequest(uri : Uri) {
-            if (uri != null) {
-                try{
-                    val bitmap = getTheScreenShot()
-                    callCloudVision(bitmap)
-                    showToastMessage(this, "TODOMESSAGE")
-                }
-                catch (e : IOException) {
-                    Log.e("DAN", e.message.toString())
-                }
-            }
+
+    private fun changeTabLayoutIndicator() {
+        if (argsBinding == this.getString(R.string.action_object_detection)) {
+            tabs.getTabAt(1)?.select()
+            viewPager.currentItem = 1
         }
-    */
+        if (argsBinding == resources.getString(R.string.action_currency_detection)) {
+            tabs.getTabAt(2)?.select()
+            viewPager.currentItem = 2
+        }
+        if (argsBinding == resources.getString(R.string.action_text_detection)) {
+            tabs.getTabAt(3)?.select()
+            viewPager.currentItem =3
+        }
+    }
+
     companion object {
         @StringRes
         val TAB_ICON = intArrayOf(

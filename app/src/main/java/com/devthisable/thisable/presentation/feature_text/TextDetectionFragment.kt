@@ -109,6 +109,9 @@ class TextDetectionFragment : Fragment() {
                 val image = textDetectionAnalyzer.getDetectedImage()
                 if(image  != null) {
                     val metadata = FrameMetadata(image.width, image.height, 0)
+<<<<<<< HEAD
+                    val currImage = image
+=======
 
                     val byteArrayOutputStream = ByteArrayOutputStream()
                     image.compress(Bitmap.CompressFormat.JPEG, 100, byteArrayOutputStream)
@@ -135,6 +138,7 @@ class TextDetectionFragment : Fragment() {
 
                     textDetection(API_KEY, textDetectionRequest)
 
+>>>>>>> 1517b39e20b1976d74dc2c608f3fef18974bbb99
                     showToastMessage(requireContext(), "Bitmap IS NOT NULL!!!!")
                 }
                 else {
@@ -146,6 +150,10 @@ class TextDetectionFragment : Fragment() {
         binding.viewFinder.setOnLongClickListener {
             showAlertDialogObjDetection(requireContext(), ServeListQuestion.getListQuestion(requireContext()), subscriberItemListener = itemListener)
             true
+        }
+
+        binding.ivBack.setOnClickListener {
+            requireActivity().finish()
         }
     }
 

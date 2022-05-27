@@ -13,11 +13,15 @@ import androidx.camera.core.Preview
 import androidx.camera.lifecycle.ProcessCameraProvider
 import androidx.core.app.ActivityCompat
 import androidx.core.content.ContextCompat
+import androidx.navigation.Navigation
+import androidx.navigation.fragment.NavHostFragment
+import androidx.navigation.fragment.findNavController
 import com.devthisable.thisable.R
 import com.devthisable.thisable.analyzer.CurrencyAnalyzer
 import com.devthisable.thisable.databinding.FragmentCurrencyBinding
 import com.devthisable.thisable.interfaces.ObjectOptionInterface
 import com.devthisable.thisable.utils.*
+import java.lang.IllegalStateException
 import java.util.concurrent.ExecutorService
 import java.util.concurrent.Executors
 
@@ -89,6 +93,14 @@ class CurrencyFragment : Fragment() {
             showAlertDialogObjDetection(requireContext(), ServeListQuestion.getListQuestionCurrency(requireContext()),itemListener )
             true
         }
+
+        binding.ivBack.setOnClickListener {
+           requireActivity().finish()
+        }
+
+        // check If Login
+        // TODO
+        //
     }
 
     override fun onRequestPermissionsResult(

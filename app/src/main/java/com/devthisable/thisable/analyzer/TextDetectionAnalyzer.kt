@@ -16,11 +16,12 @@ class TextDetectionAnalyzer(private val context: Context) : ImageAnalysis.Analyz
     override fun analyze(image: ImageProxy) {
         val desiredImage = image.image
         if (desiredImage != null) {
+
             val yuvToRgbConverter = YuvToRgbConverter(context)
             val tempBitmap = Bitmap.createBitmap(desiredImage.width, desiredImage.height, Bitmap.Config.ARGB_8888)
             yuvToRgbConverter.yuvToRgb(desiredImage, tempBitmap)
             currImage = tempBitmap
-            Log.d("TAGEER", currImage.toString())
+
         }
         image.close()
     }

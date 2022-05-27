@@ -64,6 +64,10 @@ class ObjectDetectionFragment : Fragment() {
             true
         }
 
+        binding.ivBack.setOnClickListener {
+            requireActivity().finish()
+        }
+
         if (allPermissionsGranted()) {
             startCamera(false)
         } else {
