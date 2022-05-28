@@ -23,11 +23,10 @@ class SignLanguageAnalyzer(private val graphicOverlay: GraphicOverlay, private v
 
     private val options = CustomObjectDetectorOptions.Builder(localModel)
         .setDetectorMode(CustomObjectDetectorOptions.STREAM_MODE)
-        .enableMultipleObjects()
         .enableClassification()
         .setClassificationConfidenceThreshold(0.5F)
         .build()
-
+    private val outputData = arrayOfNulls<String>(1)
     private val objectDetector : ObjectDetector = ObjectDetection.getClient(options)
     private val overlay = graphicOverlay
     private val lens_facing = CameraSelector.LENS_FACING_BACK
@@ -58,8 +57,7 @@ class SignLanguageAnalyzer(private val graphicOverlay: GraphicOverlay, private v
             if(!detectedObject.labels.isEmpty()) {
                 val objGraphic = ObjectGraphic(this.graphicOverlay, detectedObject)
                 overlay.add(objGraphic)
-                for (label in detectedObject.labels) {
-                }
+                outputData[0] = detectedObject.labels[0].text
                 clearTheSetEveryNTime()
             }
             overlay.postInvalidate()
@@ -74,6 +72,11 @@ class SignLanguageAnalyzer(private val graphicOverlay: GraphicOverlay, private v
             queue.await()
         }
     }
+
+    fun getOutputData() :Array<String>{
+        return outputData.requireNoNulls()
+    }
+
 
 
 }

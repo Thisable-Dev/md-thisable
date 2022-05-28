@@ -90,15 +90,14 @@ class SignLanguageFragment : Fragment() {
                         it.setAnalyzer(cameraExecutor, signLanguageAnalyzer)
                     }
                 cameraProvider.bindToLifecycle(this, cameraSelector, preview, imageAnalyzer)
-
             }
+
             catch (e : Exception){
                 e.printStackTrace()
             }
         }
         cameraProviderFuture.addListener(runnableInterface, ContextCompat.getMainExecutor(requireContext()))
     }
-
 
     override fun onResume() {
         super.onResume()
@@ -109,7 +108,6 @@ class SignLanguageFragment : Fragment() {
             ContextCompat.checkSelfPermission(requireContext(), it) == PackageManager.PERMISSION_GRANTED
         }
     }
-
 
     companion object {
         private val REQUIRED_PERMISSION = arrayOf(Manifest.permission.CAMERA)

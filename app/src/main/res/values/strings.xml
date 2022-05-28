@@ -100,4 +100,5 @@
     <string name="action_object_detection">deteksiObjek</string>
     <string name="action_text_detection">deteksiTeks</string>
     <string name="action_currency_detection">deteksiUang</string>
+    <string name="lorem_ipsum">Lorem Ipsum Dolor Sit amet</string>
 </resources>

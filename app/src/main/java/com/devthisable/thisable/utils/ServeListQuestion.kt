@@ -4,6 +4,7 @@ import android.content.Context
 import com.devthisable.thisable.R
 
 object ServeListQuestion {
+
     fun  getListQuestionCurrency(context : Context): Array<String> {
         val arrList = arrayOf<String> (
             context.getString(R.string.question_1_currency_detection),
@@ -15,7 +16,6 @@ object ServeListQuestion {
     fun getListQuestion(context : Context) : Array<String> {
         val arrList =  arrayOf<String>(
             context.getString(R.string.question_1_obj_detection),
-            context.getString(R.string.question_2_obj_detection),
         )
         return arrList
     }
