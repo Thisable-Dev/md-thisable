@@ -47,17 +47,19 @@ class ObjectGraphic(var graphicOverlay : GraphicOverlay, private var obj : Detec
             textWidth = Math.max(textWidth, textPaints[colorID]!!.measureText(String.format(Locale.US, LABEL_FORMAT, label.confidence * 100)))
             yLabelOffset -= 2 * lineHeight
         }
+
         val rect = RectF(obj.boundingBox)
         // Kalau misalnya gambarnya di Flupped, maka ubah, RectF bbox kiri jadi kanan, dan kanan jadi kiri
         val x0 = translateX(rect.left)
         val x1 = translateX(rect.right)
         // Draw BBOX
+
         rect.left = Math.min(x0, x1)
         rect.right = Math.max(x0, x1)
         rect.top = translateY(rect.top)
         rect.bottom = translateY(rect.bottom)
-        canvas?.drawRect(rect, boxPaints[colorID]!!)
 
+        canvas?.drawRect(rect, boxPaints[colorID]!!)
         // Draw Other Object infO ( Buat bungkus informasi informasi terkait Label dkk )
         canvas?.drawRect(
             rect.left - STROKE_WIDTH,
