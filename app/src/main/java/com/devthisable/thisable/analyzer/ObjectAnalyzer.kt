@@ -8,6 +8,8 @@ import androidx.camera.core.ImageAnalysis
 import androidx.camera.core.ImageProxy
 import com.devthisable.thisable.utils.GraphicOverlay
 import com.devthisable.thisable.utils.ObjectGraphic
+import com.devthisable.thisable.utils.SoundPlayer
+import com.devthisable.thisable.utils.showToastMessage
 import com.google.mlkit.common.model.CustomRemoteModel
 import com.google.mlkit.common.model.DownloadConditions
 import com.google.mlkit.common.model.LocalModel
@@ -17,6 +19,7 @@ import com.google.mlkit.vision.common.InputImage
 import com.google.mlkit.vision.objects.ObjectDetection
 import com.google.mlkit.vision.objects.custom.CustomObjectDetectorOptions
 import kotlinx.coroutines.*
+import kotlin.text.StringBuilder
 
 
 class ObjectAnalyzer(private val graphicOverlay: GraphicOverlay, private val context : Context) : ImageAnalysis.Analyzer {
@@ -25,6 +28,11 @@ class ObjectAnalyzer(private val graphicOverlay: GraphicOverlay, private val con
     private var setOfLabels = mutableSetOf<String>()
     private var mapOfLabels = mutableMapOf<String, Int >()
     private var bunchOfLabelsCounted = mutableListOf<String>()
+
+    private var soundPlayer = SoundPlayer(context)
+    private var one_frame_database = mutableListOf<String>()
+    private var all_object_detected_database = mutableListOf<String>()
+
     private lateinit var localModel : LocalModel
     private lateinit var remoteModel : CustomRemoteModel
     private lateinit var optionsRemote : CustomObjectDetectorOptions
@@ -100,17 +108,9 @@ class ObjectAnalyzer(private val graphicOverlay: GraphicOverlay, private val con
     }
 
 
+    private fun playTheSound(sentence : String ) {
 
-    private fun playTheSound(label : String ) {
-        /*
-        if(label == "monitor") {
-            val implementation = onImplementation(label)
-            if (implementation != - 1) {
-                mediaPlayer.load(implementation)
-                mediaPlayer.close()
-            }
-        }
-         */
+        showToastMessage(context, sentence)
     }
     @SuppressLint("UnsafeOptInUsageError")
     override fun analyze(image: ImageProxy) {
@@ -131,22 +131,59 @@ class ObjectAnalyzer(private val graphicOverlay: GraphicOverlay, private val con
                     for (label in detectedObject.labels) {
                         bunchOfLabelsCounted.add(label.text)
                         setOfLabels.add(label.text)
-                    }
-                    for (label in setOfLabels) {
-                        if(mapOfLabels[label] == 0) {
-                            Log.d("ENDGAME ",label + mapOfLabels[label].toString())
-                            // playTheSound(label)
-                            mapOfLabels[label] = 1
+                        if(label.confidence > 0.3f) {
+                            one_frame_database.add(label.text)
                         }
                     }
                     clearTheSetEveryNTime()
                 }
             }
+            checkIfSoundGoingToPlay()
             this.overlay.postInvalidate()
         }.addOnFailureListener { e->
             e.printStackTrace()
         }.addOnCompleteListener {
             image.close()
+        }
+    }
+
+    private fun checkIfSoundGoingToPlay() {
+        var sentences  = mutableListOf<String>()
+        if (one_frame_database.isNotEmpty()) {
+            for (label in one_frame_database) {
+                // Langsung Check di full databasenya
+                if (!all_object_detected_database.contains(label)) {
+                    sentences.add(label)
+                    all_object_detected_database.add(label)
+                }
+            }
+
+            try {
+                if (sentences.isNotEmpty()) {
+                    // Play the sound here
+                    CoroutineScope(Dispatchers.Main).launch {
+
+                        for (label in sentences) {
+                            soundPlayer.playSound(label)
+                            delay(200)
+                        }
+                    }
+                   // playTheSound(sentences.toString())
+                }
+            } catch (e: Exception) {
+                e.printStackTrace()
+            } finally {
+                one_frame_database.clear()
+            }
+
+            try {
+                Log.d("YOMAN", all_object_detected_database.size.toString())
+                val list =   all_object_detected_database.slice(IntRange(all_object_detected_database.size -3 ,all_object_detected_database.size -1 ))
+                all_object_detected_database = list.toMutableList()
+                Log.d("YOMANGAns", all_object_detected_database.toString())
+            } catch (e: Exception) {
+                e.printStackTrace()
+            }
         }
     }
 }

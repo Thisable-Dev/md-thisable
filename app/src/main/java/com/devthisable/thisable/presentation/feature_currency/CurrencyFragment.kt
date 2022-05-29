@@ -62,11 +62,10 @@ class CurrencyFragment : Fragment() {
             override fun onClick(data: String) {
                 when(data) {
                     getString(R.string.question_1_currency_detection) -> {
-                        showToastMessage(requireContext(), data + " Pressed")
-
+                        showToastMessage(requireContext(), data )
                     }
                     getString(R.string.question_2_currency_detection) -> {
-                        showToastMessage(requireContext(), data + " Pressed")
+                        showToastMessage(requireContext(), data )
                     }
                 }
             }
