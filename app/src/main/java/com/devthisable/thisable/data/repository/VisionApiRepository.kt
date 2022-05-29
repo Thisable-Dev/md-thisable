@@ -16,4 +16,5 @@ class VisionApiRepository @Inject constructor(private val dataSource: VisionApiD
     suspend fun textDetection(apiKey: String, textDetectionRequest: TextDetectionRequest): Flow<ApiResponse<TextDetectionResponse>> {
         return dataSource.textDetection(apiKey, textDetectionRequest).flowOn(Dispatchers.IO)
     }
+
 }

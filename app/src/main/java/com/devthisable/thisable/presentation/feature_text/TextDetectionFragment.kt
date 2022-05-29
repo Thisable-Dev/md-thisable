@@ -1,6 +1,5 @@
 package com.devthisable.thisable.presentation.feature_text
 
-import android.content.Intent
 import android.graphics.Bitmap
 import android.os.Bundle
 import android.util.Base64
@@ -11,18 +10,15 @@ import android.view.ViewGroup
 import androidx.camera.core.CameraSelector
 import androidx.camera.core.ImageAnalysis
 import androidx.camera.core.ImageCapture
-import androidx.camera.core.ImageCaptureException
 import androidx.camera.core.Preview
 import androidx.camera.lifecycle.ProcessCameraProvider
 import androidx.core.content.ContextCompat
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
-import com.devthisable.thisable.CoreActivity
 import com.devthisable.thisable.analyzer.TextDetectionAnalyzer
 import com.devthisable.thisable.data.remote.ApiResponse
 import com.devthisable.thisable.data.remote.visionapi.model.FeatureItem
 import com.devthisable.thisable.data.remote.visionapi.model.ImageItem
-import com.devthisable.thisable.data.remote.visionapi.model.SourceItem
 import com.devthisable.thisable.data.remote.visionapi.model.TextDetectionRequest
 import com.devthisable.thisable.data.remote.visionapi.model.TextDetectionRequestItem
 import com.devthisable.thisable.databinding.FragmentTextDetectionBinding
@@ -30,7 +26,6 @@ import com.devthisable.thisable.interfaces.ObjectOptionInterface
 import com.devthisable.thisable.utils.ConstVal.API_KEY
 import com.devthisable.thisable.utils.FrameMetadata
 import com.devthisable.thisable.utils.ServeListQuestion
-import com.devthisable.thisable.utils.createFile
 import com.devthisable.thisable.utils.ext.showToast
 import com.devthisable.thisable.utils.showAlertDialogObjDetection
 import com.devthisable.thisable.utils.showToastMessage
@@ -44,12 +39,11 @@ class TextDetectionFragment : Fragment() {
 
     private val viewModel: TextDetectionViewModel by viewModels()
 
-    private lateinit var binding_ : FragmentTextDetectionBinding
+    private lateinit var binding_: FragmentTextDetectionBinding
     private val binding get() = binding_
-    private lateinit var cameraExecutor : ExecutorService
-    private var imageCapture : ImageCapture? = null
-    private lateinit var textDetectionAnalyzer : TextDetectionAnalyzer
-
+    private lateinit var cameraExecutor: ExecutorService
+    private var imageCapture: ImageCapture? = null
+    private lateinit var textDetectionAnalyzer: TextDetectionAnalyzer
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
@@ -61,7 +55,7 @@ class TextDetectionFragment : Fragment() {
         val cameraProviderFuture = ProcessCameraProvider.getInstance(requireContext())
         val runnableInterface = Runnable {
             val cameraProvider = cameraProviderFuture.get()
-            val preview : Preview = Preview.Builder().build().also {
+            val preview: Preview = Preview.Builder().build().also {
                 it.setSurfaceProvider(binding.viewFinder.surfaceProvider)
             }
             val cameraSelector = CameraSelector.DEFAULT_BACK_CAMERA
@@ -73,7 +67,7 @@ class TextDetectionFragment : Fragment() {
             try {
                 cameraProvider.unbindAll()
                 cameraProvider.bindToLifecycle(this, cameraSelector, preview, imageAnalyzer)
-            }catch (e : Exception) {
+            } catch (e: Exception) {
                 e.printStackTrace()
             }
         }
@@ -84,6 +78,7 @@ class TextDetectionFragment : Fragment() {
         super.onResume()
         startCamera()
     }
+
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
@@ -93,7 +88,7 @@ class TextDetectionFragment : Fragment() {
         return binding.root
     }
 
-    private fun init () {
+    private fun init() {
         cameraExecutor = Executors.newSingleThreadExecutor()
         textDetectionAnalyzer = TextDetectionAnalyzer(requireContext())
         setOnClickListener()
@@ -107,12 +102,12 @@ class TextDetectionFragment : Fragment() {
 
             override fun onLongClickListener(data: String) {
                 val image = textDetectionAnalyzer.getDetectedImage()
-                if(image  != null) {
+                if (image != null) {
                     val metadata = FrameMetadata(image.width, image.height, 0)
                     val currImage = image
 
                     val byteArrayOutputStream = ByteArrayOutputStream()
-                    image.compress(Bitmap.CompressFormat.JPEG, 100, byteArrayOutputStream)
+                    currImage.compress(Bitmap.CompressFormat.JPEG, 100, byteArrayOutputStream)
 
                     // gambar dalam bentuk byte
                     val imageByte = byteArrayOutputStream.toByteArray()
@@ -121,9 +116,7 @@ class TextDetectionFragment : Fragment() {
                     val textDetectionRequest = TextDetectionRequest(
                         request = TextDetectionRequestItem(
                             image = ImageItem(
-                                source = SourceItem(
-                                    imageUri = base64encoded
-                                )
+                                content = base64encoded
                             ),
                             features = listOf(
                                 FeatureItem(
@@ -134,18 +127,23 @@ class TextDetectionFragment : Fragment() {
                         )
                     )
 
+                    context?.showToast(base64encoded)
+                    Log.d("base64image", base64encoded)
+
                     textDetection(API_KEY, textDetectionRequest)
 
                     showToastMessage(requireContext(), "Bitmap IS NOT NULL!!!!")
-                }
-                else {
+                } else {
                     showToastMessage(requireContext(), "Bitmap Is NULL WTF")
                 }
             }
-
         }
         binding.viewFinder.setOnLongClickListener {
-            showAlertDialogObjDetection(requireContext(), ServeListQuestion.getListQuestion(requireContext()), subscriberItemListener = itemListener)
+            showAlertDialogObjDetection(
+                requireContext(),
+                ServeListQuestion.getListQuestion(requireContext()),
+                subscriberItemListener = itemListener
+            )
             true
         }
 
@@ -156,7 +154,7 @@ class TextDetectionFragment : Fragment() {
 
     private fun textDetection(apiKey: String, request: TextDetectionRequest) {
         viewModel.textDetection(apiKey, request).observe(viewLifecycleOwner) { response ->
-            when(response) {
+            when (response) {
                 is ApiResponse.Loading -> {
                     context?.showToast("Loading.......")
                 }
@@ -168,29 +166,5 @@ class TextDetectionFragment : Fragment() {
                 }
             }
         }
-    }
-
-    private fun takePhoto() {
-        val imageCapture = imageCapture ?: return
-
-        val photoFile  = createFile(requireActivity())
-
-        val outputOptions = ImageCapture.OutputFileOptions.Builder(photoFile).build()
-
-        imageCapture.takePicture(
-            outputOptions, ContextCompat.getMainExecutor(requireContext()), object : ImageCapture.OnImageSavedCallback {
-                override fun onImageSaved(outputFileResults: ImageCapture.OutputFileResults) {
-                    val intent = Intent()
-                    intent.putExtra("picture", photoFile)
-                    requireActivity().setResult(CoreActivity.CAMERA_RESULT,intent)
-                    Log.d("TESTINGBT","BETE")
-                    requireActivity().finish()
-                }
-
-                override fun onError(exception: ImageCaptureException) {
-                    showToastMessage(requireContext(),"Gagal Mengambil Gambar")
-                }
-            }
-        )
     }
 }

@@ -102,7 +102,6 @@ class BugReportFragment : Fragment() {
                         email = email,
                         message = message
                     )
-
                     addNewReportBug(reportBody)
                 }
             }

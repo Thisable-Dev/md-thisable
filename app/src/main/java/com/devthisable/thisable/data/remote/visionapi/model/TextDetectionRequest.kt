@@ -10,11 +10,7 @@ data class TextDetectionRequestItem(
 )
 
 data class ImageItem(
-    val source: SourceItem
-)
-
-data class SourceItem(
-    val imageUri: String
+    val content: String,
 )
 
 data class FeatureItem(

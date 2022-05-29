@@ -18,6 +18,7 @@ import com.devthisable.thisable.utils.ConstVal.KEY_USER_ID
 import com.devthisable.thisable.utils.ConstVal.KEY_USER_NAME
 import com.devthisable.thisable.utils.SharedPrefManager
 import com.devthisable.thisable.utils.ext.popTap
+import com.devthisable.thisable.utils.ext.setImageUrl
 import com.google.android.gms.auth.api.signin.GoogleSignIn
 import com.google.android.gms.auth.api.signin.GoogleSignInClient
 import com.google.android.gms.auth.api.signin.GoogleSignInOptions
@@ -58,6 +59,7 @@ class ProfileFragment : Fragment() {
     private fun initUI() {
         binding.tvFullName.text = pref.getUserName
         binding.tvFullEmail.text = pref.getEmail
+        binding.imgProfile.setImageUrl(auth.currentUser?.photoUrl.toString())
     }
 
     private fun initAction() {
@@ -95,7 +97,7 @@ class ProfileFragment : Fragment() {
 
     private fun showLogoutDialog() {
         AlertDialog.Builder(requireContext()).apply {
-            setTitle(getString(R.string.message_information))
+            setTitle(getString(string.message_information))
             setMessage(getString(string.message_logout_confirmation))
             setPositiveButton("OK") { _, _ ->
                 try {

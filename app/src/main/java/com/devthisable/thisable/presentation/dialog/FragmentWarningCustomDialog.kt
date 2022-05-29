@@ -47,7 +47,7 @@ class FragmentWarningCustomDialog: DialogFragment() {
 
     private fun initAction() {
         binding.btnWarning.setOnClickListener {
-            NavHostFragment.findNavController(this).navigate(R.id.action_fragmentWarningCustomDialog_to_homeFragment)
+            NavHostFragment.findNavController(this).navigate(R.id.action_fragmentWarningCustomDialog_to_coreActivity)
         }
     }
 

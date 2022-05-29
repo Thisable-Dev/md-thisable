@@ -62,6 +62,9 @@
         <action
             android:id="@+id/action_onBoardingFragment_to_fragmentWarningCustomDialog"
             app:destination="@id/fragmentWarningCustomDialog" />
+        <action
+            android:id="@+id/action_onBoardingFragment_to_coreActivity"
+            app:destination="@id/coreActivity" />
     </fragment>
     <fragment
         android:id="@+id/loginFragment"
@@ -169,6 +172,14 @@
         <action
             android:id="@+id/action_fragmentWarningCustomDialog_to_homeFragment"
             app:destination="@id/homeFragment"
+            app:enterAnim="@anim/slide_in_right"
+            app:exitAnim="@anim/slide_out_left"
+            app:popUpTo="@id/thisable_navigation"
+            app:launchSingleTop="true"
+            app:popUpToInclusive="true"/>
+        <action
+            android:id="@+id/action_fragmentWarningCustomDialog_to_coreActivity"
+            app:destination="@id/coreActivity"
             app:enterAnim="@anim/slide_in_right"
             app:exitAnim="@anim/slide_out_left"
             app:popUpTo="@id/thisable_navigation"
