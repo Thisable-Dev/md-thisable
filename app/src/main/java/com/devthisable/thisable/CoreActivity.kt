@@ -12,7 +12,9 @@ import com.devthisable.thisable.adapter.SectionPagerAdapter
 import com.devthisable.thisable.databinding.ActivityCoreBinding
 import com.google.android.material.tabs.TabLayout
 import com.google.android.material.tabs.TabLayoutMediator
+import dagger.hilt.android.AndroidEntryPoint
 
+@AndroidEntryPoint
 class CoreActivity : AppCompatActivity() {
     private lateinit  var binding : ActivityCoreBinding
     private var argsBinding : String? = null

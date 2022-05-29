@@ -17,10 +17,10 @@ class SectionPagerAdapter (activity : AppCompatActivity) : FragmentStateAdapter(
     override fun createFragment(position: Int): Fragment {
         var fragment : Fragment?= null
         when(position) {
-            0 -> fragment = ObjectDetectionFragment()
-            1 -> fragment = TextDetectionFragment()
+            0 -> fragment = SignLanguageFragment()
+            1 -> fragment = ObjectDetectionFragment()
             2 -> fragment = CurrencyFragment()
-            3 -> fragment = SignLanguageFragment()
+            3 -> fragment = TextDetectionFragment()
         }
         return fragment as Fragment
     }

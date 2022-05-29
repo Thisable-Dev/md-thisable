@@ -58,7 +58,6 @@ fun showAlertDialogObjDetection (context : Context, contentDialog : Array<String
 fun inputImageToBitmap(data : ByteBuffer, metadata : FrameMetadata) : Bitmap? {
 
     if (data != null) {
-        Log.d("HELLOW_WORLD", data.toString())
         data.rewind()
         val imageInBuffer: ByteArray = ByteArray(data.limit())
         data.get(imageInBuffer, 0, imageInBuffer.size)
