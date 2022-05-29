@@ -24,10 +24,8 @@ import com.devthisable.thisable.adapter.ObjectOptionAdapter
 import com.devthisable.thisable.analyzer.ObjectAnalyzer
 import com.devthisable.thisable.databinding.FragmentObjectDetectionBinding
 import com.devthisable.thisable.interfaces.ObjectOptionInterface
-import com.devthisable.thisable.utils.GraphicOverlay
-import com.devthisable.thisable.utils.ServeListQuestion
-import com.devthisable.thisable.utils.countTheObj
-import com.devthisable.thisable.utils.makeItOneString
+import com.devthisable.thisable.utils.*
+import com.google.mlkit.vision.objects.ObjectDetection
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.delay
@@ -45,12 +43,8 @@ class ObjectDetectionFragment : Fragment() {
 
     //private lateinit var camera_capture_button: Button
     private lateinit var graphicOverlay: GraphicOverlay
-    private lateinit var iv_volume: ImageView
-    private var isSoundOn: Boolean = false
     private var stateCamera: Boolean = false
-    private var soundIsPlaying: Boolean = false
     private lateinit var objAnalyzer: ObjectAnalyzer
-    private var vCounterPush = 0
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
@@ -61,6 +55,10 @@ class ObjectDetectionFragment : Fragment() {
         binding.viewFinder.setOnLongClickListener {
             stateCamera = true
             showAlertDialog()
+            true
+        }
+        binding.viewFinder.setOnClickListener {
+            showToastMessage(requireContext(), "Tekan Dan Tahan lama untuk melihat Opsi Pilihan")
             true
         }
 
@@ -145,8 +143,7 @@ class ObjectDetectionFragment : Fragment() {
                             }
                         } else {
                             if (itemConfig.size <= 10) {
-                                Log.d("ITEMCONFIG", itemConfig.toString())
-                                val interval = (itemConfig.size * 2000) // + 2000 if Necessary
+
                                 val stringReturned = makeItOneString(countTheObj(itemConfig))
                                 Toast.makeText(
                                     requireContext(),
@@ -186,7 +183,6 @@ class ObjectDetectionFragment : Fragment() {
                 }
             // Select back camera as a default
             val cameraSelector = CameraSelector.DEFAULT_BACK_CAMERA
-
             try {
                 // Unbind use cases before rebinding
                 cameraProvider.unbindAll()
@@ -232,4 +228,6 @@ class ObjectDetectionFragment : Fragment() {
         private const val REQUEST_CODE_PERMISSIONS = 10
         private val REQUIRED_PERMISSIONS = arrayOf(Manifest.permission.CAMERA)
     }
+
+
 }

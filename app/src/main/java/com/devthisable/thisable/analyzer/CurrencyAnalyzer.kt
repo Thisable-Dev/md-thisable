@@ -59,12 +59,10 @@ class CurrencyAnalyzer(private val graphicOverlay: GraphicOverlay, private val c
     private fun sucessListener(detectedObjects:MutableList<DetectedObject>) {
         overlay.clear()
         for(detectedObject in detectedObjects) {
-            Log.d("YOMAN",detectedObject.labels.toString())
             if(!detectedObject.labels.isEmpty()) {
                 val objGraphic = ObjectGraphic(this.graphicOverlay, detectedObject)
                 overlay.add(objGraphic)
                 for (label in detectedObject.labels) {
-                    Log.d("LabEL",label.text.toString())
                     bunchCurrencyDetected.add(label.text)
                 }
                 clearTheSetEveryNTime()

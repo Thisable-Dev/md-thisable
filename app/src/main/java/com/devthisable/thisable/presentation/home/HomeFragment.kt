@@ -29,9 +29,6 @@ class HomeFragment: Fragment() {
 
     private var _fragmentHomeBinding: FragmentHomeBinding? = null
     private val binding get() = _fragmentHomeBinding!!
-
-
-
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         _fragmentHomeBinding = FragmentHomeBinding.inflate(inflater, container, false)
         return _fragmentHomeBinding?.root
@@ -45,13 +42,11 @@ class HomeFragment: Fragment() {
         askPermission()
     }
     private fun checkPermission(requestPermissionLauncher : ActivityResultLauncher<String>) {
-
         when {
             ContextCompat.checkSelfPermission(requireContext(), android.Manifest.permission.CAMERA)== PackageManager.PERMISSION_GRANTED -> {
                 //showToastMessage(requireContext(), "Hello")
             }
             else -> {
-
                 val dialog: AlertDialog = AlertDialog.Builder(requireContext())
                     .setTitle("Peringatan")
                     .setMessage("Aplikasi ini menggunakan kamera gawai anda untuk dapat digunakan, Mohon Berikan Akses untuk kamera")
@@ -107,8 +102,6 @@ class HomeFragment: Fragment() {
         }
 
         binding.cvPenerjemahBisindo.setOnClickListener {
-
-
             findNavController().navigate(R.id.action_homeFragment_to_coreActivity)
         }
     }
