@@ -121,7 +121,6 @@ class ObjectDetectionFragment : Fragment() {
                                 delay(1000)
                                 itemConfig = objAnalyzer.getCurItemCounter()
                                 if (!itemConfig.isEmpty() && itemConfig.size <= 10) {
-                                    Log.d("ITEMCONFIG", itemConfig.toString())
                                     val interval = (itemConfig.size * 2000) // + 2000 if Necessary
                                     val stringReturned = makeItOneString(countTheObj(itemConfig))
                                     Toast.makeText(

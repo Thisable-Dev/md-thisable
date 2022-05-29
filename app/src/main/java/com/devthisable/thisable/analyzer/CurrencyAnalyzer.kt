@@ -8,6 +8,7 @@ import androidx.camera.core.ImageAnalysis
 import androidx.camera.core.ImageProxy
 import com.devthisable.thisable.utils.GraphicOverlay
 import com.devthisable.thisable.utils.ObjectGraphic
+import com.devthisable.thisable.utils.SoundPlayer
 import com.google.mlkit.common.model.LocalModel
 import com.google.mlkit.vision.common.InputImage
 import com.google.mlkit.vision.objects.DetectedObject
@@ -19,6 +20,10 @@ import kotlinx.coroutines.*
 
 class CurrencyAnalyzer(private val graphicOverlay: GraphicOverlay, private val context : Context,) : ImageAnalysis.Analyzer {
 
+    private var oneFrameDatabase = mutableListOf<String>()
+    private var allObjectDetectedDatabase = mutableListOf<String>()
+    private var soundPlayer = SoundPlayer(context)
+
     private val localModel = LocalModel.Builder()
         .setAssetFilePath("ssd.tflite")
         .build()
@@ -27,7 +32,7 @@ class CurrencyAnalyzer(private val graphicOverlay: GraphicOverlay, private val c
         .setDetectorMode(CustomObjectDetectorOptions.STREAM_MODE)
         .enableMultipleObjects()
         .enableClassification()
-        .setClassificationConfidenceThreshold(0.1F)
+        .setClassificationConfidenceThreshold(CONFIDENCE_SCORE)
         .build()
 
     private val objectDetector : ObjectDetector = ObjectDetection.getClient(options)
@@ -64,9 +69,13 @@ class CurrencyAnalyzer(private val graphicOverlay: GraphicOverlay, private val c
                 overlay.add(objGraphic)
                 for (label in detectedObject.labels) {
                     bunchCurrencyDetected.add(label.text)
+                     if (label.confidence > CONFIDENCE_SCORE) {
+                         oneFrameDatabase.add(label.text)
+                     }
                 }
                 clearTheSetEveryNTime()
             }
+            checkIfSoundGoingToPlay()
             overlay.postInvalidate()
         }
     }
@@ -85,4 +94,44 @@ class CurrencyAnalyzer(private val graphicOverlay: GraphicOverlay, private val c
         return bunchCurrencyDetected
     }
 
+
+    private fun checkIfSoundGoingToPlay() {
+        var sentences  = mutableListOf<String>()
+        if (oneFrameDatabase.isNotEmpty()) {
+            for (label in oneFrameDatabase) {
+                // Langsung Check di full databasenya
+                if (!allObjectDetectedDatabase.contains(label)) {
+                    sentences.add(label)
+                    allObjectDetectedDatabase.add(label)
+                }
+            }
+
+            try {
+                if (sentences.isNotEmpty()) {
+                    // Play the sound here
+                    CoroutineScope(Dispatchers.Main).launch {
+                        for (label in sentences) {
+                            soundPlayer.playSound(label)
+                            delay(200)
+                        }
+                    }
+                    // playTheSound(sentences.toString())
+                }
+            } catch (e: Exception) {
+                e.printStackTrace()
+            } finally {
+                oneFrameDatabase.clear()
+            }
+            try {
+                val list =   allObjectDetectedDatabase.slice(IntRange(allObjectDetectedDatabase.size -3 ,allObjectDetectedDatabase.size -1 ))
+                allObjectDetectedDatabase = list.toMutableList()
+            } catch (e: Exception) {
+                e.printStackTrace()
+            }
+        }
+    }
+
+    companion object {
+        private const val CONFIDENCE_SCORE = 0.3f
+    }
 }

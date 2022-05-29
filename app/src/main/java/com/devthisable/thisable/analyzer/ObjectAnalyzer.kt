@@ -162,7 +162,6 @@ class ObjectAnalyzer(private val graphicOverlay: GraphicOverlay, private val con
                 if (sentences.isNotEmpty()) {
                     // Play the sound here
                     CoroutineScope(Dispatchers.Main).launch {
-
                         for (label in sentences) {
                             soundPlayer.playSound(label)
                             delay(200)
@@ -175,7 +174,6 @@ class ObjectAnalyzer(private val graphicOverlay: GraphicOverlay, private val con
             } finally {
                 one_frame_database.clear()
             }
-
             try {
                 Log.d("YOMAN", all_object_detected_database.size.toString())
                 val list =   all_object_detected_database.slice(IntRange(all_object_detected_database.size -3 ,all_object_detected_database.size -1 ))
