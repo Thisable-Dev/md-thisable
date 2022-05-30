@@ -6,6 +6,8 @@ import android.util.Log
 import androidx.camera.core.CameraSelector
 import androidx.camera.core.ImageAnalysis
 import androidx.camera.core.ImageProxy
+import com.devthisable.thisable.interfaces.FeedbackListener
+import com.devthisable.thisable.presentation.feature_object.ObjectDetectionFragment
 import com.devthisable.thisable.utils.GraphicOverlay
 import com.devthisable.thisable.utils.ObjectGraphic
 import com.devthisable.thisable.utils.SoundPlayer
@@ -28,8 +30,9 @@ class ObjectAnalyzer(private val graphicOverlay: GraphicOverlay, private val con
     private var setOfLabels = mutableSetOf<String>()
     private var mapOfLabels = mutableMapOf<String, Int >()
     private var bunchOfLabelsCounted = mutableListOf<String>()
-
+    private lateinit var subscribeFeedbackListener: FeedbackListener
     private var soundPlayer = SoundPlayer(context)
+    private var globalStateSound : Boolean  = false
     private var one_frame_database = mutableListOf<String>()
     private var all_object_detected_database = mutableListOf<String>()
 
@@ -73,6 +76,19 @@ class ObjectAnalyzer(private val graphicOverlay: GraphicOverlay, private val con
 
         }
 
+        subscribeFeedbackListener = object : FeedbackListener {
+            override fun onListenFeedback(stateSound: Boolean) {
+                if(stateSound) {
+                    //play sound
+                    globalStateSound = stateSound
+                }
+                else {
+                    globalStateSound = false
+                }
+            }
+        }
+        ObjectDetectionFragment.setFeedbackListener(subscribeFeedbackListener)
+
     }
 
 
@@ -100,13 +116,14 @@ class ObjectAnalyzer(private val graphicOverlay: GraphicOverlay, private val con
         }
     }
 
+
+
     fun getCurItemCounter () : List<String> {
         return bunchOfLabelsCounted
     }
     fun getCurrlist() : List<String> {
         return setOfLabels.toList()
     }
-
 
     private fun playTheSound(sentence : String ) {
 
@@ -138,7 +155,9 @@ class ObjectAnalyzer(private val graphicOverlay: GraphicOverlay, private val con
                     clearTheSetEveryNTime()
                 }
             }
-            checkIfSoundGoingToPlay()
+            if(globalStateSound) {
+                checkIfSoundGoingToPlay()
+            }
             this.overlay.postInvalidate()
         }.addOnFailureListener { e->
             e.printStackTrace()

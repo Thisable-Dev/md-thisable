@@ -6,6 +6,8 @@ import android.util.Log
 import androidx.camera.core.CameraSelector
 import androidx.camera.core.ImageAnalysis
 import androidx.camera.core.ImageProxy
+import com.devthisable.thisable.interfaces.FeedbackListener
+import com.devthisable.thisable.presentation.feature_currency.CurrencyFragment
 import com.devthisable.thisable.utils.GraphicOverlay
 import com.devthisable.thisable.utils.ObjectGraphic
 import com.devthisable.thisable.utils.SoundPlayer
@@ -23,29 +25,37 @@ class CurrencyAnalyzer(private val graphicOverlay: GraphicOverlay, private val c
     private var oneFrameDatabase = mutableListOf<String>()
     private var allObjectDetectedDatabase = mutableListOf<String>()
     private var soundPlayer = SoundPlayer(context)
-
-    private val localModel = LocalModel.Builder()
-        .setAssetFilePath("ssd.tflite")
-        .build()
-
-    private val options = CustomObjectDetectorOptions.Builder(localModel)
-        .setDetectorMode(CustomObjectDetectorOptions.STREAM_MODE)
-        .enableMultipleObjects()
-        .enableClassification()
-        .setClassificationConfidenceThreshold(CONFIDENCE_SCORE)
-        .build()
-
-    private val objectDetector : ObjectDetector = ObjectDetection.getClient(options)
+    private var GLOBAL_SOUND : Boolean  = false
+    private lateinit var subscribeFeedbackListener: FeedbackListener
+    private lateinit var objectDetector : ObjectDetector
     private val overlay = graphicOverlay
     private val lens_facing = CameraSelector.LENS_FACING_BACK
     private var bunchCurrencyDetected : MutableList<String> = mutableListOf()
 
+    init {
+        var subscribeFeedbackListener: FeedbackListener = object : FeedbackListener {
+            override fun onListenFeedback(stateSound: Boolean) {
+                GLOBAL_SOUND = stateSound
+            }
+        }
+        val localModel = LocalModel.Builder()
+            .setAssetFilePath("finalModel_currency.tflite")
+            .build()
+
+        val options = CustomObjectDetectorOptions.Builder(localModel)
+            .setDetectorMode(CustomObjectDetectorOptions.STREAM_MODE)
+            .enableMultipleObjects()
+            .enableClassification()
+            .setClassificationConfidenceThreshold(CONFIDENCE_SCORE)
+            .build()
+        objectDetector = ObjectDetection.getClient(options)
+        CurrencyFragment.setOnFeedbackListener(subscribeFeedbackListener)
+    }
 
     @SuppressLint("UnsafeOptInUsageError")
     override fun analyze(image: ImageProxy) {
         val isImageFlipped= lens_facing == CameraSelector.LENS_FACING_FRONT
         val rotationDegress = image.imageInfo.rotationDegrees
-
         if (rotationDegress == 180 || rotationDegress == 0) overlay.setImageSourceInfo(image.width, image.height, isImageFlipped )
         else overlay.setImageSourceInfo(image.height, image.width, isImageFlipped)
 
@@ -75,7 +85,9 @@ class CurrencyAnalyzer(private val graphicOverlay: GraphicOverlay, private val c
                 }
                 clearTheSetEveryNTime()
             }
-            checkIfSoundGoingToPlay()
+            if(GLOBAL_SOUND) {
+                checkIfSoundGoingToPlay()
+            }
             overlay.postInvalidate()
         }
     }

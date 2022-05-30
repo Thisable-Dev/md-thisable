@@ -23,8 +23,10 @@ import com.devthisable.thisable.R
 import com.devthisable.thisable.adapter.ObjectOptionAdapter
 import com.devthisable.thisable.analyzer.ObjectAnalyzer
 import com.devthisable.thisable.databinding.FragmentObjectDetectionBinding
+import com.devthisable.thisable.interfaces.FeedbackListener
 import com.devthisable.thisable.interfaces.ObjectOptionInterface
 import com.devthisable.thisable.utils.*
+import com.devthisable.thisable.utils.ext.showToast
 import com.google.mlkit.vision.objects.ObjectDetection
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
@@ -38,11 +40,11 @@ class ObjectDetectionFragment : Fragment() {
 
     private var binding_: FragmentObjectDetectionBinding? = null
     private val binding: FragmentObjectDetectionBinding get() = binding_!!
-
     private lateinit var cameraExecutor: ExecutorService
 
     //private lateinit var camera_capture_button: Button
     private lateinit var graphicOverlay: GraphicOverlay
+    private var stateSound : Boolean =false
     private var stateCamera: Boolean = false
     private lateinit var objAnalyzer: ObjectAnalyzer
 
@@ -52,22 +54,9 @@ class ObjectDetectionFragment : Fragment() {
         graphicOverlay = binding.graphicOverlay
         cameraExecutor = Executors.newSingleThreadExecutor()
         objAnalyzer = ObjectAnalyzer(graphicOverlay, requireContext())
-        binding.viewFinder.setOnLongClickListener {
-            stateCamera = true
-            showAlertDialog()
-            true
-        }
-        binding.viewFinder.setOnClickListener {
-            showToastMessage(requireContext(), "Tekan Dan Tahan lama untuk melihat Opsi Pilihan")
-            true
-        }
-
-        binding.ivBack.setOnClickListener {
-            requireActivity().finish()
-        }
-
+        setListener()
         if (allPermissionsGranted()) {
-            startCamera(false)
+            startCamera()
         } else {
             ActivityCompat.requestPermissions(
                 requireActivity(), REQUIRED_PERMISSIONS, REQUEST_CODE_PERMISSIONS
@@ -86,11 +75,47 @@ class ObjectDetectionFragment : Fragment() {
         return binding.root
     }
 
+
     override fun onResume() {
         super.onResume()
-        startCamera(false)
+        startCamera()
     }
 
+    private fun setListener() {
+        binding.viewFinder.setOnLongClickListener {
+            stateCamera = true
+            showAlertDialog()
+            true
+        }
+        binding.viewFinder.setOnClickListener {
+            showToastMessage(requireContext(), "Tekan Dan Tahan lama untuk melihat Opsi Pilihan")
+            true
+        }
+
+        binding.ivBack.setOnClickListener {
+            requireActivity().finish()
+        }
+
+        binding.ivSoundState.setOnClickListener {
+            // Check it
+            if (!stateSound) stateSound = true
+            else stateSound = false
+            feedbackListenerInterface?.onListenFeedback(stateSound)
+            changeDrawable()
+        }
+
+    }
+
+    private fun changeDrawable() {
+        if(stateSound) {
+            binding.ivSoundState.setImageDrawable(requireContext().getDrawable(R.drawable.ic_baseline_volume_on))
+            context?.showToast("Suara Diaktifkan")
+        }
+        else {
+            binding.ivSoundState.setImageDrawable(requireContext().getDrawable(R.drawable.ic_action_volume_off))
+            context?.showToast("Suara Dimatikan")
+        }
+    }
     private fun allPermissionsGranted() = REQUIRED_PERMISSIONS.all {
         ContextCompat.checkSelfPermission(
             requireContext(), it
@@ -169,7 +194,7 @@ class ObjectDetectionFragment : Fragment() {
         alertDialog.show()
     }
 
-    private fun startCamera(stateSound: Boolean) {
+    private fun startCamera() {
         val cameraProviderFuture = ProcessCameraProvider.getInstance(requireContext())
         cameraProviderFuture.addListener(Runnable {
             // Used to bind the lifecycle of cameras to the lifecycle owner
@@ -210,7 +235,7 @@ class ObjectDetectionFragment : Fragment() {
         super.onRequestPermissionsResult(requestCode, permissions, grantResults)
         if (requestCode == REQUEST_CODE_PERMISSIONS) {
             if (allPermissionsGranted()) {
-                startCamera(false)
+                startCamera()
             } else {
                 Toast.makeText(
                     requireContext(),
@@ -226,6 +251,12 @@ class ObjectDetectionFragment : Fragment() {
         private const val TAG = "Live Object Detector Sample App"
         private const val REQUEST_CODE_PERMISSIONS = 10
         private val REQUIRED_PERMISSIONS = arrayOf(Manifest.permission.CAMERA)
+
+        private var feedbackListenerInterface : FeedbackListener? = null
+
+        fun setFeedbackListener(feedbackListener: FeedbackListener) {
+            this.feedbackListenerInterface = feedbackListener
+        }
     }
 
 

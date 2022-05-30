@@ -19,8 +19,11 @@ import androidx.navigation.fragment.findNavController
 import com.devthisable.thisable.R
 import com.devthisable.thisable.analyzer.CurrencyAnalyzer
 import com.devthisable.thisable.databinding.FragmentCurrencyBinding
+import com.devthisable.thisable.interfaces.FeedbackListener
 import com.devthisable.thisable.interfaces.ObjectOptionInterface
+import com.devthisable.thisable.presentation.feature_object.ObjectDetectionFragment
 import com.devthisable.thisable.utils.*
+import com.devthisable.thisable.utils.ext.showToast
 import java.lang.IllegalStateException
 import java.util.concurrent.ExecutorService
 import java.util.concurrent.Executors
@@ -31,7 +34,7 @@ class CurrencyFragment : Fragment() {
     private val binding : FragmentCurrencyBinding get() = binding_!!
     private lateinit var cameraExecutor : ExecutorService
     private lateinit var currencyAnalyzer : CurrencyAnalyzer
-
+    private var stateSound : Boolean = false
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
@@ -57,36 +60,56 @@ class CurrencyFragment : Fragment() {
         setOnClickListener()
     }
 
+
     private fun setOnClickListener() {
         val itemListener = object : ObjectOptionInterface {
             override fun onClick(data: String) {
-                when(data) {
+                when (data) {
                     getString(R.string.question_1_currency_detection) -> {
-                        showToastMessage(requireContext(), data )
+                        showToastMessage(requireContext(), data)
                     }
                     getString(R.string.question_2_currency_detection) -> {
-                        showToastMessage(requireContext(), data )
+                        showToastMessage(requireContext(), data)
                     }
                 }
             }
 
             override fun onLongClickListener(data: String) {
-                when(data) {
+                when (data) {
                     getString(R.string.question_1_currency_detection) -> {
                         var items = currencyAnalyzer.getCurrencyDetected()
                         if (!items.isEmpty()) {
                             val returned = makeItOneString(countTheObj(items))
-                            showToastMessage(requireActivity(), getString(R.string.response_1_currency_detection, returned, sumTheDetectedCurrency(items).toString()))
+                            showToastMessage(
+                                requireActivity(),
+                                getString(
+                                    R.string.response_1_currency_detection,
+                                    returned,
+                                    sumTheDetectedCurrency(items).toString()
+                                )
+                            )
                         }
                     }
                     getString(R.string.question_2_currency_detection) -> {
                         var items = currencyAnalyzer.getCurrencyDetected()
                         val returnedText = makeItOneString(countTheObj(items))
-                        showToastMessage(requireContext(), getString(R.string.response_2_currency_detection, sumTheDetectedCurrency(items).toString()))
+                        showToastMessage(
+                            requireContext(),
+                            getString(
+                                R.string.response_2_currency_detection,
+                                sumTheDetectedCurrency(items).toString()
+                            )
+                        )
                     }
                 }
             }
-
+        }
+        binding.ivSoundState.setOnClickListener {
+            // Check it
+            if (!stateSound) stateSound = true
+            else stateSound = false
+            feedbackListener?.onListenFeedback(stateSound)
+            changeDrawable()
         }
         binding.viewFinder.setOnLongClickListener{
             showAlertDialogObjDetection(requireContext(), ServeListQuestion.getListQuestionCurrency(requireContext()),itemListener )
@@ -101,6 +124,18 @@ class CurrencyFragment : Fragment() {
         // TODO
         //
     }
+
+    private fun changeDrawable() {
+        if(stateSound) {
+            binding.ivSoundState.setImageDrawable(requireContext().getDrawable(R.drawable.ic_baseline_volume_on))
+            context?.showToast("Suara Diaktifkan")
+        }
+        else {
+            binding.ivSoundState.setImageDrawable(requireContext().getDrawable(R.drawable.ic_action_volume_off))
+            context?.showToast("Suara Dimatikan")
+        }
+    }
+
 
     override fun onRequestPermissionsResult(
         requestCode: Int,
@@ -160,6 +195,11 @@ class CurrencyFragment : Fragment() {
         private val REQUIRED_PERMISSION = arrayOf(Manifest.permission.CAMERA)
         private val PERMISSION_CODE : Int = 10
         private val TAG : String = CurrencyFragment::class.java.simpleName
+
+        private lateinit var feedbackListener: FeedbackListener
+        fun setOnFeedbackListener(feedbackListener: FeedbackListener ) {
+            this.feedbackListener = feedbackListener
+        }
     }
 
 }

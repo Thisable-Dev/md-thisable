@@ -29,6 +29,7 @@
             app:layout_constraintTop_toTopOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             />
+
         <ImageView
             android:id="@+id/iv_sound_state"
             android:padding="5dp"

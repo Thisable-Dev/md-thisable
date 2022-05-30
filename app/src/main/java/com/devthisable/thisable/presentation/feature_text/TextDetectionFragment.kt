@@ -93,6 +93,14 @@ class TextDetectionFragment : Fragment() {
         textDetectionAnalyzer = TextDetectionAnalyzer(requireContext())
         setOnClickListener()
     }
+    private fun showUIPB(state : String )  {
+        if ( state == "upload") {
+            binding.pbUpload.visibility = View.VISIBLE
+            binding.tvInfo.text = "Uploading"
+            binding.tvInfo.visibility = View.VISIBLE
+        }
+
+    }
 
     private fun setOnClickListener() {
         val itemListener = object : ObjectOptionInterface {
@@ -103,7 +111,6 @@ class TextDetectionFragment : Fragment() {
             override fun onLongClickListener(data: String) {
                 val image = textDetectionAnalyzer.getDetectedImage()
                 if (image != null) {
-                    val metadata = FrameMetadata(image.width, image.height, 0)
                     val currImage = image
 
                     val byteArrayOutputStream = ByteArrayOutputStream()
@@ -127,12 +134,12 @@ class TextDetectionFragment : Fragment() {
                         )
                     )
 
-                    context?.showToast(base64encoded)
-                    Log.d("base64image", base64encoded)
+                    //context?.showToast(base64encoded)
+                    //Log.d("base64image", base64encoded)
 
                     textDetection(API_KEY, textDetectionRequest)
 
-                    showToastMessage(requireContext(), "Bitmap IS NOT NULL!!!!")
+                   // showToastMessage(requireContext(), "Bitmap IS NOT NULL!!!!")
                 } else {
                     showToastMessage(requireContext(), "Bitmap Is NULL WTF")
                 }
@@ -156,13 +163,15 @@ class TextDetectionFragment : Fragment() {
         viewModel.textDetection(apiKey, request).observe(viewLifecycleOwner) { response ->
             when (response) {
                 is ApiResponse.Loading -> {
-                    context?.showToast("Loading.......")
+                    showUIPB("upload")
+                    //context?.showToast("Loading.......")
                 }
                 is ApiResponse.Success -> {
                     context?.showToast(response.data.responses[0].fullTextAnnotation.toString())
                 }
                 is ApiResponse.Error -> {
-                    context?.showToast("Error occured")
+                    context?.showToast(response.errorMessage)
+                    //context?.showToast("Error occured")
                 }
             }
         }

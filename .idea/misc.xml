@@ -3,6 +3,9 @@
   <component name="DesignSurface">
     <option name="filePathToZoomLevelMap">
       <map>
+        <entry key="..\:/Bangkit/thisable-app/app/src/main/res/drawable/ic_action_volume_off.xml" value="0.2495" />
+        <entry key="..\:/Bangkit/thisable-app/app/src/main/res/drawable/ic_baseline_volume_off.xml" value="0.2495" />
+        <entry key="..\:/Bangkit/thisable-app/app/src/main/res/drawable/ic_baseline_volume_on.xml" value="0.2495" />
         <entry key="..\:/Bangkit/thisable-app/app/src/main/res/drawable/ic_bisindo_translator.xml" value="0.2165" />
         <entry key="..\:/Bangkit/thisable-app/app/src/main/res/drawable/ic_currency_detection.xml" value="0.1935" />
         <entry key="..\:/Bangkit/thisable-app/app/src/main/res/drawable/ic_home.xml" value="0.31" />
@@ -22,7 +25,7 @@
         <entry key="..\:/Bangkit/thisable-app/app/src/main/res/layout/fragment_object_detection.xml" value="0.35280797101449274" />
         <entry key="..\:/Bangkit/thisable-app/app/src/main/res/layout/fragment_sign_language.xml" value="0.35280797101449274" />
         <entry key="..\:/Bangkit/thisable-app/app/src/main/res/layout/fragment_splash.xml" value="0.18541666666666667" />
-        <entry key="..\:/Bangkit/thisable-app/app/src/main/res/layout/fragment_text_detection.xml" value="0.35280797101449274" />
+        <entry key="..\:/Bangkit/thisable-app/app/src/main/res/layout/fragment_text_detection.xml" value="0.33" />
         <entry key="..\:/Bangkit/thisable-app/app/src/main/res/layout/fragment_thisable.xml" value="0.1" />
         <entry key="..\:/Bangkit/thisable-app/app/src/main/res/layout/item_layout_dialog_obj.xml" value="0.24547101449275363" />
         <entry key="..\:/Bangkit/thisable-app/app/src/main/res/menu/bottom_nav_menu.xml" value="0.3625" />
