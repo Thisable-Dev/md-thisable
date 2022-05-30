@@ -1,22 +1,18 @@
 package com.devthisable.thisable.presentation.feature_object
 
-import android.Manifest
 import android.app.Dialog
-import android.content.pm.PackageManager
 import android.os.Bundle
 import android.util.Log
-import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.ImageView
 import android.widget.Toast
 import androidx.camera.core.CameraSelector
 import androidx.camera.core.ImageAnalysis
 import androidx.camera.core.Preview
 import androidx.camera.lifecycle.ProcessCameraProvider
-import androidx.core.app.ActivityCompat
 import androidx.core.content.ContextCompat
+import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.devthisable.thisable.R
@@ -25,16 +21,23 @@ import com.devthisable.thisable.analyzer.ObjectAnalyzer
 import com.devthisable.thisable.databinding.FragmentObjectDetectionBinding
 import com.devthisable.thisable.interfaces.FeedbackListener
 import com.devthisable.thisable.interfaces.ObjectOptionInterface
-import com.devthisable.thisable.utils.*
+import com.devthisable.thisable.utils.GraphicOverlay
+import com.devthisable.thisable.utils.ServeListQuestion
+import com.devthisable.thisable.utils.countTheObj
+import com.devthisable.thisable.utils.ext.gone
+import com.devthisable.thisable.utils.ext.show
 import com.devthisable.thisable.utils.ext.showToast
-import com.google.mlkit.vision.objects.ObjectDetection
+import com.devthisable.thisable.utils.makeItOneString
+import com.devthisable.thisable.utils.showToastMessage
+import com.google.firebase.auth.FirebaseAuth
+import com.google.firebase.auth.ktx.auth
+import com.google.firebase.ktx.Firebase
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch
 import java.util.concurrent.ExecutorService
 import java.util.concurrent.Executors
-
 
 class ObjectDetectionFragment : Fragment() {
 
@@ -44,24 +47,23 @@ class ObjectDetectionFragment : Fragment() {
 
     //private lateinit var camera_capture_button: Button
     private lateinit var graphicOverlay: GraphicOverlay
-    private var stateSound : Boolean =false
+    private var stateSound: Boolean = false
     private var stateCamera: Boolean = false
     private lateinit var objAnalyzer: ObjectAnalyzer
 
+    private lateinit var auth: FirebaseAuth
+
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+
+        initFirebase()
+        initUI()
 
         graphicOverlay = binding.graphicOverlay
         cameraExecutor = Executors.newSingleThreadExecutor()
         objAnalyzer = ObjectAnalyzer(graphicOverlay, requireContext())
         setListener()
-        if (allPermissionsGranted()) {
-            startCamera()
-        } else {
-            ActivityCompat.requestPermissions(
-                requireActivity(), REQUIRED_PERMISSIONS, REQUEST_CODE_PERMISSIONS
-            )
-        }
+        startCamera()
     }
 
     override fun onCreateView(
@@ -75,6 +77,17 @@ class ObjectDetectionFragment : Fragment() {
         return binding.root
     }
 
+    private fun initFirebase() {
+        auth = Firebase.auth
+    }
+
+    private fun initUI() {
+        if (auth.currentUser != null) {
+            binding.ivGoogle.gone()
+        } else {
+            binding.ivGoogle.show()
+        }
+    }
 
     override fun onResume() {
         super.onResume()
@@ -103,23 +116,16 @@ class ObjectDetectionFragment : Fragment() {
             feedbackListenerInterface?.onListenFeedback(stateSound)
             changeDrawable()
         }
-
     }
 
     private fun changeDrawable() {
-        if(stateSound) {
-            binding.ivSoundState.setImageDrawable(requireContext().getDrawable(R.drawable.ic_baseline_volume_on))
+        if (stateSound) {
+            binding.ivSoundState.setImageDrawable(requireContext().getDrawable(R.drawable.sound_on))
             context?.showToast("Suara Diaktifkan")
-        }
-        else {
-            binding.ivSoundState.setImageDrawable(requireContext().getDrawable(R.drawable.ic_action_volume_off))
+        } else {
+            binding.ivSoundState.setImageDrawable(requireContext().getDrawable(R.drawable.sound_off))
             context?.showToast("Suara Dimatikan")
         }
-    }
-    private fun allPermissionsGranted() = REQUIRED_PERMISSIONS.all {
-        ContextCompat.checkSelfPermission(
-            requireContext(), it
-        ) == PackageManager.PERMISSION_GRANTED
     }
 
     private fun showAlertDialog() {
@@ -227,37 +233,14 @@ class ObjectDetectionFragment : Fragment() {
         }, ContextCompat.getMainExecutor(requireContext()))
     }
 
-
-    override fun onRequestPermissionsResult(
-        requestCode: Int, permissions: Array<String>, grantResults:
-        IntArray
-    ) {
-        super.onRequestPermissionsResult(requestCode, permissions, grantResults)
-        if (requestCode == REQUEST_CODE_PERMISSIONS) {
-            if (allPermissionsGranted()) {
-                startCamera()
-            } else {
-                Toast.makeText(
-                    requireContext(),
-                    "Permissions not granted by the user.",
-                    Toast.LENGTH_SHORT
-                ).show()
-                requireActivity().finish()
-            }
-        }
-    }
-
     companion object {
-        private const val TAG = "Live Object Detector Sample App"
-        private const val REQUEST_CODE_PERMISSIONS = 10
-        private val REQUIRED_PERMISSIONS = arrayOf(Manifest.permission.CAMERA)
 
-        private var feedbackListenerInterface : FeedbackListener? = null
+        private const val TAG = "Live Object Detector Sample App"
+
+        private var feedbackListenerInterface: FeedbackListener? = null
 
         fun setFeedbackListener(feedbackListener: FeedbackListener) {
             this.feedbackListenerInterface = feedbackListener
         }
     }
-
-
 }

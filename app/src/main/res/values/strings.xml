@@ -105,5 +105,8 @@
     <string name="raw_sound_2">monitor</string>
     <string name="raw_sound_3">laptop</string>
     <string name="raw_sound_4">desktop computer</string>
+    <string name="label_continue">Lanjut</string>
+    <string name="label_report_success_send">Laporan berhasil dikirim</string>
+    <string name="label_report_description">Keterangan*</string>
 
 </resources>

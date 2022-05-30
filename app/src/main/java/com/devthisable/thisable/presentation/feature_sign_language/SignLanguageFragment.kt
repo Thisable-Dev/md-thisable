@@ -17,7 +17,12 @@ import com.devthisable.thisable.R
 import com.devthisable.thisable.analyzer.SignLanguageAnalyzer
 import com.devthisable.thisable.databinding.FragmentSignLanguageBinding
 import com.devthisable.thisable.interfaces.SignLanguageListener
+import com.devthisable.thisable.utils.ext.gone
+import com.devthisable.thisable.utils.ext.show
 import com.devthisable.thisable.utils.showToastMessage
+import com.google.firebase.auth.FirebaseAuth
+import com.google.firebase.auth.ktx.auth
+import com.google.firebase.ktx.Firebase
 import java.util.concurrent.ExecutorService
 import java.util.concurrent.Executors
 
@@ -28,19 +33,28 @@ class SignLanguageFragment : Fragment() {
     private lateinit var cameraExecutor : ExecutorService
     private lateinit var signLanguageAnalyzer : SignLanguageAnalyzer
     private lateinit var signLanguageListener: SignLanguageListener
+
+    private lateinit var auth: FirebaseAuth
+
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        init()
-        if (allPermissionGranted()) {
-            startCamera()
+        initFirebase()
+        initUI()
 
-            binding.ivBack.setOnClickListener {
-                requireActivity().finish()
-            }
-        }
-        else {
-            ActivityCompat.requestPermissions(requireActivity(), REQUIRED_PERMISSION, PERMISSION_CODE)
+        init()
+        startCamera()
+    }
+
+    private fun initFirebase() {
+        auth = Firebase.auth
+    }
+
+    private fun initUI() {
+        if (auth.currentUser != null) {
+            binding.ivGoogle.gone()
+        } else {
+            binding.ivGoogle.show()
         }
     }
 
@@ -63,23 +77,6 @@ class SignLanguageFragment : Fragment() {
         signLanguageAnalyzer = SignLanguageAnalyzer(binding.graphicOverlay, requireContext())
         signLanguageAnalyzer.setSignLanguageListener(signLanguageListener)
 
-    }
-
-    override fun onRequestPermissionsResult(
-        requestCode: Int,
-        permissions: Array<out String>,
-        grantResults: IntArray
-    ) {
-        super.onRequestPermissionsResult(requestCode, permissions, grantResults)
-        if(requestCode == PERMISSION_CODE) {
-            if(allPermissionGranted()) {
-                startCamera()
-            }
-            else {
-                showToastMessage(requireContext(), "Permission not Granted")
-                requireActivity().finish()
-            }
-        }
     }
 
     private fun startCamera() {
@@ -112,14 +109,10 @@ class SignLanguageFragment : Fragment() {
     private fun writeTheTranslate() {
         signLanguageAnalyzer.getOutputData()
     }
+
     override fun onResume() {
         super.onResume()
         startCamera()
-    }
-    private fun allPermissionGranted() : Boolean {
-        return REQUIRED_PERMISSION.all {
-            ContextCompat.checkSelfPermission(requireContext(), it) == PackageManager.PERMISSION_GRANTED
-        }
     }
 
     companion object {

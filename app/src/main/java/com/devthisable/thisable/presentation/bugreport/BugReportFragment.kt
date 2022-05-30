@@ -10,10 +10,12 @@ import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.navigation.findNavController
 import androidx.navigation.fragment.findNavController
+import com.devthisable.thisable.R
 import com.devthisable.thisable.R.string
 import com.devthisable.thisable.data.remote.ApiResponse
 import com.devthisable.thisable.data.remote.general.report.ReportBugBody
 import com.devthisable.thisable.databinding.FragmentBugReportBinding
+import com.devthisable.thisable.utils.ext.clearText
 import com.devthisable.thisable.utils.ext.gone
 import com.devthisable.thisable.utils.ext.show
 import com.google.android.material.snackbar.Snackbar
@@ -118,8 +120,8 @@ class BugReportFragment : Fragment() {
                 is ApiResponse.Success -> {
                     binding.bgDim.gone()
                     binding.progressBar.gone()
-                    Snackbar.make(requireView(), getString(string.message_report_success), Snackbar.LENGTH_SHORT).show()
-                    findNavController().popBackStack()
+                    clearInput()
+                    findNavController().navigate(R.id.action_bugReportFragment_to_fragmentSuccessCustomDialog)
                 }
                 is ApiResponse.Error -> {
                     binding.bgDim.gone()
@@ -132,4 +134,13 @@ class BugReportFragment : Fragment() {
             }
         }
     }
+
+    private fun clearInput() {
+        binding.apply {
+            edtName.clearText()
+            edtEmail.clearText()
+            edtReport.clearText()
+        }
+    }
+
 }

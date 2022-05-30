@@ -3,7 +3,6 @@ package com.devthisable.thisable.presentation.feature_currency
 import android.Manifest
 import android.content.pm.PackageManager
 import android.os.Bundle
-import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -13,18 +12,24 @@ import androidx.camera.core.Preview
 import androidx.camera.lifecycle.ProcessCameraProvider
 import androidx.core.app.ActivityCompat
 import androidx.core.content.ContextCompat
-import androidx.navigation.Navigation
-import androidx.navigation.fragment.NavHostFragment
-import androidx.navigation.fragment.findNavController
+import androidx.fragment.app.Fragment
 import com.devthisable.thisable.R
 import com.devthisable.thisable.analyzer.CurrencyAnalyzer
 import com.devthisable.thisable.databinding.FragmentCurrencyBinding
 import com.devthisable.thisable.interfaces.FeedbackListener
 import com.devthisable.thisable.interfaces.ObjectOptionInterface
-import com.devthisable.thisable.presentation.feature_object.ObjectDetectionFragment
-import com.devthisable.thisable.utils.*
+import com.devthisable.thisable.utils.ServeListQuestion
+import com.devthisable.thisable.utils.countTheObj
+import com.devthisable.thisable.utils.ext.gone
+import com.devthisable.thisable.utils.ext.show
 import com.devthisable.thisable.utils.ext.showToast
-import java.lang.IllegalStateException
+import com.devthisable.thisable.utils.makeItOneString
+import com.devthisable.thisable.utils.showAlertDialogObjDetection
+import com.devthisable.thisable.utils.showToastMessage
+import com.devthisable.thisable.utils.sumTheDetectedCurrency
+import com.google.firebase.auth.FirebaseAuth
+import com.google.firebase.auth.ktx.auth
+import com.google.firebase.ktx.Firebase
 import java.util.concurrent.ExecutorService
 import java.util.concurrent.Executors
 
@@ -35,17 +40,8 @@ class CurrencyFragment : Fragment() {
     private lateinit var cameraExecutor : ExecutorService
     private lateinit var currencyAnalyzer : CurrencyAnalyzer
     private var stateSound : Boolean = false
-    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
-        super.onViewCreated(view, savedInstanceState)
 
-        init()
-        if (allPermissionGranted()) {
-            startCamera()
-        }
-        else {
-            ActivityCompat.requestPermissions(requireActivity(), REQUIRED_PERMISSION, PERMISSION_CODE)
-        }
-    }
+    private lateinit var auth: FirebaseAuth
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -54,12 +50,42 @@ class CurrencyFragment : Fragment() {
         return binding.root
     }
 
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+
+        initFirebase()
+        initUI()
+
+        init()
+        initPermission()
+    }
+
     private fun init() {
         cameraExecutor = Executors.newSingleThreadExecutor()
         currencyAnalyzer = CurrencyAnalyzer(binding.graphicOverlay, requireContext())
         setOnClickListener()
     }
 
+    private fun initPermission() {
+        if (allPermissionGranted()) {
+            startCamera()
+        }
+        else {
+            ActivityCompat.requestPermissions(requireActivity(), REQUIRED_PERMISSION, PERMISSION_CODE)
+        }
+    }
+
+    private fun initFirebase() {
+        auth = Firebase.auth
+    }
+
+    private fun initUI() {
+        if (auth.currentUser != null) {
+            binding.ivGoogle.gone()
+        } else {
+            binding.ivGoogle.show()
+        }
+    }
 
     private fun setOnClickListener() {
         val itemListener = object : ObjectOptionInterface {
@@ -127,11 +153,11 @@ class CurrencyFragment : Fragment() {
 
     private fun changeDrawable() {
         if(stateSound) {
-            binding.ivSoundState.setImageDrawable(requireContext().getDrawable(R.drawable.ic_baseline_volume_on))
+            binding.ivSoundState.setImageDrawable(requireContext().getDrawable(R.drawable.sound_on))
             context?.showToast("Suara Diaktifkan")
         }
         else {
-            binding.ivSoundState.setImageDrawable(requireContext().getDrawable(R.drawable.ic_action_volume_off))
+            binding.ivSoundState.setImageDrawable(requireContext().getDrawable(R.drawable.sound_off))
             context?.showToast("Suara Dimatikan")
         }
     }

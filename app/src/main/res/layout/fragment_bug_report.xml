@@ -33,7 +33,7 @@
                 android:layout_marginTop="@dimen/dimen_32dp"
                 android:text="@string/label_bug_happen"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="@+id/imgIllustration" />
+                    app:layout_constraintTop_toTopOf="@+id/imgIllustration" />
 
             <TextView
                 android:id="@+id/tvBugHappenSubTitle"
@@ -133,7 +133,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginStart="@dimen/dimen_16dp"
                 android:layout_marginTop="@dimen/dimen_16dp"
-                android:text="@string/label_email"
+                android:text="@string/label_report_description"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/tvReport" />
 

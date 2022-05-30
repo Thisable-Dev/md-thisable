@@ -3,6 +3,7 @@ package com.devthisable.thisable.utils.ext
 import android.animation.AnimatorSet
 import android.animation.ObjectAnimator
 import android.view.View
+import android.widget.EditText
 import android.widget.ImageView
 import com.bumptech.glide.Glide
 
@@ -50,4 +51,8 @@ fun View.popTap(){
     val scaleUp = AnimatorSet()
     scaleUp.play(scaleUpX).with(scaleUpY).after(scaleDown)
     scaleUp.start()
+}
+
+fun EditText.clearText() {
+    setText("")
 }

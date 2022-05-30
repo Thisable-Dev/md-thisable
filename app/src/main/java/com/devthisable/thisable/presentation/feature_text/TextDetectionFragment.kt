@@ -26,10 +26,15 @@ import com.devthisable.thisable.interfaces.ObjectOptionInterface
 import com.devthisable.thisable.utils.ConstVal.API_KEY
 import com.devthisable.thisable.utils.FrameMetadata
 import com.devthisable.thisable.utils.ServeListQuestion
+import com.devthisable.thisable.utils.ext.gone
+import com.devthisable.thisable.utils.ext.show
 import com.devthisable.thisable.utils.ext.showToast
 import com.devthisable.thisable.utils.scaleBitmapDown
 import com.devthisable.thisable.utils.showAlertDialogObjDetection
 import com.devthisable.thisable.utils.showToastMessage
+import com.google.firebase.auth.FirebaseAuth
+import com.google.firebase.auth.ktx.auth
+import com.google.firebase.ktx.Firebase
 import dagger.hilt.android.AndroidEntryPoint
 import timber.log.Timber
 import timber.log.Timber.Forest
@@ -48,10 +53,28 @@ class TextDetectionFragment : Fragment() {
     private var imageCapture: ImageCapture? = null
     private lateinit var textDetectionAnalyzer: TextDetectionAnalyzer
 
+    private lateinit var auth: FirebaseAuth
+
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+
+        initFirebase()
+        initUI()
+
         init()
         startCamera()
+    }
+
+    private fun initFirebase() {
+        auth = Firebase.auth
+    }
+
+    private fun initUI() {
+        if (auth.currentUser != null) {
+            binding.ivGoogle.gone()
+        } else {
+            binding.ivGoogle.show()
+        }
     }
 
     private fun startCamera() {

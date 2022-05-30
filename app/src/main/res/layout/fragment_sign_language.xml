@@ -16,84 +16,73 @@
             android:id="@+id/viewFinder"
             android:layout_width="match_parent"
             android:layout_height="450dp"
-            android:layout_weight="1"
             android:layout_gravity="center"
-            app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
+            android:layout_weight="1"
             app:layout_constraintEnd_toEndOf="parent"
-            />
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
 
         <ImageView
             android:id="@+id/iv_back"
-            android:padding="5dp"
-            android:layout_margin="10dp"
             android:layout_width="70dp"
             android:layout_height="70dp"
+            android:layout_margin="10dp"
             android:contentDescription="Kembali ke Menu Utama"
+            android:padding="5dp"
             android:src="@drawable/back_img"
-            app:layout_constraintTop_toTopOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            />
+            app:layout_constraintTop_toTopOf="parent" />
 
         <ImageView
+            android:id="@+id/iv_google"
             android:layout_width="70dp"
             android:layout_height="70dp"
-            android:padding="5dp"
             android:layout_margin="10dp"
             android:contentDescription="Login Menggunakan Google"
+            android:padding="5dp"
             android:src="@drawable/google_img"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            />
+            app:layout_constraintTop_toTopOf="parent" />
 
 
         <com.devthisable.thisable.utils.GraphicOverlay
             android:id="@+id/graphicOverlay"
-            android:layout_gravity="center"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_gravity="center"
             tools:ignore="MissingConstraints" />
-        <androidx.cardview.widget.CardView
 
+        <androidx.cardview.widget.CardView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/viewFinder"
             android:background="@color/white"
-            app:cardCornerRadius="5dp">
+            app:cardCornerRadius="5dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/viewFinder">
 
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:orientation="vertical"
-                xmlns:app_corner="http://schemas.android.com/apk/res-auto"
-                >
+                android:orientation="vertical">
 
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:textColor="@color/black"
-                android:text="Terjemahan"
-                android:layout_marginTop="10dp"
-                android:layout_gravity="center_horizontal"
-                />
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_horizontal"
+                    android:layout_marginTop="10dp"
+                    android:text="Terjemahan"
+                    android:textColor="@color/black" />
 
-            <com.devthisable.thisable.custom_view.CustomEditText
-                android:id="@+id/et_output_terjemahan"
-                android:layout_width="match_parent"
-                android:layout_height="150dp"
-                android:padding="15dp"
-                android:background="@color/white"
-                android:layout_gravity="start"
-                android:gravity="start"
-                />
+                <com.devthisable.thisable.custom_view.CustomEditText
+                    android:id="@+id/et_output_terjemahan"
+                    android:layout_width="match_parent"
+                    android:layout_height="150dp"
+                    android:layout_gravity="start"
+                    android:background="@color/white"
+                    android:gravity="start"
+                    android:padding="15dp" />
             </LinearLayout>
         </androidx.cardview.widget.CardView>
-
-
-
-</androidx.constraintlayout.widget.ConstraintLayout>
-
-
+    </androidx.constraintlayout.widget.ConstraintLayout>
 </FrameLayout>
