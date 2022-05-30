@@ -26,7 +26,6 @@ class CurrencyAnalyzer(private val graphicOverlay: GraphicOverlay, private val c
     private var allObjectDetectedDatabase = mutableListOf<String>()
     private var soundPlayer = SoundPlayer(context)
     private var GLOBAL_SOUND : Boolean  = false
-    private lateinit var subscribeFeedbackListener: FeedbackListener
     private lateinit var objectDetector : ObjectDetector
     private val overlay = graphicOverlay
     private val lens_facing = CameraSelector.LENS_FACING_BACK
@@ -106,7 +105,6 @@ class CurrencyAnalyzer(private val graphicOverlay: GraphicOverlay, private val c
         return bunchCurrencyDetected
     }
 
-
     private fun checkIfSoundGoingToPlay() {
         var sentences  = mutableListOf<String>()
         if (oneFrameDatabase.isNotEmpty()) {
@@ -117,7 +115,6 @@ class CurrencyAnalyzer(private val graphicOverlay: GraphicOverlay, private val c
                     allObjectDetectedDatabase.add(label)
                 }
             }
-
             try {
                 if (sentences.isNotEmpty()) {
                     // Play the sound here

@@ -33,17 +33,20 @@ class ObjectAnalyzer(private val graphicOverlay: GraphicOverlay, private val con
     private lateinit var subscribeFeedbackListener: FeedbackListener
     private var soundPlayer = SoundPlayer(context)
     private var globalStateSound : Boolean  = false
+    private var globalStateKeyboard : Boolean = false
     private var one_frame_database = mutableListOf<String>()
     private var all_object_detected_database = mutableListOf<String>()
 
     private lateinit var localModel : LocalModel
     private lateinit var remoteModel : CustomRemoteModel
     private lateinit var optionsRemote : CustomObjectDetectorOptions
+
+
     init {
         mapOfLabels["monitor"] = 0
 
         localModel =  LocalModel.Builder()
-            .setAssetFilePath("ssd.tflite")
+            .setAssetFilePath("object_classification.tflite")
             .build()
 
         remoteModel = CustomRemoteModel.Builder(
@@ -70,7 +73,8 @@ class ObjectAnalyzer(private val graphicOverlay: GraphicOverlay, private val con
                     }
                 optionsRemote = optionsRemoteBuilder.enableClassification()
                     .enableClassification()
-                    .setClassificationConfidenceThreshold(0.1f)
+                    .enableMultipleObjects()
+                    .setClassificationConfidenceThreshold(0.5f)
                     .build()
             }
 
@@ -78,19 +82,11 @@ class ObjectAnalyzer(private val graphicOverlay: GraphicOverlay, private val con
 
         subscribeFeedbackListener = object : FeedbackListener {
             override fun onListenFeedback(stateSound: Boolean) {
-                if(stateSound) {
-                    //play sound
                     globalStateSound = stateSound
-                }
-                else {
-                    globalStateSound = false
-                }
             }
         }
         ObjectDetectionFragment.setFeedbackListener(subscribeFeedbackListener)
-
     }
-
 
     val options = CustomObjectDetectorOptions.Builder(localModel)
         .setDetectorMode(CustomObjectDetectorOptions.STREAM_MODE)
@@ -176,7 +172,6 @@ class ObjectAnalyzer(private val graphicOverlay: GraphicOverlay, private val con
                     all_object_detected_database.add(label)
                 }
             }
-
             try {
                 if (sentences.isNotEmpty()) {
                     // Play the sound here
@@ -194,10 +189,8 @@ class ObjectAnalyzer(private val graphicOverlay: GraphicOverlay, private val con
                 one_frame_database.clear()
             }
             try {
-                Log.d("YOMAN", all_object_detected_database.size.toString())
                 val list =   all_object_detected_database.slice(IntRange(all_object_detected_database.size -3 ,all_object_detected_database.size -1 ))
                 all_object_detected_database = list.toMutableList()
-                Log.d("YOMANGAns", all_object_detected_database.toString())
             } catch (e: Exception) {
                 e.printStackTrace()
             }

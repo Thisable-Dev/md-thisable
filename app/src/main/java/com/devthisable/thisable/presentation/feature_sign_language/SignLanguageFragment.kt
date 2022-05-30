@@ -3,6 +3,7 @@ package com.devthisable.thisable.presentation.feature_sign_language
 import android.Manifest
 import android.content.pm.PackageManager
 import android.os.Bundle
+import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
@@ -16,9 +17,12 @@ import androidx.core.content.ContextCompat
 import com.devthisable.thisable.R
 import com.devthisable.thisable.analyzer.SignLanguageAnalyzer
 import com.devthisable.thisable.databinding.FragmentSignLanguageBinding
+import com.devthisable.thisable.interfaces.FeedbackSignLanguageListener
 import com.devthisable.thisable.interfaces.SignLanguageListener
+import com.devthisable.thisable.interfaces.SignlanguageContentListener
 import com.devthisable.thisable.utils.ext.gone
 import com.devthisable.thisable.utils.ext.show
+import com.devthisable.thisable.utils.showAlertDialogSignLanguage
 import com.devthisable.thisable.utils.showToastMessage
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.ktx.auth
@@ -30,8 +34,9 @@ class SignLanguageFragment : Fragment() {
 
     private var binding_ : FragmentSignLanguageBinding? = null
     private val binding : FragmentSignLanguageBinding get() = binding_!!
-    private lateinit var cameraExecutor : ExecutorService
     private lateinit var signLanguageAnalyzer : SignLanguageAnalyzer
+    private lateinit var cameraExecutor : ExecutorService
+    private lateinit var keyboardCustomListener: FeedbackSignLanguageListener
     private lateinit var signLanguageListener: SignLanguageListener
 
     private lateinit var auth: FirebaseAuth
@@ -65,6 +70,7 @@ class SignLanguageFragment : Fragment() {
         return binding.root
     }
 
+
     private fun init() {
         cameraExecutor = Executors.newSingleThreadExecutor()
         signLanguageListener = object : SignLanguageListener {
@@ -72,12 +78,32 @@ class SignLanguageFragment : Fragment() {
                 val currentText = binding.etOutputTerjemahan.text.toString()
                 binding.etOutputTerjemahan.setText( currentText +" "+data.toString() )
             }
-
         }
         signLanguageAnalyzer = SignLanguageAnalyzer(binding.graphicOverlay, requireContext())
         signLanguageAnalyzer.setSignLanguageListener(signLanguageListener)
+        keyboardCustomListener = object : FeedbackSignLanguageListener {
+            override fun onListenerKeyboard(state: Boolean) {
+                if (state) {
+                    Log.d("PRERTTY", state.toString())
+                    // Create Interface for listen to The Signlanguage Backend camera
+                    subscribeSignlanguageContentListener?.onListenContent(true)
+                    // Show dialog
+                    showAlertDialogSignLanguage(requireContext(), subscribeSignlanguageContentListener)
+                }
+                else {
+                    // Create Interface for make it
+                    subscribeSignlanguageContentListener?.onListenContent(false)
+                }
+            }
 
+        }
+
+        binding.etOutputTerjemahan.setKeyboardListener(keyboardCustomListener)
     }
+
+
+
+
 
     private fun startCamera() {
         val cameraProviderFuture = ProcessCameraProvider.getInstance(requireContext())
@@ -106,9 +132,6 @@ class SignLanguageFragment : Fragment() {
         cameraProviderFuture.addListener(runnableInterface, ContextCompat.getMainExecutor(requireContext()))
     }
 
-    private fun writeTheTranslate() {
-        signLanguageAnalyzer.getOutputData()
-    }
 
     override fun onResume() {
         super.onResume()
@@ -118,5 +141,10 @@ class SignLanguageFragment : Fragment() {
     companion object {
         private val REQUIRED_PERMISSION = arrayOf(Manifest.permission.CAMERA)
         private val PERMISSION_CODE : Int = 10
+
+        private  var subscribeSignlanguageContentListener: SignlanguageContentListener? = null
+        fun setSignLanguageContentListener(signlanguageContentListener: SignlanguageContentListener) {
+            this.subscribeSignlanguageContentListener = signlanguageContentListener
+        }
     }
 }

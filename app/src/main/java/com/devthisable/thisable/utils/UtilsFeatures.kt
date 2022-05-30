@@ -1,16 +1,19 @@
 package com.devthisable.thisable.utils
 
 import android.app.Activity
+import android.app.AlertDialog
 import android.app.Dialog
 import android.content.Context
 import android.graphics.*
 import android.util.Log
+import android.widget.Button
 import android.widget.Toast
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.devthisable.thisable.R
 import com.devthisable.thisable.adapter.ObjectOptionAdapter
 import com.devthisable.thisable.interfaces.ObjectOptionInterface
+import com.devthisable.thisable.interfaces.SignlanguageContentListener
 import java.io.ByteArrayOutputStream
 import java.io.File
 import java.nio.ByteBuffer
@@ -116,6 +119,18 @@ fun countTheObj(list: List<String>) : MutableMap<String, Int> {
         }
     }
     return returned
+}
+fun showAlertDialogSignLanguage(context : Context, signlanguageContentListener: SignlanguageContentListener? ) {
+    val alertDialog  = AlertDialog.Builder(context)
+        .setView(R.layout.custom_alertdialog_signlanguage)
+        .setOnDismissListener {
+            signlanguageContentListener?.onListenContent(false)
+        }
+        .create()
+
+
+    alertDialog.show()
+
 }
 
 fun scaleBitmapDown(bitmap: Bitmap, maxDimension: Int): Bitmap {
