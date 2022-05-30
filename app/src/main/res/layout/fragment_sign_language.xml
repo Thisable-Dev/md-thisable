@@ -4,20 +4,24 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@color/black"
     tools:context=".presentation.feature_sign_language.SignLanguageFragment">
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_weight="2"
-        tools:ignore="MissingConstraints">
+        android:layout_weight="2">
 
         <androidx.camera.view.PreviewView
             android:id="@+id/viewFinder"
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
+            android:layout_height="450dp"
             android:layout_weight="1"
-            android:layout_gravity="center" />
+            android:layout_gravity="center"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            />
 
         <ImageView
             android:id="@+id/iv_back"
@@ -42,13 +46,20 @@
             app:layout_constraintTop_toTopOf="parent"
             />
 
+
+        <com.devthisable.thisable.utils.GraphicOverlay
+            android:id="@+id/graphicOverlay"
+            android:layout_gravity="center"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            tools:ignore="MissingConstraints" />
         <androidx.cardview.widget.CardView
+
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
-            android:layout_marginBottom="70dp"
+            app:layout_constraintTop_toBottomOf="@id/viewFinder"
             android:background="@color/white"
             app:cardCornerRadius="5dp">
 
@@ -56,6 +67,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:orientation="vertical"
+                xmlns:app_corner="http://schemas.android.com/apk/res-auto"
                 >
 
             <TextView
@@ -70,20 +82,18 @@
             <com.devthisable.thisable.custom_view.CustomEditText
                 android:id="@+id/et_output_terjemahan"
                 android:layout_width="match_parent"
-                android:layout_height="200dp"
+                android:layout_height="150dp"
                 android:padding="15dp"
+                android:background="@color/white"
                 android:layout_gravity="start"
                 android:gravity="start"
                 />
             </LinearLayout>
         </androidx.cardview.widget.CardView>
 
+
+
 </androidx.constraintlayout.widget.ConstraintLayout>
 
-    <com.devthisable.thisable.utils.GraphicOverlay
-        android:id="@+id/graphicOverlay"
-        android:layout_gravity="center"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content" />
 
 </FrameLayout>

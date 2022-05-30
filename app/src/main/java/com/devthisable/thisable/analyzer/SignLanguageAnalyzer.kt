@@ -5,6 +5,7 @@ import android.content.Context
 import androidx.camera.core.CameraSelector
 import androidx.camera.core.ImageAnalysis
 import androidx.camera.core.ImageProxy
+import com.devthisable.thisable.interfaces.SignLanguageListener
 import com.devthisable.thisable.utils.GraphicOverlay
 import com.devthisable.thisable.utils.ObjectGraphic
 import com.google.mlkit.common.model.LocalModel
@@ -20,12 +21,17 @@ class SignLanguageAnalyzer(private val graphicOverlay: GraphicOverlay, private v
     private val localModel = LocalModel.Builder()
         .setAssetFilePath("ssd.tflite")
         .build()
-
+    private lateinit var subscribeSignLanguageListener: SignLanguageListener
+    private var GLOBAL_TRACKING_ID : Int ?= null
     private val options = CustomObjectDetectorOptions.Builder(localModel)
         .setDetectorMode(CustomObjectDetectorOptions.STREAM_MODE)
         .enableClassification()
         .setClassificationConfidenceThreshold(0.5F)
         .build()
+
+    fun setSignLanguageListener(signLanguageListener: SignLanguageListener) {
+        this.subscribeSignLanguageListener = signLanguageListener
+    }
     private val outputData = arrayOfNulls<String>(1)
     private val objectDetector : ObjectDetector = ObjectDetection.getClient(options)
     private val overlay = graphicOverlay
@@ -57,26 +63,20 @@ class SignLanguageAnalyzer(private val graphicOverlay: GraphicOverlay, private v
             if(!detectedObject.labels.isEmpty()) {
                 val objGraphic = ObjectGraphic(this.graphicOverlay, detectedObject)
                 overlay.add(objGraphic)
-                outputData[0] = detectedObject.labels[0].text
-                clearTheSetEveryNTime()
+                // Because only One
+                if(detectedObject.trackingId != GLOBAL_TRACKING_ID) {
+                    subscribeSignLanguageListener.onChangedPose(detectedObject.labels[0].text)
+                    GLOBAL_TRACKING_ID = detectedObject.trackingId
+                }
             }
             overlay.postInvalidate()
         }
     }
 
-    private fun clearTheSetEveryNTime() {
-        CoroutineScope(Dispatchers.Main).launch {
-            val queue = async(Dispatchers.IO) {
-                delay(100)
-            }
-            queue.await()
-        }
-    }
 
     fun getOutputData() :Array<String>{
         return outputData.requireNoNulls()
     }
-
 
 
 }

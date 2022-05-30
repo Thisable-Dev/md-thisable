@@ -16,6 +16,7 @@ import androidx.core.content.ContextCompat
 import com.devthisable.thisable.R
 import com.devthisable.thisable.analyzer.SignLanguageAnalyzer
 import com.devthisable.thisable.databinding.FragmentSignLanguageBinding
+import com.devthisable.thisable.interfaces.SignLanguageListener
 import com.devthisable.thisable.utils.showToastMessage
 import java.util.concurrent.ExecutorService
 import java.util.concurrent.Executors
@@ -26,7 +27,7 @@ class SignLanguageFragment : Fragment() {
     private val binding : FragmentSignLanguageBinding get() = binding_!!
     private lateinit var cameraExecutor : ExecutorService
     private lateinit var signLanguageAnalyzer : SignLanguageAnalyzer
-
+    private lateinit var signLanguageListener: SignLanguageListener
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
@@ -52,7 +53,16 @@ class SignLanguageFragment : Fragment() {
 
     private fun init() {
         cameraExecutor = Executors.newSingleThreadExecutor()
+        signLanguageListener = object : SignLanguageListener {
+            override fun onChangedPose(data: String) {
+                val currentText = binding.etOutputTerjemahan.text.toString()
+                binding.etOutputTerjemahan.setText( currentText +" "+data.toString() )
+            }
+
+        }
         signLanguageAnalyzer = SignLanguageAnalyzer(binding.graphicOverlay, requireContext())
+        signLanguageAnalyzer.setSignLanguageListener(signLanguageListener)
+
     }
 
     override fun onRequestPermissionsResult(
@@ -99,6 +109,9 @@ class SignLanguageFragment : Fragment() {
         cameraProviderFuture.addListener(runnableInterface, ContextCompat.getMainExecutor(requireContext()))
     }
 
+    private fun writeTheTranslate() {
+        signLanguageAnalyzer.getOutputData()
+    }
     override fun onResume() {
         super.onResume()
         startCamera()
