@@ -27,9 +27,12 @@ import com.devthisable.thisable.utils.ConstVal.API_KEY
 import com.devthisable.thisable.utils.FrameMetadata
 import com.devthisable.thisable.utils.ServeListQuestion
 import com.devthisable.thisable.utils.ext.showToast
+import com.devthisable.thisable.utils.scaleBitmapDown
 import com.devthisable.thisable.utils.showAlertDialogObjDetection
 import com.devthisable.thisable.utils.showToastMessage
 import dagger.hilt.android.AndroidEntryPoint
+import timber.log.Timber
+import timber.log.Timber.Forest
 import java.io.ByteArrayOutputStream
 import java.util.concurrent.ExecutorService
 import java.util.concurrent.Executors
@@ -111,7 +114,8 @@ class TextDetectionFragment : Fragment() {
             override fun onLongClickListener(data: String) {
                 val image = textDetectionAnalyzer.getDetectedImage()
                 if (image != null) {
-                    val currImage = image
+                    val metadata = FrameMetadata(image.width, image.height, 0)
+                    val currImage = scaleBitmapDown(image, 640)
 
                     val byteArrayOutputStream = ByteArrayOutputStream()
                     currImage.compress(Bitmap.CompressFormat.JPEG, 100, byteArrayOutputStream)
@@ -121,7 +125,7 @@ class TextDetectionFragment : Fragment() {
                     val base64encoded = Base64.encodeToString(imageByte, Base64.NO_WRAP)
 
                     val textDetectionRequest = TextDetectionRequest(
-                        request = TextDetectionRequestItem(
+                        requests = TextDetectionRequestItem(
                             image = ImageItem(
                                 content = base64encoded
                             ),
@@ -133,13 +137,7 @@ class TextDetectionFragment : Fragment() {
                             )
                         )
                     )
-
-                    //context?.showToast(base64encoded)
-                    //Log.d("base64image", base64encoded)
-
                     textDetection(API_KEY, textDetectionRequest)
-
-                   // showToastMessage(requireContext(), "Bitmap IS NOT NULL!!!!")
                 } else {
                     showToastMessage(requireContext(), "Bitmap Is NULL WTF")
                 }
@@ -167,11 +165,11 @@ class TextDetectionFragment : Fragment() {
                     //context?.showToast("Loading.......")
                 }
                 is ApiResponse.Success -> {
-                    context?.showToast(response.data.responses[0].fullTextAnnotation.toString())
+                    context?.showToast(response.data.responses[0].fullTextAnnotation.text)
                 }
                 is ApiResponse.Error -> {
+                    Timber.e("Error visionapi : ${response.errorMessage}")
                     context?.showToast(response.errorMessage)
-                    //context?.showToast("Error occured")
                 }
             }
         }

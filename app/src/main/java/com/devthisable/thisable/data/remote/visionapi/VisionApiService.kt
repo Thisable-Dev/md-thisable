@@ -8,7 +8,7 @@ import retrofit2.http.Query
 
 interface VisionApiService {
 
-    @POST("images:annotate")
+    @POST("./images:annotate")
     suspend fun textDetection(
         @Query("key") apiKey: String,
         @Body textDetectionRequest: TextDetectionRequest

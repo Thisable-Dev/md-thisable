@@ -1,7 +1,7 @@
 package com.devthisable.thisable.data.remote.visionapi.model
 
 data class TextDetectionRequest(
-    val request: TextDetectionRequestItem
+    val requests: TextDetectionRequestItem
 )
 
 data class TextDetectionRequestItem(
