@@ -5,6 +5,7 @@ import android.content.Context
 import android.graphics.Bitmap
 import android.graphics.BitmapFactory
 import android.graphics.Color
+import android.graphics.Matrix
 import android.util.Log
 import androidx.camera.core.CameraSelector
 import androidx.camera.core.ImageAnalysis
@@ -32,6 +33,8 @@ class SignLanguageAnalyzer(private val graphicOverlay: GraphicOverlay, private v
     private var GLOBAL_TRACKING_ID : Int? = null
     private var globalSoundState : Boolean = false
     private var globalKeyboardState : Boolean = false
+    private val matrixRotation = Matrix()
+
 
     //for database sound
     private var oneFrameDatabase = mutableListOf<String>()
@@ -68,7 +71,9 @@ class SignLanguageAnalyzer(private val graphicOverlay: GraphicOverlay, private v
 
         SignLanguageFragment.setSignLanguageContentListener(subscribeSignLanguageContentListener)
 
+        matrixRotation.postScale(-1f,1f , 640/2f, 480/2f)
         tempImage = Bitmap.createBitmap(640, 480, Bitmap.Config.ARGB_8888)
+
     }
 
     @SuppressLint("UnsafeOptInUsageError")
@@ -78,12 +83,11 @@ class SignLanguageAnalyzer(private val graphicOverlay: GraphicOverlay, private v
         val rotationDegress = image.imageInfo.rotationDegrees
         if (rotationDegress == 180 || rotationDegress == 0) overlay.setImageSourceInfo(WIDTH, HEIGHT, isImageFlipped )
         else overlay.setImageSourceInfo(HEIGHT, WIDTH, isImageFlipped)
-        Log.d("YOMAN", tempImage.toString())
         try {
             //tempImage = Bitmap.createBitmap(640, 480, Bitmap.Config.ARGB_8888)
             YuvToRgbConverter(context).yuvToRgb(image.image!!, tempImage)
             tempImage = Bitmap.createScaledBitmap(tempImage, WIDTH, HEIGHT, false)
-            objectDetector.process(tempImage, rotationDegress).addOnSuccessListener {
+            objectDetector.process(tempImage, 0).addOnSuccessListener {
                 sucessListener(it)
             }
                 .addOnFailureListener {
@@ -96,7 +100,6 @@ class SignLanguageAnalyzer(private val graphicOverlay: GraphicOverlay, private v
                     //tempImage.eraseColor(Color.TRANSPARENT)
                 }
         } catch (e: Exception) {
-            Log.d("YOMAN",e.message.toString())
             e.printStackTrace()
         }
     }

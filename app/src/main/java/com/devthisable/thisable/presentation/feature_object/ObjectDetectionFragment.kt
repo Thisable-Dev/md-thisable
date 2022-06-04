@@ -101,7 +101,7 @@ class ObjectDetectionFragment : Fragment() {
             true
         }
         binding.viewFinder.setOnClickListener {
-            showToastMessage(requireContext(), "Tekan Dan Tahan lama untuk melihat Opsi Pilihan")
+            showToastMessage(requireContext(), getString(R.string.app_info_tekan_lama))
             true
         }
 
@@ -173,7 +173,6 @@ class ObjectDetectionFragment : Fragment() {
                             }
                         } else {
                             if (itemConfig.size <= 10) {
-
                                 val stringReturned = makeItOneString(countTheObj(itemConfig))
                                 Toast.makeText(
                                     requireContext(),

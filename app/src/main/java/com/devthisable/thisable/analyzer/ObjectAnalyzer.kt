@@ -112,9 +112,7 @@ class ObjectAnalyzer(private val graphicOverlay: GraphicOverlay, private val con
         CoroutineScope(Dispatchers.Main).launch {
             val queue = async(Dispatchers.IO) {
                 delay(100)
-                setOfLabels = mutableSetOf<String>()
                 bunchOfLabelsCounted = mutableListOf()
-                mapOfLabels["monitor"] = 0
             }
             queue.await()
         }

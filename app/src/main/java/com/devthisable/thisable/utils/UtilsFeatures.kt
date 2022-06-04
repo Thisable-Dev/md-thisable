@@ -128,8 +128,12 @@ fun showAlertDialogSignLanguage(context : Context, signlanguageContentListener: 
         }
         .create()
 
-
     alertDialog.show()
+    val btnSelesai = alertDialog.findViewById<Button>(R.id.btn_selesai)
+    btnSelesai.setOnClickListener {
+        alertDialog.dismiss()
+    }
+
 
 }
 
