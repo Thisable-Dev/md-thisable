@@ -74,7 +74,10 @@ class ProfileFragment : Fragment() {
             it.findNavController().navigate(R.id.action_profileFragment_to_bugReportFragment)
         }
         binding.btnAbout.setOnClickListener {
-            it.popTap()
+            it.apply {
+                popTap()
+                findNavController().navigate(R.id.action_profileFragment_to_aboutFragment)
+            }
         }
         binding.btnLogout.setOnClickListener {
             it.popTap()

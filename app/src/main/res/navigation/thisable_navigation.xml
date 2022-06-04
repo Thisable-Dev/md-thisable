@@ -19,9 +19,6 @@
             app:launchSingleTop="true"
             app:popUpToInclusive="true"/>
         <action
-            android:id="@+id/action_splashFragment_to_loginFragment"
-            app:destination="@id/loginFragment" />
-        <action
             android:id="@+id/action_splashFragment_to_homeFragment"
             app:destination="@id/homeFragment"
             app:enterAnim="@anim/slide_in_right"
@@ -35,14 +32,6 @@
         android:name="com.devthisable.thisable.presentation.onboarding.OnBoardingFragment"
         android:label="fragment_onboarding"
         tools:layout="@layout/fragment_onboarding" >
-        <action
-            android:id="@+id/action_onBoardingFragment_to_loginFragment"
-            app:enterAnim="@anim/slide_in_right"
-            app:exitAnim="@anim/slide_out_left"
-            app:destination="@id/loginFragment"
-            app:popUpTo="@id/thisable_navigation"
-            app:launchSingleTop="true"
-            app:popUpToInclusive="true"/>
         <action
             android:id="@+id/action_onBoardingFragment_to_homeFragment"
             app:destination="@id/homeFragment"
@@ -65,23 +54,6 @@
         <action
             android:id="@+id/action_onBoardingFragment_to_coreActivity"
             app:destination="@id/coreActivity" />
-    </fragment>
-    <fragment
-        android:id="@+id/loginFragment"
-        android:name="com.devthisable.thisable.presentation.login.LoginFragment"
-        android:label="LoginFragment"
-        tools:layout="@layout/fragment_login">
-        <action
-            android:id="@+id/action_loginFragment_to_registerFragment"
-            app:destination="@id/registerFragment" />
-        <action
-            android:id="@+id/action_loginFragment_to_homeFragment"
-            app:destination="@id/homeFragment"
-            app:enterAnim="@anim/slide_in_right"
-            app:exitAnim="@anim/slide_out_left"
-            app:popUpTo="@id/thisable_navigation"
-            app:launchSingleTop="true"
-            app:popUpToInclusive="true"/>
     </fragment>
     <fragment
         android:id="@+id/homeFragment"
@@ -108,17 +80,6 @@
         android:name="com.devthisable.thisable.presentation.profile.ProfileFragment"
         android:label="ProfileFragment" >
         <action
-            android:id="@+id/action_profileFragment_to_loginFragment"
-            app:destination="@id/loginFragment"
-            app:enterAnim="@animator/nav_default_enter_anim"
-            app:exitAnim="@animator/nav_default_pop_exit_anim"
-            app:popUpTo="@id/thisable_navigation"
-            app:launchSingleTop="true"
-            app:popUpToInclusive="true"/>
-        <action
-            android:id="@+id/action_profileFragment_to_detailProfileFragment"
-            app:destination="@id/detailProfileFragment" />
-        <action
             android:id="@+id/action_profileFragment_to_bugReportFragment"
             app:destination="@id/bugReportFragment" />
         <action
@@ -129,25 +90,15 @@
             app:popUpTo="@id/thisable_navigation"
             app:launchSingleTop="true"
             app:popUpToInclusive="true"/>
+        <action
+            android:id="@+id/action_profileFragment_to_aboutFragment"
+            app:destination="@id/aboutFragment" />
     </fragment>
 
     <fragment
         android:id="@+id/thisableFragment"
         android:name="com.devthisable.thisable.presentation.thisable.ThisableFragment"
         android:label="ThisableFragment" />
-    <fragment
-        android:id="@+id/registerFragment"
-        android:name="com.devthisable.thisable.presentation.register.RegisterFragment"
-        android:label="RegisterFragment"
-        tools:layout="@layout/fragment_register">
-        <action
-            android:id="@+id/action_registerFragment_to_loginFragment"
-            app:destination="@id/loginFragment" />
-    </fragment>
-    <fragment
-        android:id="@+id/detailProfileFragment"
-        android:name="com.devthisable.thisable.presentation.profile.detail.DetailProfileFragment"
-        android:label="DetailProfileFragment" />
     <fragment
         android:id="@+id/bugReportFragment"
         android:name="com.devthisable.thisable.presentation.bugreport.BugReportFragment"
@@ -235,4 +186,8 @@
         android:id="@+id/fragmentSuccessCustomDialog"
         android:name="com.devthisable.thisable.presentation.dialog.FragmentSuccessCustomDialog"
         android:label="FragmentSuccessCustomDialog" />
+    <fragment
+        android:id="@+id/aboutFragment"
+        android:name="com.devthisable.thisable.presentation.about.AboutFragment"
+        android:label="AboutFragment" />
 </navigation>

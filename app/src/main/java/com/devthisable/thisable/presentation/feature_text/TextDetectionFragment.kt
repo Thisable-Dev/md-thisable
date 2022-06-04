@@ -50,6 +50,7 @@ class TextDetectionFragment : Fragment() {
     private lateinit var binding_: FragmentTextDetectionBinding
     private val binding get() = binding_
     private lateinit var cameraExecutor: ExecutorService
+
     private var imageCapture: ImageCapture? = null
     private lateinit var textDetectionAnalyzer: TextDetectionAnalyzer
 

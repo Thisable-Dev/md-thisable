@@ -14,12 +14,10 @@
         <entry key="..\:/Bangkit/thisable-app/app/src/main/res/drawable/ic_thisable.xml" value="0.2165" />
         <entry key="..\:/Bangkit/thisable-app/app/src/main/res/layout/activity_core.xml" value="0.18541666666666667" />
         <entry key="..\:/Bangkit/thisable-app/app/src/main/res/layout/activity_main.xml" value="0.18541666666666667" />
-        <entry key="..\:/Bangkit/thisable-app/app/src/main/res/layout/custom_alertdialog_signlanguage.xml" value="0.29791666666666666" />
         <entry key="..\:/Bangkit/thisable-app/app/src/main/res/layout/custom_tab_layout.xml" value="0.18541666666666667" />
         <entry key="..\:/Bangkit/thisable-app/app/src/main/res/layout/fragment_currency.xml" value="0.35280797101449274" />
         <entry key="..\:/Bangkit/thisable-app/app/src/main/res/layout/fragment_home.xml" value="0.3625" />
         <entry key="..\:/Bangkit/thisable-app/app/src/main/res/layout/fragment_instruction_second.xml" value="0.18541666666666667" />
-        <entry key="..\:/Bangkit/thisable-app/app/src/main/res/layout/fragment_login.xml" value="0.2989583333333333" />
         <entry key="..\:/Bangkit/thisable-app/app/src/main/res/layout/fragment_object_detection.xml" value="0.35280797101449274" />
         <entry key="..\:/Bangkit/thisable-app/app/src/main/res/layout/fragment_sign_language.xml" value="0.35280797101449274" />
         <entry key="..\:/Bangkit/thisable-app/app/src/main/res/layout/fragment_splash.xml" value="0.18541666666666667" />
@@ -64,6 +62,7 @@
         <entry key="..\:/Project/AndroidStudio/Bangkit/Capstone/thisable-app/app/src/main/res/layout/activity_core.xml" value="0.1611842105263158" />
         <entry key="..\:/Project/AndroidStudio/Bangkit/Capstone/thisable-app/app/src/main/res/layout/activity_main.xml" value="0.14" />
         <entry key="..\:/Project/AndroidStudio/Bangkit/Capstone/thisable-app/app/src/main/res/layout/custom_dialog_object.xml" value="0.12960526315789472" />
+        <entry key="..\:/Project/AndroidStudio/Bangkit/Capstone/thisable-app/app/src/main/res/layout/fragment_about.xml" value="0.16" />
         <entry key="..\:/Project/AndroidStudio/Bangkit/Capstone/thisable-app/app/src/main/res/layout/fragment_bug_report.xml" value="0.16" />
         <entry key="..\:/Project/AndroidStudio/Bangkit/Capstone/thisable-app/app/src/main/res/layout/fragment_currency.xml" value="0.1611842105263158" />
         <entry key="..\:/Project/AndroidStudio/Bangkit/Capstone/thisable-app/app/src/main/res/layout/fragment_detail_profile.xml" value="0.17" />
@@ -82,6 +81,7 @@
         <entry key="..\:/Project/AndroidStudio/Bangkit/Capstone/thisable-app/app/src/main/res/layout/fragment_sign_language.xml" value="0.15" />
         <entry key="..\:/Project/AndroidStudio/Bangkit/Capstone/thisable-app/app/src/main/res/layout/fragment_splash.xml" value="0.16" />
         <entry key="..\:/Project/AndroidStudio/Bangkit/Capstone/thisable-app/app/src/main/res/layout/fragment_success_custom_dialog.xml" value="0.14" />
+        <entry key="..\:/Project/AndroidStudio/Bangkit/Capstone/thisable-app/app/src/main/res/layout/fragment_term_agreement.xml" value="0.13289473684210526" />
         <entry key="..\:/Project/AndroidStudio/Bangkit/Capstone/thisable-app/app/src/main/res/layout/fragment_text_detection.xml" value="0.12960526315789472" />
         <entry key="..\:/Project/AndroidStudio/Bangkit/Capstone/thisable-app/app/src/main/res/layout/fragment_thisable.xml" value="0.12960526315789472" />
         <entry key="..\:/Project/AndroidStudio/Bangkit/Capstone/thisable-app/app/src/main/res/layout/fragment_warning_custom_dialog.xml" value="0.12430555555555556" />

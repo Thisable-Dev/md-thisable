@@ -6,7 +6,7 @@ data class BugReportResponse(
     @SerializedName("status")
     val status: String,
     @SerializedName("error")
-    val error: String,
+    val error: Boolean,
     @SerializedName("message")
     val message: String
 )

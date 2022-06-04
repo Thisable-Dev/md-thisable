@@ -20,7 +20,7 @@ class GeneralDataSource @Inject constructor(private val service: GeneralService)
             try {
                 emit(ApiResponse.Loading)
                 val response = service.addReportBug(reportBody, token)
-                if (response.error == "true") {
+                if (response.error) {
                     emit(ApiResponse.Error(response.message))
                 } else {
                     emit(ApiResponse.Success(response))

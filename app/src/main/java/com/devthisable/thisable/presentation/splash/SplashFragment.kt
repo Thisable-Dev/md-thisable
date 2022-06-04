@@ -35,7 +35,6 @@ class SplashFragment : Fragment() {
 
         pref = SharedPrefManager(requireContext())
         val isLogin = pref.isLogin
-        context?.showToast(isLogin.toString())
 
         auth = Firebase.auth
         val user = auth.currentUser
