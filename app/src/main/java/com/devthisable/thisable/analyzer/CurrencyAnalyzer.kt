@@ -59,6 +59,7 @@ class CurrencyAnalyzer(private val graphicOverlay: GraphicOverlay, private val c
         else overlay.setImageSourceInfo(image.height, image.width, isImageFlipped)
 
         val frame = InputImage.fromMediaImage(image.image!!, image.imageInfo.rotationDegrees)
+        Log.d("YOMANS", frame.height.toString() + frame.width.toString() )
         objectDetector.process(frame).addOnSuccessListener {
             sucessListener(it)
         }
@@ -139,6 +140,7 @@ class CurrencyAnalyzer(private val graphicOverlay: GraphicOverlay, private val c
             }
         }
     }
+
 
     companion object {
         private const val CONFIDENCE_SCORE = 0.3f

@@ -14,8 +14,8 @@
 
         <androidx.camera.view.PreviewView
             android:id="@+id/viewFinder"
-            android:layout_width="match_parent"
-            android:layout_height="450dp"
+            android:layout_width="0dp"
+            android:layout_height="500dp"
             android:layout_gravity="center"
             android:layout_weight="1"
             app:layout_constraintEnd_toEndOf="parent"

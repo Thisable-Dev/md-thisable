@@ -6,6 +6,7 @@ import android.util.Log
 import androidx.camera.core.CameraSelector
 import androidx.camera.core.ImageAnalysis
 import androidx.camera.core.ImageProxy
+import com.devthisable.thisable.R
 import com.devthisable.thisable.interfaces.FeedbackListener
 import com.devthisable.thisable.presentation.feature_object.ObjectDetectionFragment
 import com.devthisable.thisable.utils.GraphicOverlay
@@ -21,6 +22,7 @@ import com.google.mlkit.vision.common.InputImage
 import com.google.mlkit.vision.objects.ObjectDetection
 import com.google.mlkit.vision.objects.custom.CustomObjectDetectorOptions
 import kotlinx.coroutines.*
+import kotlin.collections.HashMap
 import kotlin.text.StringBuilder
 
 
@@ -37,13 +39,19 @@ class ObjectAnalyzer(private val graphicOverlay: GraphicOverlay, private val con
     private var one_frame_database = mutableListOf<String>()
     private var all_object_detected_database = mutableListOf<String>()
 
+
+    private val hashMap = HashMap<String, String>()
     private lateinit var localModel : LocalModel
     private lateinit var remoteModel : CustomRemoteModel
     private lateinit var optionsRemote : CustomObjectDetectorOptions
 
 
     init {
-        mapOfLabels["monitor"] = 0
+        hashMap["fruit"] = context.resources.getString(R.string.raw_sound_buah)
+        hashMap["motorbike"] = context.resources.getString(R.string.raw_sound_motor)
+        hashMap["cat"] = context.resources.getString(R.string.raw_sound_kucing)
+        hashMap["dog"] = context.resources.getString(R.string.raw_sound_anjing)
+        hashMap["flower"] = context.resources.getString(R.string.raw_sound_bunga)
 
         localModel =  LocalModel.Builder()
             .setAssetFilePath("object_classification.tflite")
@@ -92,7 +100,7 @@ class ObjectAnalyzer(private val graphicOverlay: GraphicOverlay, private val con
         .setDetectorMode(CustomObjectDetectorOptions.STREAM_MODE)
         .enableMultipleObjects()
         .enableClassification()
-        .setClassificationConfidenceThreshold(0.3f)
+        .setClassificationConfidenceThreshold(LABEL_CONFIDENCE)
         .build()
 
     val objectDetector = ObjectDetection.getClient(options)
@@ -117,14 +125,12 @@ class ObjectAnalyzer(private val graphicOverlay: GraphicOverlay, private val con
     fun getCurItemCounter () : List<String> {
         return bunchOfLabelsCounted
     }
-    fun getCurrlist() : List<String> {
-        return setOfLabels.toList()
+
+    fun mappedLabel(label : String) : String?{
+
+        return hashMap[label.filter { !it.isWhitespace() }]
     }
 
-    private fun playTheSound(sentence : String ) {
-
-        showToastMessage(context, sentence)
-    }
     @SuppressLint("UnsafeOptInUsageError")
     override fun analyze(image: ImageProxy) {
         val isImageFlipped = lensFacing == CameraSelector.LENS_FACING_FRONT // Kalau misalnya kamera depan, maka ada kemungkinan dia bakalan flipped ketika dilakukan inference
@@ -142,16 +148,24 @@ class ObjectAnalyzer(private val graphicOverlay: GraphicOverlay, private val con
                     val objGraphic = ObjectGraphic(this.overlay, detectedObject)
                     this.overlay.add(objGraphic)
                     for (label in detectedObject.labels) {
-                        bunchOfLabelsCounted.add(label.text)
-                        setOfLabels.add(label.text)
-                        if(label.confidence > 0.3f) {
-                            one_frame_database.add(label.text)
+                        Log.d("YOMAN", "LABELS " +label.text.toString() )
+                        val mapped = mappedLabel(label.text)
+                        Log.d("YOMAN", "Mapped" + mapped.toString())
+                        if (mapped != null) {
+                            bunchOfLabelsCounted.add(mapped)
+                            setOfLabels.add(label.text)
+                        }
+                        if(label.confidence > LABEL_CONFIDENCE) {
+                            if (mapped != null) {
+                                one_frame_database.add(mapped)
+                            }
                         }
                     }
                     clearTheSetEveryNTime()
                 }
             }
             if(globalStateSound) {
+
                 checkIfSoundGoingToPlay()
             }
             this.overlay.postInvalidate()
@@ -181,7 +195,6 @@ class ObjectAnalyzer(private val graphicOverlay: GraphicOverlay, private val con
                             delay(200)
                         }
                     }
-                   // playTheSound(sentences.toString())
                 }
             } catch (e: Exception) {
                 e.printStackTrace()
@@ -189,11 +202,17 @@ class ObjectAnalyzer(private val graphicOverlay: GraphicOverlay, private val con
                 one_frame_database.clear()
             }
             try {
-                val list =   all_object_detected_database.slice(IntRange(all_object_detected_database.size -3 ,all_object_detected_database.size -1 ))
+                Log.d("YOMAM", "Masuk ke Refreshed "+ all_object_detected_database.toString())
+                val list =   all_object_detected_database.slice(IntRange(all_object_detected_database.size ,all_object_detected_database.size -1 ))
                 all_object_detected_database = list.toMutableList()
             } catch (e: Exception) {
                 e.printStackTrace()
             }
         }
+    }
+
+    companion object {
+        const val LABEL_CONFIDENCE = 0.3f;
+
     }
 }

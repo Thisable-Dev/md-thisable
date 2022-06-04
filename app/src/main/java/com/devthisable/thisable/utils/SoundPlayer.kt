@@ -15,19 +15,46 @@ class SoundPlayer(private val context : Context ) {
     }
     private var isReady : Boolean = false
     private fun getResources(label : String )  : Int? {
-
         return when (label) {
-            context.resources.getString(R.string.raw_sound_1) -> {
-                R.raw.ipod_1
+            context.resources.getString(R.string.raw_sound_orang) -> {
+                R.raw.orang
             }
-            context.resources.getString(R.string.raw_sound_2) -> {
-                R.raw.monitor_1
+            context.resources.getString(R.string.raw_sound_buah) -> {
+                R.raw.buah
             }
-            context.resources.getString(R.string.raw_sound_3) -> {
-                R.raw.turu_1
+            context.resources.getString(R.string.raw_sound_motor) -> {
+                R.raw.motor
             }
+            context.resources.getString(R.string.raw_sound_bunga) -> {
+                R.raw.bunga
+            }
+            context.resources.getString(R.string.raw_sound_kucing) -> {
+                R.raw.kucing
+            }
+            context.resources.getString(R.string.raw_sound_anjing) -> {
+                R.raw.anjing
+            }
+            //context.resources.getString(R.string.raw_sound_mobil) -> R.raw.mobil
             context.resources.getString(R.string.raw_sound_4) -> {
                 R.raw.desktop_computer
+            }
+            context.resources.getString(R.string.raw_sound_seribu) -> {
+                R.raw.seribu
+            }
+            context.resources.getString(R.string.raw_sound_duaribu) -> {
+                R.raw.duaribu
+            }
+            context.resources.getString(R.string.raw_sound_limaribu) -> {
+                R.raw.limaribu
+            }
+            context.resources.getString(R.string.raw_sound_sepuluhribu) -> {
+                R.raw.sepuluhribu
+            }
+            context.resources.getString(R.string.raw_sound_limapuluhribu) -> {
+                R.raw.limapuluhribu
+            }
+            context.resources.getString(R.string.raw_sound_seratusribu) -> {
+                R.raw.seratusribu
             }
             else -> null
         }

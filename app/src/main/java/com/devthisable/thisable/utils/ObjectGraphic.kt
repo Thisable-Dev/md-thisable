@@ -4,6 +4,7 @@ import android.graphics.Canvas
 import android.graphics.Color
 import android.graphics.Paint
 import android.graphics.RectF
+import com.devthisable.thisable.analyzer.ObjectAnalyzer
 import com.google.mlkit.vision.objects.DetectedObject
 import java.util.*
 
@@ -15,6 +16,8 @@ class ObjectGraphic(var graphicOverlay : GraphicOverlay, private var obj : Detec
 
     init {
         //Initiate All Colors
+
+
         val numColors = 10
         textPaints = arrayOfNulls(numColors)
         boxPaints = arrayOfNulls(numColors)
@@ -59,7 +62,7 @@ class ObjectGraphic(var graphicOverlay : GraphicOverlay, private var obj : Detec
         rect.top = translateY(rect.top)
         rect.bottom = translateY(rect.bottom)
 
-        canvas?.drawRect(rect, boxPaints[colorID]!!)
+        canvas?.drawRect(rect, boxPaints[2]!!)
         // Draw Other Object infO ( Buat bungkus informasi informasi terkait Label dkk )
         canvas?.drawRect(
             rect.left - STROKE_WIDTH,
@@ -75,27 +78,52 @@ class ObjectGraphic(var graphicOverlay : GraphicOverlay, private var obj : Detec
         //yLabelOffset += lineHeight
         for (label in obj.labels) {
             // Draw Label
-            canvas?.drawText(label.text, rect.left, rect.top + yLabelOffset,textPaints[colorID]!!)
-            //more spacing
-            yLabelOffset += lineHeight
-            // Draw Confidence
-            val stringConfidence = String.format(Locale.US, LABEL_FORMAT, label.confidence * 100)
-            canvas?.drawText(stringConfidence, rect.left, rect.top + yLabelOffset, textPaints[colorID]!!)
-            //spacing
-            yLabelOffset += lineHeight
+            val labelWhite = label.text.filter { !it.isWhitespace() }
+            var label_fin = mapTheLabel(labelWhite)
+            if(label_fin != null) {
+                canvas?.drawText(
+                    label_fin,
+                    rect.left,
+                    rect.top + yLabelOffset,
+                    textPaints[colorID]!!
+                )
+                //more spacing
+                yLabelOffset += lineHeight
+                // Draw Confidence
+                val stringConfidence =
+                    String.format(Locale.US, LABEL_FORMAT, label.confidence * 100)
+                canvas?.drawText(
+                    stringConfidence,
+                    rect.left,
+                    rect.top + yLabelOffset,
+                    textPaints[colorID]!!
+                )
+                //spacing
+                yLabelOffset += lineHeight
+            }
         }
     }
-
+    private fun mapTheLabel(label : String) : String? {
+        when (label) {
+            "cat" -> return  "kucing"
+            "dog" -> return  "anjing"
+            "fruit" -> return  "buah"
+            "motorbike" -> return "motor"
+            "flower" -> return "bunga"
+            "car" -> return "mobil"
+        }
+        return label
+    }
     companion object {
         private const val TEXT_SIZE = 24.0F
         private const val STROKE_WIDTH = 4.0f // untuk Garis
         private const val NUM_COLORS = 10
         // ArrayOfColors ( 0 -> Text, 1 BBox )
         private val COLORS = arrayOf(
-            intArrayOf(Color.BLACK, Color.WHITE),
-            intArrayOf(Color.WHITE, Color.MAGENTA),
+            intArrayOf(Color.BLUE, Color.BLUE),
+            intArrayOf(Color.WHITE, Color.BLUE),
             intArrayOf(
-                Color.BLACK, Color.LTGRAY
+                Color.BLACK, Color.BLUE
             ),
             intArrayOf(Color.WHITE, Color.RED),
             intArrayOf(Color.WHITE, Color.BLUE),

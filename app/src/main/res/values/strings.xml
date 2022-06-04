@@ -108,5 +108,17 @@
     <string name="label_continue">Lanjut</string>
     <string name="label_report_success_send">Laporan berhasil dikirim</string>
     <string name="label_report_description">Keterangan*</string>
+    <string name="raw_sound_seribu">seribu</string>
+    <string name="raw_sound_duaribu">duaribu</string>
+    <string name="raw_sound_limaribu">limaribu</string>
+    <string name="raw_sound_sepuluhribu">sepuluhribu</string>
+    <string name="raw_sound_limapuluhribu">limapuluhribu</string>
+    <string name="raw_sound_seratusribu">seratusribu</string>
+    <string name="raw_sound_orang">person</string>
+    <string name="raw_sound_kucing">cat</string>
+    <string name="raw_sound_anjing">dog</string>
+    <string name="raw_sound_buah">fruit</string>
+    <string name="raw_sound_motor">motorbike</string>
+    <string name="raw_sound_bunga">flower</string>
 
 </resources>
