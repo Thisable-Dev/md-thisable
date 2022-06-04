@@ -143,6 +143,6 @@ class CurrencyAnalyzer(private val graphicOverlay: GraphicOverlay, private val c
 
 
     companion object {
-        private const val CONFIDENCE_SCORE = 0.3f
+        private const val CONFIDENCE_SCORE = 0.8f
     }
 }

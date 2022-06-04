@@ -2,6 +2,7 @@ package com.devthisable.thisable.analyzer
 
 import android.annotation.SuppressLint
 import android.content.Context
+import android.graphics.Bitmap
 import android.util.Log
 import androidx.camera.core.CameraSelector
 import androidx.camera.core.ImageAnalysis
@@ -12,6 +13,7 @@ import com.devthisable.thisable.presentation.feature_object.ObjectDetectionFragm
 import com.devthisable.thisable.utils.GraphicOverlay
 import com.devthisable.thisable.utils.ObjectGraphic
 import com.devthisable.thisable.utils.SoundPlayer
+import com.devthisable.thisable.utils.image_utility.YuvToRgbConverter
 import com.devthisable.thisable.utils.showToastMessage
 import com.google.mlkit.common.model.CustomRemoteModel
 import com.google.mlkit.common.model.DownloadConditions
@@ -54,7 +56,7 @@ class ObjectAnalyzer(private val graphicOverlay: GraphicOverlay, private val con
         hashMap["flower"] = context.resources.getString(R.string.raw_sound_bunga)
 
         localModel =  LocalModel.Builder()
-            .setAssetFilePath("object_classification.tflite")
+            .setAssetFilePath("final_objectDetection.tflite")
             .build()
 
         remoteModel = CustomRemoteModel.Builder(
@@ -103,6 +105,8 @@ class ObjectAnalyzer(private val graphicOverlay: GraphicOverlay, private val con
         .setClassificationConfidenceThreshold(LABEL_CONFIDENCE)
         .build()
 
+
+    var tempImage = Bitmap.createBitmap(640, 480,Bitmap.Config.ARGB_8888 )
     val objectDetector = ObjectDetection.getClient(options)
     // Overlay means the drawing that we would like to use
     val overlay = graphicOverlay
@@ -137,7 +141,8 @@ class ObjectAnalyzer(private val graphicOverlay: GraphicOverlay, private val con
         // Rotation Degress ini kegenerate ketika Gunakan Lens Facing front, kalau back pake yang else
         if (rotationDegress == 0 || rotationDegress == 180) overlay.setImageSourceInfo(image.width, image.height, isImageFlipped)
         else overlay.setImageSourceInfo(image.height, image.width, isImageFlipped)
-
+        YuvToRgbConverter(context).yuvToRgb(image.image!!, tempImage)
+        tempImage = Bitmap.createScaledBitmap(tempImage, WIDTH, HEIGHT, false)
         val frame = InputImage.fromMediaImage(image.image!!, image.imageInfo.rotationDegrees)
         objectDetector.process(frame).addOnSuccessListener { detectedObjects ->
             overlay.clear()
@@ -146,9 +151,7 @@ class ObjectAnalyzer(private val graphicOverlay: GraphicOverlay, private val con
                     val objGraphic = ObjectGraphic(this.overlay, detectedObject)
                     this.overlay.add(objGraphic)
                     for (label in detectedObject.labels) {
-                        Log.d("YOMAN", "LABELS " +label.text.toString() )
                         val mapped = mappedLabel(label.text)
-                        Log.d("YOMAN", "Mapped" + mapped.toString())
                         if (mapped != null) {
                             bunchOfLabelsCounted.add(mapped)
                             setOfLabels.add(label.text)
@@ -200,7 +203,6 @@ class ObjectAnalyzer(private val graphicOverlay: GraphicOverlay, private val con
                 one_frame_database.clear()
             }
             try {
-                Log.d("YOMAM", "Masuk ke Refreshed "+ all_object_detected_database.toString())
                 val list =   all_object_detected_database.slice(IntRange(all_object_detected_database.size ,all_object_detected_database.size -1 ))
                 all_object_detected_database = list.toMutableList()
             } catch (e: Exception) {
@@ -210,7 +212,9 @@ class ObjectAnalyzer(private val graphicOverlay: GraphicOverlay, private val con
     }
 
     companion object {
-        const val LABEL_CONFIDENCE = 0.3f;
+        private const val LABEL_CONFIDENCE = 0.8f
+        private const val WIDTH = 224
+        private const val HEIGHT = 224
 
     }
 }

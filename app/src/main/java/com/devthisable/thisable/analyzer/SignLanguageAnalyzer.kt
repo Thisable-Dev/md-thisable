@@ -28,17 +28,9 @@ class SignLanguageAnalyzer(private val graphicOverlay: GraphicOverlay, private v
 
 
     private lateinit var subscribeSignLanguageListener: SignLanguageListener
-    private val soundPlayer : SoundPlayer = SoundPlayer(context)
     private var subscribeSignLanguageContentListener : SignlanguageContentListener
     private var GLOBAL_TRACKING_ID : Int? = null
-    private var globalSoundState : Boolean = false
     private var globalKeyboardState : Boolean = false
-    private val matrixRotation = Matrix()
-
-
-    //for database sound
-    private var oneFrameDatabase = mutableListOf<String>()
-    private var allObjectDetectedObject = mutableListOf<String>()
 
     private val localModel = LocalModel.Builder()
         .setAssetFilePath("final_SignLanguage_ack_hpc.tflite")
@@ -53,7 +45,6 @@ class SignLanguageAnalyzer(private val graphicOverlay: GraphicOverlay, private v
         this.subscribeSignLanguageListener = signLanguageListener
     }
 
-    private val outputData = arrayOfNulls<String>(1)
     private val objectDetector : ObjectDetector = ObjectDetection.getClient(options)
     private val overlay = graphicOverlay
     private val lens_facing = CameraSelector.LENS_FACING_BACK
@@ -71,7 +62,6 @@ class SignLanguageAnalyzer(private val graphicOverlay: GraphicOverlay, private v
 
         SignLanguageFragment.setSignLanguageContentListener(subscribeSignLanguageContentListener)
 
-        matrixRotation.postScale(-1f,1f , 640/2f, 480/2f)
         tempImage = Bitmap.createBitmap(640, 480, Bitmap.Config.ARGB_8888)
 
     }
@@ -97,7 +87,6 @@ class SignLanguageAnalyzer(private val graphicOverlay: GraphicOverlay, private v
                     image.close()
                     tempImage.eraseColor(Color.TRANSPARENT)
 
-                    //tempImage.eraseColor(Color.TRANSPARENT)
                 }
         } catch (e: Exception) {
             e.printStackTrace()
