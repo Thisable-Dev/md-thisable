@@ -18,6 +18,7 @@ import com.devthisable.thisable.utils.ObjectGraphic
 import com.devthisable.thisable.utils.SoundPlayer
 import com.devthisable.thisable.utils.image_utility.YuvToRgbConverter
 import com.google.mlkit.common.model.LocalModel
+import com.google.mlkit.vision.common.InputImage
 import com.google.mlkit.vision.objects.DetectedObject
 import com.google.mlkit.vision.objects.ObjectDetection
 import com.google.mlkit.vision.objects.ObjectDetector
@@ -75,9 +76,10 @@ class SignLanguageAnalyzer(private val graphicOverlay: GraphicOverlay, private v
         else overlay.setImageSourceInfo(HEIGHT, WIDTH, isImageFlipped)
         try {
             //tempImage = Bitmap.createBitmap(640, 480, Bitmap.Config.ARGB_8888)
-            YuvToRgbConverter(context).yuvToRgb(image.image!!, tempImage)
-            tempImage = Bitmap.createScaledBitmap(tempImage, WIDTH, HEIGHT, false)
-            objectDetector.process(tempImage, 0).addOnSuccessListener {
+            //YuvToRgbConverter(context).yuvToRgb(image.image!!, tempImage)
+            //tempImage = Bitmap.createScaledBitmap(tempImage, WIDTH, HEIGHT, false)
+            val frame = InputImage.fromMediaImage(image.image!!, image.imageInfo.rotationDegrees)
+            objectDetector.process(frame).addOnSuccessListener {
                 sucessListener(it)
             }
                 .addOnFailureListener {

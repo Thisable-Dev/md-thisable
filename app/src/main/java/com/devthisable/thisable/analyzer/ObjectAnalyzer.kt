@@ -3,6 +3,7 @@ package com.devthisable.thisable.analyzer
 import android.annotation.SuppressLint
 import android.content.Context
 import android.graphics.Bitmap
+import android.graphics.Color
 import android.util.Log
 import androidx.camera.core.CameraSelector
 import androidx.camera.core.ImageAnalysis
@@ -21,9 +22,11 @@ import com.google.mlkit.common.model.LocalModel
 import com.google.mlkit.common.model.RemoteModelManager
 import com.google.mlkit.linkfirebase.FirebaseModelSource
 import com.google.mlkit.vision.common.InputImage
+import com.google.mlkit.vision.objects.DetectedObject
 import com.google.mlkit.vision.objects.ObjectDetection
 import com.google.mlkit.vision.objects.custom.CustomObjectDetectorOptions
 import kotlinx.coroutines.*
+import timber.log.Timber
 import kotlin.collections.HashMap
 import kotlin.text.StringBuilder
 
@@ -122,8 +125,6 @@ class ObjectAnalyzer(private val graphicOverlay: GraphicOverlay, private val con
         }
     }
 
-
-
     fun getCurItemCounter () : List<String> {
         return bunchOfLabelsCounted
     }
@@ -139,10 +140,15 @@ class ObjectAnalyzer(private val graphicOverlay: GraphicOverlay, private val con
         val rotationDegress = image.imageInfo.rotationDegrees
 
         // Rotation Degress ini kegenerate ketika Gunakan Lens Facing front, kalau back pake yang else
-        if (rotationDegress == 0 || rotationDegress == 180) overlay.setImageSourceInfo(image.width, image.height, isImageFlipped)
-        else overlay.setImageSourceInfo(image.height, image.width, isImageFlipped)
-        YuvToRgbConverter(context).yuvToRgb(image.image!!, tempImage)
-        tempImage = Bitmap.createScaledBitmap(tempImage, WIDTH, HEIGHT, false)
+        if (rotationDegress == 180 || rotationDegress == 0) overlay.setImageSourceInfo(
+            image.image!!.width,
+            image.image!!.height, isImageFlipped )
+        else overlay.setImageSourceInfo(
+            image.image!!.height,
+            image.image!!.width, isImageFlipped)
+        Log.d("YOMAN", image.image!!.width.toString() + image.image!!.height.toString())
+       // YuvToRgbConverter(context).yuvToRgb(image.image!!, tempImage)
+        //tempImage = Bitmap.createScaledBitmap(tempImage, WIDTH, HEIGHT, false)
         val frame = InputImage.fromMediaImage(image.image!!, image.imageInfo.rotationDegrees)
         objectDetector.process(frame).addOnSuccessListener { detectedObjects ->
             overlay.clear()
@@ -169,11 +175,13 @@ class ObjectAnalyzer(private val graphicOverlay: GraphicOverlay, private val con
 
                 checkIfSoundGoingToPlay()
             }
+          //  tempImage = Bitmap.createScaledBitmap(tempImage, 640, 480, false)
             this.overlay.postInvalidate()
         }.addOnFailureListener { e->
             e.printStackTrace()
         }.addOnCompleteListener {
             image.close()
+            tempImage.eraseColor(Color.TRANSPARENT)
         }
     }
 
