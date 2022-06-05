@@ -153,7 +153,7 @@ class ObjectAnalyzer(private val graphicOverlay: GraphicOverlay, private val con
         objectDetector.process(frame).addOnSuccessListener { detectedObjects ->
             overlay.clear()
             for (detectedObject in detectedObjects) {
-                if (!detectedObject.labels.isEmpty()) {
+                if (detectedObject.labels.isNotEmpty()) {
                     val objGraphic = ObjectGraphic(this.overlay, detectedObject)
                     this.overlay.add(objGraphic)
                     for (label in detectedObject.labels) {
@@ -200,7 +200,7 @@ class ObjectAnalyzer(private val graphicOverlay: GraphicOverlay, private val con
                     // Play the sound here
                     CoroutineScope(Dispatchers.Main).launch {
                         for (label in sentences) {
-                            soundPlayer.playSound(label)
+                            soundPlayer.playSound(label.filter { !it.isWhitespace() })
                             delay(200)
                         }
                     }
@@ -211,7 +211,7 @@ class ObjectAnalyzer(private val graphicOverlay: GraphicOverlay, private val con
                 one_frame_database.clear()
             }
             try {
-                val list =   all_object_detected_database.slice(IntRange(all_object_detected_database.size ,all_object_detected_database.size -1 ))
+                val list =   all_object_detected_database.slice(IntRange(all_object_detected_database.size -2 ,all_object_detected_database.size -1 ))
                 all_object_detected_database = list.toMutableList()
             } catch (e: Exception) {
                 e.printStackTrace()

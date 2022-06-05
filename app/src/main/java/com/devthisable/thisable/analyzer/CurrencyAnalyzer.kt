@@ -30,6 +30,7 @@ class CurrencyAnalyzer(private val graphicOverlay: GraphicOverlay, private val c
     private val overlay = graphicOverlay
     private val lens_facing = CameraSelector.LENS_FACING_BACK
     private var bunchCurrencyDetected : MutableList<String> = mutableListOf()
+    var LoopCounter = 0;
 
     init {
         var subscribeFeedbackListener: FeedbackListener = object : FeedbackListener {
@@ -59,7 +60,6 @@ class CurrencyAnalyzer(private val graphicOverlay: GraphicOverlay, private val c
         else overlay.setImageSourceInfo(image.height, image.width, isImageFlipped)
 
         val frame = InputImage.fromMediaImage(image.image!!, image.imageInfo.rotationDegrees)
-        Log.d("YOMANS", frame.height.toString() + frame.width.toString() )
         objectDetector.process(frame).addOnSuccessListener {
             sucessListener(it)
         }
@@ -68,6 +68,7 @@ class CurrencyAnalyzer(private val graphicOverlay: GraphicOverlay, private val c
             }
             .addOnCompleteListener{
                 image.close()
+                LoopCounter = LoopCounter ++;
             }
     }
     // Public Fun
@@ -86,6 +87,10 @@ class CurrencyAnalyzer(private val graphicOverlay: GraphicOverlay, private val c
                 clearTheSetEveryNTime()
             }
             if(GLOBAL_SOUND) {
+                if ( LoopCounter == 5 )  {
+                    allObjectDetectedDatabase.clear()
+                    oneFrameDatabase.clear()
+                }
                 checkIfSoundGoingToPlay()
             }
             overlay.postInvalidate()
@@ -119,12 +124,9 @@ class CurrencyAnalyzer(private val graphicOverlay: GraphicOverlay, private val c
             try {
                 if (sentences.isNotEmpty()) {
                     // Play the sound here
-                    CoroutineScope(Dispatchers.Main).launch {
                         for (label in sentences) {
-                            soundPlayer.playSound(label)
-                            delay(200)
+                            soundPlayer.playSound(label.filter { !it.isWhitespace() })
                         }
-                    }
                     // playTheSound(sentences.toString())
                 }
             } catch (e: Exception) {
@@ -133,7 +135,7 @@ class CurrencyAnalyzer(private val graphicOverlay: GraphicOverlay, private val c
                 oneFrameDatabase.clear()
             }
             try {
-                val list =   allObjectDetectedDatabase.slice(IntRange(allObjectDetectedDatabase.size -3 ,allObjectDetectedDatabase.size -1 ))
+                val list =   allObjectDetectedDatabase.slice(IntRange(allObjectDetectedDatabase.size -2 ,allObjectDetectedDatabase.size -1 ))
                 allObjectDetectedDatabase = list.toMutableList()
             } catch (e: Exception) {
                 e.printStackTrace()

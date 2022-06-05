@@ -34,7 +34,7 @@ class SoundPlayer(private val context : Context ) {
             context.resources.getString(R.string.raw_sound_anjing) -> {
                 R.raw.anjing
             }
-            //context.resources.getString(R.string.raw_sound_mobil) -> R.raw.mobil
+            context.resources.getString(R.string.raw_sound_mobil) -> R.raw.anjing
             context.resources.getString(R.string.raw_sound_4) -> {
                 R.raw.desktop_computer
             }

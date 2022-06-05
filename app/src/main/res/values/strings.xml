@@ -140,5 +140,6 @@
     <string name="label_frequently_asked_question">Daftar pertanyaan yang sering ditanyakan pengguna Thisable.</string>
     <string name="label_what_is_thisable">Apa itu Thisable ?</string>
     <string name="label_thisable_meaning">Thisable adalah start-up aplikasi aksesibilitas terpusat pertama di Indonesia. Kami memiliki tujuan untuk menyediakan layanan aplikasi aksesibilitas mobile kepada masyarakat Indonesia, terutama penyandang disabilitas untuk memudahkan difabel dalam berkomunikasi dan menjalani kehidupan sehari-hari.</string>
+    <string name="raw_sound_mobil">car</string>
 
 </resources>
