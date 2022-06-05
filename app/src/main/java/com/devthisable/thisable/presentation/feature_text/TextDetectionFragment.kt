@@ -176,9 +176,6 @@ class TextDetectionFragment : Fragment() {
             true
         }
 
-        binding.ivBack.setOnClickListener {
-            requireActivity().finish()
-        }
     }
 
     private fun textDetection(apiKey: String, request: TextDetectionRequest) {

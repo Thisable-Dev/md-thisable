@@ -21,19 +21,6 @@
             android:layout_gravity="center" />
 
         <ImageView
-            android:id="@+id/iv_back"
-            android:padding="5dp"
-            android:layout_margin="10dp"
-            android:layout_width="70dp"
-            android:layout_height="70dp"
-            android:contentDescription="Kembali ke Menu Utama"
-            android:src="@drawable/back_img"
-            app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            />
-
-
-        <ImageView
             android:id="@+id/iv_sound_state"
             android:padding="5dp"
             android:layout_margin="10dp"

@@ -54,6 +54,12 @@
         <action
             android:id="@+id/action_onBoardingFragment_to_coreActivity"
             app:destination="@id/coreActivity" />
+        <action
+            android:id="@+id/action_onBoardingFragment_to_aboutFragment"
+            app:destination="@id/aboutFragment" />
+        <action
+            android:id="@+id/action_onBoardingFragment_to_termAgreementFragment"
+            app:destination="@id/termAgreementFragment" />
     </fragment>
     <fragment
         android:id="@+id/homeFragment"
@@ -93,6 +99,12 @@
         <action
             android:id="@+id/action_profileFragment_to_aboutFragment"
             app:destination="@id/aboutFragment" />
+        <action
+            android:id="@+id/action_profileFragment_to_helpFragment"
+            app:destination="@id/helpFragment" />
+        <action
+            android:id="@+id/action_profileFragment_to_fragmentFQA"
+            app:destination="@id/fragmentFQA" />
     </fragment>
 
     <fragment
@@ -136,10 +148,7 @@
             android:id="@+id/action_fragmentWarningCustomDialog_to_coreActivity"
             app:destination="@id/coreActivity"
             app:enterAnim="@anim/slide_in_right"
-            app:exitAnim="@anim/slide_out_left"
-            app:popUpTo="@id/thisable_navigation"
-            app:launchSingleTop="true"
-            app:popUpToInclusive="true"/>
+            app:exitAnim="@anim/slide_out_left"/>
     </dialog>
     <activity
         android:id="@+id/coreActivity"
@@ -190,4 +199,16 @@
         android:id="@+id/aboutFragment"
         android:name="com.devthisable.thisable.presentation.about.AboutFragment"
         android:label="AboutFragment" />
+    <fragment
+        android:id="@+id/termAgreementFragment"
+        android:name="com.devthisable.thisable.presentation.termagreement.TermAgreementFragment"
+        android:label="TermAgreementFragment" />
+    <fragment
+        android:id="@+id/helpFragment"
+        android:name="com.devthisable.thisable.presentation.help.HelpFragment"
+        android:label="HelpFragment" />
+    <fragment
+        android:id="@+id/fragmentFQA"
+        android:name="com.devthisable.thisable.presentation.faq.FragmentFQA"
+        android:label="FragmentFQA" />
 </navigation>

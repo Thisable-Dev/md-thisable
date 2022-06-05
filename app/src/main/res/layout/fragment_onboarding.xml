@@ -66,6 +66,7 @@
         style="@style/ButtonContent"/>
 
     <TextView
+        android:id="@+id/tvTermAgreement"
         android:text="@string/label_thisable_agreement"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -80,6 +81,7 @@
         android:layout_marginHorizontal="@dimen/dimen_50dp"/>
 
     <TextView
+        android:id="@+id/tvAbout"
         android:text="@string/label_about_thisable"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"

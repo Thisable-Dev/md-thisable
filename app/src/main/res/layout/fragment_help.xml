@@ -1,0 +1,132 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+    <androidx.appcompat.widget.Toolbar
+        android:id="@+id/toolbar"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:navigationIcon="@drawable/ic_chevron_left"
+        android:gravity="center"
+        app:titleTextAppearance="@style/TextContent.TitleToolbar"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        app:layout_constraintTop_toBottomOf="@id/toolbar">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <TextView
+                android:id="@+id/tvNeedHelp"
+                style="@style/TextContent.Header"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/dimen_16dp"
+                android:layout_marginTop="@dimen/dimen_32dp"
+                android:text="@string/label_need_help"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="@+id/imgIllustration" />
+
+            <TextView
+                android:id="@+id/tvBugHappenSubTitle"
+                style="@style/TextContent.SubHeader"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/dimen_10dp"
+                android:text="@string/label_call_for_help"
+                app:layout_constraintEnd_toEndOf="@id/tvNeedHelp"
+                app:layout_constraintStart_toStartOf="@+id/tvNeedHelp"
+                app:layout_constraintTop_toBottomOf="@id/tvNeedHelp" />
+
+            <ImageView
+                android:id="@+id/imgIllustration"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/dimen_16dp"
+                android:layout_marginEnd="@dimen/dimen_16dp"
+                android:src="@drawable/ic_people_illustration_1"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:layout_marginHorizontal="@dimen/dimen_16dp"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/imgIllustration">
+
+                <TextView
+                    android:id="@+id/tvThisableContact"
+                    android:text="@string/label_thisable_contact"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/dimen_8dp"
+                    style="@style/TextContent.Title"/>
+
+                <TextView
+                    android:text="@string/label_thisable_email"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/dimen_10dp"
+                    style="@style/TextContent.SubTitle"/>
+
+                <TextView
+                    android:id="@+id/tvAndroidContact"
+                    android:text="@string/label_android_engineer"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/dimen_24dp"
+                    style="@style/TextContent.Title"/>
+
+                <TextView
+                    android:text="@string/label_android_engineer_contact"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/dimen_10dp"
+                    style="@style/TextContent.SubTitle"/>
+
+                <TextView
+                    android:id="@+id/tvMLContact"
+                    android:text="@string/label_machine_learning_engineer"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/dimen_24dp"
+                    style="@style/TextContent.Title"/>
+
+                <TextView
+                    android:text="@string/label_ml_engineer_contact"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/dimen_10dp"
+                    style="@style/TextContent.SubTitle"/>
+
+                <TextView
+                    android:id="@+id/tvCCContact"
+                    android:text="@string/label_cloud_engineer"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/dimen_24dp"
+                    style="@style/TextContent.Title"/>
+
+                <TextView
+                    android:text="@string/label_cc_engineer_contact"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/dimen_10dp"
+                    style="@style/TextContent.SubTitle"/>
+
+            </LinearLayout>
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+    </ScrollView>
+
+</androidx.constraintlayout.widget.ConstraintLayout>

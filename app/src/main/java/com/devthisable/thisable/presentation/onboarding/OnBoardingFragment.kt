@@ -69,6 +69,13 @@ class OnBoardingFragment : Fragment() {
         binding.btnNext.setOnClickListener {
             it.findNavController().navigate(R.id.action_onBoardingFragment_to_fragmentWarningCustomDialog)
         }
+        binding.tvAbout.setOnClickListener {
+            it.popTap()
+            it.findNavController().navigate(R.id.action_onBoardingFragment_to_aboutFragment)
+        }
+        binding.tvTermAgreement.setOnClickListener {
+            it.findNavController().navigate(R.id.action_onBoardingFragment_to_termAgreementFragment)
+        }
     }
 
     private fun signIn() {

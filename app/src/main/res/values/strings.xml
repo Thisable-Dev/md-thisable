@@ -44,7 +44,7 @@
     <string name="label_my_account">Akun Saya</string>
     <string name="label_help">Bantuan</string>
     <string name="label_fqa">Tanya Jawab</string>
-    <string name="label_report_bug">Laporkan Masalah</string>
+    <string name="label_report_bug"><u>Laporkan Masalah</u></string>
     <string name="action_logout">Keluar</string>
     <string name="message_information">Informasi</string>
     <string name="message_login_failed">Username atau Password salah, silahkan coba lagi</string>
@@ -58,7 +58,7 @@
     <string name="title_my_account">Akun Saya</string>
     <string name="label_activate_talkback">Ketuk disini untuk mengaktfikan fitur Talkback</string>
     <string name="label_try_ayo_camera">Coba AYO Kamera!</string>
-    <string name="label_thisable_agreement">Dengan membuat akun berarti kamu setuju dengan Ketentuan Layanan Thisable</string>
+    <string name="label_thisable_agreement">Dengan membuat akun berarti kamu setuju dengan <b><u>Ketentuan Layanan Thisable</u></b></string>
     <string name="label_about_thisable">Tentang Thisable</string>
     <string name="label_bug_happen">Terjadi masalah ?</string>
     <string name="label_help_to_report_bug">Bantu kami menjadi lebih baik dengan laporkan masalahmu!</string>
@@ -123,8 +123,22 @@
     <string name="title_about_thisable">Tentang Thisable</string>
     <string name="label_about">Thisable adalah start-up aplikasi aksesibilitas terpusat pertama di Indonesia. Kami memiliki tujuan untuk menyediakan layanan aplikasi aksesibilitas mobile kepada masyarakat Indonesia, terutama penyandang disabilitas untuk memudahkan difabel dalam berkomunikasi dan menjalani kehidupan sehari-hari.\n\nKami berusaha untuk memecahkan masalah nyata di masyarakat, terutama untuk kenyamanan para penyandang disabilitas untuk berinteraksi. Kami ingin memperjuangkan kesetaraan komunikasi, terlepas dari kekurangan apa yang dimiliki seseorang. Kami juga berencana untuk mengembangkan aplikasi ini menjadi aplikasi super aksesibilitas yang lebih canggih sehingga dapat digunakan oleh penyandang disabilitas khususnya di Indonesia.</string>
     <string name="label_ketentuanLayanan">Ketentuan Layanan</string>
-    <string name="par_ketentuanLayanan"><b>Syarat &amp; Ketentuan</b>\nDiperbarui pada 2022-06-10\n\n<b>Ketentuan Umum</b>\nDengan mengakses dan melakukan pemesanan dengan , Anda mengonfirmasi bahwa Anda setuju dan terikat dengan persyaratan layanan yang tercantum dalam Syarat &amp; Ketentuan yang diuraikan di bawah ini. Persyaratan ini berlaku untuk seluruh situs web dan email atau jenis komunikasi lainnya antara Anda.\n\nDalam keadaan apa pun tim tidak bertanggung jawab atas segala kerusakan langsung, tidak langsung, khusus, insidental atau konsekuensial, termasuk, namun tidak terbatas pada, kehilangan data atau keuntungan, yang timbul dari penggunaan, atau ketidakmampuan untuk menggunakan, materi di situs ini. , bahkan jika tim atau perwakilan resmi telah diberitahu tentang kemungkinan kerusakan tersebut. Jika penggunaan Anda atas materi dari situs ini mengakibatkan perlunya servis, perbaikan, atau koreksi peralatan atau data, Anda menanggung semua biayanya.\n\nTidak akan bertanggung jawab atas hasil apa pun yang mungkin terjadi selama penggunaan sumber daya kami. Kami berhak untuk mengubah harga dan merevisi kebijakan penggunaan sumber daya setiap saat.\n\n<b>Lisensi</b>\nThisable memberi Anda lisensi terbatas yang dapat dibatalkan, non-eksklusif, tidak dapat dialihkan, untuk mengunduh, menginstal, dan menggunakan layanan kami secara ketat sesuai dengan ketentuan Perjanjian ini. Syarat &amp; Ketentuan ini adalah kontrak antara Anda dan Thisable (dalam Syarat &amp; Ketentuan ini disebut sebagai "Thisable", atau "milik kami"), penyedia situs web Thisable dan layanan yang dapat diakses dari situs web Thisable (yang secara bersama-sama disebut dalam Syarat &amp; Ketentuan ini sebagai "Layanan Thisable").\n\nAnda setuju untuk terikat dengan Syarat &amp; Ketentuan ini. Jika Anda tidak menyetujui Syarat &amp; Ketentuan ini, mohon untuk tidak menggunakan Layanan. Dalam Syarat &amp; Ketentuan ini, "Anda" merujuk kepada Anda sebagai individu dan entitas yang Anda wakili. Jika Anda melanggar salah satu dari Syarat &amp; Ketentuan ini, kami berhak untuk membatalkan akun Anda atau memblokir akses ke akun Anda tanpa pemberitahuan.\n\n\n\n\n\n\n
+    <string name="par_ketentuanLayanan"><b>Syarat &amp; Ketentuan</b>\nDiperbarui pada 2022-06-10\n\n<b>Ketentuan Umum</b>\nDengan mengakses dan melakukan pemesanan dengan , Anda mengonfirmasi bahwa Anda setuju dan terikat dengan persyaratan layanan yang tercantum dalam Syarat &amp; Ketentuan yang diuraikan di bawah ini. Persyaratan ini berlaku untuk seluruh situs web dan email atau jenis komunikasi lainnya antara Anda.\n\nDalam keadaan apa pun tim tidak bertanggung jawab atas segala kerusakan langsung, tidak langsung, khusus, insidental atau konsekuensial, termasuk, namun tidak terbatas pada, kehilangan data atau keuntungan, yang timbul dari penggunaan, atau ketidakmampuan untuk menggunakan, materi di situs ini. , bahkan jika tim atau perwakilan resmi telah diberitahu tentang kemungkinan kerusakan tersebut. Jika penggunaan Anda atas materi dari situs ini mengakibatkan perlunya servis, perbaikan, atau koreksi peralatan atau data, Anda menanggung semua biayanya.\n\nTidak akan bertanggung jawab atas hasil apa pun yang mungkin terjadi selama penggunaan sumber daya kami. Kami berhak untuk mengubah harga dan merevisi kebijakan penggunaan sumber daya setiap saat.\n\n<b>Lisensi</b>\nThisable memberi Anda lisensi terbatas yang dapat dibatalkan, non-eksklusif, tidak dapat dialihkan, untuk mengunduh, menginstal, dan menggunakan layanan kami secara ketat sesuai dengan ketentuan Perjanjian ini. Syarat &amp; Ketentuan ini adalah kontrak antara Anda dan Thisable (dalam Syarat &amp; Ketentuan ini disebut sebagai "Thisable", atau "milik kami"), penyedia situs web Thisable dan layanan yang dapat diakses dari situs web Thisable (yang secara bersama-sama disebut dalam Syarat &amp; Ketentuan ini sebagai "Layanan Thisable").\n\nAnda setuju untuk terikat dengan Syarat &amp; Ketentuan ini. Jika Anda tidak menyetujui Syarat &amp; Ketentuan ini, mohon untuk tidak menggunakan Layanan. Dalam Syarat &amp; Ketentuan ini, "Anda" merujuk kepada Anda sebagai individu dan entitas yang Anda wakili. Jika Anda melanggar salah satu dari Syarat &amp; Ketentuan ini, kami berhak untuk membatalkan akun Anda atau memblokir akses ke akun Anda tanpa pemberitahuan. \n\n\n
     </string>
     <string name="app_info_tekan_lama">Tekan Dan Tahan lama untuk melihat Opsi Pilihan</string>
+    <string name="label_need_help">Butuh bantuan ?</string>
+    <string name="label_call_for_help">Hubungi kami jika kamu butuh bantuan!</string>
+    <string name="label_thisable_contact">Kontak Thisable</string>
+    <string name="label_thisable_email">Surel : C22-PS003@bangkit.academy</string>
+    <string name="label_android_engineer">Android Engineer</string>
+    <string name="label_android_engineer_contact">Bintang Putera\na7129f1592@bangkit.academy \nPratama Azmi\na7012g1330@bangkit.academy</string>
+    <string name="label_ml_engineer_contact">Julio Fachrel\nm2011f1173@bangkit.academy \nNajma\nm2011f1166@bangkit.academy</string>
+    <string name="label_cc_engineer_contact">Gilang Martadinata\nc2306h2613@bangkit.academy \nHazlan Muhammad Qodri\nc2297f2531@bangkit.academy</string>
+    <string name="label_machine_learning_engineer">Machine Learning Engineer</string>
+    <string name="label_cloud_engineer">Cloud Engineer</string>
+    <string name="label_question_answer">Tanya Jawab</string>
+    <string name="label_frequently_asked_question">Daftar pertanyaan yang sering ditanyakan pengguna Thisable.</string>
+    <string name="label_what_is_thisable">Apa itu Thisable ?</string>
+    <string name="label_thisable_meaning">Thisable adalah start-up aplikasi aksesibilitas terpusat pertama di Indonesia. Kami memiliki tujuan untuk menyediakan layanan aplikasi aksesibilitas mobile kepada masyarakat Indonesia, terutama penyandang disabilitas untuk memudahkan difabel dalam berkomunikasi dan menjalani kehidupan sehari-hari.</string>
 
 </resources>

@@ -24,32 +24,6 @@
         <entry key="..\:/Bangkit/thisable-app/app/src/main/res/layout/fragment_text_detection.xml" value="0.35280797101449274" />
         <entry key="..\:/Bangkit/thisable-app/app/src/main/res/layout/fragment_thisable.xml" value="0.1" />
         <entry key="..\:/Bangkit/thisable-app/app/src/main/res/menu/bottom_nav_menu.xml" value="0.3625" />
-        <entry key="..\:/BangkitFinal/thisable-app/app/src/main/res/drawable-v24/ic_launcher_foreground.xml" value="0.1" />
-        <entry key="..\:/BangkitFinal/thisable-app/app/src/main/res/drawable/bg_button.xml" value="0.1115" />
-        <entry key="..\:/BangkitFinal/thisable-app/app/src/main/res/drawable/bg_edit_text.xml" value="0.1" />
-        <entry key="..\:/BangkitFinal/thisable-app/app/src/main/res/drawable/bg_home_header.xml" value="0.1" />
-        <entry key="..\:/BangkitFinal/thisable-app/app/src/main/res/drawable/bg_warning_button.xml" value="0.1" />
-        <entry key="..\:/BangkitFinal/thisable-app/app/src/main/res/drawable/ic_baseline_keyboard_24.xml" value="0.1" />
-        <entry key="..\:/BangkitFinal/thisable-app/app/src/main/res/drawable/ic_baseline_volume_off.xml" value="0.1" />
-        <entry key="..\:/BangkitFinal/thisable-app/app/src/main/res/drawable/ic_baseline_volume_on.xml" value="0.1" />
-        <entry key="..\:/BangkitFinal/thisable-app/app/src/main/res/drawable/ic_chevron_left.xml" value="0.1" />
-        <entry key="..\:/BangkitFinal/thisable-app/app/src/main/res/drawable/ic_currency_detection.xml" value="0.1" />
-        <entry key="..\:/BangkitFinal/thisable-app/app/src/main/res/drawable/ic_fqa.xml" value="0.1" />
-        <entry key="..\:/BangkitFinal/thisable-app/app/src/main/res/drawable/ic_help.xml" value="0.1" />
-        <entry key="..\:/BangkitFinal/thisable-app/app/src/main/res/drawable/ic_home.xml" value="0.1" />
-        <entry key="..\:/BangkitFinal/thisable-app/app/src/main/res/drawable/ic_icon_thisable.xml" value="0.1115" />
-        <entry key="..\:/BangkitFinal/thisable-app/app/src/main/res/drawable/ic_launcher_background.xml" value="0.1" />
-        <entry key="..\:/BangkitFinal/thisable-app/app/src/main/res/drawable/ic_launcher_foreground.xml" value="0.1115" />
-        <entry key="..\:/BangkitFinal/thisable-app/app/src/main/res/drawable/ic_logo.xml" value="0.1" />
-        <entry key="..\:/BangkitFinal/thisable-app/app/src/main/res/drawable/ic_logo_feature.xml" value="0.1" />
-        <entry key="..\:/BangkitFinal/thisable-app/app/src/main/res/drawable/ic_object_detection.xml" value="0.1" />
-        <entry key="..\:/BangkitFinal/thisable-app/app/src/main/res/drawable/ic_people_illustration_1.xml" value="0.1" />
-        <entry key="..\:/BangkitFinal/thisable-app/app/src/main/res/drawable/ic_people_illustration_2.xml" value="0.1" />
-        <entry key="..\:/BangkitFinal/thisable-app/app/src/main/res/drawable/ic_profile.xml" value="0.1115" />
-        <entry key="..\:/BangkitFinal/thisable-app/app/src/main/res/drawable/ic_profile_settings.xml" value="0.1" />
-        <entry key="..\:/BangkitFinal/thisable-app/app/src/main/res/drawable/ic_success.xml" value="0.1" />
-        <entry key="..\:/BangkitFinal/thisable-app/app/src/main/res/drawable/ic_thisable.xml" value="0.1" />
-        <entry key="..\:/BangkitFinal/thisable-app/app/src/main/res/drawable/ic_warning.xml" value="0.1" />
         <entry key="..\:/BangkitFinal/thisable-app/app/src/main/res/layout/activity_core.xml" value="0.18802083333333333" />
         <entry key="..\:/BangkitFinal/thisable-app/app/src/main/res/layout/activity_main.xml" value="0.18802083333333333" />
         <entry key="..\:/BangkitFinal/thisable-app/app/src/main/res/layout/custom_alertdialog_signlanguage.xml" value="0.36666666666666664" />
@@ -59,15 +33,11 @@
         <entry key="..\:/BangkitFinal/thisable-app/app/src/main/res/layout/fragment_currency.xml" value="0.36666666666666664" />
         <entry key="..\:/BangkitFinal/thisable-app/app/src/main/res/layout/fragment_detail_profile.xml" value="0.36666666666666664" />
         <entry key="..\:/BangkitFinal/thisable-app/app/src/main/res/layout/fragment_instruction_first.xml" value="0.36666666666666664" />
-        <entry key="..\:/BangkitFinal/thisable-app/app/src/main/res/layout/fragment_instruction_second.xml" value="0.17831813576494426" />
-        <entry key="..\:/BangkitFinal/thisable-app/app/src/main/res/layout/fragment_object_detection.xml" value="0.17831813576494426" />
-        <entry key="..\:/BangkitFinal/thisable-app/app/src/main/res/layout/fragment_onboarding.xml" value="0.17831813576494426" />
         <entry key="..\:/BangkitFinal/thisable-app/app/src/main/res/layout/fragment_sign_language.xml" value="0.36666666666666664" />
         <entry key="..\:/BangkitFinal/thisable-app/app/src/main/res/layout/fragment_success_custom_dialog.xml" value="0.36666666666666664" />
         <entry key="..\:/BangkitFinal/thisable-app/app/src/main/res/layout/fragment_warning_custom_dialog.xml" value="0.36666666666666664" />
         <entry key="..\:/BangkitFinal/thisable-app/app/src/main/res/layout/item_layout_banner.xml" value="0.36666666666666664" />
         <entry key="..\:/BangkitFinal/thisable-app/app/src/main/res/layout/item_layout_dialog_obj.xml" value="0.36666666666666664" />
-        <entry key="..\:/BangkitFinal/thisable-app/app/src/main/res/mipmap-anydpi-v26/ic_launcher.xml" value="0.1115" />
         <entry key="..\:/Project/AndroidStudio/Bangkit/Capstone/thisable-app/app/src/main/res/drawable/bg_alert_dialog.xml" value="0.121" />
         <entry key="..\:/Project/AndroidStudio/Bangkit/Capstone/thisable-app/app/src/main/res/drawable/bg_button.xml" value="0.1335" />
         <entry key="..\:/Project/AndroidStudio/Bangkit/Capstone/thisable-app/app/src/main/res/drawable/bg_circle.xml" value="0.1155" />
@@ -96,6 +66,8 @@
         <entry key="..\:/Project/AndroidStudio/Bangkit/Capstone/thisable-app/app/src/main/res/layout/fragment_bug_report.xml" value="0.16" />
         <entry key="..\:/Project/AndroidStudio/Bangkit/Capstone/thisable-app/app/src/main/res/layout/fragment_currency.xml" value="0.1611842105263158" />
         <entry key="..\:/Project/AndroidStudio/Bangkit/Capstone/thisable-app/app/src/main/res/layout/fragment_detail_profile.xml" value="0.17" />
+        <entry key="..\:/Project/AndroidStudio/Bangkit/Capstone/thisable-app/app/src/main/res/layout/fragment_fqa.xml" value="0.18" />
+        <entry key="..\:/Project/AndroidStudio/Bangkit/Capstone/thisable-app/app/src/main/res/layout/fragment_help.xml" value="0.16" />
         <entry key="..\:/Project/AndroidStudio/Bangkit/Capstone/thisable-app/app/src/main/res/layout/fragment_home.xml" value="0.16" />
         <entry key="..\:/Project/AndroidStudio/Bangkit/Capstone/thisable-app/app/src/main/res/layout/fragment_instruction.xml" value="0.16" />
         <entry key="..\:/Project/AndroidStudio/Bangkit/Capstone/thisable-app/app/src/main/res/layout/fragment_instruction_first.xml" value="0.15" />
@@ -103,7 +75,7 @@
         <entry key="..\:/Project/AndroidStudio/Bangkit/Capstone/thisable-app/app/src/main/res/layout/fragment_instruction_third.xml" value="0.12960526315789472" />
         <entry key="..\:/Project/AndroidStudio/Bangkit/Capstone/thisable-app/app/src/main/res/layout/fragment_login.xml" value="0.2" />
         <entry key="..\:/Project/AndroidStudio/Bangkit/Capstone/thisable-app/app/src/main/res/layout/fragment_object_detection.xml" value="0.15" />
-        <entry key="..\:/Project/AndroidStudio/Bangkit/Capstone/thisable-app/app/src/main/res/layout/fragment_onboarding.xml" value="0.14" />
+        <entry key="..\:/Project/AndroidStudio/Bangkit/Capstone/thisable-app/app/src/main/res/layout/fragment_onboarding.xml" value="0.18" />
         <entry key="..\:/Project/AndroidStudio/Bangkit/Capstone/thisable-app/app/src/main/res/layout/fragment_onboarding_first.xml" value="0.22" />
         <entry key="..\:/Project/AndroidStudio/Bangkit/Capstone/thisable-app/app/src/main/res/layout/fragment_onboarding_second.xml" value="0.14" />
         <entry key="..\:/Project/AndroidStudio/Bangkit/Capstone/thisable-app/app/src/main/res/layout/fragment_profile.xml" value="0.16" />

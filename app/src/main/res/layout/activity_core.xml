@@ -6,11 +6,23 @@
     android:layout_height="match_parent"
     tools:context=".CoreActivity">
 
+    <ImageView
+        android:id="@+id/iv_back"
+        android:padding="5dp"
+        android:layout_margin="10dp"
+        android:layout_width="70dp"
+        android:layout_height="70dp"
+        android:contentDescription="Kembali ke Menu Utama"
+        android:src="@drawable/back_img"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentStart="true"
+        android:elevation="6dp"
+        />
+
     <androidx.viewpager2.widget.ViewPager2
         android:id="@+id/view_pager"
         android:layout_width="match_parent"
-        android:layout_height="match_parent" >
-    </androidx.viewpager2.widget.ViewPager2>
+        android:layout_height="match_parent" />
 
     <com.google.android.material.tabs.TabLayout
         android:id="@+id/tabs_core_feature"

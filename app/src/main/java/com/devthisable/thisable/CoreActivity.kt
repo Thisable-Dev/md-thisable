@@ -1,12 +1,10 @@
 package com.devthisable.thisable
 
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.util.Log
 import android.widget.ImageView
 import androidx.annotation.StringRes
-import androidx.navigation.navArgs
-import androidx.navigation.navArgument
+import androidx.appcompat.app.AppCompatActivity
+import androidx.navigation.fragment.NavHostFragment
 import androidx.viewpager2.widget.ViewPager2
 import com.devthisable.thisable.adapter.SectionPagerAdapter
 import com.devthisable.thisable.databinding.ActivityCoreBinding
@@ -41,6 +39,9 @@ class CoreActivity : AppCompatActivity() {
         supportActionBar?.elevation = 0f
         supportActionBar?.hide()
 
+        binding.ivBack.setOnClickListener {
+            finish()
+        }
     }
 
     private fun changeTabLayoutIndicator() {
