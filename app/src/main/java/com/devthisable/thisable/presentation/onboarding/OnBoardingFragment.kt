@@ -1,11 +1,17 @@
 package com.devthisable.thisable.presentation.onboarding
 
 import android.app.Activity
+import android.app.AlertDialog
+import android.content.DialogInterface
+import android.content.pm.PackageManager
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.activity.result.ActivityResultLauncher
+import androidx.activity.result.contract.ActivityResultContracts
 import androidx.activity.result.contract.ActivityResultContracts.StartActivityForResult
+import androidx.core.content.ContextCompat
 import androidx.fragment.app.Fragment
 import androidx.navigation.findNavController
 import androidx.navigation.fragment.findNavController
@@ -15,6 +21,7 @@ import com.devthisable.thisable.utils.ConstVal
 import com.devthisable.thisable.utils.SharedPrefManager
 import com.devthisable.thisable.utils.ext.popTap
 import com.devthisable.thisable.utils.ext.showToast
+import com.devthisable.thisable.utils.showToastMessage
 import com.google.android.gms.auth.api.signin.GoogleSignIn
 import com.google.android.gms.auth.api.signin.GoogleSignInClient
 import com.google.android.gms.auth.api.signin.GoogleSignInOptions
@@ -47,6 +54,7 @@ class OnBoardingFragment : Fragment() {
 
         initAuth()
         initAction()
+        askPermission()
     }
 
     private fun initAuth() {
@@ -59,6 +67,43 @@ class OnBoardingFragment : Fragment() {
         oneTapClient = GoogleSignIn.getClient(requireActivity(), gso)
 
         auth = Firebase.auth
+    }
+
+    private fun checkPermission(requestPermissionLauncher : ActivityResultLauncher<String>) {
+        when {
+            ContextCompat.checkSelfPermission(requireContext(), android.Manifest.permission.CAMERA)== PackageManager.PERMISSION_GRANTED -> {
+                //showToastMessage(requireContext(), "Hello")
+            }
+            else -> {
+                val dialog: AlertDialog = AlertDialog.Builder(requireContext())
+                    .setTitle("Peringatan")
+                    .setMessage("Aplikasi ini menggunakan kamera gawai anda untuk dapat digunakan, Mohon Berikan Akses untuk kamera")
+                    .setPositiveButton("Beri Akses", object : DialogInterface.OnClickListener {
+                        override fun onClick(dialog: DialogInterface?, which: Int) {
+                            requestPermissionLauncher.launch( android.Manifest.permission.CAMERA )
+                        }
+                    })
+                    .setNegativeButton("Tidak", object : DialogInterface.OnClickListener {
+                        override fun onClick(dialog: DialogInterface?, which: Int) {
+                            showToastMessage(requireContext(), "Aplikasi Akan Ditutup")
+                            requireActivity().finish()
+                        }
+
+                    }).create()
+                dialog.show()
+            }
+        }
+    }
+
+    private fun askPermission() {
+        val requestPermissionLauncher : ActivityResultLauncher<String> = registerForActivityResult(ActivityResultContracts.RequestPermission()) { is_granted : Boolean ->
+            if (is_granted) {
+                //
+                showToastMessage(requireContext(), "Terima kasih, Sekarang kamu dapat menggunakan Aplikasi")
+            }
+        }
+        checkPermission(requestPermissionLauncher)
+
     }
 
     private fun initAction() {

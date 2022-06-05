@@ -6,6 +6,7 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.navigation.findNavController
+import com.devthisable.thisable.R
 import com.devthisable.thisable.databinding.FragmentFqaBinding
 
 class FragmentFQA: Fragment() {
@@ -20,9 +21,15 @@ class FragmentFQA: Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+        initAction()
+    }
 
+    private fun initAction() {
         binding.toolbar.setNavigationOnClickListener {
             it.findNavController().popBackStack()
+        }
+        binding.tvReportBug.setOnClickListener {
+            it.findNavController().navigate(R.id.action_fragmentFQA_to_bugReportFragment)
         }
     }
 

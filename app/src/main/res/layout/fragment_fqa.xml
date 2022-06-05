@@ -97,7 +97,7 @@
                         style="@style/TextContent.SmallBold"/>
 
                     <TextView
-                        android:id="@+id/tvAbout"
+                        android:id="@+id/tvReportBug"
                         android:text="@string/label_report_bug"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
