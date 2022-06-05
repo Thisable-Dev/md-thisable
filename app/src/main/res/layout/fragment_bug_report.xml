@@ -9,7 +9,6 @@
         android:id="@+id/toolbar"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        app:title="@string/title_report_bug"
         app:navigationIcon="@drawable/ic_chevron_left"
         android:gravity="center"
         app:titleTextAppearance="@style/TextContent.TitleToolbar"

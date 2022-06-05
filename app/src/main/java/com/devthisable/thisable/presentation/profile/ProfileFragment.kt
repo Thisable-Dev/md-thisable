@@ -65,9 +65,11 @@ class ProfileFragment : Fragment() {
     private fun initAction() {
         binding.btnFqa.setOnClickListener {
             it.popTap()
+            it.findNavController().navigate(R.id.action_profileFragment_to_fragmentFQA)
         }
         binding.btnHelp.setOnClickListener {
             it.popTap()
+            it.findNavController().navigate(R.id.action_profileFragment_to_helpFragment)
         }
         binding.btnReportBug.setOnClickListener {
             it.popTap()

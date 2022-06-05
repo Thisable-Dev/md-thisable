@@ -105,10 +105,6 @@ class ObjectDetectionFragment : Fragment() {
             true
         }
 
-        binding.ivBack.setOnClickListener {
-            requireActivity().finish()
-        }
-
         binding.ivSoundState.setOnClickListener {
             // Check it
             if (!stateSound) stateSound = true

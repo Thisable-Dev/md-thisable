@@ -142,10 +142,6 @@ class CurrencyFragment : Fragment() {
             true
         }
 
-        binding.ivBack.setOnClickListener {
-           requireActivity().finish()
-        }
-
         // check If Login
         // TODO
         //
