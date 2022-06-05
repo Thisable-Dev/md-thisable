@@ -94,9 +94,12 @@ class CurrencyFragment : Fragment() {
                     getString(R.string.question_1_currency_detection) -> {
                         showToastMessage(requireContext(), data)
                     }
+                    /*
                     getString(R.string.question_2_currency_detection) -> {
                         showToastMessage(requireContext(), data)
                     }
+
+                     */
                 }
             }
 
@@ -116,6 +119,7 @@ class CurrencyFragment : Fragment() {
                             )
                         }
                     }
+                    /*
                     getString(R.string.question_2_currency_detection) -> {
                         var items = currencyAnalyzer.getCurrencyDetected()
                         val returnedText = makeItOneString(countTheObj(items))
@@ -126,7 +130,7 @@ class CurrencyFragment : Fragment() {
                                 sumTheDetectedCurrency(items).toString()
                             )
                         )
-                    }
+                    }*/
                 }
             }
         }

@@ -72,8 +72,8 @@ class SignLanguageAnalyzer(private val graphicOverlay: GraphicOverlay, private v
 
         val isImageFlipped= lens_facing == CameraSelector.LENS_FACING_FRONT
         val rotationDegress = image.imageInfo.rotationDegrees
-        if (rotationDegress == 180 || rotationDegress == 0) overlay.setImageSourceInfo(WIDTH, HEIGHT, isImageFlipped )
-        else overlay.setImageSourceInfo(HEIGHT, WIDTH, isImageFlipped)
+        if (rotationDegress == 180 || rotationDegress == 0) overlay.setImageSourceInfo(image.image!!.width, image.image!!.height, isImageFlipped )
+        else overlay.setImageSourceInfo(image.image!!.height, image.image!!.width, isImageFlipped)
         try {
             //tempImage = Bitmap.createBitmap(640, 480, Bitmap.Config.ARGB_8888)
             //YuvToRgbConverter(context).yuvToRgb(image.image!!, tempImage)
@@ -87,7 +87,7 @@ class SignLanguageAnalyzer(private val graphicOverlay: GraphicOverlay, private v
                 }
                 .addOnCompleteListener {
                     image.close()
-                    tempImage.eraseColor(Color.TRANSPARENT)
+                   // tempImage.eraseColor(Color.TRANSPARENT)
 
                 }
         } catch (e: Exception) {
@@ -112,7 +112,7 @@ class SignLanguageAnalyzer(private val graphicOverlay: GraphicOverlay, private v
             }
         }
 
-        tempImage = Bitmap.createScaledBitmap(tempImage, 640, 480, false)
+        //tempImage = Bitmap.createScaledBitmap(tempImage, 640, 480, false)
         overlay.postInvalidate()
     }
 

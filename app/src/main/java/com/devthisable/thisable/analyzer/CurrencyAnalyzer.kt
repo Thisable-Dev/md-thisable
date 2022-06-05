@@ -26,7 +26,7 @@ class CurrencyAnalyzer(private val graphicOverlay: GraphicOverlay, private val c
     private var allObjectDetectedDatabase = mutableListOf<String>()
     private var soundPlayer = SoundPlayer(context)
     private var GLOBAL_SOUND : Boolean  = false
-    private lateinit var objectDetector : ObjectDetector
+    private var objectDetector : ObjectDetector
     private val overlay = graphicOverlay
     private val lens_facing = CameraSelector.LENS_FACING_BACK
     private var bunchCurrencyDetected : MutableList<String> = mutableListOf()

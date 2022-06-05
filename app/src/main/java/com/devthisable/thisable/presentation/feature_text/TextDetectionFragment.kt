@@ -132,7 +132,7 @@ class TextDetectionFragment : Fragment() {
     private fun setOnClickListener() {
         val itemListener = object : ObjectOptionInterface {
             override fun onClick(data: String) {
-                //TODO
+
             }
 
             override fun onLongClickListener(data: String) {
@@ -170,7 +170,7 @@ class TextDetectionFragment : Fragment() {
         binding.viewFinder.setOnLongClickListener {
             showAlertDialogObjDetection(
                 requireContext(),
-                ServeListQuestion.getListQuestion(requireContext()),
+                ServeListQuestion.getListQuestionText(requireContext()),
                 subscriberItemListener = itemListener
             )
             true

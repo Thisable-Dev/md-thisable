@@ -59,7 +59,7 @@ class ObjectAnalyzer(private val graphicOverlay: GraphicOverlay, private val con
         hashMap["flower"] = context.resources.getString(R.string.raw_sound_bunga)
 
         localModel =  LocalModel.Builder()
-            .setAssetFilePath("final_objectDetection.tflite")
+            .setAssetFilePath("Object_class_rm_bg.tflite")
             .build()
 
         remoteModel = CustomRemoteModel.Builder(

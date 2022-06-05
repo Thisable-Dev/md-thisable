@@ -19,4 +19,11 @@ object ServeListQuestion {
         )
         return arrList
     }
+
+    fun getListQuestionText(requireContext: Context): Array<String> {
+        val arrList = arrayOf<String> (
+            "Teks apa yang saya tangkap ?"
+                )
+        return arrList
+    }
 }
