@@ -210,5 +210,9 @@
     <fragment
         android:id="@+id/fragmentFQA"
         android:name="com.devthisable.thisable.presentation.faq.FragmentFQA"
-        android:label="FragmentFQA" />
+        android:label="FragmentFQA" >
+        <action
+            android:id="@+id/action_fragmentFQA_to_bugReportFragment"
+            app:destination="@id/bugReportFragment" />
+    </fragment>
 </navigation>

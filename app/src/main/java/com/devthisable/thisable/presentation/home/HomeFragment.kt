@@ -39,43 +39,6 @@ class HomeFragment: Fragment() {
         initUI()
         loadBanner()
         setOnClickListener()
-        askPermission()
-    }
-    private fun checkPermission(requestPermissionLauncher : ActivityResultLauncher<String>) {
-        when {
-            ContextCompat.checkSelfPermission(requireContext(), android.Manifest.permission.CAMERA)== PackageManager.PERMISSION_GRANTED -> {
-                //showToastMessage(requireContext(), "Hello")
-            }
-            else -> {
-                val dialog: AlertDialog = AlertDialog.Builder(requireContext())
-                    .setTitle("Peringatan")
-                    .setMessage("Aplikasi ini menggunakan kamera gawai anda untuk dapat digunakan, Mohon Berikan Akses untuk kamera")
-                    .setPositiveButton("Beri Akses", object : DialogInterface.OnClickListener {
-                        override fun onClick(dialog: DialogInterface?, which: Int) {
-                            requestPermissionLauncher.launch( android.Manifest.permission.CAMERA )
-                        }
-                    })
-                    .setNegativeButton("Tidak", object : DialogInterface.OnClickListener {
-                        override fun onClick(dialog: DialogInterface?, which: Int) {
-                            showToastMessage(requireContext(), "Aplikasi Akan Ditutup")
-                            requireActivity().finish()
-                        }
-
-                    }).create()
-                dialog.show()
-            }
-        }
-    }
-
-    private fun askPermission() {
-        val requestPermissionLauncher : ActivityResultLauncher<String> = registerForActivityResult(ActivityResultContracts.RequestPermission()) { is_granted : Boolean ->
-            if (is_granted) {
-                //
-                showToastMessage(requireContext(), "Terima kasih, Sekarang kamu dapat menggunakan Aplikasi")
-            }
-        }
-        checkPermission(requestPermissionLauncher)
-
     }
 
     private fun initUI() {
