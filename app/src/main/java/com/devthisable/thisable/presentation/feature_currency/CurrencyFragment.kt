@@ -6,6 +6,8 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.view.accessibility.AccessibilityEvent
+import android.view.accessibility.AccessibilityNodeInfo
 import androidx.camera.core.CameraSelector
 import androidx.camera.core.ImageAnalysis
 import androidx.camera.core.Preview
@@ -52,7 +54,7 @@ class CurrencyFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-
+        //requireContext().showToast(getString(R.string.active_currency_detection))
         initFirebase()
         initUI()
 
@@ -146,9 +148,6 @@ class CurrencyFragment : Fragment() {
             true
         }
 
-        // check If Login
-        // TODO
-        //
     }
 
     private fun changeDrawable() {
@@ -209,6 +208,9 @@ class CurrencyFragment : Fragment() {
 
     override fun onResume() {
         super.onResume()
+
+        binding.viewFinder.performAccessibilityAction(AccessibilityNodeInfo.ACTION_ACCESSIBILITY_FOCUS,null)
+        binding.viewFinder.sendAccessibilityEvent(AccessibilityEvent.TYPE_VIEW_FOCUSED)
         startCamera()
     }
     private fun allPermissionGranted() : Boolean {

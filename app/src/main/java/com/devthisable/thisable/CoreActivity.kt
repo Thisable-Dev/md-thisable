@@ -8,6 +8,7 @@ import androidx.navigation.fragment.NavHostFragment
 import androidx.viewpager2.widget.ViewPager2
 import com.devthisable.thisable.adapter.SectionPagerAdapter
 import com.devthisable.thisable.databinding.ActivityCoreBinding
+import com.devthisable.thisable.utils.ext.showToast
 import com.google.android.material.tabs.TabLayout
 import com.google.android.material.tabs.TabLayoutMediator
 import dagger.hilt.android.AndroidEntryPoint
@@ -33,6 +34,7 @@ class CoreActivity : AppCompatActivity() {
         TabLayoutMediator(tabs, viewPager) { tab, position ->
             val view = layoutInflater.inflate(R.layout.custom_tab_layout, null)
             view.findViewById<ImageView>(R.id.icon).setBackgroundResource(TAB_ICON[position])
+            view.findViewById<ImageView>(R.id.icon).contentDescription =  getString(CONTENT_DESC[position])
             tab.customView = view
         }.attach()
 
@@ -57,6 +59,7 @@ class CoreActivity : AppCompatActivity() {
             tabs.getTabAt(3)?.select()
             viewPager.currentItem =3
         }
+
     }
 
     companion object {
@@ -67,7 +70,13 @@ class CoreActivity : AppCompatActivity() {
             R.drawable.ic_currency_detection,
             R.drawable.ic_text_detection
         )
+        @StringRes
+        val CONTENT_DESC = intArrayOf(
+            R.string.desc_bisindo,
+            R.string.desc_object_detection,
+            R.string.desc_currency,
+            R.string.text_detection
+        )
 
-        const val CAMERA_RESULT = 10
     }
 }

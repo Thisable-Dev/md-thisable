@@ -2,33 +2,29 @@ package com.devthisable.thisable.presentation.feature_sign_language
 
 import android.Manifest
 import android.annotation.SuppressLint
-import android.content.pm.PackageManager
 import android.os.Bundle
 import android.util.DisplayMetrics
 
-import android.util.Log
-import android.util.Rational
-import android.util.Size
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.view.accessibility.AccessibilityEvent
+import android.view.accessibility.AccessibilityNodeInfo
 import androidx.camera.core.*
-import androidx.camera.core.impl.PreviewConfig
 
 import androidx.camera.lifecycle.ProcessCameraProvider
 import androidx.core.content.ContextCompat
+import com.devthisable.thisable.R
 import com.devthisable.thisable.analyzer.SignLanguageAnalyzer
-import com.devthisable.thisable.analyzer.SignLanguageAnalyzer.Companion.HEIGHT
-import com.devthisable.thisable.analyzer.SignLanguageAnalyzer.Companion.WIDTH
 import com.devthisable.thisable.databinding.FragmentSignLanguageBinding
 import com.devthisable.thisable.interfaces.FeedbackSignLanguageListener
 import com.devthisable.thisable.interfaces.SignLanguageListener
 import com.devthisable.thisable.interfaces.SignlanguageContentListener
 import com.devthisable.thisable.utils.ext.gone
 import com.devthisable.thisable.utils.ext.show
+import com.devthisable.thisable.utils.ext.showToast
 import com.devthisable.thisable.utils.showAlertDialogSignLanguage
-import com.devthisable.thisable.utils.showToastMessage
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.ktx.auth
 import com.google.firebase.ktx.Firebase
@@ -49,6 +45,7 @@ class SignLanguageFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
+        //requireContext().showToast(getString(R.string.active_bisindo))
         initFirebase()
         initUI()
 
@@ -143,6 +140,8 @@ class SignLanguageFragment : Fragment() {
 
     override fun onResume() {
         super.onResume()
+        binding.ccSignLanguage.performAccessibilityAction(AccessibilityNodeInfo.ACTION_ACCESSIBILITY_FOCUS,null)
+        binding.ccSignLanguage.sendAccessibilityEvent(AccessibilityEvent.TYPE_VIEW_FOCUSED)
         startCamera()
     }
 

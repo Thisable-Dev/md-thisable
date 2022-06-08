@@ -1,14 +1,18 @@
 <?xml version="1.0" encoding="utf-8"?>
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<FrameLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
+    android:contentDescription="Halaman Penerjemah Bisindo Dipilih"
     android:layout_height="match_parent"
     android:background="@color/black"
     tools:context=".presentation.feature_sign_language.SignLanguageFragment">
 
     <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/cc_signLanguage"
         android:layout_width="match_parent"
+        android:contentDescription="Halaman Penerjemah Bisindo Dipilih"
         android:layout_height="match_parent"
         android:layout_weight="2">
 

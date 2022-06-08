@@ -7,6 +7,8 @@ import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.view.accessibility.AccessibilityEvent
+import android.view.accessibility.AccessibilityNodeInfo
 import androidx.camera.core.CameraSelector
 import androidx.camera.core.ImageAnalysis
 import androidx.camera.core.ImageCapture
@@ -15,6 +17,7 @@ import androidx.camera.lifecycle.ProcessCameraProvider
 import androidx.core.content.ContextCompat
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
+import com.devthisable.thisable.R
 import com.devthisable.thisable.analyzer.TextDetectionAnalyzer
 import com.devthisable.thisable.data.remote.ApiResponse
 import com.devthisable.thisable.data.remote.visionapi.model.FeatureItem
@@ -58,7 +61,7 @@ class TextDetectionFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-
+        //requireContext().showToast(getString(R.string.active_currency_detection))
         initFirebase()
         initUI()
 
@@ -103,6 +106,8 @@ class TextDetectionFragment : Fragment() {
 
     override fun onResume() {
         super.onResume()
+        binding.viewFinder.performAccessibilityAction(AccessibilityNodeInfo.ACTION_ACCESSIBILITY_FOCUS,null)
+        binding.viewFinder.sendAccessibilityEvent(AccessibilityEvent.TYPE_VIEW_FOCUSED)
         startCamera()
     }
 

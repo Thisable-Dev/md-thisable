@@ -141,5 +141,16 @@
     <string name="label_what_is_thisable">Apa itu Thisable ?</string>
     <string name="label_thisable_meaning">Thisable adalah start-up aplikasi aksesibilitas terpusat pertama di Indonesia. Kami memiliki tujuan untuk menyediakan layanan aplikasi aksesibilitas mobile kepada masyarakat Indonesia, terutama penyandang disabilitas untuk memudahkan difabel dalam berkomunikasi dan menjalani kehidupan sehari-hari.</string>
     <string name="raw_sound_mobil">car</string>
+    <string name="onClickInfoObjectDetection">Ketuk dan Tahan Untuk mengetahui ada apa saja didepan anda</string>
+    <string name="info_noObjectDetected">Tidak ada yang terdeteksi</string>
+    <string name="info_layout_detection_suara">Nyalakan Atau Matikan Suara</string>
+    <string name="desc_bisindo">Fitur Deteksi Bisindo</string>
+    <string name="desc_object_detection">Fitur Deteksi Objek </string>
+    <string name="desc_currency">Fitur Deteksi Uang </string>
+    <string name="text_detection">Fitur Deteksi Teks </string>
+    <string name="active_object_detection">Fitur Deteksi Objek Aktif</string>
+    <string name="active_text_detection">Fitur Deteksi Teks Aktif</string>
+    <string name="active_currency_detection">Fitur Deteksi Uang Aktif</string>
+    <string name="active_bisindo">Fitur Penerjemah Bisindo Aktif</string>
 
 </resources>

@@ -50,10 +50,7 @@ class SignLanguageAnalyzer(private val graphicOverlay: GraphicOverlay, private v
     private val overlay = graphicOverlay
     private val lens_facing = CameraSelector.LENS_FACING_BACK
 
-    var tempImage = Bitmap.createBitmap(640,
-        480,
-        Bitmap.Config.ARGB_8888
-    )
+
     init {
         subscribeSignLanguageContentListener = object : SignlanguageContentListener {
             override fun onListenContent(state: Boolean) {
@@ -63,7 +60,6 @@ class SignLanguageAnalyzer(private val graphicOverlay: GraphicOverlay, private v
 
         SignLanguageFragment.setSignLanguageContentListener(subscribeSignLanguageContentListener)
 
-        tempImage = Bitmap.createBitmap(640, 480, Bitmap.Config.ARGB_8888)
 
     }
 
@@ -75,9 +71,6 @@ class SignLanguageAnalyzer(private val graphicOverlay: GraphicOverlay, private v
         if (rotationDegress == 180 || rotationDegress == 0) overlay.setImageSourceInfo(image.image!!.width, image.image!!.height, isImageFlipped )
         else overlay.setImageSourceInfo(image.image!!.height, image.image!!.width, isImageFlipped)
         try {
-            //tempImage = Bitmap.createBitmap(640, 480, Bitmap.Config.ARGB_8888)
-            //YuvToRgbConverter(context).yuvToRgb(image.image!!, tempImage)
-            //tempImage = Bitmap.createScaledBitmap(tempImage, WIDTH, HEIGHT, false)
             val frame = InputImage.fromMediaImage(image.image!!, image.imageInfo.rotationDegrees)
             objectDetector.process(frame).addOnSuccessListener {
                 sucessListener(it)
@@ -87,7 +80,6 @@ class SignLanguageAnalyzer(private val graphicOverlay: GraphicOverlay, private v
                 }
                 .addOnCompleteListener {
                     image.close()
-                   // tempImage.eraseColor(Color.TRANSPARENT)
 
                 }
         } catch (e: Exception) {
@@ -112,7 +104,6 @@ class SignLanguageAnalyzer(private val graphicOverlay: GraphicOverlay, private v
             }
         }
 
-        //tempImage = Bitmap.createScaledBitmap(tempImage, 640, 480, false)
         overlay.postInvalidate()
     }
 

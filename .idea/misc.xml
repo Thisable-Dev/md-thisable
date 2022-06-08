@@ -33,8 +33,12 @@
         <entry key="..\:/BangkitFinal/thisable-app/app/src/main/res/layout/fragment_currency.xml" value="0.36666666666666664" />
         <entry key="..\:/BangkitFinal/thisable-app/app/src/main/res/layout/fragment_detail_profile.xml" value="0.36666666666666664" />
         <entry key="..\:/BangkitFinal/thisable-app/app/src/main/res/layout/fragment_instruction_first.xml" value="0.36666666666666664" />
+        <entry key="..\:/BangkitFinal/thisable-app/app/src/main/res/layout/fragment_instruction_second.xml" value="0.29322916666666665" />
+        <entry key="..\:/BangkitFinal/thisable-app/app/src/main/res/layout/fragment_object_detection.xml" value="0.29322916666666665" />
+        <entry key="..\:/BangkitFinal/thisable-app/app/src/main/res/layout/fragment_register.xml" value="0.29322916666666665" />
         <entry key="..\:/BangkitFinal/thisable-app/app/src/main/res/layout/fragment_sign_language.xml" value="0.36666666666666664" />
         <entry key="..\:/BangkitFinal/thisable-app/app/src/main/res/layout/fragment_success_custom_dialog.xml" value="0.36666666666666664" />
+        <entry key="..\:/BangkitFinal/thisable-app/app/src/main/res/layout/fragment_text_detection.xml" value="0.29322916666666665" />
         <entry key="..\:/BangkitFinal/thisable-app/app/src/main/res/layout/fragment_warning_custom_dialog.xml" value="0.36666666666666664" />
         <entry key="..\:/BangkitFinal/thisable-app/app/src/main/res/layout/item_layout_banner.xml" value="0.36666666666666664" />
         <entry key="..\:/BangkitFinal/thisable-app/app/src/main/res/layout/item_layout_dialog_obj.xml" value="0.36666666666666664" />

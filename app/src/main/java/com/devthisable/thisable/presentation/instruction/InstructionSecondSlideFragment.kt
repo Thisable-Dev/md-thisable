@@ -10,10 +10,11 @@ import com.devthisable.thisable.databinding.FragmentInstructionSecondBinding
 class InstructionSecondSlideFragment: Fragment() {
 
     private var _fragmentSecondSlideBinding: FragmentInstructionSecondBinding? = null
+    private val fragmentSecondSlideBinding : FragmentInstructionSecondBinding get() = _fragmentSecondSlideBinding!!
 
-    override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
+    override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View {
         _fragmentSecondSlideBinding = FragmentInstructionSecondBinding.inflate(inflater, container, false)
-        return _fragmentSecondSlideBinding?.root
+        return fragmentSecondSlideBinding.root
     }
 
 }

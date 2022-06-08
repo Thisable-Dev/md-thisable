@@ -46,9 +46,7 @@ class ObjectAnalyzer(private val graphicOverlay: GraphicOverlay, private val con
 
 
     private val hashMap = HashMap<String, String>()
-    private lateinit var localModel : LocalModel
-    private lateinit var remoteModel : CustomRemoteModel
-    private lateinit var optionsRemote : CustomObjectDetectorOptions
+    private  var localModel : LocalModel
 
 
     init {
@@ -61,37 +59,6 @@ class ObjectAnalyzer(private val graphicOverlay: GraphicOverlay, private val con
         localModel =  LocalModel.Builder()
             .setAssetFilePath("Object_class_rm_bg.tflite")
             .build()
-
-        remoteModel = CustomRemoteModel.Builder(
-            FirebaseModelSource.Builder("ssd.tflite").build()).build()
-
-        val downloadConditions = DownloadConditions.Builder()
-            .requireWifi()
-            .build()
-
-        RemoteModelManager.getInstance().isModelDownloaded(remoteModel).addOnSuccessListener { isDownloaded ->
-            lateinit var optionsRemoteBuilder : CustomObjectDetectorOptions.Builder
-            if (isDownloaded)
-            {
-                optionsRemoteBuilder = CustomObjectDetectorOptions.Builder(remoteModel)
-            }
-            else {
-                optionsRemoteBuilder = CustomObjectDetectorOptions.Builder(localModel)
-                RemoteModelManager.getInstance().download(remoteModel, downloadConditions)
-                    .addOnSuccessListener {
-                        // TodoCreate Some Interface to Provide data
-                    }
-                    .addOnFailureListener { e->
-                        Log.d("TOASTED", e.message.toString())
-                    }
-                optionsRemote = optionsRemoteBuilder.enableClassification()
-                    .enableClassification()
-                    .enableMultipleObjects()
-                    .setClassificationConfidenceThreshold(0.5f)
-                    .build()
-            }
-
-        }
 
         subscribeFeedbackListener = object : FeedbackListener {
             override fun onListenFeedback(stateSound: Boolean) {
@@ -146,9 +113,6 @@ class ObjectAnalyzer(private val graphicOverlay: GraphicOverlay, private val con
         else overlay.setImageSourceInfo(
             image.image!!.height,
             image.image!!.width, isImageFlipped)
-        Log.d("YOMAN", image.image!!.width.toString() + image.image!!.height.toString())
-       // YuvToRgbConverter(context).yuvToRgb(image.image!!, tempImage)
-        //tempImage = Bitmap.createScaledBitmap(tempImage, WIDTH, HEIGHT, false)
         val frame = InputImage.fromMediaImage(image.image!!, image.imageInfo.rotationDegrees)
         objectDetector.process(frame).addOnSuccessListener { detectedObjects ->
             overlay.clear()
@@ -175,7 +139,6 @@ class ObjectAnalyzer(private val graphicOverlay: GraphicOverlay, private val con
 
                 checkIfSoundGoingToPlay()
             }
-          //  tempImage = Bitmap.createScaledBitmap(tempImage, 640, 480, false)
             this.overlay.postInvalidate()
         }.addOnFailureListener { e->
             e.printStackTrace()
@@ -189,7 +152,6 @@ class ObjectAnalyzer(private val graphicOverlay: GraphicOverlay, private val con
         var sentences  = mutableListOf<String>()
         if (one_frame_database.isNotEmpty()) {
             for (label in one_frame_database) {
-                // Langsung Check di full databasenya
                 if (!all_object_detected_database.contains(label)) {
                     sentences.add(label)
                     all_object_detected_database.add(label)

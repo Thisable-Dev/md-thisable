@@ -6,6 +6,8 @@ import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.view.accessibility.AccessibilityEvent
+import android.view.accessibility.AccessibilityNodeInfo
 import android.widget.Toast
 import androidx.camera.core.CameraSelector
 import androidx.camera.core.ImageAnalysis
@@ -36,6 +38,7 @@ import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch
+import timber.log.Timber
 import java.util.concurrent.ExecutorService
 import java.util.concurrent.Executors
 
@@ -56,6 +59,7 @@ class ObjectDetectionFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
+        //requireContext().showToast(getString(R.string.active_object_detection))
         initFirebase()
         initUI()
 
@@ -89,9 +93,15 @@ class ObjectDetectionFragment : Fragment() {
         }
     }
 
+    override fun onPause() {
+        super.onPause()
+
+    }
     override fun onResume() {
         super.onResume()
         startCamera()
+        binding.viewFinder.performAccessibilityAction(AccessibilityNodeInfo.ACTION_ACCESSIBILITY_FOCUS,null)
+        binding.viewFinder.sendAccessibilityEvent(AccessibilityEvent.TYPE_VIEW_FOCUSED)
     }
 
     private fun setListener() {
@@ -133,7 +143,7 @@ class ObjectDetectionFragment : Fragment() {
                 if (data == requireActivity().getString(R.string.question_1_obj_detection)) {
                     Toast.makeText(
                         requireContext(),
-                        "Ketuk dan Tahan Untuk mengetahui ada apa saja didepan anda",
+                        getString(R.string.onClickInfoObjectDetection),
                         Toast.LENGTH_SHORT
                     ).show()
                 }
@@ -162,7 +172,7 @@ class ObjectDetectionFragment : Fragment() {
                                 } else {
                                     Toast.makeText(
                                         requireContext(),
-                                        "Tidak ada yang terdeteksi",
+                                        getString(R.string.info_noObjectDetected),
                                         Toast.LENGTH_SHORT
                                     ).show()
                                 }
@@ -178,7 +188,6 @@ class ObjectDetectionFragment : Fragment() {
                                     ),
                                     Toast.LENGTH_SHORT
                                 ).show()
-                                //playSoundInInterval(interval.toLong(), getListOfRaw())
                             }
                         }
                     }
@@ -212,6 +221,8 @@ class ObjectDetectionFragment : Fragment() {
                 // Unbind use cases before rebinding
                 cameraProvider.unbindAll()
                 // Bind use cases to camera
+                // Ini CUma Buat testing
+                val lol = (2  * 23).toString() + 231
                 val imageAnalyzer = ImageAnalysis.Builder()
                     .setBackpressureStrategy(ImageAnalysis.STRATEGY_KEEP_ONLY_LATEST)
                     .build()
@@ -222,7 +233,7 @@ class ObjectDetectionFragment : Fragment() {
                     this, cameraSelector, preview, imageAnalyzer
                 )
             } catch (exc: Exception) {
-                Log.e(TAG, "Use case binding failed", exc)
+                Timber.tag(TAG).e(exc, "Use case binding failed")
             }
 
         }, ContextCompat.getMainExecutor(requireContext()))
@@ -230,7 +241,7 @@ class ObjectDetectionFragment : Fragment() {
 
     companion object {
 
-        private const val TAG = "Live Object Detector Sample App"
+        private val TAG = ObjectDetectionFragment.toString()
 
         private var feedbackListenerInterface: FeedbackListener? = null
 
