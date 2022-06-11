@@ -62,7 +62,8 @@
             android:layout_height="wrap_content"
             android:layout_columnWeight="1"
             app:cardCornerRadius="@dimen/dimen_16dp"
-            app:contentPadding="@dimen/dimen_16dp">
+            app:contentPaddingBottom="@dimen/dimen_16dp"
+            app:contentPaddingTop="@dimen/dimen_16dp">
             
             <LinearLayout
                 android:layout_width="wrap_content"
@@ -94,7 +95,8 @@
             android:layout_columnWeight="1"
             android:layout_marginStart="@dimen/dimen_16dp"
             app:cardCornerRadius="@dimen/dimen_16dp"
-            app:contentPadding="@dimen/dimen_16dp">
+            app:contentPaddingBottom="@dimen/dimen_16dp"
+            app:contentPaddingTop="@dimen/dimen_16dp">
 
             <LinearLayout
                 android:layout_width="wrap_content"
@@ -125,7 +127,8 @@
             android:layout_columnWeight="1"
             android:layout_marginTop="@dimen/dimen_16dp"
             app:cardCornerRadius="@dimen/dimen_16dp"
-            app:contentPadding="@dimen/dimen_16dp">
+            app:contentPaddingBottom="@dimen/dimen_16dp"
+            app:contentPaddingTop="@dimen/dimen_16dp">
 
             <LinearLayout
                 android:layout_width="wrap_content"
@@ -157,7 +160,8 @@
             android:layout_marginStart="@dimen/dimen_16dp"
             android:layout_marginTop="@dimen/dimen_16dp"
             app:cardCornerRadius="@dimen/dimen_16dp"
-            app:contentPadding="@dimen/dimen_16dp">
+            app:contentPaddingBottom="@dimen/dimen_16dp"
+            app:contentPaddingTop="@dimen/dimen_16dp">
 
             <LinearLayout
                 android:layout_width="wrap_content"
