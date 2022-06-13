@@ -32,3 +32,13 @@ This feature to provide feedback for our application for future development. To 
   - [ML Kit](https://developers.google.com/ml-kit)
   - [Cloud Vision API](https://cloud.google.com/vision)
 
+## Project Setup
+  - ##### Prerequisites
+    - [Android Studio](https://developer.android.com/studio)
+    - [JRE & JDK](https://www.oracle.com/java/technologies/downloads/)
+  - ##### Installation
+    - Clone the project to your local storage
+      ``` git clone https://github.com/Thisable-Dev/md-thisable.git```
+    - Setup your Cloud Vision API KEY
+      ```defaultConfig {buildConfigField("String", "MAPS_TOKEN", '"Your Api Key"')}```
+
