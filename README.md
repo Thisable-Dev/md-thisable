@@ -8,10 +8,10 @@ Thisable built using Kotlin Programming Language and implemented a recommended M
 To make it easier to grant access to application, we provide login feature using Google Authentication. 
 
 ## 2. BISINDO (Bahasa Isyarat Indonesia) Translator
-This feature helps us to translate Indonesian sign language words. This feature developed by using ML Kit as a real time detection package
+This feature helps us to translate Indonesian sign language words. This feature developed by using ML Kit as a real time detection package.
 
 ## 3. Object Detection Feature
-This feature helps find objects around you. This feature developed by using ML Kit as a real time detection package
+This feature helps find objects around you. This feature developed by using ML Kit as a real time detection package.
 
 ## 4. Text Detection Feature
 This feature help read text in front of you. This feature developed by using Cloud Vision API provided by the Cloud Computing team.
