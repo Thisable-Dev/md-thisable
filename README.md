@@ -19,6 +19,16 @@ This feature help read text in front of you. This feature developed by using Clo
 ## 5. Bug Report Feature
 This feature to provide feedback for our application for future development. To store the feedback to Firestore Database, we use the REST API by the Cloud Computing team.
 
+## Project Setup
+  - ##### Prerequisites
+    - [Android Studio](https://developer.android.com/studio)
+    - [JRE & JDK](https://www.oracle.com/java/technologies/downloads/)
+  - ##### Installation
+    - Clone the project to your local storage
+      ``` git clone https://github.com/Thisable-Dev/md-thisable.git```
+    - Setup your Cloud Vision API KEY
+      ```defaultConfig {buildConfigField("String", "CLOUD_VISION_KEY", '"Your Api Key"')}```
+
 ## Used library in this project :
   - [Android Jetpack](https://developer.android.com/jetpack)
   - [Lifecycle & Livedata](https://developer.android.com/jetpack/androidx/releases/lifecycle)
@@ -31,14 +41,3 @@ This feature to provide feedback for our application for future development. To 
   - [Ok Http 3](https://square.github.io/okhttp/) 
   - [ML Kit](https://developers.google.com/ml-kit)
   - [Cloud Vision API](https://cloud.google.com/vision)
-
-## Project Setup
-  - ##### Prerequisites
-    - [Android Studio](https://developer.android.com/studio)
-    - [JRE & JDK](https://www.oracle.com/java/technologies/downloads/)
-  - ##### Installation
-    - Clone the project to your local storage
-      ``` git clone https://github.com/Thisable-Dev/md-thisable.git```
-    - Setup your Cloud Vision API KEY
-      ```defaultConfig {buildConfigField("String", "MAPS_TOKEN", '"Your Api Key"')}```
-
