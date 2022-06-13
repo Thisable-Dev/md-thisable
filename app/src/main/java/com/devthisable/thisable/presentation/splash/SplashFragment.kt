@@ -12,7 +12,6 @@ import com.devthisable.thisable.R
 import com.devthisable.thisable.databinding.FragmentSplashBinding
 import com.devthisable.thisable.utils.ConstVal.SPLASH_DELAY_TIME
 import com.devthisable.thisable.utils.SharedPrefManager
-import com.devthisable.thisable.utils.ext.showToast
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.ktx.auth
 import com.google.firebase.ktx.Firebase

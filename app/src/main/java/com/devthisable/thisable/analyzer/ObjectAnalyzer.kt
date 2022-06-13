@@ -4,7 +4,6 @@ import android.annotation.SuppressLint
 import android.content.Context
 import android.graphics.Bitmap
 import android.graphics.Color
-import android.util.Log
 import androidx.camera.core.CameraSelector
 import androidx.camera.core.ImageAnalysis
 import androidx.camera.core.ImageProxy
@@ -14,22 +13,15 @@ import com.devthisable.thisable.presentation.feature_object.ObjectDetectionFragm
 import com.devthisable.thisable.utils.GraphicOverlay
 import com.devthisable.thisable.utils.ObjectGraphic
 import com.devthisable.thisable.utils.SoundPlayer
-import com.devthisable.thisable.utils.image_utility.YuvToRgbConverter
-import com.devthisable.thisable.utils.showToastMessage
-import com.google.mlkit.common.model.CustomRemoteModel
-import com.google.mlkit.common.model.DownloadConditions
 import com.google.mlkit.common.model.LocalModel
-import com.google.mlkit.common.model.RemoteModelManager
-import com.google.mlkit.linkfirebase.FirebaseModelSource
 import com.google.mlkit.vision.common.InputImage
-import com.google.mlkit.vision.objects.DetectedObject
 import com.google.mlkit.vision.objects.ObjectDetection
 import com.google.mlkit.vision.objects.custom.CustomObjectDetectorOptions
-import kotlinx.coroutines.*
-import timber.log.Timber
-import kotlin.collections.HashMap
-import kotlin.text.StringBuilder
-
+import kotlinx.coroutines.CoroutineScope
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.async
+import kotlinx.coroutines.delay
+import kotlinx.coroutines.launch
 
 class ObjectAnalyzer(private val graphicOverlay: GraphicOverlay, private val context : Context) : ImageAnalysis.Analyzer {
 

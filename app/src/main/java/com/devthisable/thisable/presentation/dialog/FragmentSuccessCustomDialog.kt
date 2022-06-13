@@ -9,7 +9,6 @@ import android.view.ViewGroup
 import android.view.WindowManager
 import androidx.fragment.app.DialogFragment
 import androidx.navigation.fragment.NavHostFragment
-import com.devthisable.thisable.R
 import com.devthisable.thisable.databinding.FragmentSuccessCustomDialogBinding
 
 class FragmentSuccessCustomDialog: DialogFragment() {

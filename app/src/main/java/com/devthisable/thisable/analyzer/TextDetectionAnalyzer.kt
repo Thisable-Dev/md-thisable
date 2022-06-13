@@ -3,11 +3,9 @@ package com.devthisable.thisable.analyzer
 import android.annotation.SuppressLint
 import android.content.Context
 import android.graphics.Bitmap
-import android.util.Log
 import androidx.camera.core.ImageAnalysis
 import androidx.camera.core.ImageProxy
 import com.devthisable.thisable.utils.image_utility.YuvToRgbConverter
-
 
 class TextDetectionAnalyzer(private val context: Context) : ImageAnalysis.Analyzer {
 

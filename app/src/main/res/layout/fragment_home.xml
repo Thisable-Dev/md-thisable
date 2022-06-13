@@ -14,7 +14,7 @@
 
     <TextView
         android:id="@+id/tvWelcomeWithName"
-        android:text="@string/label_dummy_welcome"
+        android:text="@string/label_welcome_home"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:textColor="@color/white"

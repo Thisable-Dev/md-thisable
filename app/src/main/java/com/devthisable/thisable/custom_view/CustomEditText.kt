@@ -13,10 +13,6 @@ import androidx.appcompat.widget.AppCompatEditText
 import androidx.core.content.ContextCompat
 import com.devthisable.thisable.R
 import com.devthisable.thisable.interfaces.FeedbackSignLanguageListener
-import com.devthisable.thisable.utils.ext.hide
-import com.devthisable.thisable.utils.ext.show
-import com.devthisable.thisable.utils.showAlertDialogSignLanguage
-import org.w3c.dom.Text
 
 class CustomEditText  : AppCompatEditText, View.OnTouchListener {
     private lateinit var clearButtonImage : Drawable

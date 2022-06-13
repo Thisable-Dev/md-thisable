@@ -6,9 +6,8 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.devthisable.thisable.data.remote.ApiResponse
 import com.devthisable.thisable.data.remote.general.BugReportResponse
-import com.devthisable.thisable.data.repository.GeneralRepository
 import com.devthisable.thisable.data.remote.general.report.ReportBugBody
-import com.devthisable.thisable.data.remote.visionapi.model.TextDetectionResponse
+import com.devthisable.thisable.data.repository.GeneralRepository
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.launch
 import javax.inject.Inject

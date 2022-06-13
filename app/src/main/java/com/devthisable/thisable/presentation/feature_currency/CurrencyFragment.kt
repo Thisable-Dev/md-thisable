@@ -22,16 +22,11 @@ import com.devthisable.thisable.interfaces.FeedbackListener
 import com.devthisable.thisable.interfaces.ObjectOptionInterface
 import com.devthisable.thisable.utils.ServeListQuestion
 import com.devthisable.thisable.utils.countTheObj
-import com.devthisable.thisable.utils.ext.gone
-import com.devthisable.thisable.utils.ext.show
 import com.devthisable.thisable.utils.ext.showToast
 import com.devthisable.thisable.utils.makeItOneString
 import com.devthisable.thisable.utils.showAlertDialogObjDetection
 import com.devthisable.thisable.utils.showToastMessage
 import com.devthisable.thisable.utils.sumTheDetectedCurrency
-import com.google.firebase.auth.FirebaseAuth
-import com.google.firebase.auth.ktx.auth
-import com.google.firebase.ktx.Firebase
 import java.util.concurrent.ExecutorService
 import java.util.concurrent.Executors
 
@@ -43,8 +38,6 @@ class CurrencyFragment : Fragment() {
     private lateinit var currencyAnalyzer : CurrencyAnalyzer
     private var stateSound : Boolean = false
 
-    private lateinit var auth: FirebaseAuth
-
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?): View {
@@ -55,8 +48,6 @@ class CurrencyFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         //requireContext().showToast(getString(R.string.active_currency_detection))
-        initFirebase()
-        initUI()
 
         init()
         initPermission()
@@ -74,18 +65,6 @@ class CurrencyFragment : Fragment() {
         }
         else {
             ActivityCompat.requestPermissions(requireActivity(), REQUIRED_PERMISSION, PERMISSION_CODE)
-        }
-    }
-
-    private fun initFirebase() {
-        auth = Firebase.auth
-    }
-
-    private fun initUI() {
-        if (auth.currentUser != null) {
-            binding.ivGoogle.gone()
-        } else {
-            binding.ivGoogle.show()
         }
     }
 
@@ -140,7 +119,7 @@ class CurrencyFragment : Fragment() {
             // Check it
             if (!stateSound) stateSound = true
             else stateSound = false
-            feedbackListener?.onListenFeedback(stateSound)
+            feedbackListener.onListenFeedback(stateSound)
             changeDrawable()
         }
         binding.viewFinder.setOnLongClickListener{

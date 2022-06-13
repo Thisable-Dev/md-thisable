@@ -11,6 +11,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         app:cardCornerRadius="@dimen/dimen_16dp"
+        app:cardElevation="@dimen/dimen_4dp"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent">
 
@@ -18,7 +19,7 @@
             android:id="@+id/imgBanner"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            tools:src="@drawable/banner1"/>
+            tools:src="@drawable/thisable_banner"/>
 
     </androidx.cardview.widget.CardView>
 

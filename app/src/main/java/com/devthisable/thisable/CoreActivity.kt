@@ -4,11 +4,9 @@ import android.os.Bundle
 import android.widget.ImageView
 import androidx.annotation.StringRes
 import androidx.appcompat.app.AppCompatActivity
-import androidx.navigation.fragment.NavHostFragment
 import androidx.viewpager2.widget.ViewPager2
 import com.devthisable.thisable.adapter.SectionPagerAdapter
 import com.devthisable.thisable.databinding.ActivityCoreBinding
-import com.devthisable.thisable.utils.ext.showToast
 import com.google.android.material.tabs.TabLayout
 import com.google.android.material.tabs.TabLayoutMediator
 import dagger.hilt.android.AndroidEntryPoint

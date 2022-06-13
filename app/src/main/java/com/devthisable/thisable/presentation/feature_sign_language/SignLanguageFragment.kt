@@ -4,30 +4,23 @@ import android.Manifest
 import android.annotation.SuppressLint
 import android.os.Bundle
 import android.util.DisplayMetrics
-
-import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.view.accessibility.AccessibilityEvent
 import android.view.accessibility.AccessibilityNodeInfo
-import androidx.camera.core.*
-
+import androidx.camera.core.CameraSelector
+import androidx.camera.core.ImageAnalysis
+import androidx.camera.core.Preview
 import androidx.camera.lifecycle.ProcessCameraProvider
 import androidx.core.content.ContextCompat
-import com.devthisable.thisable.R
+import androidx.fragment.app.Fragment
 import com.devthisable.thisable.analyzer.SignLanguageAnalyzer
 import com.devthisable.thisable.databinding.FragmentSignLanguageBinding
 import com.devthisable.thisable.interfaces.FeedbackSignLanguageListener
 import com.devthisable.thisable.interfaces.SignLanguageListener
 import com.devthisable.thisable.interfaces.SignlanguageContentListener
-import com.devthisable.thisable.utils.ext.gone
-import com.devthisable.thisable.utils.ext.show
-import com.devthisable.thisable.utils.ext.showToast
 import com.devthisable.thisable.utils.showAlertDialogSignLanguage
-import com.google.firebase.auth.FirebaseAuth
-import com.google.firebase.auth.ktx.auth
-import com.google.firebase.ktx.Firebase
 import java.util.concurrent.ExecutorService
 import java.util.concurrent.Executors
 
@@ -40,29 +33,12 @@ class SignLanguageFragment : Fragment() {
     private lateinit var keyboardCustomListener: FeedbackSignLanguageListener
     private lateinit var signLanguageListener: SignLanguageListener
 
-    private lateinit var auth: FirebaseAuth
-
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-
         //requireContext().showToast(getString(R.string.active_bisindo))
-        initFirebase()
-        initUI()
 
         init()
         startCamera()
-    }
-
-    private fun initFirebase() {
-        auth = Firebase.auth
-    }
-
-    private fun initUI() {
-        if (auth.currentUser != null) {
-            binding.ivGoogle.gone()
-        } else {
-            binding.ivGoogle.show()
-        }
     }
 
     override fun onCreateView(

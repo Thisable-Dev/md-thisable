@@ -4,9 +4,8 @@ import android.graphics.Canvas
 import android.graphics.Color
 import android.graphics.Paint
 import android.graphics.RectF
-import com.devthisable.thisable.analyzer.ObjectAnalyzer
 import com.google.mlkit.vision.objects.DetectedObject
-import java.util.*
+import java.util.Locale
 
 class ObjectGraphic(var graphicOverlay : GraphicOverlay, private var obj : DetectedObject): GraphicOverlay.Graphic(graphicOverlay){
 

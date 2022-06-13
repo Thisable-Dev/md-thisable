@@ -1,17 +1,9 @@
 package com.devthisable.thisable.presentation.home
 
-import android.app.AlertDialog
-import android.content.DialogInterface
-import android.content.pm.PackageManager
 import android.os.Bundle
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.Toast
-import androidx.activity.result.ActivityResultLauncher
-import androidx.activity.result.contract.ActivityResultContracts
-import androidx.core.content.ContextCompat
 import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
@@ -19,16 +11,17 @@ import androidx.recyclerview.widget.LinearSnapHelper
 import com.devthisable.thisable.R
 import com.devthisable.thisable.data.dummy.BannerDummy.getBannerList
 import com.devthisable.thisable.databinding.FragmentHomeBinding
-import com.devthisable.thisable.presentation.feature_object.ObjectDetectionFragment
-import com.devthisable.thisable.utils.showToastMessage
-import java.security.Permission
-import java.security.Permissions
-import java.util.jar.Manifest
+import com.google.firebase.auth.FirebaseAuth
+import com.google.firebase.auth.ktx.auth
+import com.google.firebase.ktx.Firebase
 
 class HomeFragment: Fragment() {
 
     private var _fragmentHomeBinding: FragmentHomeBinding? = null
     private val binding get() = _fragmentHomeBinding!!
+
+    private lateinit var auth: FirebaseAuth
+
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         _fragmentHomeBinding = FragmentHomeBinding.inflate(inflater, container, false)
         return _fragmentHomeBinding?.root
@@ -36,19 +29,28 @@ class HomeFragment: Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+
+        initFirebase()
         initUI()
         loadBanner()
         setOnClickListener()
+    }
+
+
+    private fun initFirebase() {
+        auth = Firebase.auth
     }
 
     private fun initUI() {
         val snapHelper = LinearSnapHelper()
         snapHelper.attachToRecyclerView(binding.rvBanner)
         binding.rvBanner.layoutManager = LinearLayoutManager(context, LinearLayoutManager.HORIZONTAL, false)
+
+        val name = auth.currentUser?.displayName.toString().split(" ")
+        binding.tvWelcomeWithName.text = getString(R.string.label_welcome_home, name[0])
     }
 
     private fun setOnClickListener () {
-
         var bundleData = Bundle()
         binding.cvDeteksiObjek.setOnClickListener {
             bundleData.putString("EXTRA_DATA",resources.getString(R.string.action_object_detection))

@@ -2,7 +2,6 @@ package com.devthisable.thisable.presentation.feature_object
 
 import android.app.Dialog
 import android.os.Bundle
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -26,14 +25,9 @@ import com.devthisable.thisable.interfaces.ObjectOptionInterface
 import com.devthisable.thisable.utils.GraphicOverlay
 import com.devthisable.thisable.utils.ServeListQuestion
 import com.devthisable.thisable.utils.countTheObj
-import com.devthisable.thisable.utils.ext.gone
-import com.devthisable.thisable.utils.ext.show
 import com.devthisable.thisable.utils.ext.showToast
 import com.devthisable.thisable.utils.makeItOneString
 import com.devthisable.thisable.utils.showToastMessage
-import com.google.firebase.auth.FirebaseAuth
-import com.google.firebase.auth.ktx.auth
-import com.google.firebase.ktx.Firebase
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.delay
@@ -54,14 +48,10 @@ class ObjectDetectionFragment : Fragment() {
     private var stateCamera: Boolean = false
     private lateinit var objAnalyzer: ObjectAnalyzer
 
-    private lateinit var auth: FirebaseAuth
-
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
         //requireContext().showToast(getString(R.string.active_object_detection))
-        initFirebase()
-        initUI()
 
         graphicOverlay = binding.graphicOverlay
         cameraExecutor = Executors.newSingleThreadExecutor()
@@ -81,22 +71,6 @@ class ObjectDetectionFragment : Fragment() {
         return binding.root
     }
 
-    private fun initFirebase() {
-        auth = Firebase.auth
-    }
-
-    private fun initUI() {
-        if (auth.currentUser != null) {
-            binding.ivGoogle.gone()
-        } else {
-            binding.ivGoogle.show()
-        }
-    }
-
-    override fun onPause() {
-        super.onPause()
-
-    }
     override fun onResume() {
         super.onResume()
         startCamera()

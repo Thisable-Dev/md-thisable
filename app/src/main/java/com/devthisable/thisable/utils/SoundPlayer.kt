@@ -3,10 +3,8 @@ package com.devthisable.thisable.utils
 import android.content.Context
 import android.media.AudioAttributes
 import android.media.MediaPlayer
-import android.util.Log
 import com.devthisable.thisable.R
 import java.io.IOException
-import java.lang.IllegalStateException
 
 class SoundPlayer(private val context : Context ) {
 

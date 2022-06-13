@@ -2,11 +2,6 @@ package com.devthisable.thisable.analyzer
 
 import android.annotation.SuppressLint
 import android.content.Context
-import android.graphics.Bitmap
-import android.graphics.BitmapFactory
-import android.graphics.Color
-import android.graphics.Matrix
-import android.util.Log
 import androidx.camera.core.CameraSelector
 import androidx.camera.core.ImageAnalysis
 import androidx.camera.core.ImageProxy
@@ -15,15 +10,12 @@ import com.devthisable.thisable.interfaces.SignlanguageContentListener
 import com.devthisable.thisable.presentation.feature_sign_language.SignLanguageFragment
 import com.devthisable.thisable.utils.GraphicOverlay
 import com.devthisable.thisable.utils.ObjectGraphic
-import com.devthisable.thisable.utils.SoundPlayer
-import com.devthisable.thisable.utils.image_utility.YuvToRgbConverter
 import com.google.mlkit.common.model.LocalModel
 import com.google.mlkit.vision.common.InputImage
 import com.google.mlkit.vision.objects.DetectedObject
 import com.google.mlkit.vision.objects.ObjectDetection
 import com.google.mlkit.vision.objects.ObjectDetector
 import com.google.mlkit.vision.objects.custom.CustomObjectDetectorOptions
-import kotlinx.coroutines.*
 
 class SignLanguageAnalyzer(private val graphicOverlay: GraphicOverlay, private val context: Context) : ImageAnalysis.Analyzer {
 
