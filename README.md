@@ -16,7 +16,7 @@ This feature helps find objects around you.
 ## 4. Text Detection Feature
 This feature help read text in front of you.
 
-# 5. Bug Report Feature
+## 5. Bug Report Feature
 This feature to provide feedback for our application for future development
 
 ## Used library in this project :
