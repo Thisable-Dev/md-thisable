@@ -14,10 +14,10 @@ This feature helps us to translate Indonesian sign language words. This feature 
 This feature helps find objects around you. This feature developed by using ML Kit as a real time detection package
 
 ## 4. Text Detection Feature
-This feature help read text in front of you. This feature developed by using Cloud Vision API provided by the CC team.
+This feature help read text in front of you. This feature developed by using Cloud Vision API provided by the Cloud Computing team.
 
 ## 5. Bug Report Feature
-This feature to provide feedback for our application for future development. To store the feedback to Firestore Database, we use the REST API by the CC team.
+This feature to provide feedback for our application for future development. To store the feedback to Firestore Database, we use the REST API by the Cloud Computing team.
 
 ## Used library in this project :
   - [Android Jetpack](https://developer.android.com/jetpack)
