@@ -7,7 +7,7 @@
 
     <fragment
         android:id="@+id/splashFragment"
-        android:name="com.devthisable.thisable.presentation.splash.SplashFragment"
+        android:name="com.devtedi.tedi.presentation.splash.SplashFragment"
         android:label="SplashFragment"
         tools:layout="@layout/fragment_splash">
         <action
@@ -29,7 +29,7 @@
     </fragment>
     <fragment
         android:id="@+id/onBoardingFragment"
-        android:name="com.devthisable.thisable.presentation.onboarding.OnBoardingFragment"
+        android:name="com.devtedi.tedi.presentation.onboarding.OnBoardingFragment"
         android:label="fragment_onboarding"
         tools:layout="@layout/fragment_onboarding" >
         <action
@@ -63,7 +63,7 @@
     </fragment>
     <fragment
         android:id="@+id/homeFragment"
-        android:name="com.devthisable.thisable.presentation.home.HomeFragment"
+        android:name="com.devtedi.tedi.presentation.home.HomeFragment"
         android:label="HomeFragment" >
         <action
             android:id="@+id/action_homeFragment_to_textDetectionFragment"
@@ -83,7 +83,7 @@
     </fragment>
     <fragment
         android:id="@+id/profileFragment"
-        android:name="com.devthisable.thisable.presentation.profile.ProfileFragment"
+        android:name="com.devtedi.tedi.presentation.profile.ProfileFragment"
         android:label="ProfileFragment" >
         <action
             android:id="@+id/action_profileFragment_to_bugReportFragment"
@@ -109,11 +109,11 @@
 
     <fragment
         android:id="@+id/thisableFragment"
-        android:name="com.devthisable.thisable.presentation.thisable.ThisableFragment"
+        android:name="com.devtedi.tedi.presentation.thisable.ThisableFragment"
         android:label="ThisableFragment" />
     <fragment
         android:id="@+id/bugReportFragment"
-        android:name="com.devthisable.thisable.presentation.bugreport.BugReportFragment"
+        android:name="com.devtedi.tedi.presentation.bugreport.BugReportFragment"
         android:label="BugReportFragment" >
         <action
             android:id="@+id/action_bugReportFragment_to_fragmentSuccessCustomDialog"
@@ -121,7 +121,7 @@
     </fragment>
     <fragment
         android:id="@+id/instructionFragment"
-        android:name="com.devthisable.thisable.presentation.instruction.InstructionFragment"
+        android:name="com.devtedi.tedi.presentation.instruction.InstructionFragment"
         android:label="InstructionFragment" >
         <action
             android:id="@+id/action_instructionFragment_to_homeFragment"
@@ -134,7 +134,7 @@
     </fragment>
     <dialog
         android:id="@+id/fragmentWarningCustomDialog"
-        android:name="com.devthisable.thisable.presentation.dialog.FragmentWarningCustomDialog"
+        android:name="com.devtedi.tedi.presentation.dialog.FragmentWarningCustomDialog"
         android:label="FragmentWarningCustomDialog" >
         <action
             android:id="@+id/action_fragmentWarningCustomDialog_to_homeFragment"
@@ -152,12 +152,12 @@
     </dialog>
     <activity
         android:id="@+id/coreActivity"
-        android:name="com.devthisable.thisable.CoreActivity"
+        android:name="com.devtedi.tedi.CoreActivity"
         android:label="activity_core"
         tools:layout="@layout/activity_core" />
     <fragment
         android:id="@+id/currencyFragment"
-        android:name="com.devthisable.thisable.presentation.feature_currency.CurrencyFragment"
+        android:name="com.devtedi.tedi.presentation.feature_currency.CurrencyFragment"
         android:label="fragment_currency"
         tools:layout="@layout/fragment_currency" >
         <action
@@ -166,7 +166,7 @@
     </fragment>
     <fragment
         android:id="@+id/signLanguageFragment"
-        android:name="com.devthisable.thisable.presentation.feature_sign_language.SignLanguageFragment"
+        android:name="com.devtedi.tedi.presentation.feature_sign_language.SignLanguageFragment"
         android:label="fragment_sign_language"
         tools:layout="@layout/fragment_sign_language" >
         <action
@@ -175,7 +175,7 @@
     </fragment>
     <fragment
         android:id="@+id/textDetectionFragment"
-        android:name="com.devthisable.thisable.presentation.feature_text.TextDetectionFragment"
+        android:name="com.devtedi.tedi.presentation.feature_text.TextDetectionFragment"
         android:label="fragment_text_detection"
         tools:layout="@layout/fragment_text_detection" >
         <action
@@ -184,7 +184,7 @@
     </fragment>
     <fragment
         android:id="@+id/objectDetectionFragment2"
-        android:name="com.devthisable.thisable.presentation.feature_object.ObjectDetectionFragment"
+        android:name="com.devtedi.tedi.presentation.feature_object.ObjectDetectionFragment"
         android:label="fragment_object_detection"
         tools:layout="@layout/fragment_object_detection" >
         <action
@@ -193,23 +193,23 @@
     </fragment>
     <dialog
         android:id="@+id/fragmentSuccessCustomDialog"
-        android:name="com.devthisable.thisable.presentation.dialog.FragmentSuccessCustomDialog"
+        android:name="com.devtedi.tedi.presentation.dialog.FragmentSuccessCustomDialog"
         android:label="FragmentSuccessCustomDialog" />
     <fragment
         android:id="@+id/aboutFragment"
-        android:name="com.devthisable.thisable.presentation.about.AboutFragment"
+        android:name="com.devtedi.tedi.presentation.about.AboutFragment"
         android:label="AboutFragment" />
     <fragment
         android:id="@+id/termAgreementFragment"
-        android:name="com.devthisable.thisable.presentation.termagreement.TermAgreementFragment"
+        android:name="com.devtedi.tedi.presentation.termagreement.TermAgreementFragment"
         android:label="TermAgreementFragment" />
     <fragment
         android:id="@+id/helpFragment"
-        android:name="com.devthisable.thisable.presentation.help.HelpFragment"
+        android:name="com.devtedi.tedi.presentation.help.HelpFragment"
         android:label="HelpFragment" />
     <fragment
         android:id="@+id/fragmentFQA"
-        android:name="com.devthisable.thisable.presentation.faq.FragmentFQA"
+        android:name="com.devtedi.tedi.presentation.faq.FragmentFQA"
         android:label="FragmentFQA" >
         <action
             android:id="@+id/action_fragmentFQA_to_bugReportFragment"

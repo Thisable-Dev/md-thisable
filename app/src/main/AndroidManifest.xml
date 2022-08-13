@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="com.devthisable.thisable">
+    package="com.devtedi.tedi">
 
     <uses-permission android:name="android.permission.INTERNET"/>
     <uses-permission android:name="android.permission.CAMERA"/>
@@ -14,11 +14,11 @@
         android:icon="@mipmap/ic_launcher"
         android:label="@string/app_name"
         android:supportsRtl="true"
-        android:name="com.devthisable.thisable.base.ThisableApplication"
+        android:name="com.devtedi.tedi.base.ThisableApplication"
         android:theme="@style/Theme.Thisable"
         android:usesCleartextTraffic="true">
         <activity
-            android:name="com.devthisable.thisable.MainActivity"
+            android:name="com.devtedi.tedi.MainActivity"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -26,7 +26,7 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".CoreActivity">
+        <activity android:name="com.devtedi.tedi.CoreActivity">
             android:windowSoftInputMode="adjustNothing">
 
         </activity>

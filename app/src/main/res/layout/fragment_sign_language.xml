@@ -26,7 +26,7 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
 
-        <com.devthisable.thisable.utils.GraphicOverlay
+        <com.devtedi.tedi.utils.GraphicOverlay
             android:id="@+id/graphicOverlay"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -55,7 +55,7 @@
                     android:text="Terjemahan"
                     android:textColor="@color/black" />
 
-                <com.devthisable.thisable.custom_view.CustomEditText
+                <com.devtedi.tedi.custom_view.CustomEditText
                     android:id="@+id/et_output_terjemahan"
                     android:layout_width="match_parent"
                     android:focusable="false"
