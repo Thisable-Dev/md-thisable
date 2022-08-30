@@ -6,8 +6,10 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.navigation.findNavController
+import androidx.navigation.fragment.findNavController
 import com.devtedi.tedi.R
 import com.devtedi.tedi.databinding.FragmentInstructionBinding
+import com.devtedi.tedi.utils.ext.click
 
 class InstructionFragment: Fragment() {
 
@@ -32,8 +34,8 @@ class InstructionFragment: Fragment() {
     }
 
     private fun initAction() {
-        binding.btnUnderstand.setOnClickListener {
-            it.findNavController().navigate(R.id.action_instructionFragment_to_homeFragment)
+        binding.btnUnderstand.click {
+            findNavController().navigate(R.id.action_instructionFragment_to_homeFragment)
         }
     }
 

@@ -28,11 +28,10 @@
         android:id="@+id/tabs_core_feature"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        app:tabIndicatorColor="@android:color/transparent"
         android:layout_alignParentBottom="true"
+        android:layout_marginBottom="15dp"
         android:background="@android:color/transparent"
         app:tabIconTint="@android:color/transparent"
-        android:layout_marginBottom="15dp"
-        />
+        app:tabIndicatorColor="@android:color/transparent" />
 
 </RelativeLayout>

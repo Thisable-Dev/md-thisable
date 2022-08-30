@@ -19,6 +19,14 @@ fun View.show() {
     visibility = View.VISIBLE
 }
 
+fun View.disable () {
+    isEnabled = false
+}
+
+fun View.enable() {
+    isEnabled = true
+}
+
 fun ImageView.setImageUrl(url: String) {
     Glide.with(context)
         .load(url)
@@ -55,4 +63,8 @@ fun View.popTap(){
 
 fun EditText.clearText() {
     setText("")
+}
+
+infix fun View.click(click: () -> Unit) {
+    setOnClickListener { click() }
 }

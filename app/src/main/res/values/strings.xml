@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">Thisable</string>
+    <string name="app_name">TeDi</string>
     <string name="label_version">v.0.0.1</string>
     <string name="label_welcome">Selamat Datang !</string>
     <string name="label_login_with_email_and_password">Silakan masuk dengan email dan password kamu.</string>
@@ -23,15 +23,15 @@
     <string name="label_have_account">Sudah punya akun ?</string>
     <string name="label_login_here">Masuk disini</string>
     <string name="label_skip">Skip ></string>
-    <string name="label_welcome_enablers">Selamat Datang, Enablers!</string>
-    <string name="label_message_for_enablers">Salam hangat dari kami untuk para pengguna aplikasi ini, Enablers.</string>
+    <string name="label_welcome_enablers">Selamat Datang, TeDinians!</string>
+    <string name="label_message_for_enablers">Salam hangat dari kami untuk para pengguna aplikasi ini, TeDinians.</string>
     <string name="action_lanjut">Lanjut</string>
     <string name="label_enjoy_feature">Nikmati berbagai fitur aksesibilitas!</string>
     <string name="label_enjoy_the_feature">Aplikasi ini memiliki 4 fitur, yaitu Penerjemah BISINDO, Pendeteksi Mata Uang, Pendeteksi Objek, dan Pendeteksi Teks.</string>
     <string name="action_start">Mulai</string>
     <string name="action_finish">Selesai</string>
     <string name="menu_home">Beranda</string>
-    <string name="menu_thisable">Thisable</string>
+    <string name="menu_TeDi">TeDi</string>
     <string name="menu_profile">Profil</string>
     <string name="label_dummy_welcome">Selamat Datang, Bintang !</string>
     <string name="label_feature">Fitur</string>
@@ -56,10 +56,10 @@
     <string name="label_new_password">Password baru</string>
     <string name="action_save">Simpan</string>
     <string name="title_my_account">Akun Saya</string>
-    <string name="label_activate_talkback">Ketuk disini untuk mengaktfikan fitur Talkback</string>
+    <string name="label_activate_talkback"><u>Ketuk disini untuk mengaktfikan fitur Talkback</u></string>
     <string name="label_try_ayo_camera">Coba AYO Kamera!</string>
-    <string name="label_thisable_agreement">Dengan membuat akun berarti kamu setuju dengan <b><u>Ketentuan Layanan Thisable</u></b></string>
-    <string name="label_about_thisable">Tentang Thisable</string>
+    <string name="label_TeDi_agreement">Dengan membuat akun berarti kamu setuju dengan <b><u>Ketentuan Layanan TeDi</u></b></string>
+    <string name="label_about_TeDi">Tentang TeDi</string>
     <string name="label_bug_happen">Terjadi masalah ?</string>
     <string name="label_help_to_report_bug">Bantu kami menjadi lebih baik dengan laporkan masalahmu!</string>
     <string name="label_name">Nama*</string>
@@ -67,7 +67,7 @@
     <string name="label_report">Laporan</string>
     <string name="label_required">*Wajib diisi</string>
     <string name="label_user_understand">Saya Mengerti</string>
-    <string name="label_term_and_agreement"><b>Syarat &amp; Ketentuan</b>\nDiperbarui pada 2022-06-10\n\n<b>Ketentuan Umum</b>\nDengan mengakses dan melakukan pemesanan dengan , Anda mengonfirmasi bahwa Anda setuju dan terikat dengan persyaratan layanan yang tercantum dalam Syarat &amp; Ketentuan yang diuraikan di bawah ini. Persyaratan ini berlaku untuk seluruh situs web dan email atau jenis komunikasi lainnya antara Anda.\n\nDalam keadaan apa pun tim tidak bertanggung jawab atas segala kerusakan langsung, tidak langsung, khusus, insidental atau konsekuensial, termasuk, namun tidak terbatas pada, kehilangan data atau keuntungan, yang timbul dari penggunaan, atau ketidakmampuan untuk menggunakan, materi di situs ini. , bahkan jika tim atau perwakilan resmi telah diberitahu tentang kemungkinan kerusakan tersebut. Jika penggunaan Anda atas materi dari situs ini mengakibatkan perlunya servis, perbaikan, atau koreksi peralatan atau data, Anda menanggung semua biayanya.\n\nTidak akan bertanggung jawab atas hasil apa pun yang mungkin terjadi selama penggunaan sumber daya kami. Kami berhak untuk mengubah harga dan merevisi kebijakan penggunaan sumber daya setiap saat.\n\n<b>Lisensi</b>\nThisable memberi Anda lisensi terbatas yang dapat dibatalkan, non-eksklusif, tidak dapat dialihkan, untuk mengunduh, menginstal, dan menggunakan layanan kami secara ketat sesuai dengan ketentuan Perjanjian ini. Syarat &amp; Ketentuan ini adalah kontrak antara Anda dan Thisable (dalam Syarat &amp; Ketentuan ini disebut sebagai "Thisable", atau "milik kami"), penyedia situs web Thisable dan layanan yang dapat diakses dari situs web Thisable (yang secara bersama-sama disebut dalam Syarat &amp; Ketentuan ini sebagai "Layanan Thisable").\n\nAnda setuju untuk terikat dengan Syarat &amp; Ketentuan ini. Jika Anda tidak menyetujui Syarat &amp; Ketentuan ini, mohon untuk tidak menggunakan Layanan. Dalam Syarat &amp; Ketentuan ini, "Anda" merujuk kepada Anda sebagai individu dan entitas yang Anda wakili. Jika Anda melanggar salah satu dari Syarat &amp; Ketentuan ini, kami berhak untuk membatalkan akun Anda atau memblokir akses ke akun Anda tanpa pemberitahuan.</string>
+    <string name="label_term_and_agreement"><b>Syarat &amp; Ketentuan</b>\nDiperbarui pada 2022-06-10\n\n<b>Ketentuan Umum</b>\nDengan mengakses dan melakukan pemesanan dengan , Anda mengonfirmasi bahwa Anda setuju dan terikat dengan persyaratan layanan yang tercantum dalam Syarat &amp; Ketentuan yang diuraikan di bawah ini. Persyaratan ini berlaku untuk seluruh situs web dan email atau jenis komunikasi lainnya antara Anda.\n\nDalam keadaan apa pun tim tidak bertanggung jawab atas segala kerusakan langsung, tidak langsung, khusus, insidental atau konsekuensial, termasuk, namun tidak terbatas pada, kehilangan data atau keuntungan, yang timbul dari penggunaan, atau ketidakmampuan untuk menggunakan, materi di situs ini. , bahkan jika tim atau perwakilan resmi telah diberitahu tentang kemungkinan kerusakan tersebut. Jika penggunaan Anda atas materi dari situs ini mengakibatkan perlunya servis, perbaikan, atau koreksi peralatan atau data, Anda menanggung semua biayanya.\n\nTidak akan bertanggung jawab atas hasil apa pun yang mungkin terjadi selama penggunaan sumber daya kami. Kami berhak untuk mengubah harga dan merevisi kebijakan penggunaan sumber daya setiap saat.\n\n<b>Lisensi</b>\nTeDi memberi Anda lisensi terbatas yang dapat dibatalkan, non-eksklusif, tidak dapat dialihkan, untuk mengunduh, menginstal, dan menggunakan layanan kami secara ketat sesuai dengan ketentuan Perjanjian ini. Syarat &amp; Ketentuan ini adalah kontrak antara Anda dan TeDi (dalam Syarat &amp; Ketentuan ini disebut sebagai "TeDi", atau "milik kami"), penyedia situs web TeDi dan layanan yang dapat diakses dari situs web TeDi (yang secara bersama-sama disebut dalam Syarat &amp; Ketentuan ini sebagai "Layanan TeDi").\n\nAnda setuju untuk terikat dengan Syarat &amp; Ketentuan ini. Jika Anda tidak menyetujui Syarat &amp; Ketentuan ini, mohon untuk tidak menggunakan Layanan. Dalam Syarat &amp; Ketentuan ini, "Anda" merujuk kepada Anda sebagai individu dan entitas yang Anda wakili. Jika Anda melanggar salah satu dari Syarat &amp; Ketentuan ini, kami berhak untuk membatalkan akun Anda atau memblokir akses ke akun Anda tanpa pemberitahuan.</string>
     <string name="label_welcome_home">Selamat Datang, %1$s</string>
 
     <string name="question_1_obj_detection"> Ada apa saja Didepan saya ?</string>
@@ -121,16 +121,16 @@
     <string name="raw_sound_buah">fruit</string>
     <string name="raw_sound_motor">motorbike</string>
     <string name="raw_sound_bunga">flower</string>
-    <string name="title_about_thisable">Tentang Thisable</string>
-    <string name="label_about">Thisable adalah start-up aplikasi aksesibilitas terpusat pertama di Indonesia. Kami memiliki tujuan untuk menyediakan layanan aplikasi aksesibilitas mobile kepada masyarakat Indonesia, terutama penyandang disabilitas untuk memudahkan difabel dalam berkomunikasi dan menjalani kehidupan sehari-hari.\n\nKami berusaha untuk memecahkan masalah nyata di masyarakat, terutama untuk kenyamanan para penyandang disabilitas untuk berinteraksi. Kami ingin memperjuangkan kesetaraan komunikasi, terlepas dari kekurangan apa yang dimiliki seseorang. Kami juga berencana untuk mengembangkan aplikasi ini menjadi aplikasi super aksesibilitas yang lebih canggih sehingga dapat digunakan oleh penyandang disabilitas khususnya di Indonesia.</string>
+    <string name="title_about_TeDi">Tentang TeDi</string>
+    <string name="label_about">TeDi adalah start-up aplikasi aksesibilitas terpusat pertama di Indonesia. Kami memiliki tujuan untuk menyediakan layanan aplikasi aksesibilitas mobile kepada masyarakat Indonesia, terutama penyandang disabilitas untuk memudahkan difabel dalam berkomunikasi dan menjalani kehidupan sehari-hari.\n\nKami berusaha untuk memecahkan masalah nyata di masyarakat, terutama untuk kenyamanan para penyandang disabilitas untuk berinteraksi. Kami ingin memperjuangkan kesetaraan komunikasi, terlepas dari kekurangan apa yang dimiliki seseorang. Kami juga berencana untuk mengembangkan aplikasi ini menjadi aplikasi super aksesibilitas yang lebih canggih sehingga dapat digunakan oleh penyandang disabilitas khususnya di Indonesia.</string>
     <string name="label_ketentuanLayanan">Ketentuan Layanan</string>
-    <string name="par_ketentuanLayanan"><b>Syarat &amp; Ketentuan</b>\nDiperbarui pada 2022-06-10\n\n<b>Ketentuan Umum</b>\nDengan mengakses dan melakukan pemesanan dengan , Anda mengonfirmasi bahwa Anda setuju dan terikat dengan persyaratan layanan yang tercantum dalam Syarat &amp; Ketentuan yang diuraikan di bawah ini. Persyaratan ini berlaku untuk seluruh situs web dan email atau jenis komunikasi lainnya antara Anda.\n\nDalam keadaan apa pun tim tidak bertanggung jawab atas segala kerusakan langsung, tidak langsung, khusus, insidental atau konsekuensial, termasuk, namun tidak terbatas pada, kehilangan data atau keuntungan, yang timbul dari penggunaan, atau ketidakmampuan untuk menggunakan, materi di situs ini. , bahkan jika tim atau perwakilan resmi telah diberitahu tentang kemungkinan kerusakan tersebut. Jika penggunaan Anda atas materi dari situs ini mengakibatkan perlunya servis, perbaikan, atau koreksi peralatan atau data, Anda menanggung semua biayanya.\n\nTidak akan bertanggung jawab atas hasil apa pun yang mungkin terjadi selama penggunaan sumber daya kami. Kami berhak untuk mengubah harga dan merevisi kebijakan penggunaan sumber daya setiap saat.\n\n<b>Lisensi</b>\nThisable memberi Anda lisensi terbatas yang dapat dibatalkan, non-eksklusif, tidak dapat dialihkan, untuk mengunduh, menginstal, dan menggunakan layanan kami secara ketat sesuai dengan ketentuan Perjanjian ini. Syarat &amp; Ketentuan ini adalah kontrak antara Anda dan Thisable (dalam Syarat &amp; Ketentuan ini disebut sebagai "Thisable", atau "milik kami"), penyedia situs web Thisable dan layanan yang dapat diakses dari situs web Thisable (yang secara bersama-sama disebut dalam Syarat &amp; Ketentuan ini sebagai "Layanan Thisable").\n\nAnda setuju untuk terikat dengan Syarat &amp; Ketentuan ini. Jika Anda tidak menyetujui Syarat &amp; Ketentuan ini, mohon untuk tidak menggunakan Layanan. Dalam Syarat &amp; Ketentuan ini, "Anda" merujuk kepada Anda sebagai individu dan entitas yang Anda wakili. Jika Anda melanggar salah satu dari Syarat &amp; Ketentuan ini, kami berhak untuk membatalkan akun Anda atau memblokir akses ke akun Anda tanpa pemberitahuan. \n\n\n
+    <string name="par_ketentuanLayanan"><b>Syarat &amp; Ketentuan</b>\nDiperbarui pada 2022-06-10\n\n<b>Ketentuan Umum</b>\nDengan mengakses dan melakukan pemesanan dengan , Anda mengonfirmasi bahwa Anda setuju dan terikat dengan persyaratan layanan yang tercantum dalam Syarat &amp; Ketentuan yang diuraikan di bawah ini. Persyaratan ini berlaku untuk seluruh situs web dan email atau jenis komunikasi lainnya antara Anda.\n\nDalam keadaan apa pun tim tidak bertanggung jawab atas segala kerusakan langsung, tidak langsung, khusus, insidental atau konsekuensial, termasuk, namun tidak terbatas pada, kehilangan data atau keuntungan, yang timbul dari penggunaan, atau ketidakmampuan untuk menggunakan, materi di situs ini. , bahkan jika tim atau perwakilan resmi telah diberitahu tentang kemungkinan kerusakan tersebut. Jika penggunaan Anda atas materi dari situs ini mengakibatkan perlunya servis, perbaikan, atau koreksi peralatan atau data, Anda menanggung semua biayanya.\n\nTidak akan bertanggung jawab atas hasil apa pun yang mungkin terjadi selama penggunaan sumber daya kami. Kami berhak untuk mengubah harga dan merevisi kebijakan penggunaan sumber daya setiap saat.\n\n<b>Lisensi</b>\nTeDi memberi Anda lisensi terbatas yang dapat dibatalkan, non-eksklusif, tidak dapat dialihkan, untuk mengunduh, menginstal, dan menggunakan layanan kami secara ketat sesuai dengan ketentuan Perjanjian ini. Syarat &amp; Ketentuan ini adalah kontrak antara Anda dan TeDi (dalam Syarat &amp; Ketentuan ini disebut sebagai "TeDi", atau "milik kami"), penyedia situs web TeDi dan layanan yang dapat diakses dari situs web TeDi (yang secara bersama-sama disebut dalam Syarat &amp; Ketentuan ini sebagai "Layanan TeDi").\n\nAnda setuju untuk terikat dengan Syarat &amp; Ketentuan ini. Jika Anda tidak menyetujui Syarat &amp; Ketentuan ini, mohon untuk tidak menggunakan Layanan. Dalam Syarat &amp; Ketentuan ini, "Anda" merujuk kepada Anda sebagai individu dan entitas yang Anda wakili. Jika Anda melanggar salah satu dari Syarat &amp; Ketentuan ini, kami berhak untuk membatalkan akun Anda atau memblokir akses ke akun Anda tanpa pemberitahuan. \n\n\n
     </string>
     <string name="app_info_tekan_lama">Tekan Dan Tahan lama untuk melihat Opsi Pilihan</string>
     <string name="label_need_help">Butuh bantuan ?</string>
     <string name="label_call_for_help">Hubungi kami jika kamu butuh bantuan!</string>
-    <string name="label_thisable_contact">Kontak Thisable</string>
-    <string name="label_thisable_email">Surel : C22-PS003@bangkit.academy</string>
+    <string name="label_TeDi_contact">Kontak TeDi</string>
+    <string name="label_TeDi_email">Surel : C22-PS003@bangkit.academy</string>
     <string name="label_android_engineer">Android Engineer</string>
     <string name="label_android_engineer_contact">Bintang Putera\na7129f1592@bangkit.academy \nPratama Azmi\na7012g1330@bangkit.academy</string>
     <string name="label_ml_engineer_contact">Julio Fachrel\nm2011f1173@bangkit.academy \nNajma\nm2011f1166@bangkit.academy</string>
@@ -138,9 +138,9 @@
     <string name="label_machine_learning_engineer">Machine Learning Engineer</string>
     <string name="label_cloud_engineer">Cloud Engineer</string>
     <string name="label_question_answer">Tanya Jawab</string>
-    <string name="label_frequently_asked_question">Daftar pertanyaan yang sering ditanyakan pengguna Thisable.</string>
-    <string name="label_what_is_thisable">Apa itu Thisable ?</string>
-    <string name="label_thisable_meaning">Thisable adalah start-up aplikasi aksesibilitas terpusat pertama di Indonesia. Kami memiliki tujuan untuk menyediakan layanan aplikasi aksesibilitas mobile kepada masyarakat Indonesia, terutama penyandang disabilitas untuk memudahkan difabel dalam berkomunikasi dan menjalani kehidupan sehari-hari.</string>
+    <string name="label_frequently_asked_question">Daftar pertanyaan yang sering ditanyakan pengguna TeDi.</string>
+    <string name="label_what_is_TeDi">Apa itu TeDi ?</string>
+    <string name="label_TeDi_meaning">TeDi adalah start-up aplikasi aksesibilitas terpusat pertama di Indonesia. Kami memiliki tujuan untuk menyediakan layanan aplikasi aksesibilitas mobile kepada masyarakat Indonesia, terutama penyandang disabilitas untuk memudahkan difabel dalam berkomunikasi dan menjalani kehidupan sehari-hari.</string>
     <string name="raw_sound_mobil">car</string>
     <string name="onClickInfoObjectDetection">Ketuk dan Tahan Untuk mengetahui ada apa saja didepan anda</string>
     <string name="info_noObjectDetected">Tidak ada yang terdeteksi</string>
@@ -153,5 +153,11 @@
     <string name="active_text_detection">Fitur Deteksi Teks Aktif</string>
     <string name="active_currency_detection">Fitur Deteksi Uang Aktif</string>
     <string name="active_bisindo">Fitur Penerjemah Bisindo Aktif</string>
+    <string name="label_beta">BETA</string>
+    <string name="label_detection_result">Hasil Deteksi</string>
+    <string name="sample_lorem">Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor. Aenean massa. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Donec quam felis, ultricies nec, pellentesque eu, pretium quis, sem. Nulla consequat massa quis enim. Donec</string>
+    <string name="label_redetect">Deteksi Ulang</string>
+    <string name="label_copy_text">Salin Teks</string>
+    <string name="label_text_copied">Teks telah disalin</string>
 
 </resources>

@@ -15,6 +15,9 @@ import javax.inject.Inject
 @HiltViewModel
 class BugReportViewModel @Inject constructor(private val generalRepository: GeneralRepository): ViewModel() {
 
+    val addNewReportBugResult: LiveData<Result<String>> by lazy { _addNewReportBugResult }
+    private val _addNewReportBugResult = MutableLiveData<Result<String>>()
+
     fun addNewReportBug(reportBugBody: ReportBugBody): LiveData<ApiResponse<BugReportResponse>> {
         val response = MutableLiveData<ApiResponse<BugReportResponse>>()
         viewModelScope.launch {

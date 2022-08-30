@@ -10,7 +10,6 @@ import android.view.accessibility.AccessibilityEvent
 import android.view.accessibility.AccessibilityNodeInfo
 import androidx.camera.core.CameraSelector
 import androidx.camera.core.ImageAnalysis
-import androidx.camera.core.ImageCapture
 import androidx.camera.core.Preview
 import androidx.camera.lifecycle.ProcessCameraProvider
 import androidx.core.content.ContextCompat
@@ -24,9 +23,15 @@ import com.devtedi.tedi.data.remote.visionapi.model.TextDetectionRequest
 import com.devtedi.tedi.data.remote.visionapi.model.TextDetectionRequestItem
 import com.devtedi.tedi.databinding.FragmentTextDetectionBinding
 import com.devtedi.tedi.interfaces.ObjectOptionInterface
+import com.devtedi.tedi.presentation.dialog.TextDetectionResultDialogFragment
 import com.devtedi.tedi.utils.ConstVal.API_KEY
 import com.devtedi.tedi.utils.FrameMetadata
 import com.devtedi.tedi.utils.ServeListQuestion
+import com.devtedi.tedi.utils.ext.click
+import com.devtedi.tedi.utils.ext.disable
+import com.devtedi.tedi.utils.ext.enable
+import com.devtedi.tedi.utils.ext.gone
+import com.devtedi.tedi.utils.ext.show
 import com.devtedi.tedi.utils.ext.showToast
 import com.devtedi.tedi.utils.scaleBitmapDown
 import com.devtedi.tedi.utils.showAlertDialogObjDetection
@@ -42,19 +47,27 @@ class TextDetectionFragment : Fragment() {
 
     private val viewModel: TextDetectionViewModel by viewModels()
 
-    private lateinit var binding_: FragmentTextDetectionBinding
-    private val binding get() = binding_
+    private lateinit var _fragmentTextDetectionBinding: FragmentTextDetectionBinding
+    private val binding get() = _fragmentTextDetectionBinding
     private lateinit var cameraExecutor: ExecutorService
 
-    private var imageCapture: ImageCapture? = null
     private lateinit var textDetectionAnalyzer: TextDetectionAnalyzer
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        //requireContext().showToast(getString(R.string.active_currency_detection))
 
-        init()
+        initAnalyzer()
+        initAction()
         startCamera()
+    }
+
+    override fun onCreateView(
+        inflater: LayoutInflater, container: ViewGroup?,
+        savedInstanceState: Bundle?
+    ): View {
+        // Inflate the layout for this fragment
+        _fragmentTextDetectionBinding = FragmentTextDetectionBinding.inflate(inflater)
+        return binding.root
     }
 
     private fun startCamera() {
@@ -82,98 +95,82 @@ class TextDetectionFragment : Fragment() {
 
     override fun onResume() {
         super.onResume()
-        binding.viewFinder.performAccessibilityAction(AccessibilityNodeInfo.ACTION_ACCESSIBILITY_FOCUS,null)
+        binding.viewFinder.performAccessibilityAction(AccessibilityNodeInfo.ACTION_ACCESSIBILITY_FOCUS, null)
         binding.viewFinder.sendAccessibilityEvent(AccessibilityEvent.TYPE_VIEW_FOCUSED)
         startCamera()
     }
 
-    override fun onCreateView(
-        inflater: LayoutInflater, container: ViewGroup?,
-        savedInstanceState: Bundle?
-    ): View {
-        // Inflate the layout for this fragment
-        binding_ = FragmentTextDetectionBinding.inflate(inflater)
-        return binding.root
-    }
-
-    private fun init() {
+    private fun initAnalyzer() {
         cameraExecutor = Executors.newSingleThreadExecutor()
         textDetectionAnalyzer = TextDetectionAnalyzer(requireContext())
-        setOnClickListener()
-    }
-    private fun showUIPB(state : String )  {
-        if ( state == "upload") {
-            binding.pbUpload.visibility = View.VISIBLE
-            binding.tvInfo.text = "Uploading"
-            binding.tvInfo.visibility = View.VISIBLE
-        }
-
     }
 
-    private fun setOnClickListener() {
-        val itemListener = object : ObjectOptionInterface {
-            override fun onClick(data: String) {
+    private fun initAction() {
+        binding.btnCapture.click {
+            val image = textDetectionAnalyzer.getDetectedImage()
+            if (image != null) {
+                val metadata = FrameMetadata(image.width, image.height, 0)
+                val currImage = scaleBitmapDown(image, 640)
 
-            }
+                val byteArrayOutputStream = ByteArrayOutputStream()
+                currImage.compress(Bitmap.CompressFormat.JPEG, 100, byteArrayOutputStream)
 
-            override fun onLongClickListener(data: String) {
-                val image = textDetectionAnalyzer.getDetectedImage()
-                if (image != null) {
-                    val metadata = FrameMetadata(image.width, image.height, 0)
-                    val currImage = scaleBitmapDown(image, 640)
+                // gambar dalam bentuk byte
+                val imageByte = byteArrayOutputStream.toByteArray()
+                val base64encoded = Base64.encodeToString(imageByte, Base64.NO_WRAP)
 
-                    val byteArrayOutputStream = ByteArrayOutputStream()
-                    currImage.compress(Bitmap.CompressFormat.JPEG, 100, byteArrayOutputStream)
-
-                    // gambar dalam bentuk byte 
-                    val imageByte = byteArrayOutputStream.toByteArray()
-                    val base64encoded = Base64.encodeToString(imageByte, Base64.NO_WRAP)
-
-                    val textDetectionRequest = TextDetectionRequest(
-                        requests = TextDetectionRequestItem(
-                            image = ImageItem(
-                                content = base64encoded
-                            ),
-                            features = listOf(
-                                FeatureItem(
-                                    type = "TEXT_DETECTION",
-                                    maxResults = 1
-                                )
+                val textDetectionRequest = TextDetectionRequest(
+                    requests = TextDetectionRequestItem(
+                        image = ImageItem(
+                            content = base64encoded
+                        ),
+                        features = listOf(
+                            FeatureItem(
+                                type = "TEXT_DETECTION",
+                                maxResults = 1
                             )
                         )
                     )
-                    textDetection(API_KEY, textDetectionRequest)
-                } else {
-                    showToastMessage(requireContext(), "Bitmap Is NULL WTF")
-                }
+                )
+                textDetection(API_KEY, textDetectionRequest)
+            } else {
+                showToastMessage(requireContext(), "Bitmap Is NULL WTF")
             }
         }
-        binding.viewFinder.setOnLongClickListener {
-            showAlertDialogObjDetection(
-                requireContext(),
-                ServeListQuestion.getListQuestionText(requireContext()),
-                subscriberItemListener = itemListener
-            )
-            true
-        }
-
     }
 
     private fun textDetection(apiKey: String, request: TextDetectionRequest) {
         viewModel.textDetection(apiKey, request).observe(viewLifecycleOwner) { response ->
             when (response) {
                 is ApiResponse.Loading -> {
-                    showUIPB("upload")
-                    //context?.showToast("Loading.......")
+                    checkLoading(true)
                 }
                 is ApiResponse.Success -> {
-                    context?.showToast(response.data.responses[0].fullTextAnnotation.text)
+                    checkLoading(false)
+                    TextDetectionResultDialogFragment.newInstance(
+                        response.data.responses[0].fullTextAnnotation.text
+                    ).show(childFragmentManager, TextDetectionResultDialogFragment::class.java.simpleName)
                 }
                 is ApiResponse.Error -> {
+                    checkLoading(false)
                     Timber.e("Error visionapi : ${response.errorMessage}")
                     context?.showToast(response.errorMessage)
                 }
+                else -> {}
             }
+        }
+    }
+
+    private fun checkLoading(isLoading: Boolean) {
+        if (isLoading) {
+            binding.pbUpload.show()
+            binding.tvInfo.text = "Processing"
+            binding.tvInfo.show()
+            binding.btnCapture.disable()
+        } else {
+            binding.pbUpload.gone()
+            binding.tvInfo.gone()
+            binding.btnCapture.enable()
         }
     }
 }

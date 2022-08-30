@@ -64,15 +64,15 @@
                 app:layout_constraintTop_toBottomOf="@id/imgIllustration">
 
                 <TextView
-                    android:id="@+id/tvThisable"
-                    android:text="@string/label_what_is_thisable"
+                    android:id="@+id/tvTeDi"
+                    android:text="@string/label_what_is_TeDi"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="@dimen/dimen_8dp"
                     style="@style/TextContent.Title"/>
 
                 <TextView
-                    android:text="@string/label_thisable_meaning"
+                    android:text="@string/label_TeDi_meaning"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="@dimen/dimen_10dp"

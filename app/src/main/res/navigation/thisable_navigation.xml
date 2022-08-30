@@ -109,7 +109,7 @@
 
     <fragment
         android:id="@+id/thisableFragment"
-        android:name="com.devtedi.tedi.presentation.thisable.ThisableFragment"
+        android:name="com.devtedi.tedi.presentation.tedi.ThisableFragment"
         android:label="ThisableFragment" />
     <fragment
         android:id="@+id/bugReportFragment"

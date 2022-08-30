@@ -10,7 +10,7 @@
         android:id="@+id/coreActivity"
         android:icon="@drawable/ic_all_in_one_camera"
         android:iconTintMode="multiply"
-        android:title="@string/menu_thisable"/>
+        android:title="@string/menu_TeDi"/>
 
     <item
         android:id="@+id/profileFragment"

@@ -15,14 +15,15 @@
         android:layout_weight="2"
         tools:ignore="MissingConstraints">
 
-
         <androidx.camera.view.PreviewView
             android:id="@+id/viewFinder"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:contentDescription="Halaman Deteksi Teks Dipilih"
+            android:layout_gravity="center"
             android:layout_weight="1"
-            android:layout_gravity="center" />
+            android:contentDescription="Halaman Deteksi Teks Dipilih"
+            tools:layout_editor_absoluteX="0dp"
+            tools:layout_editor_absoluteY="0dp" />
 
         <ProgressBar
             android:id="@+id/pb_upload"
@@ -46,6 +47,17 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             />
+
+        <ImageButton
+            android:id="@+id/btnCapture"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:background="@null"
+            android:src="@drawable/ic_capture_button"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/tv_info" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 

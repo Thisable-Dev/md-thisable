@@ -33,7 +33,7 @@ class HomeFragment: Fragment() {
         initFirebase()
         initUI()
         loadBanner()
-        setOnClickListener()
+        initAction()
     }
 
 
@@ -50,23 +50,23 @@ class HomeFragment: Fragment() {
         binding.tvWelcomeWithName.text = getString(R.string.label_welcome_home, name[0])
     }
 
-    private fun setOnClickListener () {
+    private fun initAction() {
         var bundleData = Bundle()
-        binding.cvDeteksiObjek.setOnClickListener {
+        binding.btnObjectDetection.setOnClickListener {
             bundleData.putString("EXTRA_DATA",resources.getString(R.string.action_object_detection))
             findNavController().navigate(R.id.action_homeFragment_to_coreActivity,args=bundleData)
         }
-        binding.cvDeteksiText.setOnClickListener {
+        binding.btnTextDetection.setOnClickListener {
             bundleData.putString("EXTRA_DATA",resources.getString(R.string.action_text_detection))
             findNavController().navigate(R.id.action_homeFragment_to_coreActivity,args=bundleData)
         }
-        binding.cvDeteksiUang.setOnClickListener {
+        binding.btnCurrencyDetection.setOnClickListener {
 
             bundleData.putString("EXTRA_DATA",resources.getString(R.string.action_currency_detection))
             findNavController().navigate(R.id.action_homeFragment_to_coreActivity,args=bundleData)
         }
 
-        binding.cvPenerjemahBisindo.setOnClickListener {
+        binding.btnBisindoTranslator.setOnClickListener {
             findNavController().navigate(R.id.action_homeFragment_to_coreActivity)
         }
     }

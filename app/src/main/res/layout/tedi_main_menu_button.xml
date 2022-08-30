@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:paddingVertical="@dimen/dimen_4dp">
+
+    <com.google.android.material.card.MaterialCardView
+        android:id="@+id/cv_penerjemah_bisindo"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_columnWeight="1"
+        app:cardCornerRadius="@dimen/dimen_16dp"
+        app:contentPaddingBottom="@dimen/dimen_16dp"
+        app:contentPaddingTop="@dimen/dimen_16dp"
+        app:cardElevation="@dimen/dimen_0dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:orientation="horizontal">
+
+            <ImageView
+                android:id="@+id/imgMenuIcon"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                tools:src="@drawable/ic_bisindo_translator" />
+
+            <TextView
+                android:id="@+id/tvMenuTitle"
+                android:layout_width="@dimen/dimen_72dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/dimen_8dp"
+                android:layout_marginEnd="@dimen/dimen_20dp"
+                android:textColor="@color/black"
+                android:textSize="@dimen/dimen_12sp"
+                tools:text="@string/label_bisindo_translator" />
+
+        </LinearLayout>
+
+    </com.google.android.material.card.MaterialCardView>
+
+    <TextView
+        android:id="@+id/tvBeta"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:background="@drawable/bg_rounded_gray"
+        android:paddingHorizontal="@dimen/dimen_4dp"
+        android:paddingVertical="@dimen/dimen_2dp"
+        android:text="@string/label_beta"
+        android:textColor="@color/black"
+        android:textSize="12sp"
+        android:translationZ="@dimen/dimen_10dp"
+        app:layout_constraintEnd_toEndOf="@+id/cv_penerjemah_bisindo"
+        app:layout_constraintTop_toTopOf="@+id/cv_penerjemah_bisindo" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>

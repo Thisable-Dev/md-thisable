@@ -7,14 +7,14 @@ import android.widget.TextView
 import androidx.constraintlayout.widget.ConstraintLayout
 import com.devtedi.tedi.R
 
-class ThisableSettingButton(context: Context, attrs: AttributeSet?) : ConstraintLayout(context, attrs) {
+class TediSettingButton(context: Context, attrs: AttributeSet?) : ConstraintLayout(context, attrs) {
 
     init {
-        inflate(context, R.layout.thisable_setting_button, this)
+        inflate(context, R.layout.tedi_setting_button, this)
 
         val customAttributeStyle = context.obtainStyledAttributes(
             attrs,
-            R.styleable.ThisableSettingButton,
+            R.styleable.TeDiSettingButton,
             0, 0
         )
 
@@ -22,8 +22,8 @@ class ThisableSettingButton(context: Context, attrs: AttributeSet?) : Constraint
         val tvMenuTitle = findViewById<TextView>(R.id.tvMenuTitle)
 
         try {
-            imgMenuIcon.setImageDrawable(customAttributeStyle.getDrawable(R.styleable.ThisableSettingButton_menuIcon))
-            tvMenuTitle.text = customAttributeStyle.getString(R.styleable.ThisableSettingButton_menuTitle)
+            imgMenuIcon.setImageDrawable(customAttributeStyle.getDrawable(R.styleable.TeDiSettingButton_menuIcon))
+            tvMenuTitle.text = customAttributeStyle.getString(R.styleable.TeDiSettingButton_menuTitle)
         } finally {
             invalidate()
             customAttributeStyle.recycle()

@@ -1,7 +1,13 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <declare-styleable name="ThisableSettingButton">
+    <declare-styleable name="TeDiSettingButton">
         <attr name="menuIcon" format="reference" />
         <attr name="menuTitle" format="string"/>
+    </declare-styleable>
+
+    <declare-styleable name="TediMainMenuButton">
+        <attr name="iconMenu" format="reference"/>
+        <attr name="titleMenu" format="string"/>
+        <attr name="isBeta" format="boolean"/>
     </declare-styleable>
 </resources>

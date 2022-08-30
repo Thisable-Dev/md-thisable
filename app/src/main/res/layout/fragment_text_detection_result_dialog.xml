@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:paddingVertical="@dimen/dimen_32dp"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <TextView
+        android:id="@+id/tvLabelDetectionResult"
+        style="@style/TextContent.Bold.Header3"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/label_detection_result"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/tvDetectionResult"
+        style="@style/TextContent.Body3"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginHorizontal="@dimen/dimen_16sp"
+        android:layout_marginTop="@dimen/dimen_28dp"
+        android:textAlignment="center"
+        android:scrollbars="vertical"
+        android:maxLines="10"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/tvLabelDetectionResult"
+        app:layout_constraintBottom_toTopOf="@+id/containerBtnConfirmation"
+        tools:text="@string/sample_lorem" />
+
+    <LinearLayout
+        android:id="@+id/containerBtnConfirmation"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginHorizontal="@dimen/dimen_16sp"
+        android:layout_marginTop="@dimen/dimen_28dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/tvDetectionResult"
+        tools:layout_editor_absoluteX="16dp">
+
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/btnRedetect"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="@dimen/dimen_4dp"
+            android:layout_weight="1"
+            android:text="@string/label_redetect"
+            android:textAllCaps="false"
+            style="@style/TeDiButtonOutline.StrokeBlue"/>
+
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/btnCopyText"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/dimen_4dp"
+            android:layout_weight="1"
+            android:text="@string/label_copy_text"
+            android:textAllCaps="false"
+            android:paddingVertical="@dimen/dimen_12dp"
+            style="@style/TediButton.White"/>
+
+    </LinearLayout>
+
+</androidx.constraintlayout.widget.ConstraintLayout>

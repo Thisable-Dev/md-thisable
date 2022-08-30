@@ -12,7 +12,7 @@
         <!-- Status bar color. -->
         <item name="android:statusBarColor" tools:targetApi="l">?attr/colorPrimaryVariant</item>
         <!-- Customize your theme here. -->
-        <item name="android:fontFamily">@font/nunito_sans</item>
+        <item name="android:fontFamily">@font/jakarta_sans</item>
     </style>
 
     <style name="SplashTheme" parent="Theme.Thisable">
@@ -24,27 +24,51 @@
     <style name="ButtonContent">
         <item name="android:layout_width">match_parent</item>
         <item name="android:layout_height">wrap_content</item>
-        <item name="android:fontFamily">@font/nunito_sans_bold</item>
+        <item name="android:fontFamily">@font/jakarta_sans_bold</item>
     </style>
 
     <!--  Text Style  -->
     <style name="TextContent">
         <item name="android:layout_width">wrap_content</item>
         <item name="android:layout_height">wrap_content</item>
-        <item name="android:fontFamily">@font/nunito_sans</item>
+        <item name="android:fontFamily">@font/jakarta_sans</item>
     </style>
 
     <style name="TextContent.SemiBold">
         <item name="android:layout_width">wrap_content</item>
         <item name="android:layout_height">wrap_content</item>
-        <item name="android:fontFamily">@font/nunito_sans_semibold</item>
+        <item name="android:fontFamily">@font/jakarta_sans_semibold</item>
     </style>
 
     <style name="TextContent.Bold">
         <item name="android:layout_width">wrap_content</item>
         <item name="android:layout_height">wrap_content</item>
-        <item name="android:textStyle">bold</item>
-        <item name="android:fontFamily">@font/nunito_sans_bold</item>
+        <item name="android:fontFamily">@font/jakarta_sans_bold</item>
+    </style>
+
+    <style name="TextContent.Body3">
+        <item name="android:textSize">@dimen/dimen_14sp</item>
+        <item name="android:textColor">@color/black</item>
+    </style>
+
+    <style name="TextContent.Bold.Header3">
+        <item name="android:textSize">@dimen/dimen_16sp</item>
+        <item name="android:textColor">@color/black</item>
+    </style>
+
+    <style name="TextContent.Bold.Header5">
+        <item name="android:textSize">@dimen/dimen_16sp</item>
+        <item name="android:textColor">@color/black</item>
+    </style>
+
+    <style name="TextContent.Bold.Header5.Blue">
+        <item name="android:textSize">@dimen/dimen_16sp</item>
+        <item name="android:textColor">@color/colorBlue</item>
+    </style>
+
+    <style name="TextContent.Bold.Header5.White">
+        <item name="android:textSize">@dimen/dimen_16sp</item>
+        <item name="android:textColor">@color/white</item>
     </style>
 
     <style name="TextContent.Title" parent="TextContent.Bold">
@@ -60,6 +84,11 @@
     <style name="TextContent.SubTitle" parent="TextContent">
         <item name="android:textSize">@dimen/dimen_16sp</item>
         <item name="android:textColor">@color/black</item>
+    </style>
+
+    <style name="TextContent.Bold.Hyperlink" parent="TextContent.Bold">
+        <item name="android:textSize">@dimen/dimen_12sp</item>
+        <item name="android:textColor">@color/colorBlue</item>
     </style>
 
     <style name="TextContent.Header" parent="TextContent.SemiBold">
@@ -90,6 +119,33 @@
     <style name="TextContent.SmallBoldBlue" parent="TextContent.Bold">
         <item name="android:textSize">@dimen/dimen_14sp</item>
         <item name="android:textColor">@color/colorBlue</item>
+    </style>
+
+    <style name="TediButton" parent="Widget.MaterialComponents.Button">
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:includeFontPadding">false</item>
+        <item name="android:textColor">@null</item>
+        <item name="rippleColor">#40FFFFFF</item>
+        <item name="cornerRadius">@dimen/dimen_10dp</item>
+    </style>
+
+    <style name="TediButton.White">
+        <item name="android:textAppearance">@style/TextContent.Bold.Header5.White</item>
+    </style>
+
+    <style name="TeDiButtonOutline" parent="Widget.Material3.Button.OutlinedButton">
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:includeFontPadding">false</item>
+        <item name="android:textColor">@null</item>
+        <item name="cornerRadius">@dimen/dimen_10dp</item>
+        <item name="rippleColor">#40FFFFFF</item>
+    </style>
+
+    <style name="TeDiButtonOutline.StrokeBlue">
+        <item name="strokeColor">@color/colorBlue</item>
+        <item name="android:textAppearance">@style/TextContent.Bold.Header5.Blue</item>
     </style>
 
 </resources>

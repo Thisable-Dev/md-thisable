@@ -56,136 +56,42 @@
         android:useDefaultMargins="true"
         app:layout_constraintTop_toBottomOf="@id/tvFeatureTitle">
 
-        <androidx.cardview.widget.CardView
-            android:id="@+id/cv_penerjemah_bisindo"
+        <com.devtedi.tedi.presentation.view.TediMainMenuButton
+            android:id="@+id/btnTextDetection"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_columnWeight="1"
-            app:cardCornerRadius="@dimen/dimen_16dp"
-            app:contentPaddingBottom="@dimen/dimen_16dp"
-            app:contentPaddingTop="@dimen/dimen_16dp">
-            
-            <LinearLayout
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:gravity="center"
-                android:orientation="horizontal">
+            app:titleMenu="@string/text_detection"
+            app:iconMenu="@drawable/ic_text_detection"
+            app:isBeta="false"/>
 
-                <ImageView
-                    android:src="@drawable/ic_bisindo_translator"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"/>
-
-                <TextView
-                    android:text="@string/label_bisindo_translator"
-                    android:textColor="@color/black"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:maxLines="2"
-                    android:layout_marginStart="@dimen/dimen_8dp"/>
-
-            </LinearLayout>
-            
-        </androidx.cardview.widget.CardView>
-
-        <androidx.cardview.widget.CardView
-            android:id="@+id/cv_deteksi_objek"
+        <com.devtedi.tedi.presentation.view.TediMainMenuButton
+            android:id="@+id/btnObjectDetection"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_columnWeight="1"
-            android:layout_marginStart="@dimen/dimen_16dp"
-            app:cardCornerRadius="@dimen/dimen_16dp"
-            app:contentPaddingBottom="@dimen/dimen_16dp"
-            app:contentPaddingTop="@dimen/dimen_16dp">
+            app:titleMenu="@string/label_object_detection"
+            app:iconMenu="@drawable/ic_object_detection"
+            app:isBeta="true"/>
 
-            <LinearLayout
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:gravity="center"
-                android:orientation="horizontal">
-
-                <ImageView
-                    android:src="@drawable/ic_object_detection"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"/>
-
-                <TextView
-                    android:text="@string/label_object_detection"
-                    android:textColor="@color/black"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginStart="@dimen/dimen_8dp"/>
-
-            </LinearLayout>
-
-        </androidx.cardview.widget.CardView>
-
-        <androidx.cardview.widget.CardView
-            android:id="@+id/cv_deteksi_uang"
+        <com.devtedi.tedi.presentation.view.TediMainMenuButton
+            android:id="@+id/btnBisindoTranslator"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_columnWeight="1"
-            android:layout_marginTop="@dimen/dimen_16dp"
-            app:cardCornerRadius="@dimen/dimen_16dp"
-            app:contentPaddingBottom="@dimen/dimen_16dp"
-            app:contentPaddingTop="@dimen/dimen_16dp">
+            app:titleMenu="@string/label_bisindo_translator"
+            app:iconMenu="@drawable/ic_bisindo_translator"
+            app:isBeta="true"/>
 
-            <LinearLayout
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:gravity="center"
-                android:orientation="horizontal">
-
-                <ImageView
-                    android:src="@drawable/ic_currency_detection"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"/>
-
-                <TextView
-                    android:text="@string/label_currency_detection"
-                    android:textColor="@color/black"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginStart="@dimen/dimen_8dp"/>
-
-            </LinearLayout>
-
-        </androidx.cardview.widget.CardView>
-
-        <androidx.cardview.widget.CardView
-            android:id="@+id/cv_deteksi_text"
+        <com.devtedi.tedi.presentation.view.TediMainMenuButton
+            android:id="@+id/btnCurrencyDetection"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_columnWeight="1"
-            android:layout_marginStart="@dimen/dimen_16dp"
-            android:layout_marginTop="@dimen/dimen_16dp"
-            app:cardCornerRadius="@dimen/dimen_16dp"
-            app:contentPaddingBottom="@dimen/dimen_16dp"
-            app:contentPaddingTop="@dimen/dimen_16dp">
-
-            <LinearLayout
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:gravity="center"
-                android:orientation="horizontal">
-
-                <ImageView
-                    android:src="@drawable/ic_text_detection"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"/>
-
-                <TextView
-                    android:text="@string/label_text_detection"
-                    android:textColor="@color/black"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginStart="@dimen/dimen_8dp"/>
-
-            </LinearLayout>
-
-        </androidx.cardview.widget.CardView>
+            app:titleMenu="@string/label_currency_detection"
+            app:iconMenu="@drawable/ic_currency_detection"
+            app:isBeta="true"/>
 
     </GridLayout>
-    
 
 </androidx.constraintlayout.widget.ConstraintLayout>

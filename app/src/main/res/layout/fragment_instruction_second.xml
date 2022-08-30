@@ -38,7 +38,7 @@
         android:layout_marginTop="@dimen/dimen_16dp"
         android:layout_marginHorizontal="@dimen/dimen_40dp"
         android:textAlignment="center"
-        style="@style/TextContent.SubTitle" />
+        style="@style/TextContent.Bold.Hyperlink" />
 
     <LinearLayout
         android:id="@+id/layoutIndicator"

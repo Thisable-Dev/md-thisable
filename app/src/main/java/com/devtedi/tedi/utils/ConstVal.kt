@@ -19,4 +19,7 @@ object ConstVal {
     // UI Const
     const val SPLASH_DELAY_TIME = 1500L
 
+    // LABEL
+    const val TEXT_DETECTION_LABEL = "text_detection"
+
 }

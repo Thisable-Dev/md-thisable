@@ -36,7 +36,7 @@
         app:layout_constraintStart_toStartOf="@+id/imgProfile"
         app:layout_constraintTop_toBottomOf="@id/tvFullName"/>
 
-    <com.devtedi.tedi.presentation.view.ThisableSettingButton
+    <com.devtedi.tedi.presentation.view.TediSettingButton
         android:id="@+id/btnHelp"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -47,7 +47,7 @@
         app:menuTitle="@string/label_help"
         tools:layout_editor_absoluteX="32dp" />
 
-    <com.devtedi.tedi.presentation.view.ThisableSettingButton
+    <com.devtedi.tedi.presentation.view.TediSettingButton
         android:id="@+id/btnFqa"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -57,7 +57,7 @@
         app:menuIcon="@drawable/ic_fqa"
         app:menuTitle="@string/label_fqa" />
 
-    <com.devtedi.tedi.presentation.view.ThisableSettingButton
+    <com.devtedi.tedi.presentation.view.TediSettingButton
         android:id="@+id/btnReportBug"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -67,7 +67,7 @@
         app:menuIcon="@drawable/ic_report"
         app:menuTitle="@string/label_report_bug" />
 
-    <com.devtedi.tedi.presentation.view.ThisableSettingButton
+    <com.devtedi.tedi.presentation.view.TediSettingButton
         android:id="@+id/btnAbout"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -75,7 +75,7 @@
         android:layout_marginHorizontal="@dimen/dimen_32dp"
         app:layout_constraintTop_toBottomOf="@+id/btnReportBug"
         app:menuIcon="@drawable/ic_about"
-        app:menuTitle="@string/label_about_thisable" />
+        app:menuTitle="@string/label_about_TeDi" />
 
     <Button
         android:id="@+id/btnLogout"

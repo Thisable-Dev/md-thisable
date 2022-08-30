@@ -1,4 +1,4 @@
-package com.devtedi.tedi.presentation.thisable
+package com.devtedi.tedi.presentation.tedi
 
 import androidx.fragment.app.Fragment
 
