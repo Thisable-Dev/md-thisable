@@ -2,7 +2,6 @@ package com.devtedi.tedi.utils
 
 object ConstVal {
 
-    const val BASE_URL = "http://34.101.33.206:5000/"
     const val CLOUD_VISION_API = "https://vision.googleapis.com/v1/"
 
     const val API_KEY = "AIzaSyCTwipOPeZdoMZ1da64TckdrH8XUH0g_4A"

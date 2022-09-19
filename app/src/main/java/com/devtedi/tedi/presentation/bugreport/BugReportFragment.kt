@@ -14,10 +14,19 @@ import com.devtedi.tedi.R
 import com.devtedi.tedi.R.string
 import com.devtedi.tedi.data.remote.ApiResponse
 import com.devtedi.tedi.data.remote.general.report.ReportBugBody
+import com.devtedi.tedi.data.remote.general.request.SpecificationBody
 import com.devtedi.tedi.databinding.FragmentBugReportBinding
 import com.devtedi.tedi.utils.ext.clearText
+import com.devtedi.tedi.utils.ext.click
+import com.devtedi.tedi.utils.ext.disable
+import com.devtedi.tedi.utils.ext.getTotalMemories
 import com.devtedi.tedi.utils.ext.gone
+import com.devtedi.tedi.utils.ext.onTextChanged
 import com.devtedi.tedi.utils.ext.show
+import com.devtedi.tedi.utils.getDeviceName
+import com.devtedi.tedi.utils.getDeviceVersion
+import com.devtedi.tedi.utils.hideLoading
+import com.devtedi.tedi.utils.showLoading
 import com.google.android.material.snackbar.Snackbar
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.ktx.auth
@@ -53,7 +62,14 @@ class BugReportFragment : Fragment() {
     }
 
     private fun initUI() {
-        binding.edtEmail.setText(auth.currentUser?.email)
+        binding.edtEmail.apply {
+            disable()
+            setText(auth.currentUser?.email)
+        }
+        binding.edtName.apply {
+            disable()
+            setText(auth.currentUser?.displayName)
+        }
         binding.tvCharCounter.text = getString(string.label_report_char_counter)
         binding.toolbar.apply {
             setNavigationOnClickListener {
@@ -63,48 +79,48 @@ class BugReportFragment : Fragment() {
     }
 
     private fun initAction() {
-        binding.edtReport.addTextChangedListener(object : TextWatcher {
-            override fun beforeTextChanged(p0: CharSequence?, p1: Int, p2: Int, p3: Int) {
+        binding.apply {
+            edtReport.onTextChanged { message ->
+                binding.tvCharCounter.text = message.length.toString() + "/300"
             }
-
-            override fun onTextChanged(char: CharSequence?, p1: Int, p2: Int, p3: Int) {
-                binding.tvCharCounter.text = char?.length.toString() + "/300"
-            }
-
-            override fun afterTextChanged(p0: Editable?) {
-            }
-        })
-
-        binding.btnReport.setOnClickListener {
-            val name = binding.edtName.text.toString().trim()
-            val email = binding.edtEmail.text.toString().trim()
-            val message = binding.edtReport.text.toString()
-            when {
-                name.isBlank() -> {
-                    binding.edtName.apply {
-                        requestFocus()
-                        error = context.getString(string.message_must_not_null)
+            btnReport.click {
+                val name = binding.edtName.text.toString().trim()
+                val email = binding.edtEmail.text.toString().trim()
+                val message = binding.edtReport.text.toString()
+                val severity = binding.spinnerSeverity.selectedItem.toString()
+                when {
+                    name.isBlank() -> {
+                        binding.edtName.apply {
+                            requestFocus()
+                            error = context.getString(string.message_must_not_null)
+                        }
                     }
-                }
-                email.isBlank() -> {
-                    binding.edtEmail.apply {
-                        requestFocus()
-                        error = context.getString(string.message_email_not_null)
+                    email.isBlank() -> {
+                        binding.edtEmail.apply {
+                            requestFocus()
+                            error = context.getString(string.message_email_not_null)
+                        }
                     }
-                }
-                message.isBlank() -> {
-                    binding.edtReport.apply {
-                        requestFocus()
-                        error = context.getString(string.message_report_must_not_null)
+                    message.isBlank() -> {
+                        binding.edtReport.apply {
+                            requestFocus()
+                            error = context.getString(string.message_report_must_not_null)
+                        }
                     }
-                }
-                else -> {
-                    val reportBody = ReportBugBody(
-                        name = name,
-                        email = email,
-                        message = message
-                    )
-                    addNewReportBug(reportBody)
+                    else -> {
+                        val reportBody = ReportBugBody(
+                            name = name,
+                            email = email,
+                            message = message,
+                            severity = severity,
+                            specificationBody = SpecificationBody(
+                                phoneBrand = getDeviceName(),
+                                ram = getTotalMemories(),
+                                androidVersion = getDeviceVersion()
+                            )
+                        )
+                        addNewReportBug(reportBody)
+                    }
                 }
             }
         }
@@ -114,18 +130,21 @@ class BugReportFragment : Fragment() {
         bugReportViewModel.addNewReportBug(reportBugBody).observe(viewLifecycleOwner) { response ->
             when (response) {
                 is ApiResponse.Loading -> {
-                    binding.progressBar.show()
-                    binding.bgDim.show()
+                    binding.apply {
+                        showLoading(bgDim, progressBar)
+                    }
                 }
                 is ApiResponse.Success -> {
-                    binding.bgDim.gone()
-                    binding.progressBar.gone()
+                    binding.apply {
+                        hideLoading(bgDim, progressBar)
+                    }
                     clearInput()
                     findNavController().navigate(R.id.action_bugReportFragment_to_fragmentSuccessCustomDialog)
                 }
                 is ApiResponse.Error -> {
-                    binding.bgDim.gone()
-                    binding.progressBar.gone()
+                    binding.apply {
+                        hideLoading(bgDim, progressBar)
+                    }
                     Snackbar.make(requireView(), response.errorMessage, Snackbar.LENGTH_SHORT).show()
                 }
                 else -> {
@@ -142,5 +161,4 @@ class BugReportFragment : Fragment() {
             edtReport.clearText()
         }
     }
-
 }

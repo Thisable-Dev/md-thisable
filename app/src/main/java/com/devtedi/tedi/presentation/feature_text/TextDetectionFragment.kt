@@ -22,11 +22,9 @@ import com.devtedi.tedi.data.remote.visionapi.model.ImageItem
 import com.devtedi.tedi.data.remote.visionapi.model.TextDetectionRequest
 import com.devtedi.tedi.data.remote.visionapi.model.TextDetectionRequestItem
 import com.devtedi.tedi.databinding.FragmentTextDetectionBinding
-import com.devtedi.tedi.interfaces.ObjectOptionInterface
 import com.devtedi.tedi.presentation.dialog.TextDetectionResultDialogFragment
 import com.devtedi.tedi.utils.ConstVal.API_KEY
 import com.devtedi.tedi.utils.FrameMetadata
-import com.devtedi.tedi.utils.ServeListQuestion
 import com.devtedi.tedi.utils.ext.click
 import com.devtedi.tedi.utils.ext.disable
 import com.devtedi.tedi.utils.ext.enable
@@ -34,8 +32,6 @@ import com.devtedi.tedi.utils.ext.gone
 import com.devtedi.tedi.utils.ext.show
 import com.devtedi.tedi.utils.ext.showToast
 import com.devtedi.tedi.utils.scaleBitmapDown
-import com.devtedi.tedi.utils.showAlertDialogObjDetection
-import com.devtedi.tedi.utils.showToastMessage
 import dagger.hilt.android.AndroidEntryPoint
 import timber.log.Timber
 import java.io.ByteArrayOutputStream
@@ -115,7 +111,6 @@ class TextDetectionFragment : Fragment() {
                 val byteArrayOutputStream = ByteArrayOutputStream()
                 currImage.compress(Bitmap.CompressFormat.JPEG, 100, byteArrayOutputStream)
 
-                // gambar dalam bentuk byte
                 val imageByte = byteArrayOutputStream.toByteArray()
                 val base64encoded = Base64.encodeToString(imageByte, Base64.NO_WRAP)
 
@@ -133,8 +128,6 @@ class TextDetectionFragment : Fragment() {
                     )
                 )
                 textDetection(API_KEY, textDetectionRequest)
-            } else {
-                showToastMessage(requireContext(), "Bitmap Is NULL WTF")
             }
         }
     }
@@ -154,7 +147,7 @@ class TextDetectionFragment : Fragment() {
                 is ApiResponse.Error -> {
                     checkLoading(false)
                     Timber.e("Error visionapi : ${response.errorMessage}")
-                    context?.showToast(response.errorMessage)
+                    showToast(response.errorMessage)
                 }
                 else -> {}
             }

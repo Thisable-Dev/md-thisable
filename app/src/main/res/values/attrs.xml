@@ -2,12 +2,18 @@
 <resources>
     <declare-styleable name="TeDiSettingButton">
         <attr name="menuIcon" format="reference" />
-        <attr name="menuTitle" format="string"/>
+        <attr name="menuTitle" format="string" />
     </declare-styleable>
 
     <declare-styleable name="TediMainMenuButton">
-        <attr name="iconMenu" format="reference"/>
-        <attr name="titleMenu" format="string"/>
-        <attr name="isBeta" format="boolean"/>
+        <attr name="iconMenu" format="reference" />
+        <attr name="titleMenu" format="string" />
+        <attr name="isBeta" format="boolean" />
     </declare-styleable>
+
+    <declare-styleable name="CustomUploadImageView">
+        <attr name="upload_type" format="integer" />
+        <attr name="upload_description" format="string" />
+    </declare-styleable>
+
 </resources>

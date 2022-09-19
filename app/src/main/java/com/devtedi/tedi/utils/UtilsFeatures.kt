@@ -4,9 +4,16 @@ import android.app.Activity
 import android.app.AlertDialog
 import android.app.Dialog
 import android.content.Context
-import android.graphics.*
+import android.graphics.Bitmap
+import android.graphics.BitmapFactory
+import android.graphics.ImageFormat
+import android.graphics.Rect
+import android.graphics.YuvImage
+import android.os.Build
 import android.util.Log
+import android.view.View
 import android.widget.Button
+import android.widget.ProgressBar
 import android.widget.Toast
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
@@ -14,10 +21,12 @@ import com.devtedi.tedi.R
 import com.devtedi.tedi.adapter.ObjectOptionAdapter
 import com.devtedi.tedi.interfaces.ObjectOptionInterface
 import com.devtedi.tedi.interfaces.SignlanguageContentListener
+import com.devtedi.tedi.utils.ext.click
+import com.devtedi.tedi.utils.ext.gone
+import com.devtedi.tedi.utils.ext.show
 import java.io.ByteArrayOutputStream
 import java.io.File
 import java.nio.ByteBuffer
-
 
 fun sumTheDetectedCurrency(listOfCurrency : List<String>) : Double {
     var totalSum: Double = 0.0
@@ -43,10 +52,6 @@ fun makeItOneString(mappedItems : Map<String, Int>) : String {
     return stringBuilder.toString()
 }
 
-fun showToastMessage(context : Context, msg : String) {
-    Toast.makeText(context ,msg, Toast.LENGTH_SHORT).show()
-}
-
 fun showAlertDialogObjDetection (context : Context, contentDialog : Array<String >, subscriberItemListener : ObjectOptionInterface) {
     val dialog : Dialog = Dialog(context)
     val adapter = ObjectOptionAdapter(contentDialog)
@@ -58,8 +63,8 @@ fun showAlertDialogObjDetection (context : Context, contentDialog : Array<String
     recyclerView.adapter = adapter
     dialog.show()
 }
-fun inputImageToBitmap(data : ByteBuffer, metadata : FrameMetadata) : Bitmap? {
 
+fun inputImageToBitmap(data : ByteBuffer, metadata : FrameMetadata) : Bitmap? {
     if (data != null) {
         data.rewind()
         val imageInBuffer: ByteArray = ByteArray(data.limit())
@@ -96,15 +101,12 @@ fun inputImageToBitmap(data : ByteBuffer, metadata : FrameMetadata) : Bitmap? {
 }
 
 fun createFile(activity : Activity) : File {
-    // Media/camerathisable/ ....YOMAN.jpg
     val mediaDir = activity.externalMediaDirs.firstOrNull()?.let {
         File(it, "CameraThisable").apply {
             mkdirs()
         }
     }
-
     val outputDirectory = if(mediaDir!= null && mediaDir.exists()) mediaDir else activity.filesDir
-
     return File(outputDirectory, "Yoman.jpg")
 }
 
@@ -129,11 +131,10 @@ fun showAlertDialogSignLanguage(context : Context, signlanguageContentListener: 
         .create()
 
     alertDialog.show()
-    val btnSelesai = alertDialog.findViewById<Button>(R.id.btn_selesai)
-    btnSelesai.setOnClickListener {
+    val btnFinish = alertDialog.findViewById<Button>(R.id.btn_selesai)
+    btnFinish.click {
         alertDialog.dismiss()
     }
-
 
 }
 
@@ -155,4 +156,40 @@ fun scaleBitmapDown(bitmap: Bitmap, maxDimension: Int): Bitmap {
         resizedWidth = maxDimension
     }
     return Bitmap.createScaledBitmap(bitmap, resizedWidth, resizedHeight, false)
+}
+
+fun getDeviceName(): String {
+    val manufacturer = Build.MANUFACTURER
+    val model = Build.MODEL
+    return if (model.startsWith(manufacturer)) {
+        capitalize(model)
+    } else {
+        "${capitalize(model)} $model"
+    }
+}
+
+private fun capitalize(s: String?): String {
+    if (s == null || s.isEmpty()) {
+        return ""
+    }
+    val first = s[0]
+    return if (Character.isUpperCase(first)) {
+        s
+    } else {
+        first.uppercaseChar().toString() + s.substring(1)
+    }
+}
+
+fun getDeviceVersion(): String {
+    return Build.VERSION.RELEASE
+}
+
+fun showLoading(dimmerView: View, progressBar: ProgressBar) {
+    dimmerView.show()
+    progressBar.show()
+}
+
+fun hideLoading(dimmerView: View, progressBar: ProgressBar) {
+    dimmerView.gone()
+    progressBar.gone()
 }

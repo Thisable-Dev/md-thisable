@@ -121,7 +121,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginStart="@dimen/dimen_16dp"
                 android:layout_marginTop="@dimen/dimen_8dp"
-                android:text="@string/label_report"
+                android:text="@string/message_information"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/edtEmail" />
 
@@ -154,22 +154,75 @@
                 app:layout_constraintTop_toBottomOf="@+id/tvKeteranganTitle" />
 
             <TextView
+                android:id="@+id/tvSeverityTitle"
+                style="@style/TextContent.EditTextStyle"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/dimen_16dp"
+                android:layout_marginTop="@dimen/dimen_16dp"
+                android:text="@string/label_severity"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/tvCharCounter" />
+
+            <Spinner
+                android:id="@+id/spinnerSeverity"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginHorizontal="@dimen/dimen_16dp"
+                android:layout_marginTop="@dimen/dimen_8dp"
+                android:background="@drawable/bg_edit_text"
+                android:gravity="top|start"
+                android:hint="@string/hint_email"
+                android:inputType="textMultiLine"
+                android:lines="7"
+                android:maxLength="300"
+                android:maxLines="7"
+                android:padding="@dimen/dimen_16dp"
+                android:textSize="@dimen/dimen_14sp"
+                android:entries="@array/array_severity_level"
+                app:layout_constraintTop_toBottomOf="@+id/tvSeverityTitle" />
+
+            <TextView
+                android:id="@+id/tvAttachmentTitle"
+                style="@style/TextContent.EditTextStyle"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/dimen_16dp"
+                android:layout_marginTop="@dimen/dimen_16dp"
+                android:text="@string/label_attachment"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/spinnerSeverity" />
+
+            <com.google.android.material.button.MaterialButton
+                android:id="@+id/edtAttachment"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginHorizontal="@dimen/dimen_16dp"
+                android:layout_marginTop="@dimen/dimen_8dp"
+                android:gravity="top|start"
+                android:textSize="@dimen/dimen_14sp"
+                app:backgroundTint="@color/white"
+                android:elevation="@dimen/dimen_0dp"
+                app:layout_constraintTop_toBottomOf="@+id/tvAttachmentTitle" />
+
+            <TextView
                 android:id="@+id/tvRequired"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="@string/label_required"
                 android:textSize="@dimen/dimen_14sp"
                 android:layout_marginTop="@dimen/dimen_16dp"
-                app:layout_constraintStart_toStartOf="@id/edtReport"
-                app:layout_constraintTop_toBottomOf="@id/edtReport" />
+                app:layout_constraintStart_toStartOf="@id/edtAttachment"
+                app:layout_constraintTop_toBottomOf="@id/edtAttachment" />
 
             <TextView
                 android:id="@+id/tvCharCounter"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:textSize="@dimen/dimen_14sp"
+                android:layout_marginTop="@dimen/dimen_16dp"
                 app:layout_constraintEnd_toEndOf="@id/edtReport"
-                app:layout_constraintTop_toTopOf="@+id/tvRequired" />
+                app:layout_constraintTop_toBottomOf="@id/edtReport"/>
 
             <Button
                 android:id="@+id/btnReport"

@@ -7,7 +7,6 @@ import com.devtedi.tedi.data.remote.general.GeneralService
 import com.devtedi.tedi.data.remote.general.report.ReportBugBody
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.flow
-import java.lang.Exception
 import javax.inject.Inject
 import javax.inject.Singleton
 
@@ -20,8 +19,8 @@ class GeneralDataSource @Inject constructor(private val service: GeneralService)
             try {
                 emit(ApiResponse.Loading)
                 val response = service.addReportBug(reportBody, token)
-                if (response.error) {
-                    emit(ApiResponse.Error(response.message))
+                if (response.error!!) {
+                    emit(ApiResponse.Error(response.message.toString()))
                 } else {
                     emit(ApiResponse.Success(response))
                 }

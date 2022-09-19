@@ -7,6 +7,7 @@ import androidx.lifecycle.viewModelScope
 import com.devtedi.tedi.data.remote.ApiResponse
 import com.devtedi.tedi.data.remote.general.BugReportResponse
 import com.devtedi.tedi.data.remote.general.report.ReportBugBody
+import com.devtedi.tedi.data.remote.general.request.FileRequest
 import com.devtedi.tedi.data.repository.GeneralRepository
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.launch

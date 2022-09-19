@@ -159,5 +159,24 @@
     <string name="label_redetect">Deteksi Ulang</string>
     <string name="label_copy_text">Salin Teks</string>
     <string name="label_text_copied">Teks telah disalin</string>
+    <string name="label_severity">Tingkat Keparahan*</string>
+    <string name="label_attachment">Lampiran (opsional)</string>
+    <string name="title_warning">Peringatan</string>
+    <string name="message_ask_camera_permission">Aplikasi ini menggunakan kamera gawai anda untuk dapat digunakan, Mohon Berikan Akses untuk kamera</string>
+    <string name="action_give_access">Beri Akses</string>
+    <string name="action_no">Tidak</string>
+    <string name="message_app_will_close">Aplikasi Akan Ditutup</string>
+    <string name="message_now_you_can_use_the_app">Terima kasih, Sekarang kamu dapat menggunakan Aplikasi</string>
+    <string name="message_sound_activated">Suara Diaktifkan</string>
+    <string name="message_sound_deactivated">Suara Dimatikan</string>
+    <string name="message_permisson_not_granted">Permission not Granted</string>
+
+    <string-array name="array_severity_level">
+        <item>Perlu diperbaiki segera mungkin</item>
+        <item>Parah</item>
+        <item>Sedang</item>
+        <item>Kecil</item>
+        <item>Saran</item>
+    </string-array>
 
 </resources>

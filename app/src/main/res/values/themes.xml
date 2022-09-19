@@ -121,6 +121,10 @@
         <item name="android:textColor">@color/colorBlue</item>
     </style>
 
+    <style name="TextContent.Grey">
+        <item name="android:textColor">@color/colorGrey</item>
+    </style>
+
     <style name="TediButton" parent="Widget.MaterialComponents.Button">
         <item name="android:layout_width">wrap_content</item>
         <item name="android:layout_height">wrap_content</item>

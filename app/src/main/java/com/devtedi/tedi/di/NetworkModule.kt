@@ -1,6 +1,6 @@
 package com.devtedi.tedi.di
 
-import com.devtedi.tedi.utils.ConstVal.BASE_URL
+import com.devtedi.tedi.BuildConfig
 import com.devtedi.tedi.utils.ConstVal.CLOUD_VISION_API
 import dagger.Module
 import dagger.Provides
@@ -29,7 +29,7 @@ class NetworkModule {
     @Provides
     @Named("General")
     fun provideRetrofit(client: OkHttpClient): Retrofit = Retrofit.Builder()
-        .baseUrl(BASE_URL)
+        .baseUrl(BuildConfig.BASE_URL)
         .addConverterFactory(GsonConverterFactory.create())
         .client(client)
         .build()

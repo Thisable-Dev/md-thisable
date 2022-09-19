@@ -6,7 +6,6 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.appcompat.app.AlertDialog
 import androidx.fragment.app.Fragment
-import androidx.navigation.findNavController
 import androidx.navigation.fragment.findNavController
 import com.devtedi.tedi.R
 import com.devtedi.tedi.R.string
@@ -17,6 +16,7 @@ import com.devtedi.tedi.utils.ConstVal.KEY_TOKEN
 import com.devtedi.tedi.utils.ConstVal.KEY_USER_ID
 import com.devtedi.tedi.utils.ConstVal.KEY_USER_NAME
 import com.devtedi.tedi.utils.SharedPrefManager
+import com.devtedi.tedi.utils.ext.click
 import com.devtedi.tedi.utils.ext.popTap
 import com.devtedi.tedi.utils.ext.setImageUrl
 import com.google.android.gms.auth.api.signin.GoogleSignIn
@@ -63,26 +63,20 @@ class ProfileFragment : Fragment() {
     }
 
     private fun initAction() {
-        binding.btnFqa.setOnClickListener {
-            it.popTap()
-            it.findNavController().navigate(R.id.action_profileFragment_to_fragmentFQA)
+        binding.btnFqa.click {
+            findNavController().navigate(R.id.action_profileFragment_to_fragmentFQA)
         }
-        binding.btnHelp.setOnClickListener {
-            it.popTap()
-            it.findNavController().navigate(R.id.action_profileFragment_to_helpFragment)
+        binding.btnHelp.click {
+            findNavController().navigate(R.id.action_profileFragment_to_helpFragment)
         }
-        binding.btnReportBug.setOnClickListener {
-            it.popTap()
-            it.findNavController().navigate(R.id.action_profileFragment_to_bugReportFragment)
+        binding.btnReportBug.click {
+            findNavController().navigate(R.id.action_profileFragment_to_bugReportFragment)
         }
-        binding.btnAbout.setOnClickListener {
-            it.apply {
-                popTap()
-                findNavController().navigate(R.id.action_profileFragment_to_aboutFragment)
-            }
+        binding.btnAbout.click {
+            findNavController().navigate(R.id.action_profileFragment_to_aboutFragment)
+
         }
-        binding.btnLogout.setOnClickListener {
-            it.popTap()
+        binding.btnLogout.click {
             showLogoutDialog()
         }
     }

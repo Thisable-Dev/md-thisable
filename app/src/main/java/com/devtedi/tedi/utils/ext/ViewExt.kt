@@ -2,6 +2,8 @@ package com.devtedi.tedi.utils.ext
 
 import android.animation.AnimatorSet
 import android.animation.ObjectAnimator
+import android.text.Editable
+import android.text.TextWatcher
 import android.view.View
 import android.widget.EditText
 import android.widget.ImageView
@@ -63,6 +65,20 @@ fun View.popTap(){
 
 fun EditText.clearText() {
     setText("")
+}
+
+fun EditText.onTextChanged(onTextChanged: (String) -> Unit) {
+    this.addTextChangedListener(object: TextWatcher{
+        override fun beforeTextChanged(p0: CharSequence?, p1: Int, p2: Int, p3: Int) {
+        }
+
+        override fun onTextChanged(char: CharSequence?, p1: Int, p2: Int, p3: Int) {
+            onTextChanged.invoke(char.toString())
+        }
+
+        override fun afterTextChanged(p0: Editable?) {
+        }
+    })
 }
 
 infix fun View.click(click: () -> Unit) {

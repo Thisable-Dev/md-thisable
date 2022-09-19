@@ -14,7 +14,7 @@
         android:icon="@mipmap/ic_launcher"
         android:label="@string/app_name"
         android:supportsRtl="true"
-        android:name="com.devtedi.tedi.base.ThisableApplication"
+        android:name="com.devtedi.tedi.base.TediApplication"
         android:theme="@style/Theme.Thisable"
         android:usesCleartextTraffic="true">
         <activity

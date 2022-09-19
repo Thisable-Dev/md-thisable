@@ -27,7 +27,6 @@ import com.devtedi.tedi.utils.ServeListQuestion
 import com.devtedi.tedi.utils.countTheObj
 import com.devtedi.tedi.utils.ext.showToast
 import com.devtedi.tedi.utils.makeItOneString
-import com.devtedi.tedi.utils.showToastMessage
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.delay
@@ -74,7 +73,7 @@ class ObjectDetectionFragment : Fragment() {
     override fun onResume() {
         super.onResume()
         startCamera()
-        binding.viewFinder.performAccessibilityAction(AccessibilityNodeInfo.ACTION_ACCESSIBILITY_FOCUS,null)
+        binding.viewFinder.performAccessibilityAction(AccessibilityNodeInfo.ACTION_ACCESSIBILITY_FOCUS, null)
         binding.viewFinder.sendAccessibilityEvent(AccessibilityEvent.TYPE_VIEW_FOCUSED)
     }
 
@@ -85,14 +84,13 @@ class ObjectDetectionFragment : Fragment() {
             true
         }
         binding.viewFinder.setOnClickListener {
-            showToastMessage(requireContext(), getString(R.string.app_info_tekan_lama))
+            showToast(getString(R.string.app_info_tekan_lama))
             true
         }
 
         binding.ivSoundState.setOnClickListener {
             // Check it
-            if (!stateSound) stateSound = true
-            else stateSound = false
+            stateSound = !stateSound
             feedbackListenerInterface?.onListenFeedback(stateSound)
             changeDrawable()
         }
@@ -101,10 +99,10 @@ class ObjectDetectionFragment : Fragment() {
     private fun changeDrawable() {
         if (stateSound) {
             binding.ivSoundState.setImageDrawable(requireContext().getDrawable(R.drawable.sound_on))
-            context?.showToast("Suara Diaktifkan")
+            showToast("Suara Diaktifkan")
         } else {
             binding.ivSoundState.setImageDrawable(requireContext().getDrawable(R.drawable.sound_off))
-            context?.showToast("Suara Dimatikan")
+            showToast("Suara Dimatikan")
         }
     }
 
@@ -115,11 +113,7 @@ class ObjectDetectionFragment : Fragment() {
         val subscriberItemListener: ObjectOptionInterface = object : ObjectOptionInterface {
             override fun onClick(data: String) {
                 if (data == requireActivity().getString(R.string.question_1_obj_detection)) {
-                    Toast.makeText(
-                        requireContext(),
-                        getString(R.string.onClickInfoObjectDetection),
-                        Toast.LENGTH_SHORT
-                    ).show()
+                    showToast(getString(R.string.onClickInfoObjectDetection))
                 }
             }
 
@@ -142,31 +136,17 @@ class ObjectDetectionFragment : Fragment() {
                                         ),
                                         Toast.LENGTH_SHORT
                                     ).show()
-                                    //playSoundInInterval(interval.toLong(), getListOfRaw())
                                 } else {
-                                    Toast.makeText(
-                                        requireContext(),
-                                        getString(R.string.info_noObjectDetected),
-                                        Toast.LENGTH_SHORT
-                                    ).show()
+                                    showToast(getString(R.string.info_noObjectDetected))
                                 }
                             }
                         } else {
                             if (itemConfig.size <= 10) {
                                 val stringReturned = makeItOneString(countTheObj(itemConfig))
-                                Toast.makeText(
-                                    requireContext(),
-                                    requireActivity().getString(
-                                        R.string.response_1_obj_detection,
-                                        stringReturned.dropLast(1)
-                                    ),
-                                    Toast.LENGTH_SHORT
-                                ).show()
+                                showToast(getString(R.string.response_1_obj_detection, stringReturned.dropLast(1)))
                             }
                         }
                     }
-                    // Response 2
-                    // Response 3
                 }
             }
         }
@@ -196,7 +176,7 @@ class ObjectDetectionFragment : Fragment() {
                 cameraProvider.unbindAll()
                 // Bind use cases to camera
                 // Ini CUma Buat testing
-                val lol = (2  * 23).toString() + 231
+                val lol = (2 * 23).toString() + 231
                 val imageAnalyzer = ImageAnalysis.Builder()
                     .setBackpressureStrategy(ImageAnalysis.STRATEGY_KEEP_ONLY_LATEST)
                     .build()

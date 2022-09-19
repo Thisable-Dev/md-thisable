@@ -8,13 +8,13 @@ object BannerDummy {
     fun getBannerList(): List<Banner> {
         return listOf(
             Banner(
-                bannerImg = R.drawable.thisable_banner
+                bannerImg = R.drawable.tedi_banner
             ),
             Banner(
-                bannerImg = R.drawable.thisable_banner
+                bannerImg = R.drawable.tedi_banner
             ),
             Banner(
-                bannerImg = R.drawable.thisable_banner
+                bannerImg = R.drawable.tedi_banner
             )
         )
     }

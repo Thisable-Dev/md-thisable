@@ -4,6 +4,7 @@ import com.devtedi.tedi.data.remote.ApiResponse
 import com.devtedi.tedi.data.remote.general.BugReportResponse
 import com.devtedi.tedi.data.source.GeneralDataSource
 import com.devtedi.tedi.data.remote.general.report.ReportBugBody
+import com.devtedi.tedi.data.remote.general.request.FileRequest
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.flowOn
