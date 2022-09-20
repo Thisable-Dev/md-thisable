@@ -1,5 +1,6 @@
 package com.devtedi.tedi.data.remote.general.report
 
+import com.devtedi.tedi.data.remote.general.request.FileRequest
 import com.devtedi.tedi.data.remote.general.request.SpecificationBody
 import com.google.gson.annotations.SerializedName
 
@@ -13,4 +14,5 @@ data class ReportBugBody(
     @SerializedName("severity")
     val severity: String,
     val specificationBody: SpecificationBody,
+    val fileRequest: FileRequest
 )

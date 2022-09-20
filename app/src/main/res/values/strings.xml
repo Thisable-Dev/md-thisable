@@ -170,6 +170,7 @@
     <string name="message_sound_activated">Suara Diaktifkan</string>
     <string name="message_sound_deactivated">Suara Dimatikan</string>
     <string name="message_permisson_not_granted">Permission not Granted</string>
+    <string name="label_choose_attachment">Pilih Lampiran</string>
 
     <string-array name="array_severity_level">
         <item>Perlu diperbaiki segera mungkin</item>

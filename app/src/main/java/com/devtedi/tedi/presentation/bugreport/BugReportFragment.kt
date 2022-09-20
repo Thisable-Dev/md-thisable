@@ -1,11 +1,14 @@
 package com.devtedi.tedi.presentation.bugreport
 
+import android.content.Intent
+import android.content.Intent.ACTION_GET_CONTENT
+import android.net.Uri
 import android.os.Bundle
-import android.text.Editable
-import android.text.TextWatcher
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.activity.result.contract.ActivityResultContracts
+import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.navigation.findNavController
@@ -14,25 +17,30 @@ import com.devtedi.tedi.R
 import com.devtedi.tedi.R.string
 import com.devtedi.tedi.data.remote.ApiResponse
 import com.devtedi.tedi.data.remote.general.report.ReportBugBody
+import com.devtedi.tedi.data.remote.general.request.FileRequest
 import com.devtedi.tedi.data.remote.general.request.SpecificationBody
 import com.devtedi.tedi.databinding.FragmentBugReportBinding
 import com.devtedi.tedi.utils.ext.clearText
 import com.devtedi.tedi.utils.ext.click
 import com.devtedi.tedi.utils.ext.disable
 import com.devtedi.tedi.utils.ext.getTotalMemories
-import com.devtedi.tedi.utils.ext.gone
 import com.devtedi.tedi.utils.ext.onTextChanged
-import com.devtedi.tedi.utils.ext.show
+import com.devtedi.tedi.utils.ext.showToast
 import com.devtedi.tedi.utils.getDeviceName
 import com.devtedi.tedi.utils.getDeviceVersion
 import com.devtedi.tedi.utils.hideLoading
 import com.devtedi.tedi.utils.showLoading
+import com.devtedi.tedi.utils.uriToFile
 import com.google.android.material.snackbar.Snackbar
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.ktx.auth
 import com.google.firebase.ktx.Firebase
 import dagger.hilt.android.AndroidEntryPoint
+import okhttp3.MediaType.Companion.toMediaTypeOrNull
+import okhttp3.MultipartBody
+import okhttp3.RequestBody.Companion.asRequestBody
 import timber.log.Timber
+import java.io.File
 
 @AndroidEntryPoint
 class BugReportFragment : Fragment() {
@@ -43,6 +51,10 @@ class BugReportFragment : Fragment() {
     private val binding get() = _fragmentReportBinding!!
 
     private lateinit var auth: FirebaseAuth
+
+    private var uploadFile: File? = null
+
+    private var fileRequest: FileRequest? = null
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         _fragmentReportBinding = FragmentBugReportBinding.inflate(inflater, container, false)
@@ -108,20 +120,32 @@ class BugReportFragment : Fragment() {
                         }
                     }
                     else -> {
-                        val reportBody = ReportBugBody(
-                            name = name,
-                            email = email,
-                            message = message,
-                            severity = severity,
-                            specificationBody = SpecificationBody(
-                                phoneBrand = getDeviceName(),
-                                ram = getTotalMemories(),
-                                androidVersion = getDeviceVersion()
+                        fileRequest?.let {
+                            val reportBody = ReportBugBody(
+                                name = name,
+                                email = email,
+                                message = message,
+                                severity = severity,
+                                specificationBody = SpecificationBody(
+                                    phoneBrand = getDeviceName(),
+                                    ram = getTotalMemories(),
+                                    androidVersion = getDeviceVersion()
+                                ),
+                                fileRequest = it
                             )
-                        )
-                        addNewReportBug(reportBody)
+                            addNewReportBug(reportBody)
+                        }
                     }
                 }
+            }
+            btnAttachment.click {
+                val intent = Intent()
+                val mimeTypes = arrayOf("image/*", "application/pdf")
+                intent.action = ACTION_GET_CONTENT
+                intent.type = "*/*"
+                intent.putExtra(Intent.EXTRA_MIME_TYPES, mimeTypes)
+                val chooser = Intent.createChooser(intent, "Choose a file")
+                launchIntentGallery.launch(chooser)
             }
         }
     }
@@ -151,6 +175,38 @@ class BugReportFragment : Fragment() {
                     Timber.e(getString(string.message_unknown_state))
                 }
             }
+        }
+    }
+
+    private val launchIntentGallery = registerForActivityResult(
+        ActivityResultContracts.StartActivityForResult()
+    ) { result ->
+        if (result.resultCode == AppCompatActivity.RESULT_OK) {
+            val selectedImg: Uri = result.data?.data as Uri
+            showToast(selectedImg.toString())
+            val file = uriToFile(selectedImg, requireContext(), selectedImg)
+
+            val requestImageFile = file.asRequestBody("image/jpeg".toMediaTypeOrNull())
+            val imageMultipart = MultipartBody.Part.createFormData(
+                "",
+                file.name,
+                requestImageFile
+            )
+
+            val requestPdfFile = file.asRequestBody("application/pdf".toMediaTypeOrNull())
+            val pdfMultipart = MultipartBody.Part.createFormData(
+                "",
+                file.name,
+                requestImageFile
+            )
+
+            fileRequest =
+                FileRequest(
+                    photo = imageMultipart,
+                )
+
+            uploadFile = file
+            showToast(uploadFile.toString())
         }
     }
 
