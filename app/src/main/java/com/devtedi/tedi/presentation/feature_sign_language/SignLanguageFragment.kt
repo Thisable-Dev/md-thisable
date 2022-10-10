@@ -1,133 +1,86 @@
 package com.devtedi.tedi.presentation.feature_sign_language
 
-import android.Manifest
-import android.annotation.SuppressLint
 import android.os.Bundle
-import android.util.DisplayMetrics
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.view.accessibility.AccessibilityEvent
-import android.view.accessibility.AccessibilityNodeInfo
-import androidx.camera.core.CameraSelector
-import androidx.camera.core.ImageAnalysis
-import androidx.camera.core.Preview
-import androidx.camera.lifecycle.ProcessCameraProvider
-import androidx.core.content.ContextCompat
+import androidx.camera.view.PreviewView
+import androidx.core.view.isGone
 import androidx.fragment.app.Fragment
-import com.devtedi.tedi.analyzer.SignLanguageAnalyzer
+import androidx.fragment.app.viewModels
+import com.devtedi.tedi.analysis.FullImageAnalyse
 import com.devtedi.tedi.databinding.FragmentSignLanguageBinding
-import com.devtedi.tedi.interfaces.FeedbackSignLanguageListener
-import com.devtedi.tedi.interfaces.SignLanguageListener
-import com.devtedi.tedi.interfaces.SignlanguageContentListener
-import com.devtedi.tedi.utils.showAlertDialogSignLanguage
-import java.util.concurrent.ExecutorService
-import java.util.concurrent.Executors
+import com.devtedi.tedi.factory.YOLOv5ModelCreator
+import com.devtedi.tedi.utils.*
 
-class SignLanguageFragment : Fragment() {
+class SignLanguageFragment : Fragment(), FeatureBaseline {
 
-    private var binding_ : FragmentSignLanguageBinding? = null
-    private val binding : FragmentSignLanguageBinding get() = binding_!!
-    private lateinit var signLanguageAnalyzer : SignLanguageAnalyzer
-    private lateinit var cameraExecutor : ExecutorService
-    private lateinit var keyboardCustomListener: FeedbackSignLanguageListener
-    private lateinit var signLanguageListener: SignLanguageListener
+    private var _binding : FragmentSignLanguageBinding? = null
+    private val binding : FragmentSignLanguageBinding get() = _binding!!
 
-    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
-        super.onViewCreated(view, savedInstanceState)
-        //requireContext().showToast(getString(R.string.active_bisindo))
-
-        init()
-        startCamera()
-    }
-
+    override lateinit var cameraPreviewView: PreviewView
+    override lateinit var cameraProcess: CameraProcess
+    override lateinit var yolov5TFLiteDetector: YOLOv5ModelCreator
+    private val viewModel : SignLanguageViewModel by viewModels()
+    private var rotation : Int = 0
+    lateinit var fullImageAnalyse : FullImageAnalyse
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
-        savedInstanceState: Bundle?): View {
-        binding_ = FragmentSignLanguageBinding.inflate(inflater)
+        savedInstanceState: Bundle?
+    ): View {
+        _binding = FragmentSignLanguageBinding.inflate(inflater)
         return binding.root
     }
 
-
-    private fun init() {
-        cameraExecutor = Executors.newSingleThreadExecutor()
-        signLanguageListener = object : SignLanguageListener {
-            override fun onChangedPose(data: String) {
-                val currentText = binding.etOutputTerjemahan.text.toString()
-                binding.etOutputTerjemahan.setText( currentText +" "+data.toString() )
-            }
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+        rotation = requireActivity().windowManager.defaultDisplay.rotation
+        viewModel.initModel(const_object_detector,requireContext())
+        viewModel.isLoading.observe(viewLifecycleOwner) {
+            binding.progressBar.isGone = !it
         }
-        signLanguageAnalyzer = SignLanguageAnalyzer(binding.graphicOverlay, requireContext())
-        signLanguageAnalyzer.setSignLanguageListener(signLanguageListener)
-        keyboardCustomListener = object : FeedbackSignLanguageListener {
-            override fun onListenerKeyboard(state: Boolean) {
-                if (state) {
-                    subscribeSignlanguageContentListener?.onListenContent(true)
-                    // Show dialog
-                    showAlertDialogSignLanguage(requireContext(), subscribeSignlanguageContentListener)
-                }
-                else {
-                    // Create Interface for make it unsub
-                    subscribeSignlanguageContentListener?.onListenContent(false)
-                }
-            }
+        cameraProcess = CameraProcess()
+        cameraPreviewView = binding.cameraPreviewWrap
+        if(!cameraProcess.allPermissionGranted(requireContext())) {
+            cameraProcess.requestPermission(requireActivity())
         }
-        binding.etOutputTerjemahan.setKeyboardListener(keyboardCustomListener)
-    }
 
-    @SuppressLint("RestrictedApi")
-    private fun startCamera() {
-        val cameraProviderFuture = ProcessCameraProvider.getInstance(requireContext())
-
-        val metrics = DisplayMetrics()
-        requireActivity().windowManager.defaultDisplay.getMetrics(metrics)
-        // define the screen size
-
-        val runnableInterface = Runnable {
-            val cameraProvider : ProcessCameraProvider = cameraProviderFuture.get()
-            val preview : Preview = Preview.Builder()
-                .build().also {
-                it.setSurfaceProvider(binding.viewFinder.surfaceProvider)
-            }
-
-            val cameraSelector = CameraSelector.DEFAULT_BACK_CAMERA
-
-            try {
-                cameraProvider.unbindAll()
-                val imageAnalyzer = ImageAnalysis.Builder()
-                    .setBackpressureStrategy(ImageAnalysis.STRATEGY_KEEP_ONLY_LATEST)
-                    .build()
-                    .also {
-                        it.setAnalyzer(cameraExecutor, signLanguageAnalyzer)
-                    }
-                cameraProvider.bindToLifecycle(this, cameraSelector, preview, imageAnalyzer)
-            }
-            catch (e : Exception){
-                e.printStackTrace()
-            }
+        viewModel.yolov5TFLiteDetector.observe(viewLifecycleOwner) {
+            initGraphicListenerHandler(it)
         }
-        cameraProviderFuture.addListener(runnableInterface, ContextCompat.getMainExecutor(requireContext()))
-    }
-
-    override fun onPause() {
-        super.onPause()
-        startCamera()
     }
 
     override fun onResume() {
         super.onResume()
-        binding.ccSignLanguage.performAccessibilityAction(AccessibilityNodeInfo.ACTION_ACCESSIBILITY_FOCUS,null)
-        binding.ccSignLanguage.sendAccessibilityEvent(AccessibilityEvent.TYPE_VIEW_FOCUSED)
-        startCamera()
+
+        if(viewModel.yolov5TFLiteDetector.value == null) {
+            viewModel.initModel(const_test_model, requireContext())
+        }
+        viewModel.yolov5TFLiteDetector.observe(viewLifecycleOwner) {
+            fullImageAnalyse = FullImageAnalyse(
+                requireContext(),
+                cameraPreviewView,
+                rotation,
+                it,
+                graphicOverlay = binding.graphicOverlay
+            )
+            cameraProcess.startCamera(requireActivity(), fullImageAnalyse, cameraPreviewView)
+        }
     }
 
-    companion object {
-        private val REQUIRED_PERMISSION = arrayOf(Manifest.permission.CAMERA)
-        private val PERMISSION_CODE : Int = 10
+    override fun onDestroyView() {
+        super.onDestroyView()
+        _binding = null
+    }
 
-        private  var subscribeSignlanguageContentListener: SignlanguageContentListener? = null
-        fun setSignLanguageContentListener(signlanguageContentListener: SignlanguageContentListener) {
-            this.subscribeSignlanguageContentListener = signlanguageContentListener
+    private fun initGraphicListenerHandler(modelan : YOLOv5ModelCreator) {
+        binding.graphicOverlay.setOnLongClickListener {
+            val df = DialogGenerator.newInstance(requireActivity(),
+                getObjConstTemp(),
+                impl_oc_ocl_obj,
+                modelan)
+            df.show(requireActivity().supportFragmentManager, "dialog")
+            true
         }
     }
 }
