@@ -4,6 +4,7 @@ import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.devtedi.tedi.databinding.ItemLayoutDialogObjBinding
+import com.devtedi.tedi.databinding.ItemQuestionsDialogCoreLayoutBinding
 import com.devtedi.tedi.interfaces.ObjectOptionInterface
 
 
@@ -11,7 +12,7 @@ class ObjectOptionsAdapter(
     private val listQuestions: Array<String>, private val onClick: (value: String) -> Unit,
     private val onLongClick: (value: String) -> Unit,
 ) : RecyclerView.Adapter<ObjectOptionsAdapter.ViewHolder>() {
-    inner class ViewHolder(private val binding: ItemQuestionDialogLayoutBinding) :
+    inner class ViewHolder(private val binding: ItemQuestionsDialogCoreLayoutBinding) :
         RecyclerView.ViewHolder(binding.root) {
         fun bind(data: String) {
             binding.tvQuestion.text = data
@@ -19,7 +20,7 @@ class ObjectOptionsAdapter(
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
-        val inflater = ItemQuestionDialogLayoutBinding.inflate(LayoutInflater.from(parent.context),
+        val inflater = ItemQuestionsDialogCoreLayoutBinding.inflate(LayoutInflater.from(parent.context),
             parent,
             false)
         return ViewHolder(inflater)
