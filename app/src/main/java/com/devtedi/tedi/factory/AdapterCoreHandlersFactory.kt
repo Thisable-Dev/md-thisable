@@ -2,6 +2,10 @@ package com.devtedi.tedi.factory
 
 import android.app.Activity
 import android.widget.Toast
+import com.devtedi.tedi.R
+import com.devtedi.tedi.databinding.CustomToastV1Binding
+import com.devtedi.tedi.observer_core.CoreObserver
+import com.devtedi.tedi.utils.RecognitionRes
 
 class AdapterCoreHandlersFactory(
     private val context : Activity,

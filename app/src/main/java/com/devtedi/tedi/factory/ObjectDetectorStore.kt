@@ -5,6 +5,7 @@ import android.util.Size
 import com.devtedi.tedi.core_model.BisindoTranslator
 import com.devtedi.tedi.core_model.CurrencyDetector
 import com.devtedi.tedi.core_model.ObjectDetector
+import com.devtedi.tedi.utils.*
 
 class ObjectDetectorStore(context: Context) : ModelStore(context) {
     override suspend fun createModel(type: String): YOLOv5ModelCreator {
