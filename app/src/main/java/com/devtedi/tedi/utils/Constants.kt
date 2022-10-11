@@ -2,19 +2,18 @@ package com.devtedi.tedi.utils
 
 import android.util.Size
 
-const val MODEL_FILE_OBJ: String = "object_detection.tflite"
-const val MODEL_FILE_CURRENCY : String = "currency_detection.tflite"
-const val MODEL_FILE_COLOR : String = "HELLOW.tflite"
+const val MODEL_FILE_OBJ: String = "ObjectDetectionModel.tflite"
+const val MODEL_FILE_CURRENCY : String = "CurrencyModel.tflite"
 const val MODEL_FILE_BISINDO : String ="sign_language.tflite"
 
-const val LABEL_OBJ : String = "file:///android_asset/label_obj_detection.txt"
-const val LABEL_CURRENCY : String = "file:///android_asset/label_currency.txt"
+const val LABEL_OBJ : String = "label_obj_detection.txt"
+const val LABEL_CURRENCY : String = "label_currency.txt"
 const val LABEL_COLOR : String = "file:///android_asset/color.txt"
 const val LABEL_BISINDO : String = "file:///android_asset/label_sign_language.txt"
 
 const val NUM_THREADS : Int = 2
 
-const val default_img_size = 640
+const val default_img_size = 320
 val MODEL_IMG_SIZE_obj : Size = Size(default_img_size, default_img_size)
 val MODEL_IMG_SIZE_signLanguage: Size = Size(default_img_size, default_img_size)
 val MODEL_IMG_SIZE_currency : Size = Size(default_img_size, default_img_size)
