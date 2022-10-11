@@ -86,6 +86,7 @@ open class YOLOv5ModelCreator(
                 val tfliteModel: ByteBuffer = FileUtil.loadMappedFile(activity, model_file)
                 tflite = Interpreter(tfliteModel, options)
                 associatedAxisLabels = FileUtil.loadLabels(activity, label_file)
+                Log.d("blok",associatedAxisLabels.toString())
             }
         }
     }
