@@ -19,8 +19,8 @@ class SectionPagerAdapter(activity: AppCompatActivity) : FragmentStateAdapter(ac
             0 -> ObjectDetectionFragment()
             1 -> SignLanguageFragment()
             2 -> CurrencyFragment()
-            3 -> ObjectDetectionFragment()
-            4 -> ObjectDetectionFragment()
+            3 -> CurrencyFragment()
+            4 -> CurrencyFragment()
             else -> null
         }
         return fragment as Fragment
