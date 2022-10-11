@@ -35,7 +35,7 @@ class CurrencyFragment : Fragment(), FeatureBaseline {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        viewModel.initModel(const_test_model, requireContext())
+        viewModel.initModel(const_currency_detector, requireContext())
         viewModel.isLoading.observe(viewLifecycleOwner) {
             binding.progressBar.isGone = !it
         }

@@ -36,7 +36,7 @@ class ObjectDetectionFragment : Fragment(), FeatureBaseline {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        viewModel.initModel(const_test_model, requireContext())
+        viewModel.initModel(const_object_detector, requireContext())
 
         viewModel.isLoading.observe(viewLifecycleOwner) { isLoading ->
             binding.progressBar.isGone = !isLoading
@@ -58,7 +58,7 @@ class ObjectDetectionFragment : Fragment(), FeatureBaseline {
         super.onResume()
         if(viewModel.yolov5TFLiteDetector.value == null)
         {
-            viewModel.initModel(const_test_model, requireContext())
+            viewModel.initModel(const_object_detector, requireContext())
         }
         val rotation = requireActivity().windowManager.defaultDisplay.rotation
         viewModel.yolov5TFLiteDetector.observe(viewLifecycleOwner) { model ->
