@@ -16,11 +16,11 @@ class SectionPagerAdapter(activity: AppCompatActivity) : FragmentStateAdapter(ac
 
     override fun createFragment(position: Int): Fragment {
         val fragment: Fragment? = when (position) {
-            0 -> ObjectDetectionFragment()
-            1 -> SignLanguageFragment()
+            0 -> SignLanguageFragment()
+            1 -> ObjectDetectionFragment()
             2 -> CurrencyFragment()
-            3 -> CurrencyFragment()
-            4 -> TextDetectionFragment()
+            3 -> TextDetectionFragment()
+            4 -> ColorDetectionFragment()
             else -> null
         }
         return fragment as Fragment
