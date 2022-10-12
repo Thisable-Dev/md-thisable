@@ -38,6 +38,9 @@ android {
         sourceCompatibility JavaVersion.VERSION_1_8
         targetCompatibility JavaVersion.VERSION_1_8
     }
+    aaptOptions {
+        noCompress "tflite"
+    }
     kotlinOptions {
         jvmTarget = '1.8'
     }
@@ -96,11 +99,11 @@ dependencies {
     //view pager
     implementation "androidx.viewpager2:viewpager2:1.0.0"
     //cameraX
-    implementation "androidx.camera:camera-view:1.1.0-beta01"
-    implementation "androidx.camera:camera-lifecycle:1.1.0-beta01"
-    implementation "androidx.camera:camera-camera2:1.1.0-beta01"
-    implementation "androidx.camera:camera-core:1.1.0-beta01"
-
+    def camerax_version = "1.2.0-alpha04"
+    implementation 'androidx.camera:camera-view:1.1.0'
+    implementation "androidx.camera:camera-core:$camerax_version"
+    implementation "androidx.camera:camera-camera2:$camerax_version"
+    implementation "androidx.camera:camera-lifecycle:$camerax_version"
     // MLKIt
     implementation "com.google.mlkit:object-detection-custom:17.0.0"
 

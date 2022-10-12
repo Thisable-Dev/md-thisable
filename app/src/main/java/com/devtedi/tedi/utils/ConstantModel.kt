@@ -25,7 +25,10 @@ const val const_bisindo_translator : String = "bisindo_translator"
 const val const_currency_detector : String = "currency_detector"
 const val const_color_classifier : String = "color_classifier"
 
-const val NMSThresh : Float  = 0.6f
+
+const val total_label_object : Int = 80;
+const val total_label_bisindo : Int = 50;
+const val total_label_currency : Int = 7;
 
 const val DETECT_THRESHOLD : Float = 0.6f
 const val IOU_THRESHOLD : Float = 0.45f

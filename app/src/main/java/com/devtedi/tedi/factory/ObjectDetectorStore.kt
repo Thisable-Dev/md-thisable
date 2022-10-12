@@ -14,7 +14,7 @@ class ObjectDetectorStore(context: Context) : ModelStore(context) {
 
                 val objectDetector = ObjectDetector(
                     MODEL_IMG_SIZE_obj,
-                    UtilsClassifier.calculateOutputSize(default_img_size, 80),
+                    UtilsClassifier.calculateOutputSize(default_img_size, total_label_object),
                     DETECT_THRESHOLD,
                     IOU_THRESHOLD,
                     IOU_CLASS_DUPLICATED_THRESHOLD,
@@ -34,7 +34,7 @@ class ObjectDetectorStore(context: Context) : ModelStore(context) {
                 val bisindoTranslator =
                     BisindoTranslator(
                         MODEL_IMG_SIZE_signLanguage,
-                        UtilsClassifier.calculateOutputSize(default_img_size, 3),
+                        UtilsClassifier.calculateOutputSize(default_img_size, total_label_bisindo),
                         DETECT_THRESHOLD,
                         IOU_THRESHOLD,
                         IOU_CLASS_DUPLICATED_THRESHOLD,
@@ -49,30 +49,12 @@ class ObjectDetectorStore(context: Context) : ModelStore(context) {
 
                 return yolov5ModelCreator.create(context)
             }
-            const_test_model -> {
 
-                val objectDetector = ObjectDetector(
-                    Size(320, 320),
-                    UtilsClassifier.calculateOutputSize(320, 80),
-                    DETECT_THRESHOLD,
-                    IOU_THRESHOLD,
-                    IOU_CLASS_DUPLICATED_THRESHOLD,
-                    LABEL_OBJ, test_model,
-                    false)
-
-                val yolOv5ModelCreator = YOLOv5ModelCreator(
-                    objectDetector.inputSize, objectDetector.outputSize,
-                    objectDetector.detect_threshold, objectDetector.IOU_threshold,
-                    objectDetector.IOU_class_duplicated_threshold, objectDetector.label_file,
-                    objectDetector.model_file, objectDetector.IS_INT_8
-                )
-                return yolOv5ModelCreator.create(context)
-            }
             else -> {
                 val currencyDetector =
                     CurrencyDetector(
                         MODEL_IMG_SIZE_currency,
-                        UtilsClassifier.calculateOutputSize(default_img_size, 7),
+                        UtilsClassifier.calculateOutputSize(default_img_size, total_label_currency),
                         DETECT_THRESHOLD,
                         IOU_THRESHOLD,
                         IOU_CLASS_DUPLICATED_THRESHOLD,
