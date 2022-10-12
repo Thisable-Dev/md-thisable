@@ -13,5 +13,4 @@ abstract class ObjectDetectorType {
     abstract var model_file : String
     abstract var IS_INT_8 : Boolean
 
-
 }

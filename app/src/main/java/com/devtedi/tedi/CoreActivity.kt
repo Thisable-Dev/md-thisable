@@ -44,7 +44,6 @@ class CoreActivity : AppCompatActivity() {
             tab.customView = view
         }.attach()
 
-        initKeyboard()
     }
 
 
@@ -64,17 +63,7 @@ class CoreActivity : AppCompatActivity() {
         }
     }
 
-    private fun initKeyboard() {
-        //binding.btnKeyboard.setOnClickListener(::openKeyboardDialog)
-    }
 
-    private fun openKeyboardDialog(view: View) {
-        val bottomSheetDialog = BottomSheetDialog(this).apply {
-            setContentView(R.layout.custom_keyboard_dialog)
-        }
-
-        bottomSheetDialog.show()
-    }
 
     companion object {
         @StringRes

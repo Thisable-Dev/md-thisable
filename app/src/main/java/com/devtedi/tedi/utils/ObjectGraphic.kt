@@ -15,7 +15,6 @@ class ObjectGraphic(var graphic: GraphicOverlay, private var objs: RecognitionRe
     private var boxPaints  = Array(NUM_COLORS){Paint()}
     private var textPaints =  Array(NUM_COLORS){Paint()}
     private var labelPaints = Array(NUM_COLORS){Paint()}
-    private val observers  = arrayListOf<CoreObserver>();
 
     init {
 

@@ -9,7 +9,7 @@ const val MODEL_FILE_BISINDO : String ="SignLanguageModel.tflite"
 const val LABEL_OBJ : String = "label_obj_detection.txt"
 const val LABEL_CURRENCY : String = "label_currency.txt"
 const val LABEL_COLOR : String = "file:///android_asset/color.txt"
-const val LABEL_BISINDO : String = "file:///android_asset/label_sign_language.txt"
+const val LABEL_BISINDO : String = "label_sign_language.txt"
 
 const val NUM_THREADS : Int = 2
 
@@ -25,7 +25,10 @@ const val const_bisindo_translator : String = "bisindo_translator"
 const val const_currency_detector : String = "currency_detector"
 const val const_color_classifier : String = "color_classifier"
 
-const val NMSThresh : Float  = 0.6f
+
+const val total_label_object : Int = 80;
+const val total_label_bisindo : Int = 50;
+const val total_label_currency : Int = 7;
 
 const val DETECT_THRESHOLD : Float = 0.6f
 const val IOU_THRESHOLD : Float = 0.45f

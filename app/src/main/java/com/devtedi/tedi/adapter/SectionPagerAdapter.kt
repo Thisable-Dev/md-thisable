@@ -3,6 +3,7 @@ package com.devtedi.tedi.adapter
 import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.Fragment
 import androidx.viewpager2.adapter.FragmentStateAdapter
+import com.devtedi.tedi.presentation.feature_color.ColorFragment
 import com.devtedi.tedi.presentation.feature_currency.CurrencyFragment
 import com.devtedi.tedi.presentation.feature_object.ObjectDetectionFragment
 import com.devtedi.tedi.presentation.feature_sign_language.SignLanguageFragment
@@ -20,7 +21,7 @@ class SectionPagerAdapter(activity: AppCompatActivity) : FragmentStateAdapter(ac
             1 -> ObjectDetectionFragment()
             2 -> CurrencyFragment()
             3 -> TextDetectionFragment()
-            4 -> ColorDetectionFragment()
+            4 -> ColorFragment()
             else -> null
         }
         return fragment as Fragment
