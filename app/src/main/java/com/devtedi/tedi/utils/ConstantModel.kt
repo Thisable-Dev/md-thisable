@@ -9,7 +9,7 @@ const val MODEL_FILE_BISINDO : String ="SignLanguageModel.tflite"
 const val LABEL_OBJ : String = "label_obj_detection.txt"
 const val LABEL_CURRENCY : String = "label_currency.txt"
 const val LABEL_COLOR : String = "file:///android_asset/color.txt"
-const val LABEL_BISINDO : String = "file:///android_asset/label_sign_language.txt"
+const val LABEL_BISINDO : String = "label_sign_language.txt"
 
 const val NUM_THREADS : Int = 2
 
