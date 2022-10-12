@@ -107,11 +107,11 @@ dependencies {
     //Firebase
     implementation 'com.google.mlkit:linkfirebase:17.0.0'
 
-    //Tensorflowlite
-    implementation "org.tensorflow:tensorflow-lite-support:0.1.0"
-    implementation "org.tensorflow:tensorflow-lite-metadata:0.1.0"
-    implementation "org.tensorflow:tensorflow-lite-gpu:2.3.0"
-
+    // Tensorflow Lite
+    implementation 'org.tensorflow:tensorflow-lite:2.9.0'
+    implementation 'org.tensorflow:tensorflow-lite-gpu:2.9.0'
+    implementation 'org.tensorflow:tensorflow-lite-task-vision:0.4.0'
+    implementation 'org.tensorflow:tensorflow-lite-gpu-delegate-plugin:0.4.0'
     //Coroutine
     implementation("org.jetbrains.kotlinx:kotlinx-coroutines-android:1.6.1")
     implementation("org.jetbrains.kotlinx:kotlinx-coroutines-core:1.6.1")

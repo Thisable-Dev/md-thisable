@@ -11,37 +11,36 @@
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_weight="2"
         tools:ignore="MissingConstraints">
 
+
         <androidx.camera.view.PreviewView
-            android:id="@+id/viewFinder"
+            android:id="@+id/camera_preview_wrap"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:layout_weight="1"
-            android:contentDescription="Halaman Deteksi Objek Dipilih"
-            android:layout_gravity="center" />
-
-        <ImageView
-            android:id="@+id/iv_sound_state"
-            android:padding="5dp"
-            android:layout_margin="10dp"
-            android:layout_width="70dp"
-            android:layout_height="70dp"
-            android:src="@drawable/sound_off"
-            android:contentDescription="@string/info_layout_detection_suara"
-            app:layout_constraintTop_toTopOf="parent"
+            android:layout_marginBottom="100dp"
+            android:background="#00000000"
             app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintBottom_toBottomOf="parent"
             />
+
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 
     <com.devtedi.tedi.utils.GraphicOverlay
         android:id="@+id/graphicOverlay"
-        android:layout_gravity="center"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content" />
+        android:layout_width="match_parent"
+        android:layout_height="match_parent" />
 
+
+    <ProgressBar
+        android:id="@+id/progress_bar"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:visibility="invisible"
+        android:layout_centerInParent="true" />
 
 
 </FrameLayout>

@@ -4,39 +4,45 @@ import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.devtedi.tedi.databinding.ItemLayoutDialogObjBinding
+import com.devtedi.tedi.databinding.ItemQuestionsDialogCoreLayoutBinding
 import com.devtedi.tedi.interfaces.ObjectOptionInterface
 
 
-class ObjectOptionAdapter(private val listOption: Array<String>) : RecyclerView.Adapter<ObjectOptionAdapter.ViewHolder>(){
-    private var onClickSubscriber : ObjectOptionInterface? = null
-
-    fun setOnClickItemListener (onClickSubscriber : ObjectOptionInterface) {
-        this.onClickSubscriber = onClickSubscriber
-    }
-
-    inner class ViewHolder(private val binding : ItemLayoutDialogObjBinding) : RecyclerView.ViewHolder(binding.root) {
-        fun bind(data : String ) {
-            binding.tvItemDialog.text = data
+class ObjectOptionsAdapter(
+    private val listQuestions: Array<String>, private val onClick: (value: String) -> Unit,
+    private val onLongClick: (value: String) -> Unit,
+) : RecyclerView.Adapter<ObjectOptionsAdapter.ViewHolder>() {
+    inner class ViewHolder(private val binding: ItemQuestionsDialogCoreLayoutBinding) :
+        RecyclerView.ViewHolder(binding.root) {
+        fun bind(data: String) {
+            binding.tvQuestion.text = data
         }
     }
-    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ObjectOptionAdapter.ViewHolder {
-        val inflater = ItemLayoutDialogObjBinding.inflate(LayoutInflater.from(parent.context), parent, false)
+
+    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
+        val inflater = ItemQuestionsDialogCoreLayoutBinding.inflate(LayoutInflater.from(parent.context),
+            parent,
+            false)
         return ViewHolder(inflater)
     }
 
-    override fun onBindViewHolder(holder: ObjectOptionAdapter.ViewHolder, position: Int) {
-        holder.bind(listOption[position])
+    override fun onBindViewHolder(holder: ViewHolder, position: Int) {
+        val question: String = listQuestions[position]
+        holder.bind(question)
+        // Kalau Di Click doang kasih tau pilihannya, ini subscriber keknya
         holder.itemView.setOnClickListener {
-            onClickSubscriber?.onClick(listOption[position])
+            onClick(question)
         }
+
+        // Kalau Di tekan lama Baru execute pilihannya juga {}
+
         holder.itemView.setOnLongClickListener {
-            onClickSubscriber?.onLongClickListener(listOption[position])
+            onLongClick(question)
             true
         }
     }
 
     override fun getItemCount(): Int {
-        return listOption.size
+        return listQuestions.size
     }
-
 }

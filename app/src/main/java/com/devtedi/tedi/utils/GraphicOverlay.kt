@@ -6,14 +6,13 @@ import android.graphics.Matrix
 import android.util.AttributeSet
 import android.view.View
 
-// OVerlay ini intinya buat nampung seluruh prediksi
 class GraphicOverlay(context: Context?, attrs: AttributeSet?) :
     View(context, attrs){
     private val lock = Any()
     private val graphics: MutableList<Graphic> = ArrayList()
 
     // Matrix for transforming from image coordinates to overlay view coordinates.
-    private val transformationMatrix = Matrix()
+    val transformationMatrix = Matrix()
     var imageWidth = 0
         private set
     var imageHeight = 0
@@ -30,7 +29,7 @@ class GraphicOverlay(context: Context?, attrs: AttributeSet?) :
     // The number of vertical pixels needed to be cropped on each side to fit the image with the
     // area of overlay View after scaling.
     private var postScaleHeightOffset = 0f
-    private var isImageFlipped = false
+    var isImageFlipped = false
     // Variable for Doing a new Transformation If new image inserted
     private var needUpdateTransformation = true
     abstract class Graphic(private val overlay: GraphicOverlay) {
@@ -79,7 +78,7 @@ class GraphicOverlay(context: Context?, attrs: AttributeSet?) :
         postInvalidate()
     }
     // Nambahin Graphics ke Overlay
-    fun add(graphic : Graphic){
+    fun add(graphic: ObjectGraphic){
         synchronized(lock) {graphics.add(graphic)}
     }
 
@@ -113,21 +112,21 @@ class GraphicOverlay(context: Context?, attrs: AttributeSet?) :
             postScaleWidthOffset = 0f
 
             if (viewAspectRatio > imageAspectRatio) {
-                // Kalau Ternyata Aspect rationya lebih besar di view dibandingkan imageAspect, Do Cropping secara vertikal Atau ngga nanti ada yang ga keliatan
-                // Pada dasarnya viewaspectRatio 16:9 dengan 8:4 , Berarti Widthhnya yang besar
-                // kalau misalnya 7:16 dengan 10:8 berarti Heightnya yang besar
                 scaleFactor = width.toFloat() / imageWidth
-                postScaleHeightOffset = (width.toFloat() / imageAspectRatio - height) / 2
+                postScaleHeightOffset = (width.toFloat() / imageAspectRatio - height) / 4
+                postScaleWidthOffset = (height.toFloat()  / imageAspectRatio - width) / 4
             }
 
             else {
-                scaleFactor = height.toFloat() / imageHeight // Makanya yang ini yang discale yang factor scale h eightnya
-                postScaleWidthOffset = (height.toFloat()  * imageAspectRatio - width) / 2
+                scaleFactor =
+                    height.toFloat() / imageHeight
+                postScaleWidthOffset = (height.toFloat() / imageAspectRatio - width) / 4
+                postScaleHeightOffset = (width.toFloat() / imageAspectRatio - height) / 4
             }
 
             transformationMatrix.reset()
             transformationMatrix.setScale(scaleFactor, scaleFactor)
-            transformationMatrix.postTranslate(-postScaleHeightOffset, -postScaleHeightOffset)
+            transformationMatrix.postTranslate(-postScaleWidthOffset, -postScaleHeightOffset)
             if (isImageFlipped) transformationMatrix.postScale(-1f, 1f, width/ 2f, height/ 2f)
             needUpdateTransformation = false
         }
@@ -144,4 +143,3 @@ class GraphicOverlay(context: Context?, attrs: AttributeSet?) :
         }
     }
 }
-

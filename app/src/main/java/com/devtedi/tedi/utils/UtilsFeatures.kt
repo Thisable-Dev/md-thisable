@@ -18,7 +18,6 @@ import android.widget.Toast
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.devtedi.tedi.R
-import com.devtedi.tedi.adapter.ObjectOptionAdapter
 import com.devtedi.tedi.interfaces.ObjectOptionInterface
 import com.devtedi.tedi.interfaces.SignlanguageContentListener
 import com.devtedi.tedi.utils.ext.click
@@ -50,18 +49,6 @@ fun makeItOneString(mappedItems : Map<String, Int>) : String {
         stringBuilder.append(",")
     }
     return stringBuilder.toString()
-}
-
-fun showAlertDialogObjDetection (context : Context, contentDialog : Array<String >, subscriberItemListener : ObjectOptionInterface) {
-    val dialog : Dialog = Dialog(context)
-    val adapter = ObjectOptionAdapter(contentDialog)
-    adapter.setOnClickItemListener(subscriberItemListener)
-    dialog.setContentView(R.layout.custom_dialog_object)
-    val layoutManager = LinearLayoutManager(context)
-    val recyclerView = dialog.findViewById(R.id.dialog_rv) as RecyclerView
-    recyclerView.layoutManager = layoutManager
-    recyclerView.adapter = adapter
-    dialog.show()
 }
 
 fun inputImageToBitmap(data : ByteBuffer, metadata : FrameMetadata) : Bitmap? {

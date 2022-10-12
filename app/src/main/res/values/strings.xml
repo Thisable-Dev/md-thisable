@@ -74,6 +74,15 @@
     <string name="question_2_obj_detection">Ada berapa orang didepan saya</string>
     <string name="response_1_obj_detection">Didepan anda terdapat  %s</string>
 
+    <string name="obj_detection_question_1">Ada Apa saja di depan saya ?</string>
+
+    <string name="currency_question_1"> Lembaran Berapa saja yang terlihat ?</string>
+    <string name="currency_question_2"> Berapa total uang yang terlihat ?</string>
+
+    <string name="args_binding_obj">objekDetektor</string>
+    <string name="args_binding_currency">deteksiUang</string>
+    <string name="args_binding_color">deteksiWarna</string>
+
     <string name="question_1_currency_detection">Lembaran uang berapa saja yang saya miliki ?</string>
     <string name="question_2_currency_detection">Berapa banyak uang yang saya pegang ?</string>
     <string name="response_1_currency_detection">Uang yang terdeteksi adalah %1$s dengan Total uang %2$s </string>
@@ -171,6 +180,9 @@
     <string name="message_sound_deactivated">Suara Dimatikan</string>
     <string name="message_permisson_not_granted">Permission not Granted</string>
     <string name="label_choose_attachment">Pilih Lampiran</string>
+
+    <string name="write_your_text_here">Write your text here..</string>
+    <string name="writer">Writer</string>
 
     <string-array name="array_severity_level">
         <item>Perlu diperbaiki segera mungkin</item>

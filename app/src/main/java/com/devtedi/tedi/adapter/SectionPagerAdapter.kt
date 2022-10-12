@@ -9,25 +9,24 @@ import com.devtedi.tedi.presentation.feature_sign_language.SignLanguageFragment
 import com.devtedi.tedi.presentation.feature_text.TextDetectionFragment
 
 
-class SectionPagerAdapter (activity : AppCompatActivity) : FragmentStateAdapter(activity) {
+class SectionPagerAdapter(activity: AppCompatActivity) : FragmentStateAdapter(activity) {
     override fun getItemCount(): Int {
         return TOTAL
     }
 
     override fun createFragment(position: Int): Fragment {
-        var fragment : Fragment?= null
-        when(position) {
-            0 -> fragment = SignLanguageFragment()
-            1 -> fragment = ObjectDetectionFragment()
-            2 -> fragment = CurrencyFragment()
-            3 -> fragment = TextDetectionFragment()
+        val fragment: Fragment? = when (position) {
+            0 -> SignLanguageFragment()
+            1 -> ObjectDetectionFragment()
+            2 -> CurrencyFragment()
+            3 -> TextDetectionFragment()
+            4 -> ColorDetectionFragment()
+            else -> null
         }
         return fragment as Fragment
     }
 
-    companion object
-    {
-        private const val TOTAL : Int = 4
-
+    companion object {
+        private const val TOTAL: Int = 5
     }
 }
