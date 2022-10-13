@@ -287,7 +287,9 @@
     <string name="label_edit_emergency_contact">Ubah Nomor Kontak Darurat</string>
     <string name="hint_input_emergency_contact">Masukkan nomor kontak darurat</string>
     <string name="label_family_help">Family Help</string>
-    <string name="label_color_detection">Deteksi Warna</string>
+
+    <string name="write_your_text_here">Write your text here..</string>
+    <string name="writer">Writer</string>
 
     <string-array name="array_severity_level">
         <item>Perlu diperbaiki segera mungkin</item>
