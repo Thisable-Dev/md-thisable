@@ -1,4 +1,4 @@
-package com.devtedi.tedi.observer_core
+package com.devtedi.tedi.interfaces.observer_core
 
 interface CoreObserver {
 
