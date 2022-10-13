@@ -8,7 +8,7 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.devtedi.tedi.factory.ObjectDetectorStore
 import com.devtedi.tedi.factory.YOLOv5ModelCreator
-import com.devtedi.tedi.observer_core.CoreObserver
+import com.devtedi.tedi.interfaces.observer_core.CoreObserver
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 
@@ -21,21 +21,50 @@ class SignLanguageViewModel : ViewModel(), CoreObserver {
     private val _tobeWrittenString : MutableLiveData<String> = MutableLiveData()
     val tobeWrittenString : LiveData<String> = _tobeWrittenString
 
-    private var previousString : String ?= null
-    private val mapOfString = hashMapOf<String, Int>()
+    private var sentence : ArrayList<String> = ArrayList()
+    private var wordList : ArrayList<String> = ArrayList()
 
     private val _isLoading : MutableLiveData<Boolean> = MutableLiveData(false)
     val isLoading : LiveData<Boolean> = _isLoading
 
-    fun closeModel()
-    {
-        _yolov5TFLiteDetector.value?.close()
-    }
-
     private fun getOutputValue() {
 
+        val tempResult = _yolov5TFLiteDetector.value?.getResult()
+        if(tempResult != null && tempResult.isNotEmpty())
+        {
+            wordList.add(tempResult[0].getLabelName())
+            if(wordList.size > 1)
+            {
+                wordList.add(wordList[wordList.size - 1])
+                wordList.removeFirst()
+            }
+
+            if(wordList.isNotEmpty())
+            {
+                if (sentence.size > 0)
+                {
+                    if (wordList[0] != sentence.last())
+                    {
+                        sentence.add(wordList[0])
+                        _tobeWrittenString.value = sentence.toString()
+                    }
+                }
+
+                else
+                {
+                    sentence.add(wordList[0])
+                    _tobeWrittenString.value = sentence.toString()
+                }
+
+            }
+
+            if (sentence.size > 10)
+            {
+                sentence = ArrayList()
+            }
+        }
+        /*
             val tempResult = _yolov5TFLiteDetector.value?.getResult()
-            Log.d("Update", tempResult.toString())
             if(tempResult != null && tempResult.isNotEmpty())
             {
                 if(previousString == null)
@@ -59,6 +88,8 @@ class SignLanguageViewModel : ViewModel(), CoreObserver {
 
                 }
             }
+
+         */
     }
     fun initModel(modelName : String, context : Context)
     {

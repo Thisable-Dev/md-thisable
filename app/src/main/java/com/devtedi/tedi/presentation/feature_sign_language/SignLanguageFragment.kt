@@ -59,10 +59,6 @@ class SignLanguageFragment : Fragment(), FeatureBaseline {
             cameraProcess.requestPermission(requireActivity())
         }
 
-
-        viewModel.yolov5TFLiteDetector.observe(viewLifecycleOwner) {
-            initGraphicListenerHandler(it)
-        }
     }
 
     override fun onResume() {
@@ -121,16 +117,7 @@ class SignLanguageFragment : Fragment(), FeatureBaseline {
 
         }
     }
-    private fun initGraphicListenerHandler(modelan : YOLOv5ModelCreator) {
-        binding.graphicOverlay.setOnLongClickListener {
-            val df = DialogGenerator.newInstance(requireActivity(),
-                getObjConstTemp(),
-                impl_oc_ocl_obj,
-                modelan)
-            df.show(requireActivity().supportFragmentManager, "dialog")
-            true
-        }
-    }
+
 
     private fun initKeyboard() {
         //binding.btnKeyboard.setOnClickListener(::openKeyboardDialog)
