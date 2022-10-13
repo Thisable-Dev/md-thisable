@@ -33,7 +33,6 @@ class DialogGenerator(
         alertDialog.setView(binding.root)
         return alertDialog.create().also {
             it.setCanceledOnTouchOutside(false)
-            it.window?.setBackgroundDrawable(ColorDrawable(Color.TRANSPARENT))
         }
     }
 

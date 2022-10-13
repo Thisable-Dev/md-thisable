@@ -4,8 +4,6 @@ import android.graphics.Canvas
 import android.graphics.Color
 import android.graphics.Paint
 import android.graphics.RectF
-import com.devtedi.tedi.observer_core.CoreObserver
-import com.google.mlkit.vision.objects.DetectedObject
 import java.util.Locale
 
 
