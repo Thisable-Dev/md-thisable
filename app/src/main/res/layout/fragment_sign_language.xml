@@ -16,6 +16,7 @@
         tools:ignore="MissingConstraints">
 
         <androidx.camera.view.PreviewView
+
             android:id="@+id/camera_preview_wrap"
             android:layout_width="0dp"
             android:layout_height="500dp"
@@ -25,12 +26,12 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent">
 
-            <com.devtedi.tedi.utils.GraphicOverlay
-                android:id="@+id/graphicOverlay"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent" />
         </androidx.camera.view.PreviewView>
 
+        <com.devtedi.tedi.utils.GraphicOverlay
+            android:id="@+id/graphicOverlay"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent" />
 
         <androidx.cardview.widget.CardView
             android:layout_width="match_parent"
