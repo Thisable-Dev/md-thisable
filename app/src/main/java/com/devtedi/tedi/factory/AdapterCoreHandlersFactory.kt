@@ -4,7 +4,7 @@ import android.app.Activity
 import android.widget.Toast
 import com.devtedi.tedi.R
 import com.devtedi.tedi.databinding.CustomToastV1Binding
-import com.devtedi.tedi.observer_core.CoreObserver
+import com.devtedi.tedi.interfaces.observer_core.CoreObserver
 import com.devtedi.tedi.utils.RecognitionRes
 
 class AdapterCoreHandlersFactory(
@@ -12,50 +12,80 @@ class AdapterCoreHandlersFactory(
     private val yolOv5ModelCreator: YOLOv5ModelCreator,
 ) : CoreObserver {
     private var recognitionRes: ArrayList<RecognitionRes>? = null
-
+    private var toastLayout :  CustomToastV1Binding
     init {
         this.yolOv5ModelCreator.registerObserver(this)
-        Toast.makeText(context, "Registered", Toast.LENGTH_LONG).show()
+        toastLayout = CustomToastV1Binding.inflate(context.layoutInflater)
     }
 
     fun onClickObjectInfo(info: String) {
 
-        val inflater = context.layoutInflater
-        val toastLayout : CustomToastV1Binding = CustomToastV1Binding.inflate(inflater)
         toastLayout.textCustom.setText(info)
 
         val toast : Toast = Toast(context)
-        // toast.setGravity(Gravity.BOTTOM, 0,0);
         toast.duration = Toast.LENGTH_LONG
         toast.setView(toastLayout.root)
         toast.show()
-        //Toast.makeText(context, info, Toast.LENGTH_LONG).show()
     }
 
     fun onClickLongObjectDetection(info : String)
     {
         when(info)
         {
-            context.getString(R.string.obj_detection_question_1) ->
+            context.getString(R.string.question_1_obj_detection) ->
             {
                 val items = calculateUniqueItems()
-                Toast.makeText(context, items.toString(), Toast.LENGTH_LONG).show()
+                val toast : Toast = Toast(context)
+                if(items.isEmpty()) {
+                    toastLayout.textCustom.text = context.getString(R.string.response_no_detection_object_detection)
+                    toast.duration = Toast.LENGTH_LONG
+                    toast.setView(toastLayout.root)
+                    toast.show()
+                }
+                else {
+                    toastLayout.textCustom.text = context.getString(R.string.response_1_obj_detection, items.toString())
+                    toast.duration = Toast.LENGTH_LONG
+                    toast.setView(toastLayout.root)
+                    toast.show()
+                }
+
+                toast.duration = Toast.LENGTH_LONG
+                toast.setView(toastLayout.root)
+                toast.show()
+            }
+            else -> {
+                Toast.makeText(context, info, Toast.LENGTH_LONG).show()
             }
         }
     }
 
     fun onClickLongCurrencyDetection(info : String) {
-        Toast.makeText(context, recognitionRes.toString(), Toast.LENGTH_LONG).show()
+        when(info)
+        {
+            context.getString(R.string.question_1_currency_detection) ->
+            {
+                val items = calculateUniqueItems()
+                val toast : Toast = Toast(context)
+
+                if(items.isEmpty())
+                {
+                    toastLayout.textCustom.text = context.getString(R.string.response_no_detection_currency_detection)
+                }
+                else {
+                    toastLayout.textCustom.text = context.getString(R.string.response_1_currency_detection, items.toString())
+                }
+                toast.duration = Toast.LENGTH_LONG
+                toast.setView(toastLayout.root)
+                toast.show()
+
+            }
+        }
     }
 
     fun onClickLongTextDetection(info : String) {
         when (info)
         {
-            context.getString(R.string.currency_question_1) -> {}
-            context.getString(R.string.currency_question_2) ->
-            {
-                Toast.makeText(context, calculateTotalMoney(), Toast.LENGTH_LONG).show()
-            }
+            // Nanti
         }
     }
 
