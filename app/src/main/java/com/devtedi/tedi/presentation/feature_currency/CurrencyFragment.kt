@@ -8,12 +8,15 @@ import androidx.camera.view.PreviewView
 import androidx.core.view.isGone
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
+import com.devtedi.tedi.R
 import com.devtedi.tedi.analysis.FullImageAnalyse
 import com.devtedi.tedi.databinding.FragmentCurrencyBinding
 import com.devtedi.tedi.factory.YOLOv5ModelCreator
+import com.devtedi.tedi.interfaces.observer_analyzer.AnalyzerObserver
+import com.devtedi.tedi.interfaces.observer_analyzer.AnalyzerSubject
 import com.devtedi.tedi.utils.*
 
-class CurrencyFragment : Fragment(), FeatureBaseline {
+class CurrencyFragment : Fragment(), FeatureBaseline, AnalyzerSubject {
 
     private var _binding: FragmentCurrencyBinding? = null
     private val binding: FragmentCurrencyBinding get() = _binding!!
@@ -22,6 +25,7 @@ class CurrencyFragment : Fragment(), FeatureBaseline {
     override lateinit var cameraProcess: CameraProcess
     override lateinit var yolov5TFLiteDetector: YOLOv5ModelCreator
     private val viewModel : CurrencyDetectionViewModel by viewModels()
+    private var observers : ArrayList<AnalyzerObserver> = ArrayList()
     lateinit var fullImageAnalyse : FullImageAnalyse
     private var rotation : Int = 0
     override fun onCreateView(
@@ -49,6 +53,10 @@ class CurrencyFragment : Fragment(), FeatureBaseline {
         }
     }
 
+    override fun onPause() {
+        super.onPause()
+        notifyObserver()
+    }
     override fun onResume() {
         super.onResume()
         rotation = requireActivity().windowManager.defaultDisplay.rotation
@@ -68,7 +76,7 @@ class CurrencyFragment : Fragment(), FeatureBaseline {
     private fun initGraphicListenerHandler(modelan : YOLOv5ModelCreator) {
         binding.graphicOverlay.setOnLongClickListener {
             val df = DialogGenerator.newInstance(requireActivity(),
-                getObjConstTemp(),
+                requireContext().resources.getStringArray(R.array.questionsCurrencyDetection),
                 impl_oc_ocl_currency,
                 modelan)
             df.show(requireActivity().supportFragmentManager, "dialog")
@@ -79,5 +87,21 @@ class CurrencyFragment : Fragment(), FeatureBaseline {
     override fun onDestroyView() {
         super.onDestroyView()
         _binding = null
+    }
+
+
+    override fun registerObserver(o: AnalyzerObserver) {
+        observers.add(o)
+    }
+
+    override fun removeObserver(o: AnalyzerObserver) {
+        observers.remove(o)
+    }
+
+    override fun notifyObserver() {
+        for (o in observers)
+        {
+            o.updateObserver()
+        }
     }
 }
