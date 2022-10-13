@@ -14,5 +14,4 @@ data class ReportBugBody(
     @SerializedName("severity")
     val severity: String,
     val specificationBody: SpecificationBody,
-    val fileRequest: FileRequest
 )
