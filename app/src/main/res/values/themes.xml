@@ -40,6 +40,11 @@
         <item name="android:fontFamily">@font/jakarta_sans_semibold</item>
     </style>
 
+    <style name="TextContent.Header2">
+        <item name="android:textSize">@dimen/dimen_20sp</item>
+        <item name="android:textColor">@color/black</item>
+    </style>
+
     <style name="TextContent.Bold">
         <item name="android:layout_width">wrap_content</item>
         <item name="android:layout_height">wrap_content</item>
@@ -51,7 +56,17 @@
         <item name="android:textColor">@color/black</item>
     </style>
 
+    <style name="TextContent.Bold.Header2">
+        <item name="android:textSize">@dimen/dimen_20sp</item>
+        <item name="android:textColor">@color/black</item>
+    </style>
+
     <style name="TextContent.Bold.Header3">
+        <item name="android:textSize">@dimen/dimen_16sp</item>
+        <item name="android:textColor">@color/black</item>
+    </style>
+
+    <style name="TextContent.Header5">
         <item name="android:textSize">@dimen/dimen_16sp</item>
         <item name="android:textColor">@color/black</item>
     </style>
@@ -64,6 +79,11 @@
     <style name="TextContent.Bold.Header5.Blue">
         <item name="android:textSize">@dimen/dimen_16sp</item>
         <item name="android:textColor">@color/colorBlue</item>
+    </style>
+
+    <style name="TextContent.Header5.Grey">
+        <item name="android:textSize">@dimen/dimen_16sp</item>
+        <item name="android:textColor">@color/colorGrey</item>
     </style>
 
     <style name="TextContent.Bold.Header5.White">
@@ -151,5 +171,7 @@
         <item name="strokeColor">@color/colorBlue</item>
         <item name="android:textAppearance">@style/TextContent.Bold.Header5.Blue</item>
     </style>
+
+
 
 </resources>

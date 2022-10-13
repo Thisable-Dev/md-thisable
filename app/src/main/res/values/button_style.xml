@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <style name="TediUploadCardView">
+        <item name="cardElevation">0dp</item>
+        <item name="cardCornerRadius">@dimen/dimen_8dp</item>
+        <item name="strokeWidth">@dimen/dimen_1dp</item>
+        <item name="strokeColor">@color/colorGrey2</item>
+    </style>
+
+    <style name="SelectableItemTheme">
+        <item name="colorControlHighlight">@color/colorGreyish</item>
+    </style>
+
+    <style name="SelectableItemBackground">
+        <item name="android:theme">@style/SelectableItemTheme</item>
+        <item name="android:background">?attr/selectableItemBackground</item>
+    </style>
+</resources>

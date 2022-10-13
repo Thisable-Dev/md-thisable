@@ -67,6 +67,7 @@ class BugReportFragment : Fragment() {
         initFirebase()
         initUI()
         initAction()
+        initObservers()
     }
 
     private fun initFirebase() {
@@ -131,9 +132,8 @@ class BugReportFragment : Fragment() {
                                     ram = getTotalMemories(),
                                     androidVersion = getDeviceVersion()
                                 ),
-                                fileRequest = it
                             )
-                            addNewReportBug(reportBody)
+                            bugReportViewModel.addNewReportBug(reportBody, it)
                         }
                     }
                 }
@@ -150,8 +150,8 @@ class BugReportFragment : Fragment() {
         }
     }
 
-    private fun addNewReportBug(reportBugBody: ReportBugBody) {
-        bugReportViewModel.addNewReportBug(reportBugBody).observe(viewLifecycleOwner) { response ->
+    private fun initObservers() {
+        bugReportViewModel.addNewReportBugResult.observe(viewLifecycleOwner) { response ->
             when (response) {
                 is ApiResponse.Loading -> {
                     binding.apply {
@@ -188,7 +188,7 @@ class BugReportFragment : Fragment() {
 
             val requestImageFile = file.asRequestBody("image/jpeg".toMediaTypeOrNull())
             val imageMultipart = MultipartBody.Part.createFormData(
-                "",
+                "photo",
                 file.name,
                 requestImageFile
             )
