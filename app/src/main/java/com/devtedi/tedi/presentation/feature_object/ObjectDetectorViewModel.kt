@@ -23,6 +23,7 @@ class ObjectDetectionViewModel : ViewModel() {
     {
         yolov5TFLiteDetector.value?.close()
     }
+
     fun initModel(modelName: String, context: Context) {
         _isLoading.value = true
         viewModelScope.launch(Dispatchers.IO) {
