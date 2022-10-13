@@ -171,6 +171,8 @@
     <string name="message_sound_deactivated">Suara Dimatikan</string>
     <string name="message_permisson_not_granted">Permission not Granted</string>
     <string name="label_choose_attachment">Pilih Lampiran</string>
+    <string name="label_need_emergency_help">Butuh Bantuan Darurat ?</string>
+    <string name="action_edit_emergency_contact">Edit Kontak Darurat</string>
 
     <string-array name="array_severity_level">
         <item>Perlu diperbaiki segera mungkin</item>

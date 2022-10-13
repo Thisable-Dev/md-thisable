@@ -16,17 +16,15 @@ import javax.inject.Inject
 @HiltViewModel
 class BugReportViewModel @Inject constructor(private val generalRepository: GeneralRepository): ViewModel() {
 
-    val addNewReportBugResult: LiveData<Result<String>> by lazy { _addNewReportBugResult }
-    private val _addNewReportBugResult = MutableLiveData<Result<String>>()
+    val addNewReportBugResult: LiveData<ApiResponse<BugReportResponse>> by lazy { _addNewReportBugResult }
+    private val _addNewReportBugResult = MutableLiveData<ApiResponse<BugReportResponse>>()
 
-    fun addNewReportBug(reportBugBody: ReportBugBody): LiveData<ApiResponse<BugReportResponse>> {
-        val response = MutableLiveData<ApiResponse<BugReportResponse>>()
+    fun addNewReportBug(reportBugBody: ReportBugBody, file: FileRequest) {
         viewModelScope.launch {
-            generalRepository.addNewReportBug(reportBugBody).collect {
-                response.postValue(it)
+            generalRepository.addNewReportBug(reportBugBody, file).collect {
+                _addNewReportBugResult.postValue(it)
             }
         }
-        return response
     }
 
 }
