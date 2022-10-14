@@ -3,6 +3,7 @@ package com.devtedi.tedi.utils
 import android.content.Context
 import android.content.SharedPreferences
 import com.devtedi.tedi.utils.ConstVal.KEY_EMAIL
+import com.devtedi.tedi.utils.ConstVal.KEY_EMERGENCY_CONTACT
 import com.devtedi.tedi.utils.ConstVal.KEY_IS_INTRO
 import com.devtedi.tedi.utils.ConstVal.KEY_IS_LOGIN
 import com.devtedi.tedi.utils.ConstVal.KEY_TOKEN
@@ -36,5 +37,6 @@ class SharedPrefManager(context: Context) {
     val getUserName = prefs.getString(KEY_USER_NAME, "")
     val getEmail = prefs.getString(KEY_EMAIL, "")
     val isIntro = prefs.getBoolean(KEY_IS_INTRO, false)
+    val getEmergencyContact = prefs.getString(KEY_EMERGENCY_CONTACT, "");
 
 }

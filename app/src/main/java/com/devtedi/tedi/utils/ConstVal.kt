@@ -14,6 +14,7 @@ object ConstVal {
     const val KEY_IS_LOGIN = "key.isLogin"
     const val KEY_EMAIL = "key.email"
     const val KEY_IS_INTRO = "key.isIntro"
+    const val KEY_EMERGENCY_CONTACT = "key.emergency_contact"
 
     // UI Const
     const val SPLASH_DELAY_TIME = 1500L
