@@ -72,12 +72,13 @@
 
     <string name="question_1_obj_detection"> Ada apa saja Didepan saya ?</string>
     <string name="question_2_obj_detection">Ada berapa orang didepan saya</string>
+
+    <string-array name="questionsObjectDetection">
+        <item>@string/question_1_obj_detection</item>
+        <item>@string/question_2_obj_detection</item>
+    </string-array>
+
     <string name="response_1_obj_detection">Didepan anda terdapat  %s</string>
-
-    <string name="obj_detection_question_1">Ada Apa saja di depan saya ?</string>
-
-    <string name="currency_question_1"> Lembaran Berapa saja yang terlihat ?</string>
-    <string name="currency_question_2"> Berapa total uang yang terlihat ?</string>
 
     <string name="args_binding_obj">objekDetektor</string>
     <string name="args_binding_currency">deteksiUang</string>
@@ -85,8 +86,17 @@
 
     <string name="question_1_currency_detection">Lembaran uang berapa saja yang saya miliki ?</string>
     <string name="question_2_currency_detection">Berapa banyak uang yang saya pegang ?</string>
-    <string name="response_1_currency_detection">Uang yang terdeteksi adalah %1$s dengan Total uang %2$s </string>
+
+    <string-array name="questionsCurrencyDetection">
+            <item>@string/question_1_currency_detection</item>
+            <item>@string/question_2_currency_detection</item>
+
+    </string-array>
+    <string name="response_1_currency_detection">Uang yang terdeteksi adalah %1$s </string>
     <string name="response_2_currency_detection">Total jumlah uang terdeteksi adalah %s Ribu Rupiah</string>
+
+    <string name="response_no_detection_object_detection">Tidak ada Objek yang terdeteksi</string>
+    <string name="response_no_detection_currency_detection">Tidak ada Item Uang terdeteksi</string>
 
     <!-- TODO: Remove or change this placeholder text -->
     <string name="label_hint_use">Petunjuk Penggunaan</string>

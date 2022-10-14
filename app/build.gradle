@@ -69,6 +69,7 @@ dependencies {
     //  Hilt
     implementation "com.google.dagger:hilt-android:$hilt_version"
     implementation 'androidx.test:core-ktx:1.4.0'
+    implementation project(path: ':opencv460')
     kapt 'com.google.dagger:hilt-compiler:2.41'
     kapt "com.google.dagger:dagger-compiler:$hilt_version"
     kapt 'com.google.dagger:dagger-android-processor:2.35.1'

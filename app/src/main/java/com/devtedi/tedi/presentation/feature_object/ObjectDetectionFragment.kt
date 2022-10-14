@@ -8,12 +8,15 @@ import androidx.camera.view.PreviewView
 import androidx.core.view.isGone
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
+import com.devtedi.tedi.R
 import com.devtedi.tedi.analysis.FullImageAnalyse
 import com.devtedi.tedi.databinding.FragmentObjectDetectionBinding
 import com.devtedi.tedi.factory.YOLOv5ModelCreator
+import com.devtedi.tedi.interfaces.observer_analyzer.AnalyzerObserver
+import com.devtedi.tedi.interfaces.observer_analyzer.AnalyzerSubject
 import com.devtedi.tedi.utils.*
 
-class ObjectDetectionFragment : Fragment(), FeatureBaseline {
+class ObjectDetectionFragment : Fragment(), FeatureBaseline, AnalyzerSubject{
 
     private var _binding: FragmentObjectDetectionBinding? = null
     private val binding: FragmentObjectDetectionBinding get() = _binding!!
@@ -25,6 +28,7 @@ class ObjectDetectionFragment : Fragment(), FeatureBaseline {
     override lateinit var cameraProcess: CameraProcess
     private lateinit var fullImageAnalyse: FullImageAnalyse
 
+    private val observers : ArrayList<AnalyzerObserver> = ArrayList()
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?,
@@ -80,6 +84,11 @@ class ObjectDetectionFragment : Fragment(), FeatureBaseline {
         super.onStop()
         viewModel.closeModel()
     }
+    override fun onPause()
+    {
+        super.onPause()
+        notifyObserver()
+    }
     override fun onDestroyView() {
         super.onDestroyView()
         _binding = null
@@ -88,11 +97,27 @@ class ObjectDetectionFragment : Fragment(), FeatureBaseline {
     private fun initGraphicListenerHandler(modelan : YOLOv5ModelCreator) {
         binding.graphicOverlay.setOnLongClickListener {
             val df = DialogGenerator.newInstance(requireActivity(),
-                getObjConstTemp(),
+                requireContext().resources.getStringArray(R.array.questionsObjectDetection),
                 impl_oc_ocl_obj,
                 modelan)
             df.show(requireActivity().supportFragmentManager, "dialog")
             true
+        }
+    }
+
+
+    override fun registerObserver(o: AnalyzerObserver) {
+        observers.add(o)
+    }
+
+    override fun removeObserver(o: AnalyzerObserver) {
+        observers.remove(o)
+    }
+
+    override fun notifyObserver() {
+        for (o in observers)
+        {
+            o.updateObserver()
         }
     }
 }

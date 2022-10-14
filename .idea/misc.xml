@@ -42,15 +42,18 @@
         <entry key="..\:/BangkitFinal/thisable-app/app/src/main/res/layout/fragment_warning_custom_dialog.xml" value="0.36666666666666664" />
         <entry key="..\:/BangkitFinal/thisable-app/app/src/main/res/layout/item_layout_banner.xml" value="0.36666666666666664" />
         <entry key="..\:/BangkitFinal/thisable-app/app/src/main/res/layout/item_layout_dialog_obj.xml" value="0.36666666666666664" />
+        <entry key="..\:/BangkitFinal/thisableFinal/md-thisable/app/src/main/res/drawable/bg_tv_border.xml" value="0.1" />
         <entry key="..\:/BangkitFinal/thisableFinal/md-thisable/app/src/main/res/drawable/corner_radius_shape.xml" value="0.185" />
         <entry key="..\:/BangkitFinal/thisableFinal/md-thisable/app/src/main/res/layout/activity_core.xml" value="0.18802083333333333" />
         <entry key="..\:/BangkitFinal/thisableFinal/md-thisable/app/src/main/res/layout/custom_dialog_core.xml" value="0.36666666666666664" />
         <entry key="..\:/BangkitFinal/thisableFinal/md-thisable/app/src/main/res/layout/custom_keyboard_dialog.xml" value="0.18697916666666667" />
         <entry key="..\:/BangkitFinal/thisableFinal/md-thisable/app/src/main/res/layout/custom_toast_v1.xml" value="0.365625" />
-        <entry key="..\:/BangkitFinal/thisableFinal/md-thisable/app/src/main/res/layout/fragment_currency.xml" value="0.36666666666666664" />
+        <entry key="..\:/BangkitFinal/thisableFinal/md-thisable/app/src/main/res/layout/fragment_color.xml" value="0.15291936978683968" />
+        <entry key="..\:/BangkitFinal/thisableFinal/md-thisable/app/src/main/res/layout/fragment_currency.xml" value="0.1" />
         <entry key="..\:/BangkitFinal/thisableFinal/md-thisable/app/src/main/res/layout/fragment_object_detection.xml" value="0.36666666666666664" />
-        <entry key="..\:/BangkitFinal/thisableFinal/md-thisable/app/src/main/res/layout/fragment_sign_language.xml" value="0.18" />
-        <entry key="..\:/BangkitFinal/thisableFinal/md-thisable/app/src/main/res/layout/item_questions_dialog_core_layout.xml" value="0.365625" />
+        <entry key="..\:/BangkitFinal/thisableFinal/md-thisable/app/src/main/res/layout/fragment_sign_language.xml" value="0.1" />
+        <entry key="..\:/BangkitFinal/thisableFinal/md-thisable/app/src/main/res/layout/fragment_text_detection.xml" value="0.24166666666666667" />
+        <entry key="..\:/BangkitFinal/thisableFinal/md-thisable/app/src/main/res/layout/item_questions_dialog_core_layout.xml" value="0.1" />
         <entry key="..\:/Project/AndroidStudio/Bangkit/Capstone/thisable-app/app/src/main/res/drawable/bg_alert_dialog.xml" value="0.121" />
         <entry key="..\:/Project/AndroidStudio/Bangkit/Capstone/thisable-app/app/src/main/res/drawable/bg_border_button_blue.xml" value="0.1215" />
         <entry key="..\:/Project/AndroidStudio/Bangkit/Capstone/thisable-app/app/src/main/res/drawable/bg_button.xml" value="0.1335" />

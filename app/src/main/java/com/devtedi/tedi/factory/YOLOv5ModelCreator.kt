@@ -6,8 +6,8 @@ import android.graphics.RectF
 import android.os.Build
 import android.util.Log
 import android.util.Size
-import com.devtedi.tedi.observer_core.CoreObserver
-import com.devtedi.tedi.observer_core.CoreSubject
+import com.devtedi.tedi.interfaces.observer_core.CoreObserver
+import com.devtedi.tedi.interfaces.observer_core.CoreSubject
 import com.devtedi.tedi.utils.*
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.withContext

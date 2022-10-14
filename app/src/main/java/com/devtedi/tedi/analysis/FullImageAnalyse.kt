@@ -6,6 +6,8 @@ import androidx.camera.core.ImageAnalysis
 import androidx.camera.core.ImageProxy
 import androidx.camera.view.PreviewView
 import com.devtedi.tedi.factory.YOLOv5ModelCreator
+import com.devtedi.tedi.interfaces.observer_analyzer.AnalyzerObserver
+import com.devtedi.tedi.interfaces.observer_analyzer.AnalyzerSubject
 import com.devtedi.tedi.utils.GraphicOverlay
 import com.devtedi.tedi.utils.ImageProcess
 import com.devtedi.tedi.utils.ObjectGraphic
@@ -19,9 +21,9 @@ class FullImageAnalyse(
     private val yolov5TFLiteDetector: YOLOv5ModelCreator,
     private val ImageProcess: ImageProcess = ImageProcess(),
     private val graphicOverlay: GraphicOverlay
-) : ImageAnalysis.Analyzer {
+) : ImageAnalysis.Analyzer, AnalyzerObserver {
 
-
+    private var onDetect : Boolean = true
     class Result(var costTime: Long, var bitmap: Bitmap)
 
     override fun analyze(image: ImageProxy) {
@@ -93,37 +95,38 @@ class FullImageAnalyse(
 
         val modelToPreviewTransform = Matrix()
         previewToModelTransform.invert(modelToPreviewTransform)
+        if(onDetect) {
+            val recognitions: ArrayList<RecognitionRes> =
+                yolov5TFLiteDetector.detect(modelInputBitmap)
+            val emptyCropSizeBitmap =
+                Bitmap.createBitmap(previewWidth, previewHeight, Bitmap.Config.ARGB_8888)
+            val cropCanvas = Canvas(emptyCropSizeBitmap)
 
-        val recognitions: ArrayList<RecognitionRes> = yolov5TFLiteDetector.detect(modelInputBitmap)
-        Timber.tag("RECOGNITIONS").d(recognitions.toString())
-        val emptyCropSizeBitmap =
-            Bitmap.createBitmap(previewWidth, previewHeight, Bitmap.Config.ARGB_8888)
-        val cropCanvas = Canvas(emptyCropSizeBitmap)
+            val boxPaint = Paint()
+            boxPaint.strokeWidth = 5F
+            boxPaint.style = Paint.Style.STROKE
+            boxPaint.color = Color.RED
 
-        val boxPaint = Paint()
-        boxPaint.strokeWidth = 5F
-        boxPaint.style = Paint.Style.STROKE
-        boxPaint.color = Color.RED
+            val textPain = Paint()
+            textPain.textSize = 50F
+            textPain.color = Color.RED
+            textPain.style = Paint.Style.FILL
 
-        val textPain = Paint()
-        textPain.textSize = 50F
-        textPain.color = Color.RED
-        textPain.style = Paint.Style.FILL
-
-        graphicOverlay.clear()
-        for (res in recognitions) {
-            graphicOverlay.add(ObjectGraphic(this.graphicOverlay, res))
-            val location: RectF = res.getLocation()
-            val label: String = res.getLabelName()
-            val confidence: Float = res.getConfidence()
-            modelToPreviewTransform.mapRect(location)
-            cropCanvas.drawRect(location, boxPaint)
-            cropCanvas.drawText(
-                label + ":" + String.format("%.2f", confidence),
-                location.left,
-                location.top,
-                textPain
-            )
+            graphicOverlay.clear()
+            for (res in recognitions) {
+                graphicOverlay.add(ObjectGraphic(this.graphicOverlay, res))
+                val location: RectF = res.getLocation()
+                val label: String = res.getLabelName()
+                val confidence: Float = res.getConfidence()
+                modelToPreviewTransform.mapRect(location)
+                cropCanvas.drawRect(location, boxPaint)
+                cropCanvas.drawText(
+                    label + ":" + String.format("%.2f", confidence),
+                    location.left,
+                    location.top,
+                    textPain
+                )
+            }
         }
 
         val endTime = System.currentTimeMillis()
@@ -131,7 +134,14 @@ class FullImageAnalyse(
 
         image.close()
 
-        val result = Result(costTime, emptyCropSizeBitmap)
 
     }
+
+    override fun updateObserver() {
+        if(onDetect) onDetect = false
+        else onDetect = true
+
+    }
+
+
 }

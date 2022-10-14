@@ -1,6 +1,7 @@
 package com.devtedi.tedi.utils
 
 import android.util.Size
+import com.devtedi.tedi.R
 
 const val MODEL_FILE_OBJ: String = "ObjectDetectionModel.tflite"
 const val MODEL_FILE_CURRENCY : String = "CurrencyModel.tflite"
@@ -25,19 +26,19 @@ const val const_bisindo_translator : String = "bisindo_translator"
 const val const_currency_detector : String = "currency_detector"
 const val const_color_classifier : String = "color_classifier"
 
-
 const val total_label_object : Int = 80;
 const val total_label_bisindo : Int = 50;
 const val total_label_currency : Int = 7;
 
-const val DETECT_THRESHOLD : Float = 0.6f
-const val IOU_THRESHOLD : Float = 0.45f
-const val IOU_CLASS_DUPLICATED_THRESHOLD : Float = 0.7f
+const val DETECT_THRESHOLD : Float = 0.9f
+const val IOU_THRESHOLD : Float = 0.9f
+const val IOU_CLASS_DUPLICATED_THRESHOLD : Float = 0.95f
 const val test_model : String = "yolov5n-fp16-320.tflite"
 // Testing Variables
 const val const_test_model : String= "test"
 const val test_model_file : String = "best-fp16.tflite"
 const val test_label_file : String = "file:///android_asset/customclasses.txt"
+
 //const val TF_OD_API_INPUT_SIZE = 416
 //const val TF_OD_API_IS_QUANTIZED = false
 //const val TF_OD_API_MODEL_FILE = "best-fp16.tflite"
@@ -48,8 +49,3 @@ const val impl_oc_ocl_obj : String = "oc_ocl_obj"
 const val impl_oc_ocl_currency : String = "oc_ocl_currency"
 const val impl_oc_ocl_color : String = "oc_ocl_color"
 const val impl_oc_ocl_text : String = "oc_ocl_text"
-
-fun getObjConstTemp() : Array<String>
-{
-    return arrayOf("Ada Apa saja di depan saya ?", "Ada Meteor Bang", "Anjir Wibu")
-}
