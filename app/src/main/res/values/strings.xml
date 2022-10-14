@@ -279,10 +279,6 @@
     <string name="label_family_help">Family Help</string>
     <string name="label_color_detection">Deteksi Warna</string>
 
-    <string name="write_your_text_here">Write your text here..</string>
-    <string name="writer">Writer</string>
-    <string name="info_dan">dan</string>
-
     <string-array name="array_severity_level">
         <item>Perlu diperbaiki segera mungkin</item>
         <item>Parah</item>
