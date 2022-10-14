@@ -19,6 +19,12 @@ This feature help read text in front of you. This feature developed by using Clo
 ## 5. Bug Report Feature
 This feature to provide feedback for our application for future development. To store the feedback to Firestore Database, we use the REST API by the Cloud Computing team.
 
+## 6. Color Detection
+This feature help to inform what color of the object that direct to your camera. This feature develop using OpenCV 4.5.5 Library
+
+## 7. Family Help
+This feature help to make call your emergency contact
+
 ## Project Setup
   - ##### Prerequisites
     - [Android Studio](https://developer.android.com/studio)
