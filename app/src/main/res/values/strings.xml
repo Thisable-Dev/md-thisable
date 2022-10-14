@@ -76,7 +76,6 @@
     <!-- Currency Content Descirpition -->
     <!-- Color Sound Description-->
 
-    <string name="label_color_detection">Halaman Deteksi Warna Dipilih</string>
     <string name="label_color_btn">Tombol Penangkap Gambar</string>
     <string name="label_color_pb">Mempersiapkan Fitur Deteksi Warna anda</string>
     <string name="label_color_previewView">Anda Berada Pada Fitur Deteksi Warna</string>
@@ -287,6 +286,7 @@
     <string name="label_edit_emergency_contact">Ubah Nomor Kontak Darurat</string>
     <string name="hint_input_emergency_contact">Masukkan nomor kontak darurat</string>
     <string name="label_family_help">Family Help</string>
+    <string name="label_color_detection">Deteksi Warna</string>
 
     <string name="write_your_text_here">Write your text here..</string>
     <string name="writer">Writer</string>

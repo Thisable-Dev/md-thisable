@@ -179,6 +179,4 @@
         <item name="android:windowSoftInputMode">adjustResize</item>
     </style>
 
-
-
 </resources>
