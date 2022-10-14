@@ -92,6 +92,22 @@
             app:iconMenu="@drawable/ic_currency_detection"
             app:isBeta="true"/>
 
+        <com.devtedi.tedi.presentation.view.TediMainMenuButton
+            android:id="@+id/btnColorDetection"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_columnWeight="1"
+            app:titleMenu="@string/label_color_detection"
+            app:iconMenu="@drawable/ic_color_detection"/>
+
+        <com.devtedi.tedi.presentation.view.TediMainMenuButton
+            android:id="@+id/btnFamilyHelp"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_columnWeight="1"
+            app:titleMenu="@string/label_family_help"
+            app:iconMenu="@drawable/ic_family_help"/>
+
     </GridLayout>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

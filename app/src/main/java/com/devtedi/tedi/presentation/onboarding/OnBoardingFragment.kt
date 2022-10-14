@@ -72,8 +72,7 @@ class OnBoardingFragment : Fragment() {
             ContextCompat.checkSelfPermission(
                 requireContext(),
                 android.Manifest.permission.CAMERA
-            ) -> {
-            }
+            ) -> {}
             else -> {
                 val dialog: AlertDialog = AlertDialog.Builder(requireContext())
                     .setTitle(getString(string.title_warning))
@@ -106,7 +105,7 @@ class OnBoardingFragment : Fragment() {
             signIn()
         }
         binding.btnNext.click {
-            findNavController().navigate(R.id.action_onBoardingFragment_to_fragmentWarningCustomDialog)
+            findNavController().navigate(R.id.action_onBoardingFragment_to_homeFragment)
         }
         binding.tvAbout.click {
             findNavController().navigate(R.id.action_onBoardingFragment_to_aboutFragment)

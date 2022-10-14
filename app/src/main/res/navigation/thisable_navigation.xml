@@ -80,6 +80,9 @@
         <action
             android:id="@+id/action_homeFragment_to_coreActivity"
             app:destination="@id/coreActivity" />
+        <action
+            android:id="@+id/action_homeFragment_to_familyHelpFragment"
+            app:destination="@id/familyHelpFragment" />
     </fragment>
     <fragment
         android:id="@+id/profileFragment"
@@ -215,4 +218,8 @@
             android:id="@+id/action_fragmentFQA_to_bugReportFragment"
             app:destination="@id/bugReportFragment" />
     </fragment>
+    <fragment
+        android:id="@+id/familyHelpFragment"
+        android:name="com.devtedi.tedi.presentation.familyhelp.FamilyHelpFragment"
+        android:label="FamilyHelpFragment" />
 </navigation>
