@@ -41,6 +41,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="@dimen/dimen_8dp"
+        android:autoLink="phone"
         app:layout_constraintTop_toBottomOf="@id/tvNeedHelp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -50,7 +51,7 @@
         android:id="@+id/btnCall"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:background="null"
+        android:background="@null"
         android:src="@drawable/ic_call"
         android:layout_marginTop="32dp"
         app:layout_constraintEnd_toEndOf="parent"
@@ -58,7 +59,7 @@
         app:layout_constraintTop_toBottomOf="@+id/tvPressButtonBelow" />
 
     <Button
-        android:id="@+id/btnReport"
+        android:id="@+id/btnEditEmergencyContact"
         style="@style/ButtonContent"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
