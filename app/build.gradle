@@ -13,7 +13,7 @@ android {
     defaultConfig {
         buildConfigField("String", "BASE_URL", '"http://34.101.177.97:5000/"')
         buildConfigField("String", "API_KEY", '"eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwibmFtZSI6IkhhemxhbiBNdWhhbW1hZCBRb2RyaSIsImlhdCI6MTY1NDA3OTM2NH0.bMzTbHT9WEnOQUA3vZNL32K9slNf77_IpECsZ6xUL9c"')
-        applicationId "com.devthisable.thisable"
+        applicationId "com.devtedi.tedi"
         minSdk 26
         targetSdk 32
         versionCode 1

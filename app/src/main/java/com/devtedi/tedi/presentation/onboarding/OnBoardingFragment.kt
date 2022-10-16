@@ -59,6 +59,7 @@ class OnBoardingFragment : Fragment() {
         val gso = GoogleSignInOptions
             .Builder(GoogleSignInOptions.DEFAULT_SIGN_IN)
             .requestIdToken(getString(string.default_web_client))
+            .requestServerAuthCode(getString(string.default_web_client))
             .requestEmail()
             .build()
 
@@ -134,6 +135,8 @@ class OnBoardingFragment : Fragment() {
                 // Google Sign In failed, update UI appropriately
                 Timber.w("Google sign in failed : $e")
             }
+        } else {
+            showToast("Login Failed ${result}")
         }
     }
 
@@ -155,6 +158,9 @@ class OnBoardingFragment : Fragment() {
                     Timber.w("sign in with credential failure ${task.exception}")
                     showToast("Error occurred")
                 }
+            }
+            .addOnFailureListener {
+                Timber.e("<<<<<<<<<<<, Error $it")
             }
     }
 }
