@@ -24,7 +24,12 @@ class FullImageAnalyse(
 ) : ImageAnalysis.Analyzer, AnalyzerObserver {
 
     private var onDetect : Boolean = true
+
     class Result(var costTime: Long, var bitmap: Bitmap)
+
+
+    // DatabaseOfDetected Labels:
+
 
     override fun analyze(image: ImageProxy) {
 
@@ -138,10 +143,25 @@ class FullImageAnalyse(
     }
 
     override fun updateObserver() {
-        if(onDetect) onDetect = false
-        else onDetect = true
+        onDetect = !onDetect
+    }
+
+    private fun checkifSoundPlay()
+    {
 
     }
 
+
+    private fun playTheSound()
+    {
+
+    }
+
+
+    companion object {
+
+        private val time_interval_word  : Long  = 500
+        private val time_interval_clear : Long = 10
+    }
 
 }
