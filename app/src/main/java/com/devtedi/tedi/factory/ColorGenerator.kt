@@ -1,14 +1,17 @@
 package com.devtedi.tedi.factory
 
-import android.content.Context
+import android.app.Activity
 import android.graphics.Bitmap
 import android.util.Log
 import android.widget.Toast
+import com.devtedi.tedi.R
+import com.devtedi.tedi.databinding.CustomToastV1Binding
 import org.opencv.android.Utils
 import org.opencv.core.*
 import org.opencv.imgproc.Imgproc
+import java.lang.StringBuilder
 
-class ColorGenerator(private val context : Context, private val inputImage : Bitmap) : ColorStore(context){
+class ColorGenerator(private val context : Activity, private val inputImage : Bitmap) : ColorStore(context){
 
     init {
         Utils.bitmapToMat(inputImage, inputImageMat)
@@ -70,7 +73,7 @@ class ColorGenerator(private val context : Context, private val inputImage : Bit
 
     }
 
-    fun checkColorImage()
+    private fun checkColorImage()
     {
         var i = 0
         for (mask in arrOfResultColors)
@@ -82,13 +85,52 @@ class ColorGenerator(private val context : Context, private val inputImage : Bit
         val bitmap = Bitmap.createBitmap(inputImageMat.cols(), inputImageMat.rows(), Bitmap.Config.ARGB_8888)
         Utils.matToBitmap(inputImageMat, bitmap)
 
-        Toast.makeText(context, mUniqueColor.toString(), Toast.LENGTH_LONG).show()
+        showResult(mUniqueColor.toList())
+    }
+
+    private fun showResult(stringResult : List<String>)
+    {
+        val toastCustomLayout : CustomToastV1Binding = CustomToastV1Binding.inflate(context.layoutInflater)
+
+        val stringBuilder : StringBuilder= StringBuilder()
+        stringBuilder.append(
+            context.getString(R.string.response_1_color_detection)
+        )
+        stringBuilder.append(" ")
+        for (indx in 1 until stringResult.size)
+        {
+
+            if(indx == 1)
+            {
+                stringBuilder.append(stringResult[0])
+                stringBuilder.append(", ")
+                stringBuilder.append(stringResult[indx])
+                stringBuilder.append(", ")
+            }
+            else if(indx != stringResult.size - 1)
+            {
+                stringBuilder.append(stringResult[indx])
+                stringBuilder.append(", ")
+
+            }
+            else
+            {
+                stringBuilder.append(context.getString(R.string.info_dan)," ")
+                stringBuilder.append(stringResult[indx])
+            }
+        }
+        toastCustomLayout.textCustom.setText(stringBuilder.toString())
+
+        val toast = Toast(context)
+        toast.duration = Toast.LENGTH_SHORT
+        toast.view = toastCustomLayout.root
+        toast.show()
+
     }
 
     fun addColor(colorName : String)
     {
         mUniqueColor.add(colorName)
-
     }
     companion object {
         private const val thresholdArea = 10.0
