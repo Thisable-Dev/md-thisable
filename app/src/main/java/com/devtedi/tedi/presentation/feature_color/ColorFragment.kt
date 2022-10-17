@@ -6,6 +6,7 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Toast
 import androidx.camera.core.CameraSelector
 import androidx.camera.core.ImageAnalysis
 import androidx.camera.core.Preview
@@ -58,39 +59,48 @@ class ColorFragment : Fragment() {
             if (image != null)
             {
                 val currImage = scaleBitmapDown(image, maxDimension)
-                colorGenerator = ColorGenerator(requireContext(), currImage)
+                colorGenerator = ColorGenerator(requireActivity(), currImage)
 
             }
         }
     }
 
     private fun startCamera() {
-        val cameraProviderFuture = ProcessCameraProvider.getInstance(requireContext())
+        try {
+            val cameraProviderFuture = ProcessCameraProvider.getInstance(requireContext())
 
-        val runnableInterface = Runnable {
+            val runnableInterface = Runnable {
 
-            val cameraProvider = cameraProviderFuture.get()
-            val preview: Preview = Preview.Builder().build().also {
-                it.setSurfaceProvider(binding.cameraPreviewWrap.surfaceProvider)
-            }
-
-            val cameraSelector = CameraSelector.DEFAULT_BACK_CAMERA
-
-            val imageAnalyzer = ImageAnalysis.Builder()
-                .setBackpressureStrategy(ImageAnalysis.STRATEGY_KEEP_ONLY_LATEST)
-                .build().also {
-                    it.setAnalyzer(cameraExecutor, colorAnalyzer)
+                val cameraProvider = cameraProviderFuture.get()
+                val preview: Preview = Preview.Builder().build().also {
+                    it.setSurfaceProvider(binding.cameraPreviewWrap.surfaceProvider)
                 }
 
-            try {
-                cameraProvider.unbindAll()
-                cameraProvider.bindToLifecycle(this, cameraSelector, preview, imageAnalyzer)
-            } catch (e: Exception) {
-                e.printStackTrace()
-            }
-        }
+                val cameraSelector = CameraSelector.DEFAULT_BACK_CAMERA
 
-        cameraProviderFuture.addListener(runnableInterface, ContextCompat.getMainExecutor(requireContext()))
+                val imageAnalyzer = ImageAnalysis.Builder()
+                    .setBackpressureStrategy(ImageAnalysis.STRATEGY_KEEP_ONLY_LATEST)
+                    .build().also {
+                        it.setAnalyzer(cameraExecutor, colorAnalyzer)
+                    }
+
+                try {
+                    cameraProvider.unbindAll()
+                    cameraProvider.bindToLifecycle(this, cameraSelector, preview, imageAnalyzer)
+                } catch (e: Exception) {
+                    e.printStackTrace()
+                }
+            }
+
+            cameraProviderFuture.addListener(
+                runnableInterface,
+                ContextCompat.getMainExecutor(requireContext())
+            )
+        }
+        catch (e : UninitializedPropertyAccessException)
+        {
+            Toast.makeText(context, "Mohon tunggu sebentar, fitur sedang disiapkan", Toast.LENGTH_SHORT).show()
+        }
     }
     companion object {
         private const val maxDimension : Int = 640

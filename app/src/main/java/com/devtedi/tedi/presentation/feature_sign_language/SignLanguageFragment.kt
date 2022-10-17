@@ -61,37 +61,49 @@ class SignLanguageFragment : Fragment(), FeatureBaseline {
 
     }
 
+    override fun onPause() {
+        super.onPause()
+        cameraProcess.destroy()
+    }
+
     override fun onResume() {
         super.onResume()
 
-        if(viewModel.yolov5TFLiteDetector.value == null) {
-            viewModel.initModel(const_bisindo_translator, requireContext())
-        }
-        viewModel.yolov5TFLiteDetector.observe(viewLifecycleOwner) {
-            fullImageAnalyse = FullImageAnalyse(
-                requireContext(),
-                cameraPreviewView,
-                rotation,
-                it,
-                graphicOverlay = binding.graphicOverlay
-            )
-            it.registerObserver(viewModel)
-            cameraProcess.startCamera(requireActivity(), fullImageAnalyse, cameraPreviewView)
-        }
+        try {
+            if (viewModel.yolov5TFLiteDetector.value == null) {
+                viewModel.initModel(const_bisindo_translator, requireContext())
+            }
+            viewModel.yolov5TFLiteDetector.observe(viewLifecycleOwner) {
+                fullImageAnalyse = FullImageAnalyse(
+                    requireContext(),
+                    cameraPreviewView,
+                    rotation,
+                    it,
+                    graphicOverlay = binding.graphicOverlay
+                )
+                it.registerObserver(viewModel)
+                cameraProcess.startCamera(requireActivity(), fullImageAnalyse, cameraPreviewView)
+            }
 
-        viewModel.tobeWrittenString.observe(viewLifecycleOwner) {
-            binding.etOutputTerjemahan.setText(StringBuilder().apply {
-                append(it)
-                append(" ")
-            })
-        }
+            viewModel.tobeWrittenString.observe(viewLifecycleOwner) {
+                binding.etOutputTerjemahan.setText(StringBuilder().apply {
+                    append(it)
+                    append(" ")
+                })
+            }
 
+        }
+        catch (e : UninitializedPropertyAccessException)
+        {
+            e.printStackTrace()
+        }
     }
 
     override fun onDestroyView() {
         super.onDestroyView()
         _binding = null
     }
+
 
     private fun initPoseListener() {
         singLanguageListener = object : SignLanguageListener {
@@ -104,6 +116,7 @@ class SignLanguageFragment : Fragment(), FeatureBaseline {
                 })
             }
         }
+
         keyboardListener = object : FeedbackSignLanguageListener {
             override fun onListenerKeyboard(state: Boolean) {
                 if(state) {
@@ -117,7 +130,6 @@ class SignLanguageFragment : Fragment(), FeatureBaseline {
 
         }
     }
-
 
     private fun initKeyboard() {
         //binding.btnKeyboard.setOnClickListener(::openKeyboardDialog)

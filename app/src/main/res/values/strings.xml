@@ -98,6 +98,9 @@
     <string name="response_no_detection_object_detection">Tidak ada Objek yang terdeteksi</string>
     <string name="response_no_detection_currency_detection">Tidak ada Item Uang terdeteksi</string>
 
+    <!-- Response Color -->
+    <string name="response_1_color_detection">Warna yang terdeteksi adalah warna </string>
+
     <!-- TODO: Remove or change this placeholder text -->
     <string name="label_hint_use">Petunjuk Penggunaan</string>
     <string name="label_for_all_disabilities">Dapat digunakan semua jenis disabilitas.</string>
@@ -128,18 +131,96 @@
     <string name="label_continue">Lanjut</string>
     <string name="label_report_success_send">Laporan berhasil dikirim</string>
     <string name="label_report_description">Keterangan*</string>
-    <string name="raw_sound_seribu">seribu</string>
-    <string name="raw_sound_duaribu">duaribu</string>
-    <string name="raw_sound_limaribu">limaribu</string>
-    <string name="raw_sound_sepuluhribu">sepuluhribu</string>
-    <string name="raw_sound_limapuluhribu">limapuluhribu</string>
-    <string name="raw_sound_seratusribu">seratusribu</string>
-    <string name="raw_sound_orang">person</string>
-    <string name="raw_sound_kucing">cat</string>
-    <string name="raw_sound_anjing">dog</string>
-    <string name="raw_sound_buah">fruit</string>
-    <string name="raw_sound_motor">motorbike</string>
-    <string name="raw_sound_bunga">flower</string>
+    <string name="raw_soundcurrency_seribu">seribu</string>
+    <string name="raw_soundcurrency_duaribu">duaribu</string>
+    <string name="raw_soundcurrency_limaribu">limaribu</string>
+    <string name="raw_soundcurrency_sepuluhribu">sepuluhribu</string>
+    <string name="raw_soundcurrency_limapuluhribu">limapuluhribu</string>
+    <string name="raw_soundcurrency_seratusribu">seratusribu</string>
+
+    <string name="raw_soundobj_orang">orang</string>
+    <string name="raw_soundobj_sepeda">sepeda</string>
+    <string name="raw_soundobj_mobil">mobil</string>
+    <string name="raw_soundobj_sepedamotor">sepeda motor</string>
+    <string name="raw_soundobj_pesawat_terbang">pesawat terbang</string>
+    <string name="raw_soundobj_bis">bis</string>
+    <string name="raw_soundobj_kereta">kereta</string>
+    <string name="raw_soundobj_truk">truk</string>
+    <string name="raw_soundobj_kapal">kapal</string>
+    <string name="raw_soundobj_lampu_lalu_lintas">lampu lalu lintas</string>
+    <string name="raw_soundobj_keran_kebakaran">keran kebakaran</string>
+    <string name="raw_soundobj_tanda_berhenti">tanda berhenti</string>
+    <string name="raw_soundobj_meteran_parkir">meteran parkir</string>
+    <string name="raw_soundobj_bangku">bangku</string>
+    <string name="raw_soundobj_burung">burung</string>
+    <string name="raw_soundobj_kucing">kucing</string>
+    <string name="raw_soundobj_anjing">anjing</string>
+    <string name="raw_soundobj_kuda">kuda</string>
+    <string name="raw_soundobj_domba">domba</string>
+    <string name="raw_soundobj_lembu">lembu</string>
+    <string name="raw_soundobj_gajah">gajah</string>
+    <string name="raw_soundobj_beruang">beruang</string>
+    <string name="raw_soundobj_zebra">zebra</string>
+    <string name="raw_soundobj_jerapah">jerapah</string>
+    <string name="raw_soundobj_ransel">ransel</string>
+    <string name="raw_soundobj_payung">payung</string>
+    <string name="raw_soundobj_tas">tas</string>
+    <string name="raw_soundobj_dasi">dasi</string>
+    <string name="raw_soundobj_koper">koper</string>
+    <string name="raw_soundobj_frisbee">frisbee</string>
+    <string name="raw_soundobj_ski">ski</string>
+    <string name="raw_soundobj_papan_seluncur">papan seluncur</string>
+    <string name="raw_soundobj_bola_olahraga">bola olahraga</string>
+    <string name="raw_soundobj_layang_layang">layang-layang</string>
+    <string name="raw_soundobj_tongkat_bisbol">tongkat bisbol</string>
+    <string name="raw_soundobj_sarung_bisbol">sarung tangan bisbol</string>
+    <string name="raw_soundobj_skateboard">skateboard</string>
+    <!-- Check bagian yang ini<string name="raw_soundobj_papan"-->
+    <string name="raw_soundobj_raket_tenis">raket tenis</string>
+    <string name="raw_soundobj_botol">botol</string>
+    <string name="raw_soundobj_gelas_anggur">gelas anggur</string>
+    <string name="raw_soundobj_cangkir">cangkir</string>
+    <string name="raw_soundobj_garpu">garpu</string>
+    <string name="raw_soundobj_sendok">sendok</string>
+    <string name="raw_soundobj_mangkuk">mangkuk</string>
+    <string name="raw_soundobj_pisang">pisang</string>
+    <string name="raw_soundobj_manzana">manzana</string>
+    <string name="raw_soundobj_sandwich">sandwich</string>
+    <string name="raw_soundobj_jeruk">jeruk</string>
+    <string name="raw_soundobj_brokoli">brokoli</string>
+    <string name="raw_soundobj_wortel">wortel</string>
+    <string name="raw_soundobj_hot_dog">hot dog</string>
+    <string name="raw_soundobj_pizza">pizza</string>
+    <string name="raw_soundobj_donat">donat</string>
+    <string name="raw_soundobj_kue">kue</string>
+    <string name="raw_soundobj_kursi">kursi</string>
+    <string name="raw_soundobj_sofa">sofa</string>
+    <string name="raw_soundobj_tanamanpot">tanaman pot</string>
+    <string name="raw_soundobj_tempat_tidur">tempat tidur</string>
+    <string name="raw_soundobj_meja_makan">meja makan</string>
+    <string name="raw_soundobj_toilet">toilet</string>
+    <string name="raw_soundobj_televisi">televisi</string>
+    <string name="raw_soundobj_laptop">laptop</string>
+    <string name="raw_soundobj_mouse">mouse</string>
+    <string name="raw_soundobj_terpencil">terpencil</string>
+    <string name="raw_soundobj_papan_ketik">papan ketik</string>
+    <string name="raw_soundobj_gawai">gawai</string>
+    <string name="raw_soundobj_microwave">microwave</string>
+    <string name="raw_soundobj_oven">oven</string>
+    <string name="raw_soundobj_pemanggang_roti">pemanggang roti</string>
+    <string name="raw_soundobj_wastavel">wastavel</string>
+    <string name="raw_soundobj_kulkas">kulkas</string>
+    <string name="raw_soundobj_buku">buku</string>
+    <string name="raw_soundobj_jam">jam</string>
+    <string name="raw_soundobj_vas_bunga">vas bunga</string>
+    <string name="raw_soundobj_gunting">gunting</string>
+    <string name="raw_soundobj_boneka_beruang">boneka beruang</string>
+    <string name="raw_soundobj_pengering_rambut">pengering rambut</string>
+    <string name="raw_soundobj_sikat_gigi">sikat gigi</string>
+
+
+
+
     <string name="title_about_TeDi">Tentang TeDi</string>
     <string name="label_about">TeDi adalah start-up aplikasi aksesibilitas terpusat pertama di Indonesia. Kami memiliki tujuan untuk menyediakan layanan aplikasi aksesibilitas mobile kepada masyarakat Indonesia, terutama penyandang disabilitas untuk memudahkan difabel dalam berkomunikasi dan menjalani kehidupan sehari-hari.\n\nKami berusaha untuk memecahkan masalah nyata di masyarakat, terutama untuk kenyamanan para penyandang disabilitas untuk berinteraksi. Kami ingin memperjuangkan kesetaraan komunikasi, terlepas dari kekurangan apa yang dimiliki seseorang. Kami juga berencana untuk mengembangkan aplikasi ini menjadi aplikasi super aksesibilitas yang lebih canggih sehingga dapat digunakan oleh penyandang disabilitas khususnya di Indonesia.</string>
     <string name="label_ketentuanLayanan">Ketentuan Layanan</string>
@@ -193,6 +274,7 @@
 
     <string name="write_your_text_here">Write your text here..</string>
     <string name="writer">Writer</string>
+    <string name="info_dan">dan</string>
 
     <string-array name="array_severity_level">
         <item>Perlu diperbaiki segera mungkin</item>

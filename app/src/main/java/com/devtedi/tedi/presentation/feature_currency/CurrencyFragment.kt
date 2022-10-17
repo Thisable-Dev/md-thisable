@@ -1,10 +1,13 @@
 package com.devtedi.tedi.presentation.feature_currency
 
+import android.media.SoundPool
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Toast
 import androidx.camera.view.PreviewView
+import androidx.core.content.ContextCompat
 import androidx.core.view.isGone
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
@@ -24,10 +27,15 @@ class CurrencyFragment : Fragment(), FeatureBaseline, AnalyzerSubject {
     override lateinit var cameraPreviewView: PreviewView
     override lateinit var cameraProcess: CameraProcess
     override lateinit var yolov5TFLiteDetector: YOLOv5ModelCreator
+    private var canPlaySound : Boolean = false
     private val viewModel : CurrencyDetectionViewModel by viewModels()
     private var observers : ArrayList<AnalyzerObserver> = ArrayList()
     lateinit var fullImageAnalyse : FullImageAnalyse
     private var rotation : Int = 0
+    //Soundplayer Variabels
+    private  var soundId : Int = -1
+    private lateinit var sp : SoundPool
+    private var spLoaded  : Boolean = false
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?,
@@ -39,6 +47,7 @@ class CurrencyFragment : Fragment(), FeatureBaseline, AnalyzerSubject {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
+        init()
         viewModel.initModel(const_currency_detector, requireContext())
         viewModel.isLoading.observe(viewLifecycleOwner) {
             binding.progressBar.isGone = !it
@@ -57,19 +66,79 @@ class CurrencyFragment : Fragment(), FeatureBaseline, AnalyzerSubject {
         super.onPause()
         notifyObserver()
     }
+
+    private fun init()
+    {
+        prepareSound()
+    }
+    private fun prepareSound()
+    {
+
+        sp = SoundPool.Builder()
+            .setMaxStreams(10)
+            .build()
+        binding.sound.setOnClickListener {
+            canPlaySound = !canPlaySound
+            if(canPlaySound)
+            {
+                setupCanPlaySound()
+            }
+            else {
+
+                setupCannotPlaySound()
+            }
+        }
+    }
+
+    private fun setupCanPlaySound()
+    {
+        binding.sound.setImageDrawable(ContextCompat.getDrawable(requireContext(), R.drawable.sound_on))
+        sp.setOnLoadCompleteListener {_, _, status ->
+
+            if(status == 0)
+            {
+                spLoaded = true
+            }
+            else
+            {
+                Toast.makeText(requireContext(), "Gagal Load", Toast.LENGTH_SHORT).show()
+            }
+
+        }
+
+        soundId = sp.load(requireActivity(), R.raw.buah, 1)
+        if(spLoaded)
+        {
+            Toast.makeText(requireContext(),  "Maen gak ${soundId}", Toast.LENGTH_SHORT).show()
+            sp.play(soundId, 1f, 1f, 0,0,1f)
+        }
+
+    }
+    private fun setupCannotPlaySound()
+    {
+        binding.sound.setImageDrawable(ContextCompat.getDrawable(requireContext(), R.drawable.sound_off))
+
+
+    }
     override fun onResume() {
         super.onResume()
-        rotation = requireActivity().windowManager.defaultDisplay.rotation
-        viewModel.yolov5TFLiteDetector.observe(viewLifecycleOwner) {
+        try {
+            rotation = requireActivity().windowManager.defaultDisplay.rotation
+            viewModel.yolov5TFLiteDetector.observe(viewLifecycleOwner) {
 
-            fullImageAnalyse = FullImageAnalyse(
-                requireContext(),
-                cameraPreviewView,
-                rotation,
-                it,
-                graphicOverlay = binding.graphicOverlay
-            )
-            cameraProcess.startCamera(requireContext(), fullImageAnalyse, cameraPreviewView)
+                fullImageAnalyse = FullImageAnalyse(
+                    requireContext(),
+                    cameraPreviewView,
+                    rotation,
+                    it,
+                    graphicOverlay = binding.graphicOverlay
+                )
+                cameraProcess.startCamera(requireContext(), fullImageAnalyse, cameraPreviewView)
+            }
+        }
+        catch (e : UninitializedPropertyAccessException)
+        {
+            e.printStackTrace()
         }
     }
 

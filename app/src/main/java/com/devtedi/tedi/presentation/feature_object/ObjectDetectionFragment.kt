@@ -60,23 +60,32 @@ class ObjectDetectionFragment : Fragment(), FeatureBaseline, AnalyzerSubject{
 
     override fun onResume() {
         super.onResume()
-        if(viewModel.yolov5TFLiteDetector.value == null)
-        {
-            viewModel.initModel(const_object_detector, requireContext())
-        }
-        val rotation = requireActivity().windowManager.defaultDisplay.rotation
-        viewModel.yolov5TFLiteDetector.observe(viewLifecycleOwner) { model ->
-            model?.let {
-                fullImageAnalyse = FullImageAnalyse(
-                    requireContext(),
-                    cameraPreviewView,
-                    rotation,
-                    it,
-                    graphicOverlay = binding.graphicOverlay
-                )
-
-                cameraProcess.startCamera(requireActivity(), fullImageAnalyse, cameraPreviewView)
+        try {
+            if (viewModel.yolov5TFLiteDetector.value == null) {
+                viewModel.initModel(const_object_detector, requireContext())
             }
+            val rotation = requireActivity().windowManager.defaultDisplay.rotation
+            viewModel.yolov5TFLiteDetector.observe(viewLifecycleOwner) { model ->
+                model?.let {
+                    fullImageAnalyse = FullImageAnalyse(
+                        requireContext(),
+                        cameraPreviewView,
+                        rotation,
+                        it,
+                        graphicOverlay = binding.graphicOverlay
+                    )
+
+                    cameraProcess.startCamera(
+                        requireActivity(),
+                        fullImageAnalyse,
+                        cameraPreviewView
+                    )
+                }
+            }
+        }
+        catch (e : UninitializedPropertyAccessException)
+        {
+            e.printStackTrace()
         }
     }
 
