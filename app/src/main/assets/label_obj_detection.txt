@@ -1,80 +1,80 @@
-person
-bicycle
-car
-motorcycle
-airplane
-bus
-train
-truck
-boat
-traffic light
-fire hydrant
-stop sign
-parking meter
-bench
-bird
-cat
-dog
-horse
-sheep
-cow
-elephant
-bear
+orang
+sepeda
+mobil
+sepeda motor
+pesawat terbang
+bis
+kereta
+truk
+kapal
+lampu lalu lintas
+keran kebakaran
+tanda berhenti
+meteran parkir
+bangku
+burung
+kucing
+anjing
+kuda
+domba
+lembu
+gajah
+beruang
 zebra
-giraffe
-backpack
-umbrella
-handbag
-tie
-suitcase
+jerapah
+ransel
+payung
+tas
+dasi
+koper
 frisbee
-skis
-snowboard
-sports ball
-kite
-baseball bat
-baseball glove
+ski
+papan seluncur
+bola olahraga
+layang-layang
+tongkat bisbol
+sarung tangan bisbol
 skateboard
-surfboard
-tennis racket
-bottle
-wine glass
-cup
-fork
-knife
-spoon
-bowl
-banana
-apple
+papan luncur
+raket tenis
+botol
+gelas anggur
+cangkir
+garpu
+pisau
+sendok
+mangkuk
+pisang
+Manzana
 sandwich
-orange
-broccoli
-carrot
-hot dog
-pizza
-donut
-cake
-chair
-couch
-potted plant
-bed
-dining table
+jeruk
+Brokoli
+wortel
+Hot Dog
+Pizza
+donat
+kue
+kursi
+sofa
+tanaman pot
+tempat tidur
+meja makan
 toilet
-tv
+televisi
 laptop
 mouse
-remote
-keyboard
-cell phone
+terpencil
+papan ketik
+gawai
 microwave
 oven
-toaster
-sink
-refrigerator
-book
-clock
-vase
-scissors
-teddy bear
-hair drier
-toothbrush
+pemanggang roti
+wastavel
+kulkas
+buku
+jam
+vas bunga
+gunting
+boneka beruang
+pengering rambut
+sikat gigi
