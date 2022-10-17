@@ -6,6 +6,7 @@ import android.content.pm.PackageManager
 import android.graphics.SurfaceTexture
 import android.hardware.camera2.CameraCharacteristics
 import android.hardware.camera2.CameraManager
+import android.util.Log
 import androidx.camera.core.AspectRatio
 import androidx.camera.core.CameraSelector
 import androidx.camera.core.ImageAnalysis
@@ -80,6 +81,8 @@ class CameraProcess {
     }
     fun destroy()
     {
+        Log.d("TAGS", "onDestroyCameraProcess")
+        cameraProvider?.unbindAll()
         cameraProvider =null
     }
 
