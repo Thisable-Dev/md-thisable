@@ -17,4 +17,3 @@ dependencyResolutionManagement {
 rootProject.name = "TeDi"
 include ':app'
 include ':opencv460'
-include ':opencv460'
