@@ -106,7 +106,7 @@ class OnBoardingFragment : Fragment() {
             signIn()
         }
         binding.btnNext.click {
-            findNavController().navigate(R.id.action_onBoardingFragment_to_homeFragment)
+            findNavController().navigate(R.id.action_onBoardingFragment_to_coreActivity)
         }
         binding.tvAbout.click {
             findNavController().navigate(R.id.action_onBoardingFragment_to_aboutFragment)

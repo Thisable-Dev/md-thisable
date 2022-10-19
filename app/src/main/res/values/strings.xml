@@ -36,7 +36,7 @@
     <string name="label_dummy_welcome">Selamat Datang, Bintang !</string>
     <string name="label_feature">Fitur</string>
     <string name="label_bisindo_translator">Penerjemah BISINDO</string>
-
+    <string name="label_object_detection">Pendeteksi Objek</string>
     <string name="label_currency_detection">Pendeteksi Mata Uang</string>
     <string name="label_text_detection">Pendeteksi Teks</string>
     <string name="label_dummy_name">Bintang Putera</string>
@@ -292,6 +292,7 @@
 
     <string name="write_your_text_here">Write your text here..</string>
     <string name="writer">Writer</string>
+    <string name="info_dan">dan</string>
 
     <string-array name="array_severity_level">
         <item>Perlu diperbaiki segera mungkin</item>
