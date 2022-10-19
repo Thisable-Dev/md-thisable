@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:padding="12dp"
+    tools:context=".presentation.feature_cloud.CloudFragment">
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/rv_cloudmodel"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+
+        tools:listitem="@layout/item_layout_cloudmodel"
+        >
+
+    </androidx.recyclerview.widget.RecyclerView>
+
+</FrameLayout>
