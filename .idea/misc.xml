@@ -48,13 +48,20 @@
         <entry key="..\:/BangkitFinal/thisableFinal/md-thisable/app/src/main/res/layout/custom_dialog_core.xml" value="0.36666666666666664" />
         <entry key="..\:/BangkitFinal/thisableFinal/md-thisable/app/src/main/res/layout/custom_keyboard_dialog.xml" value="0.18697916666666667" />
         <entry key="..\:/BangkitFinal/thisableFinal/md-thisable/app/src/main/res/layout/custom_toast_v1.xml" value="0.365625" />
-        <entry key="..\:/BangkitFinal/thisableFinal/md-thisable/app/src/main/res/layout/fragment_about.xml" value="0.35104166666666664" />
         <entry key="..\:/BangkitFinal/thisableFinal/md-thisable/app/src/main/res/layout/fragment_color.xml" value="0.15291936978683968" />
         <entry key="..\:/BangkitFinal/thisableFinal/md-thisable/app/src/main/res/layout/fragment_currency.xml" value="0.1" />
         <entry key="..\:/BangkitFinal/thisableFinal/md-thisable/app/src/main/res/layout/fragment_object_detection.xml" value="0.36666666666666664" />
         <entry key="..\:/BangkitFinal/thisableFinal/md-thisable/app/src/main/res/layout/fragment_sign_language.xml" value="0.1" />
         <entry key="..\:/BangkitFinal/thisableFinal/md-thisable/app/src/main/res/layout/fragment_text_detection.xml" value="0.24166666666666667" />
         <entry key="..\:/BangkitFinal/thisableFinal/md-thisable/app/src/main/res/layout/item_questions_dialog_core_layout.xml" value="0.1" />
+        <entry key="..\:/Project/AndroidProject/TeDi/md-thisable/app/src/main/res/drawable/ic_chevron_right.xml" value="0.138" />
+        <entry key="..\:/Project/AndroidProject/TeDi/md-thisable/app/src/main/res/drawable/ic_color_detection.xml" value="0.138" />
+        <entry key="..\:/Project/AndroidProject/TeDi/md-thisable/app/src/main/res/drawable/ic_text_detection.xml" value="0.138" />
+        <entry key="..\:/Project/AndroidProject/TeDi/md-thisable/app/src/main/res/drawable/rounded_dialog.xml" value="0.138" />
+        <entry key="..\:/Project/AndroidProject/TeDi/md-thisable/app/src/main/res/layout/fragment_bug_report.xml" value="0.2" />
+        <entry key="..\:/Project/AndroidProject/TeDi/md-thisable/app/src/main/res/layout/fragment_contant_bottom_sheet.xml" value="0.264" />
+        <entry key="..\:/Project/AndroidProject/TeDi/md-thisable/app/src/main/res/layout/fragment_family_help.xml" value="0.21481481481481482" />
+        <entry key="..\:/Project/AndroidProject/TeDi/md-thisable/app/src/main/res/layout/fragment_home.xml" value="0.264" />
         <entry key="..\:/Project/AndroidProject/TeDi/md-thisable/app/src/main/res/drawable/ic_chevron_right.xml" value="0.138" />
         <entry key="..\:/Project/AndroidProject/TeDi/md-thisable/app/src/main/res/drawable/ic_color_detection.xml" value="0.138" />
         <entry key="..\:/Project/AndroidProject/TeDi/md-thisable/app/src/main/res/drawable/ic_text_detection.xml" value="0.138" />

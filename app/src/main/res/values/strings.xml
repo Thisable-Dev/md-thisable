@@ -99,9 +99,6 @@
     <string name="response_no_detection_object_detection">Tidak ada Objek yang terdeteksi</string>
     <string name="response_no_detection_currency_detection">Tidak ada Item Uang terdeteksi</string>
 
-    <!-- Response Color -->
-    <string name="response_1_color_detection">Warna yang terdeteksi adalah warna </string>
-
     <!-- TODO: Remove or change this placeholder text -->
     <string name="label_hint_use">Petunjuk Penggunaan</string>
     <string name="label_for_all_disabilities">Dapat digunakan semua jenis disabilitas.</string>
@@ -278,6 +275,9 @@
     <string name="hint_input_emergency_contact">Masukkan nomor kontak darurat</string>
     <string name="label_family_help">Family Help</string>
     <string name="label_color_detection">Deteksi Warna</string>
+
+    <string name="write_your_text_here">Write your text here..</string>
+    <string name="writer">Writer</string>
 
     <string-array name="array_severity_level">
         <item>Perlu diperbaiki segera mungkin</item>
