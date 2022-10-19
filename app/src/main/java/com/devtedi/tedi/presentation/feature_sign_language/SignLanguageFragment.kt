@@ -45,7 +45,8 @@ class SignLanguageFragment : Fragment(), FeatureBaseline {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         rotation = requireActivity().windowManager.defaultDisplay.rotation
-        viewModel.initModel(const_bisindo_translator,requireContext())
+
+        viewModel.initModel(const_bisindo_translator, requireContext())
         viewModel.isLoading.observe(viewLifecycleOwner) {
             binding.progressBar.isGone = !it
         }
@@ -82,7 +83,12 @@ class SignLanguageFragment : Fragment(), FeatureBaseline {
                     graphicOverlay = binding.graphicOverlay
                 )
                 it.registerObserver(viewModel)
-                cameraProcess.startCamera(requireActivity(), fullImageAnalyse, cameraPreviewView)
+                cameraProcess.startCamera(
+                    requireActivity(),
+                    fullImageAnalyse,
+                    cameraPreviewView
+                )
+
             }
 
             viewModel.tobeWrittenString.observe(viewLifecycleOwner) {
