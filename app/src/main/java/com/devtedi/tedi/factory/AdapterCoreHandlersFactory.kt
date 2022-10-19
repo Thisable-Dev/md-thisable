@@ -53,9 +53,6 @@ class AdapterCoreHandlersFactory(
                 toast.setView(toastLayout.root)
                 toast.show()
             }
-            else -> {
-                Toast.makeText(context, info, Toast.LENGTH_LONG).show()
-            }
         }
     }
 
