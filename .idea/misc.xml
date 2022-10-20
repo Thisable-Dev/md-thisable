@@ -62,14 +62,6 @@
         <entry key="..\:/Project/AndroidProject/TeDi/md-thisable/app/src/main/res/layout/fragment_contant_bottom_sheet.xml" value="0.264" />
         <entry key="..\:/Project/AndroidProject/TeDi/md-thisable/app/src/main/res/layout/fragment_family_help.xml" value="0.21481481481481482" />
         <entry key="..\:/Project/AndroidProject/TeDi/md-thisable/app/src/main/res/layout/fragment_home.xml" value="0.264" />
-        <entry key="..\:/Project/AndroidProject/TeDi/md-thisable/app/src/main/res/drawable/ic_chevron_right.xml" value="0.138" />
-        <entry key="..\:/Project/AndroidProject/TeDi/md-thisable/app/src/main/res/drawable/ic_color_detection.xml" value="0.138" />
-        <entry key="..\:/Project/AndroidProject/TeDi/md-thisable/app/src/main/res/drawable/ic_text_detection.xml" value="0.138" />
-        <entry key="..\:/Project/AndroidProject/TeDi/md-thisable/app/src/main/res/drawable/rounded_dialog.xml" value="0.138" />
-        <entry key="..\:/Project/AndroidProject/TeDi/md-thisable/app/src/main/res/layout/fragment_bug_report.xml" value="0.2" />
-        <entry key="..\:/Project/AndroidProject/TeDi/md-thisable/app/src/main/res/layout/fragment_contant_bottom_sheet.xml" value="0.264" />
-        <entry key="..\:/Project/AndroidProject/TeDi/md-thisable/app/src/main/res/layout/fragment_family_help.xml" value="0.21481481481481482" />
-        <entry key="..\:/Project/AndroidProject/TeDi/md-thisable/app/src/main/res/layout/fragment_home.xml" value="0.264" />
         <entry key="..\:/Project/AndroidStudio/Bangkit/Capstone/thisable-app/app/src/main/res/drawable/bg_alert_dialog.xml" value="0.121" />
         <entry key="..\:/Project/AndroidStudio/Bangkit/Capstone/thisable-app/app/src/main/res/drawable/bg_border_button_blue.xml" value="0.1215" />
         <entry key="..\:/Project/AndroidStudio/Bangkit/Capstone/thisable-app/app/src/main/res/drawable/bg_button.xml" value="0.1335" />
@@ -133,6 +125,8 @@
         <entry key="..\:/Project/AndroidStudio/Bangkit/Capstone/thisable-app/app/src/main/res/layout/tedi_setting_button.xml" value="0.12960526315789472" />
         <entry key="..\:/Project/AndroidStudio/Bangkit/Capstone/thisable-app/app/src/main/res/layout/thisable_setting_button.xml" value="0.15" />
         <entry key="..\:/Project/AndroidStudio/Bangkit/Capstone/thisable-app/app/src/main/res/menu/bottom_nav_menu.xml" value="0.14" />
+        <entry key="..\:/TeDiBang/md-thisable/app/src/main/res/drawable/ic_chevron_right.xml" value="0.18" />
+        <entry key="..\:/TeDiBang/md-thisable/app/src/main/res/drawable/ic_currency_detection.xml" value="0.18" />
         <entry key="..\:/TeDiBang/md-thisable/app/src/main/res/layout/activity_core.xml" value="0.2884963768115942" />
         <entry key="..\:/TeDiBang/md-thisable/app/src/main/res/layout/fragment_currency.xml" value="0.18802083333333333" />
         <entry key="..\:/TeDiBang/md-thisable/app/src/main/res/layout/fragment_home.xml" value="0.22" />

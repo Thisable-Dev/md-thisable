@@ -49,3 +49,19 @@ const val impl_oc_ocl_obj : String = "oc_ocl_obj"
 const val impl_oc_ocl_currency : String = "oc_ocl_currency"
 const val impl_oc_ocl_color : String = "oc_ocl_color"
 const val impl_oc_ocl_text : String = "oc_ocl_text"
+
+
+//constant for IOU model
+const val IOU_THRESHOLD_object : Float = 0.8f
+const val IOU_THRESHOLD_bisindo : Float = 0.9f
+const val IOU_THRESHOLD_currency : Float = 0.8f
+
+// Constant For DETECT THRESHOLD
+const val DETECT_THRESHOLD_object : Float = 0.8f
+const val DETECT_THRESHOLD_bisindo : Float= 0.9f
+const val DETECT_THRESHOLD_currency : Float = 0.8f
+
+//Constant for IOU CLASS DUPLICATED THRESHOLD
+const val IOU_CLASS_DUPLICATED_THRESHOLD_object : Float = 0.85f;
+const val IOU_CLASS_DUPLICATED_THRESHOLD_bisindo : Float = 0.95f
+const val IOU_CLASS_DUPLICATED_THRESHOLD_currency : Float = 0.85f

@@ -105,7 +105,7 @@
 
     <string-array name="questionsObjectDetection">
         <item>@string/question_1_obj_detection</item>
-        <item>@string/question_2_obj_detection</item>
+        <!--<item>@string/question_2_obj_detection</item>-->
     </string-array>
 
     <string name="response_1_obj_detection">Didepan anda terdapat  %s</string>
@@ -126,7 +126,7 @@
 
     <string-array name="questionsCurrencyDetection">
         <item>@string/question_1_currency_detection</item>
-        <item>@string/question_2_currency_detection</item>
+        <!-- <item>@string/question_2_currency_detection</item> -->
 
     </string-array>
     <string name="response_1_currency_detection">Uang yang terdeteksi adalah %1$s </string>

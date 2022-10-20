@@ -79,7 +79,6 @@ class ObjectDetectionFragment : Fragment(), FeatureBaseline, AnalyzerSubject{
                 }
             }
 
-
             viewModel.yolov5TFLiteDetector.observe(viewLifecycleOwner) {
                 initGraphicListenerHandler(it)
             }
@@ -90,10 +89,6 @@ class ObjectDetectionFragment : Fragment(), FeatureBaseline, AnalyzerSubject{
         }
     }
 
-    override fun onStop() {
-        super.onStop()
-        viewModel.closeModel()
-    }
     override fun onPause()
     {
         super.onPause()

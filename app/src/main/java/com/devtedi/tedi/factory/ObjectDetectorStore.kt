@@ -15,9 +15,9 @@ class ObjectDetectorStore(context: Context) : ModelStore(context) {
                 val objectDetector = ObjectDetector(
                     MODEL_IMG_SIZE_obj,
                     UtilsClassifier.calculateOutputSize(default_img_size, total_label_object),
-                    DETECT_THRESHOLD,
-                    IOU_THRESHOLD,
-                    IOU_CLASS_DUPLICATED_THRESHOLD,
+                    DETECT_THRESHOLD_object,
+                    IOU_THRESHOLD_object,
+                    IOU_CLASS_DUPLICATED_THRESHOLD_object,
                     LABEL_OBJ, test_model,
                     false)
 
@@ -35,9 +35,9 @@ class ObjectDetectorStore(context: Context) : ModelStore(context) {
                     BisindoTranslator(
                         MODEL_IMG_SIZE_signLanguage,
                         UtilsClassifier.calculateOutputSize(default_img_size, total_label_bisindo),
-                        DETECT_THRESHOLD,
-                        IOU_THRESHOLD,
-                        IOU_CLASS_DUPLICATED_THRESHOLD,
+                        DETECT_THRESHOLD_bisindo,
+                        IOU_THRESHOLD_bisindo,
+                        IOU_CLASS_DUPLICATED_THRESHOLD_bisindo,
                         LABEL_BISINDO, MODEL_FILE_BISINDO,
                         false)
 
@@ -55,9 +55,9 @@ class ObjectDetectorStore(context: Context) : ModelStore(context) {
                     CurrencyDetector(
                         MODEL_IMG_SIZE_currency,
                         UtilsClassifier.calculateOutputSize(default_img_size, total_label_currency),
-                        DETECT_THRESHOLD,
-                        IOU_THRESHOLD,
-                        IOU_CLASS_DUPLICATED_THRESHOLD,
+                        DETECT_THRESHOLD_currency,
+                        IOU_THRESHOLD_currency,
+                        IOU_CLASS_DUPLICATED_THRESHOLD_currency,
                         LABEL_CURRENCY, MODEL_FILE_CURRENCY,
                         false
                     )
