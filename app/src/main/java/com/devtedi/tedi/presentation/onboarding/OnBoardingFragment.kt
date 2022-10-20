@@ -59,6 +59,7 @@ class OnBoardingFragment : Fragment() {
         val gso = GoogleSignInOptions
             .Builder(GoogleSignInOptions.DEFAULT_SIGN_IN)
             .requestIdToken(getString(string.default_web_client))
+            .requestServerAuthCode(getString(string.default_web_client))
             .requestEmail()
             .build()
 
@@ -72,8 +73,7 @@ class OnBoardingFragment : Fragment() {
             ContextCompat.checkSelfPermission(
                 requireContext(),
                 android.Manifest.permission.CAMERA
-            ) -> {
-            }
+            ) -> {}
             else -> {
                 val dialog: AlertDialog = AlertDialog.Builder(requireContext())
                     .setTitle(getString(string.title_warning))
@@ -106,7 +106,7 @@ class OnBoardingFragment : Fragment() {
             signIn()
         }
         binding.btnNext.click {
-            findNavController().navigate(R.id.action_onBoardingFragment_to_fragmentWarningCustomDialog)
+            findNavController().navigate(R.id.action_onBoardingFragment_to_coreActivity)
         }
         binding.tvAbout.click {
             findNavController().navigate(R.id.action_onBoardingFragment_to_aboutFragment)
@@ -135,6 +135,8 @@ class OnBoardingFragment : Fragment() {
                 // Google Sign In failed, update UI appropriately
                 Timber.w("Google sign in failed : $e")
             }
+        } else {
+            showToast("Login Failed ${result}")
         }
     }
 
@@ -156,6 +158,9 @@ class OnBoardingFragment : Fragment() {
                     Timber.w("sign in with credential failure ${task.exception}")
                     showToast("Error occurred")
                 }
+            }
+            .addOnFailureListener {
+                Timber.e("<<<<<<<<<<<, Error $it")
             }
     }
 }
