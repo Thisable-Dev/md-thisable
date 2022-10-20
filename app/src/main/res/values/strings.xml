@@ -285,6 +285,7 @@
     <string name="write_your_text_here">Write your text here..</string>
     <string name="writer">Writer</string>
     <string name="info_dan">dan</string>
+    <string name="label_object_detection">Fitur Deteksi Objek</string>
 
     <string-array name="array_severity_level">
         <item>Perlu diperbaiki segera mungkin</item>

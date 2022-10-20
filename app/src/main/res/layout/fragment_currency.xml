@@ -5,7 +5,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
-    android:contentDescription="Halaman Deteksi Uang Dipilih"
+    android:contentDescription="@string/label_currency_detection"
     android:layout_height="match_parent"
     tools:context=".presentation.feature_currency.CurrencyFragment">
 
@@ -17,6 +17,7 @@
             android:id="@+id/camera_preview_wrap"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
+            android:contentDescription="@string/label_"
             android:layout_marginBottom="100dp"
             android:background="#00000000"
             app:layout_constraintEnd_toEndOf="parent"

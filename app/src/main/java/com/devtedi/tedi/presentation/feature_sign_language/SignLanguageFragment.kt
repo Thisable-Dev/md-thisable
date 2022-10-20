@@ -63,7 +63,6 @@ class SignLanguageFragment : Fragment(), FeatureBaseline {
 
     override fun onPause() {
         super.onPause()
-        cameraProcess.destroy()
     }
 
     override fun onResume() {

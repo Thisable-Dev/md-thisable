@@ -1,7 +1,5 @@
 package com.devtedi.tedi.presentation.feature_cloud
 
-import com.devtedi.tedi.interfaces.observer_cloudmodel.CloudModelObserver
-import com.devtedi.tedi.interfaces.observer_cloudmodel.CloudModelSubject
 import com.devtedi.tedi.utils.MODEL_FILE_BISINDO
 import com.devtedi.tedi.utils.MODEL_FILE_CURRENCY
 import com.devtedi.tedi.utils.MODEL_FILE_OBJ
@@ -10,11 +8,10 @@ import com.google.firebase.ml.modeldownloader.CustomModelDownloadConditions
 import com.google.firebase.ml.modeldownloader.DownloadType
 import com.google.firebase.ml.modeldownloader.FirebaseModelDownloader
 
-class CloudModel : CloudModelSubject {
+class CloudModel{
 
     private lateinit var modelCondition : CustomModelDownloadConditions
     private val downloadType = DownloadType.LOCAL_MODEL_UPDATE_IN_BACKGROUND
-    private var observers : ArrayList<CloudModelObserver> = ArrayList()
 
     private fun setupDownloader()
     {
@@ -116,22 +113,4 @@ class CloudModel : CloudModelSubject {
 
     }
 
-    override fun registerObserver(o: CloudModelObserver) {
-        if(!observers.contains(o))
-        {
-            observers.add(o)
-        }
-    }
-
-    override fun removeObserver(o: CloudModelObserver) {
-        observers.remove(o)
-    }
-
-    override fun notifyObserver() {
-
-        for(o : CloudModelObserver in observers)
-        {
-            o.updateObserver()
-        }
-    }
 }
