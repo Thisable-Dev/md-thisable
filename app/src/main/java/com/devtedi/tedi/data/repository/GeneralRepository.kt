@@ -14,8 +14,8 @@ import javax.inject.Singleton
 @Singleton
 class GeneralRepository @Inject constructor(private val dataSource: GeneralDataSource) {
 
-    suspend fun addNewReportBug(reportBugBody: ReportBugBody): Flow<ApiResponse<BugReportResponse>> {
-        return dataSource.addNewReportBug(reportBugBody).flowOn(Dispatchers.IO)
+    suspend fun addNewReportBug(reportBugBody: ReportBugBody, file: FileRequest): Flow<ApiResponse<BugReportResponse>> {
+        return dataSource.addNewReportBug(reportBugBody, file).flowOn(Dispatchers.IO)
     }
 
 }
