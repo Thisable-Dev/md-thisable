@@ -10,11 +10,11 @@ import com.google.firebase.ml.modeldownloader.FirebaseModelDownloader
 
 class CloudModel {
 
-    private lateinit var modelCondition : CustomModelDownloadConditions
+    private lateinit var modelCondition: CustomModelDownloadConditions
     private val downloadType = DownloadType.LOCAL_MODEL_UPDATE_IN_BACKGROUND
 
-    private fun setupDownloader()
-    {
+
+    private fun setupDownloader() {
 
         modelCondition = CustomModelDownloadConditions.Builder()
             .requireWifi()
@@ -26,21 +26,20 @@ class CloudModel {
 
     }
 
-    private fun downloadObjectDetectionModel()
-    {
+    private fun downloadObjectDetectionModel() {
         FirebaseModelDownloader.getInstance().getModel(MODEL_FILE_OBJ, downloadType, modelCondition)
             .addOnFailureListener {
                 failureObjectDetectionListener(it)
-            }.addOnSuccessListener{
+            }.addOnSuccessListener {
                 successObjectDetectionListener(it)
-            }.addOnCanceledListener{
+            }.addOnCanceledListener {
                 canceledObjectDetectionListener()
             }
     }
 
-    private fun downloadCurrencyDetectionModel()
-    {
-        FirebaseModelDownloader.getInstance().getModel(MODEL_FILE_CURRENCY, downloadType, modelCondition)
+    private fun downloadCurrencyDetectionModel() {
+        FirebaseModelDownloader.getInstance()
+            .getModel(MODEL_FILE_CURRENCY, downloadType, modelCondition)
             .addOnFailureListener {
                 failureCurrencyDetectionListener(it)
             }
@@ -52,9 +51,9 @@ class CloudModel {
             }
     }
 
-    private fun downloadSignLanguageModel()
-    {
-        FirebaseModelDownloader.getInstance().getModel(MODEL_FILE_BISINDO, downloadType, modelCondition)
+    private fun downloadSignLanguageModel() {
+        FirebaseModelDownloader.getInstance()
+            .getModel(MODEL_FILE_BISINDO, downloadType, modelCondition)
             .addOnFailureListener {
                 failureSignLanguageListener(it)
             }
@@ -67,50 +66,40 @@ class CloudModel {
             }
     }
 
-    private fun failureObjectDetectionListener(it : Exception)
-    {
+    private fun failureObjectDetectionListener(it: Exception) {
 
     }
 
-    private fun successObjectDetectionListener(it : CustomModel)
-    {
+    private fun successObjectDetectionListener(it: CustomModel) {
         // Download succesfully
     }
 
-    private fun canceledObjectDetectionListener()
-    {
+    private fun canceledObjectDetectionListener() {
 
     }
 
 
-    private fun failureCurrencyDetectionListener(it: Exception)
-    {
+    private fun failureCurrencyDetectionListener(it: Exception) {
 
     }
 
-    private fun successCurrencyDetectionListener(it : CustomModel)
-    {
+    private fun successCurrencyDetectionListener(it: CustomModel) {
 
     }
 
-    private fun canceledCurrencyDetectionListener()
-    {
+    private fun canceledCurrencyDetectionListener() {
 
     }
 
-    private fun failureSignLanguageListener(it : Exception)
-    {
+    private fun failureSignLanguageListener(it: Exception) {
 
     }
 
-    private fun successSignLanguageListener(it : CustomModel)
-    {
+    private fun successSignLanguageListener(it: CustomModel) {
 
     }
 
-    private fun canceledSignLanguageListener()
-    {
+    private fun canceledSignLanguageListener() {
 
     }
-
 }

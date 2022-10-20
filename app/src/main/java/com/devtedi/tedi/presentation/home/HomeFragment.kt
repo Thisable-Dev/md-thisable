@@ -11,6 +11,7 @@ import androidx.recyclerview.widget.LinearSnapHelper
 import com.devtedi.tedi.R
 import com.devtedi.tedi.data.dummy.BannerDummy.getBannerList
 import com.devtedi.tedi.databinding.FragmentHomeBinding
+import com.devtedi.tedi.utils.ext.click
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.ktx.auth
 import com.google.firebase.ktx.Firebase
@@ -52,23 +53,24 @@ class HomeFragment: Fragment() {
 
     private fun initAction() {
         var bundleData = Bundle()
-        binding.btnObjectDetection.setOnClickListener {
-            bundleData.putString(EXTRA_DATA_HOME,resources.getString(R.string.action_object_detection))
-            findNavController().navigate(R.id.action_homeFragment_to_coreActivity,args=bundleData)
-        }
-        binding.btnTextDetection.setOnClickListener {
-            bundleData.putString(EXTRA_DATA_HOME,resources.getString(R.string.action_text_detection))
-            findNavController().navigate(R.id.action_homeFragment_to_coreActivity,args=bundleData)
-        }
-        binding.btnCurrencyDetection.setOnClickListener {
 
-            bundleData.putString(EXTRA_DATA_HOME,resources.getString(R.string.action_currency_detection))
+        binding.btnObjectDetection.click {
+            bundleData.putString("EXTRA_DATA",resources.getString(R.string.action_object_detection))
             findNavController().navigate(R.id.action_homeFragment_to_coreActivity,args=bundleData)
         }
-
-        binding.btnBisindoTranslator.setOnClickListener {
-            bundleData.putString(EXTRA_DATA_HOME,resources.getString(R.string.action_sign_language))
-            findNavController().navigate(R.id.action_homeFragment_to_coreActivity, args=bundleData)
+        binding.btnTextDetection.click {
+            bundleData.putString("EXTRA_DATA",resources.getString(R.string.action_text_detection))
+            findNavController().navigate(R.id.action_homeFragment_to_coreActivity,args=bundleData)
+        }
+        binding.btnCurrencyDetection.click {
+            bundleData.putString("EXTRA_DATA",resources.getString(R.string.action_currency_detection))
+            findNavController().navigate(R.id.action_homeFragment_to_coreActivity,args=bundleData)
+        }
+        binding.btnBisindoTranslator.click {
+            findNavController().navigate(R.id.action_homeFragment_to_coreActivity)
+        }
+        binding.btnFamilyHelp.click {
+            findNavController().navigate(R.id.action_homeFragment_to_familyHelpFragment)
         }
     }
 

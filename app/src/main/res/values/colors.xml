@@ -17,4 +17,7 @@
     <color name="colorGreyDivider">#E0E0E0</color>
     <color name="colorBlue">#007EDA</color>
     <color name="colorYellow">#FDA803</color>
+    <color name="colorGrey2">#C1C1C1</color>
+    <color name="colorGreyish">#b6b6b6</color>
+
 </resources>

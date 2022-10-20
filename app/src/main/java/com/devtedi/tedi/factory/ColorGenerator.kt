@@ -115,7 +115,7 @@ class ColorGenerator(private val context : Activity, private val inputImage : Bi
             }
             else
             {
-                stringBuilder.append(context.getString(R.string.info_dan)," ")
+//                stringBuilder.append("dan"))
                 stringBuilder.append(stringResult[indx])
             }
         }
