@@ -6,17 +6,18 @@ import android.media.MediaPlayer
 import com.devtedi.tedi.R
 import java.io.IOException
 
- class SoundPlayer private constructor(private val context : Context ) {
+class SoundPlayer private constructor(private val context: Context) {
+
+    private var isReady: Boolean = false
 
     init {
-        init()
+        initMediaPlayer()
     }
-    private var isReady : Boolean = false
-    private fun getResources(label : String )  : Int? {
+
+    private fun getResources(label: String): Int? {
         return when (label) {
 
-
-            // *********** Object Dewtection Resources !! ***************************///
+            // *********** Object Detection Resources *********** //
             context.resources.getString(R.string.raw_soundobj_orang) -> {
                 R.raw.orang
             }
@@ -110,8 +111,7 @@ import java.io.IOException
             context.resources.getString(R.string.raw_soundobj_sikat_gigi) -> R.raw.anjing
 
 
-            //************ Currency Detection Resources **************************//
-
+            // *********** Currency Detection Resources *********** //
             context.resources.getString(R.string.raw_soundcurrency_seribu) -> {
                 R.raw.seribu
             }
@@ -133,29 +133,29 @@ import java.io.IOException
 
             else -> null
         }
-
     }
 
-    private fun init() {
-        mMediaPlayer = MediaPlayer()
-        val attrs = AudioAttributes.Builder()
-        attrs.setUsage(AudioAttributes.USAGE_MEDIA)
-        attrs.setContentType(AudioAttributes.CONTENT_TYPE_SONIFICATION)
-        attrs.build()
-        mMediaPlayer?.setOnPreparedListener {
-            isReady= true
-            mMediaPlayer?.start()
-        }
-        mMediaPlayer?.setOnErrorListener { _, _ , _->  false
-        }
-        mMediaPlayer?.setOnCompletionListener {
-            mMediaPlayer?.stop()
-            mMediaPlayer?.reset()
-            isReady = false
+    private fun initMediaPlayer() {
+        mMediaPlayer = MediaPlayer().apply {
+            setAudioAttributes(
+                AudioAttributes.Builder()
+                    .setUsage(AudioAttributes.USAGE_ASSISTANCE_ACCESSIBILITY)
+                    .setContentType(AudioAttributes.CONTENT_TYPE_SONIFICATION)
+                    .build()
+            )
+            setOnPreparedListener {
+                isReady = true
+                mMediaPlayer?.start()
+            }
+            setOnCompletionListener {
+                mMediaPlayer?.stop()
+                mMediaPlayer?.reset()
+                isReady = false
+            }
         }
     }
 
-     fun playSound(label : String) {
+    fun playSound(label: String) {
         val resource = getResources(label)
         if (resource != null) {
             val afd = context.resources.openRawResourceFd(resource)
@@ -164,38 +164,36 @@ import java.io.IOException
                 if (!isReady) {
                     mMediaPlayer?.prepareAsync()
                 } else {
-                    if(mMediaPlayer?.isPlaying == true) {
+                    if (mMediaPlayer?.isPlaying == true) {
                         mMediaPlayer?.pause()
                         mMediaPlayer?.stop()
                         mMediaPlayer?.reset()
                         isReady = false
-                    }
-                    else {
+                    } else {
                         mMediaPlayer?.start()
                     }
                 }
-            }
-            catch ( e : IOException ) {
-             e.printStackTrace()
-            }
-            catch(e : IllegalStateException) {
+            } catch (e: IOException) {
+                e.printStackTrace()
+            } catch (e: IllegalStateException) {
                 e.printStackTrace()
             }
-
-
         }
+    }
+
+    fun dispose() {
+        mMediaPlayer?.release()
+        mMediaPlayer = null
     }
 
     companion object {
         // Static Object ini
-       @Volatile
-       private var instance : SoundPlayer? = null
+        @Volatile
+        private var instance: SoundPlayer? = null
 
         @JvmStatic
-        fun getInstance(context: Context)  : SoundPlayer
-        {
-            if(instance == null)
-            {
+        fun getInstance(context: Context): SoundPlayer {
+            if (instance == null) {
                 synchronized(this)
                 {
                     instance = SoundPlayer(context.applicationContext)
@@ -203,6 +201,7 @@ import java.io.IOException
             }
             return instance as SoundPlayer
         }
-       private  var mMediaPlayer : MediaPlayer? = null
+
+        private var mMediaPlayer: MediaPlayer? = null
     }
 }
