@@ -53,21 +53,22 @@ class HomeFragment: Fragment() {
     private fun initAction() {
         var bundleData = Bundle()
         binding.btnObjectDetection.setOnClickListener {
-            bundleData.putString("EXTRA_DATA",resources.getString(R.string.action_object_detection))
+            bundleData.putString(EXTRA_DATA_HOME,resources.getString(R.string.action_object_detection))
             findNavController().navigate(R.id.action_homeFragment_to_coreActivity,args=bundleData)
         }
         binding.btnTextDetection.setOnClickListener {
-            bundleData.putString("EXTRA_DATA",resources.getString(R.string.action_text_detection))
+            bundleData.putString(EXTRA_DATA_HOME,resources.getString(R.string.action_text_detection))
             findNavController().navigate(R.id.action_homeFragment_to_coreActivity,args=bundleData)
         }
         binding.btnCurrencyDetection.setOnClickListener {
 
-            bundleData.putString("EXTRA_DATA",resources.getString(R.string.action_currency_detection))
+            bundleData.putString(EXTRA_DATA_HOME,resources.getString(R.string.action_currency_detection))
             findNavController().navigate(R.id.action_homeFragment_to_coreActivity,args=bundleData)
         }
 
         binding.btnBisindoTranslator.setOnClickListener {
-            findNavController().navigate(R.id.action_homeFragment_to_coreActivity)
+            bundleData.putString(EXTRA_DATA_HOME,resources.getString(R.string.action_sign_language))
+            findNavController().navigate(R.id.action_homeFragment_to_coreActivity, args=bundleData)
         }
     }
 
@@ -81,4 +82,8 @@ class HomeFragment: Fragment() {
         _fragmentHomeBinding = null
     }
 
+    companion object  {
+        private const val EXTRA_DATA_HOME : String = "EXTRA_DATA"
+
+    }
 }

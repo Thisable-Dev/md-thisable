@@ -119,7 +119,11 @@
         <entry key="..\:/Project/AndroidStudio/Bangkit/Capstone/thisable-app/app/src/main/res/layout/tedi_setting_button.xml" value="0.12960526315789472" />
         <entry key="..\:/Project/AndroidStudio/Bangkit/Capstone/thisable-app/app/src/main/res/layout/thisable_setting_button.xml" value="0.15" />
         <entry key="..\:/Project/AndroidStudio/Bangkit/Capstone/thisable-app/app/src/main/res/menu/bottom_nav_menu.xml" value="0.14" />
-        <entry key="..\:/TeDiBang/md-thisable/app/src/main/res/layout/fragment_home.xml" value="0.1" />
+        <entry key="..\:/TeDiBang/md-thisable/app/src/main/res/layout/activity_core.xml" value="0.2884963768115942" />
+        <entry key="..\:/TeDiBang/md-thisable/app/src/main/res/layout/fragment_currency.xml" value="0.18802083333333333" />
+        <entry key="..\:/TeDiBang/md-thisable/app/src/main/res/layout/fragment_home.xml" value="0.22" />
+        <entry key="..\:/TeDiBang/md-thisable/app/src/main/res/layout/fragment_object_detection.xml" value="0.21510416666666668" />
+        <entry key="..\:/TeDiBang/md-thisable/app/src/main/res/layout/fragment_sign_language.xml" value="0.21510416666666668" />
       </map>
     </option>
   </component>

@@ -30,7 +30,6 @@ class SignLanguageFragment : Fragment(), FeatureBaseline {
     private val viewModel : SignLanguageViewModel by viewModels()
     private var rotation : Int = 0
 
-    private lateinit var singLanguageListener: SignLanguageListener
     private lateinit var keyboardListener : FeedbackSignLanguageListener
 
     lateinit var fullImageAnalyse : FullImageAnalyse
@@ -112,16 +111,6 @@ class SignLanguageFragment : Fragment(), FeatureBaseline {
 
 
     private fun initPoseListener() {
-        singLanguageListener = object : SignLanguageListener {
-            override fun onChangedPose(data: String) {
-                val currentText = binding.etOutputTerjemahan.text.toString()
-                binding.etOutputTerjemahan.setText(StringBuilder().apply {
-                    append(currentText)
-                    append(" ")
-                    append(data)
-                })
-            }
-        }
 
         keyboardListener = object : FeedbackSignLanguageListener {
             override fun onListenerKeyboard(state: Boolean) {

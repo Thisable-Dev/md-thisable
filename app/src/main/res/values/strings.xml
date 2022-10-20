@@ -37,7 +37,6 @@
     <string name="label_feature">Fitur</string>
     <string name="label_bisindo_translator">Penerjemah BISINDO</string>
 
-    <string name="label_currency_detection">Pendeteksi Mata Uang</string>
     <string name="label_text_detection">Pendeteksi Teks</string>
     <string name="label_dummy_name">Bintang Putera</string>
     <string name="label_dummy_email">bintangputera@gmail.com</string>
@@ -70,17 +69,33 @@
     <string name="label_term_and_agreement"><b>Syarat &amp; Ketentuan</b>\nDiperbarui pada 2022-06-10\n\n<b>Ketentuan Umum</b>\nDengan mengakses dan melakukan pemesanan dengan , Anda mengonfirmasi bahwa Anda setuju dan terikat dengan persyaratan layanan yang tercantum dalam Syarat &amp; Ketentuan yang diuraikan di bawah ini. Persyaratan ini berlaku untuk seluruh situs web dan email atau jenis komunikasi lainnya antara Anda.\n\nDalam keadaan apa pun tim tidak bertanggung jawab atas segala kerusakan langsung, tidak langsung, khusus, insidental atau konsekuensial, termasuk, namun tidak terbatas pada, kehilangan data atau keuntungan, yang timbul dari penggunaan, atau ketidakmampuan untuk menggunakan, materi di situs ini. , bahkan jika tim atau perwakilan resmi telah diberitahu tentang kemungkinan kerusakan tersebut. Jika penggunaan Anda atas materi dari situs ini mengakibatkan perlunya servis, perbaikan, atau koreksi peralatan atau data, Anda menanggung semua biayanya.\n\nTidak akan bertanggung jawab atas hasil apa pun yang mungkin terjadi selama penggunaan sumber daya kami. Kami berhak untuk mengubah harga dan merevisi kebijakan penggunaan sumber daya setiap saat.\n\n<b>Lisensi</b>\nTeDi memberi Anda lisensi terbatas yang dapat dibatalkan, non-eksklusif, tidak dapat dialihkan, untuk mengunduh, menginstal, dan menggunakan layanan kami secara ketat sesuai dengan ketentuan Perjanjian ini. Syarat &amp; Ketentuan ini adalah kontrak antara Anda dan TeDi (dalam Syarat &amp; Ketentuan ini disebut sebagai "TeDi", atau "milik kami"), penyedia situs web TeDi dan layanan yang dapat diakses dari situs web TeDi (yang secara bersama-sama disebut dalam Syarat &amp; Ketentuan ini sebagai "Layanan TeDi").\n\nAnda setuju untuk terikat dengan Syarat &amp; Ketentuan ini. Jika Anda tidak menyetujui Syarat &amp; Ketentuan ini, mohon untuk tidak menggunakan Layanan. Dalam Syarat &amp; Ketentuan ini, "Anda" merujuk kepada Anda sebagai individu dan entitas yang Anda wakili. Jika Anda melanggar salah satu dari Syarat &amp; Ketentuan ini, kami berhak untuk membatalkan akun Anda atau memblokir akses ke akun Anda tanpa pemberitahuan.</string>
     <string name="label_welcome_home">Selamat Datang, %1$s</string>
 
+
+    <!-- Sign Language COntent Description -->
+    <string name="label_signLanguage_page">Halaman Penerjemaha Bisindo Dipilih</string>
+    <string name="label_signLanguage_previewView">Anda Berada Pada Fitur Penerjemah Bisindo</string>
+    <string name="label_signLanguage_cardView">Hasil Terjemahan BISINDO</string>
+    <string name="label_signLanguage_terjemahan">Terjemahan</string>
+    <!-- Sign Language Content Description End -->
+
     <!-- Object Content Description -->
+    <string name="label_object_detection_page">Halaman Deteksi Objek Dipilih</string>
+    <string name="label_object_detection_previewView">Anda Berada pada fitur deteksi Objek</string>
+    <string name="label_object_detection_imageViewSound">Fitur Aktivasi Suara Objek Deteksi</string>
+    <!-- Object Content Description End -->
 
-    <!-- Currency Content Descirpition -->
+    <!-- Currency Content Description -->
+    <string name="label_currency_detection">Fitur Deteksi Uang</string>
+    <string name="label_currency_detection_page">Halaman Deteksi Uang Dipilih</string>
+    <string name="label_currency_pv">Anda berada pada Fitur Deteksi Uang</string>
+    <string name="label_currency_imageViewSound">Fitur aktivasi suara Deteksi Uang</string>
+    <!-- Currency Content Description End -->
+
     <!-- Color Sound Description-->
-
-    <string name="label_color_detection">Halaman Deteksi Warna Dipilih</string>
+    <string name="label_color_detection_page">Halaman Deteksi Warna Dipilih</string>
     <string name="label_color_btn">Tombol Penangkap Gambar</string>
     <string name="label_color_pb">Mempersiapkan Fitur Deteksi Warna anda</string>
     <string name="label_color_previewView">Anda Berada Pada Fitur Deteksi Warna</string>
-
-    <!-- Color Sound End Description -->
+    <!-- color Content Description End -->
 
     <string name="question_1_obj_detection"> Ada apa saja Didepan saya ?</string>
     <string name="question_2_obj_detection">Ada berapa orang didepan saya</string>
@@ -132,9 +147,14 @@
     <string name="message_email_not_null">Surel tidak boleh kosong</string>
     <string name="message_report_must_not_null">Pesan tidak boleh kosong</string>
 
+    <!-- Home Fragment Action -->
     <string name="action_object_detection">deteksiObjek</string>
     <string name="action_text_detection">deteksiTeks</string>
     <string name="action_currency_detection">deteksiUang</string>
+    <string name="action_color_detection">deteksiWarna</string>
+    <string name="action_sign_language">bisindo</string>
+
+
     <string name="lorem_ipsum">Lorem Ipsum Dolor Sit amet</string>
     <string name="raw_sound_1">iPod</string>
     <string name="raw_sound_2">monitor</string>
