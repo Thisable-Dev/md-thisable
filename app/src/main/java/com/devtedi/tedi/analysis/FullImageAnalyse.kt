@@ -7,12 +7,7 @@ import androidx.camera.core.ImageProxy
 import androidx.camera.view.PreviewView
 import com.devtedi.tedi.factory.YOLOv5ModelCreator
 import com.devtedi.tedi.interfaces.observer_analyzer.AnalyzerObserver
-import com.devtedi.tedi.interfaces.observer_analyzer.AnalyzerSubject
-import com.devtedi.tedi.utils.GraphicOverlay
-import com.devtedi.tedi.utils.ImageProcess
-import com.devtedi.tedi.utils.ObjectGraphic
-import com.devtedi.tedi.utils.RecognitionRes
-import timber.log.Timber
+import com.devtedi.tedi.utils.*
 
 class FullImageAnalyse(
     val context: Context,
@@ -20,15 +15,17 @@ class FullImageAnalyse(
     private val rotation: Int,
     private val yolov5TFLiteDetector: YOLOv5ModelCreator,
     private val ImageProcess: ImageProcess = ImageProcess(),
-    private val graphicOverlay: GraphicOverlay
+    private val graphicOverlay: GraphicOverlay,
 ) : ImageAnalysis.Analyzer, AnalyzerObserver {
 
-    private var onDetect : Boolean = true
+    private var onDetect: Boolean = true
 
     class Result(var costTime: Long, var bitmap: Bitmap)
 
 
     // DatabaseOfDetected Labels:
+
+    private val soundPlayer = SoundPlayer.getInstance(context)
 
 
     override fun analyze(image: ImageProxy) {
@@ -100,7 +97,7 @@ class FullImageAnalyse(
 
         val modelToPreviewTransform = Matrix()
         previewToModelTransform.invert(modelToPreviewTransform)
-        if(onDetect) {
+        if (onDetect) {
             val recognitions: ArrayList<RecognitionRes> =
                 yolov5TFLiteDetector.detect(modelInputBitmap)
             val emptyCropSizeBitmap =
@@ -132,36 +129,29 @@ class FullImageAnalyse(
                     textPain
                 )
             }
+
+            recognitions.toSet().forEach {
+                playSound(it.getLabelName())
+            }
         }
 
         val endTime = System.currentTimeMillis()
         val costTime = endTime - startTime
 
         image.close()
-
-
     }
 
     override fun updateObserver() {
         onDetect = !onDetect
     }
 
-    private fun checkifSoundPlay()
-    {
 
+    private fun playSound(label: String) {
+        soundPlayer.playSound(label)
     }
-
-
-    private fun playTheSound()
-    {
-
-    }
-
 
     companion object {
-
-        private val time_interval_word  : Long  = 500
-        private val time_interval_clear : Long = 10
+        private val time_interval_word: Long = 500
+        private val time_interval_clear: Long = 10
     }
-
 }
