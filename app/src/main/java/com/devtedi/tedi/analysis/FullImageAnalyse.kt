@@ -145,13 +145,19 @@ class FullImageAnalyse(
         onDetect = !onDetect
     }
 
+    private var lastPlayTime: Long = 0L
 
     private fun playSound(label: String) {
-        soundPlayer.playSound(label)
+        val currentTime = System.currentTimeMillis()
+
+        if (currentTime - lastPlayTime >= TIME_INTERVAL_WORD) {
+            soundPlayer.playSound(label)
+            lastPlayTime = currentTime
+        }
     }
 
     companion object {
-        private val time_interval_word: Long = 500
-        private val time_interval_clear: Long = 10
+        private const val TIME_INTERVAL_WORD: Long = 500
+        private const val TIME_INTERVAL_CLEAR: Long = 10
     }
 }
