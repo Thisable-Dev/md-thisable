@@ -53,9 +53,6 @@ class ObjectDetectionFragment : Fragment(), FeatureBaseline, AnalyzerSubject{
 
         cameraPreviewView = binding.cameraPreviewWrap
 
-        viewModel.yolov5TFLiteDetector.observe(viewLifecycleOwner) {
-            initGraphicListenerHandler(it)
-        }
     }
 
     override fun onResume() {
@@ -74,13 +71,17 @@ class ObjectDetectionFragment : Fragment(), FeatureBaseline, AnalyzerSubject{
                         it,
                         graphicOverlay = binding.graphicOverlay
                     )
-
                     cameraProcess.startCamera(
                         requireActivity(),
                         fullImageAnalyse,
                         cameraPreviewView
                     )
                 }
+            }
+
+
+            viewModel.yolov5TFLiteDetector.observe(viewLifecycleOwner) {
+                initGraphicListenerHandler(it)
             }
         }
         catch (e : UninitializedPropertyAccessException)

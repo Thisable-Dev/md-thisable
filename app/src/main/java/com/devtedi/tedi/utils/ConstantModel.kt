@@ -30,9 +30,9 @@ const val total_label_object : Int = 80;
 const val total_label_bisindo : Int = 50;
 const val total_label_currency : Int = 7;
 
-const val DETECT_THRESHOLD : Float = 0.9f
-const val IOU_THRESHOLD : Float = 0.9f
-const val IOU_CLASS_DUPLICATED_THRESHOLD : Float = 0.95f
+const val DETECT_THRESHOLD : Float = 0.8f
+const val IOU_THRESHOLD : Float = 0.8f
+const val IOU_CLASS_DUPLICATED_THRESHOLD : Float = 0.85f
 const val test_model : String = "yolov5n-fp16-320.tflite"
 // Testing Variables
 const val const_test_model : String= "test"

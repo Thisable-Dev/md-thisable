@@ -18,7 +18,7 @@ class ObjectDetectorStore(context: Context) : ModelStore(context) {
                     DETECT_THRESHOLD,
                     IOU_THRESHOLD,
                     IOU_CLASS_DUPLICATED_THRESHOLD,
-                    LABEL_OBJ, MODEL_FILE_OBJ,
+                    LABEL_OBJ, test_model,
                     false)
 
                 val yolOv5ModelCreator = YOLOv5ModelCreator(

@@ -204,7 +204,7 @@ open class YOLOv5ModelCreator(
 
         for (i in 0 until outputSize[2] - 5) {
             val pq: PriorityQueue<RecognitionRes> = PriorityQueue(
-                6300
+                outputSize[1]
             ) { l, r -> // Intentionally reversed to put high confidence at the head of the queue.
                 java.lang.Float.compare(r.getConfidence(), l.getConfidence())
             }
@@ -266,6 +266,7 @@ open class YOLOv5ModelCreator(
                 if (iou < IOU_CLASS_DUPLICATED_THRESHOLD) pq.add(detection)
             }
         }
+        Log.d("LOGS",nmsRecognitions.toString())
         return nmsRecognitions
     }
 
