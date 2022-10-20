@@ -12,7 +12,7 @@ class CloudModel {
 
     private lateinit var modelCondition : CustomModelDownloadConditions
     private val downloadType = DownloadType.LOCAL_MODEL_UPDATE_IN_BACKGROUND
-//    private var observers : ArrayList<CloudModelObserver> = ArrayList()
+
 
     private fun setupDownloader()
     {
@@ -113,6 +113,3 @@ class CloudModel {
     {
 
     }
-
-
-}

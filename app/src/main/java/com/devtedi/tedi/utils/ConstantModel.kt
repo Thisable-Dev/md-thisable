@@ -5,7 +5,7 @@ import com.devtedi.tedi.R
 
 const val MODEL_FILE_OBJ: String = "ObjectDetectionModel.tflite"
 const val MODEL_FILE_CURRENCY : String = "CurrencyModel.tflite"
-const val MODEL_FILE_BISINDO : String ="SignLanguageModel.tflite"
+const val MODEL_FILE_BISINDO : String ="SignlanguageModel.tflite"
 
 const val LABEL_OBJ : String = "label_obj_detection.txt"
 const val LABEL_CURRENCY : String = "label_currency.txt"
