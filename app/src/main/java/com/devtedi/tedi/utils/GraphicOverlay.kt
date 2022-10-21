@@ -102,9 +102,8 @@ class GraphicOverlay(context: Context?, attrs: AttributeSet?) :
     private fun updateTransformation() {
 
         // INi mastiin inputan imagenya valid
-        if (!needUpdateTransformation || imageWidth <=0 || imageHeight <= 0) return
+        if (!needUpdateTransformation || imageWidth <= 0 || imageHeight <= 0) return
         else {
-            // Kek 16:9 di TV , fungsi aspectRatio untuk tau rasionya aja, buat scaling Imagenya pada saat di porting ke view
             val viewAspectRatio = width.toFloat() / height
             val imageAspectRatio = imageWidth.toFloat() / imageHeight
 

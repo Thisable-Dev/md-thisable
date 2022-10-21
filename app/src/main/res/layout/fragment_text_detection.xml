@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
-<FrameLayout
+<RelativeLayout
     android:id="@+id/ff_text_detection"
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:contentDescription="Halaman Deteksi Teks Dipilih"
+    android:contentDescription="@string/label_text_page"
     android:layout_height="match_parent"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     tools:context=".presentation.feature_text.TextDetectionFragment">
@@ -21,7 +21,6 @@
             android:layout_height="match_parent"
             android:layout_gravity="center"
             android:layout_weight="1"
-            android:contentDescription="Halaman Deteksi Teks Dipilih"
             tools:layout_editor_absoluteX="0dp"
             tools:layout_editor_absoluteY="0dp" />
 
@@ -54,6 +53,7 @@
             android:layout_height="wrap_content"
             android:background="@null"
             android:src="@drawable/ic_capture_button"
+            android:contentDescription="@string/label_text_btn"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
@@ -61,9 +61,4 @@
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 
-    <com.devtedi.tedi.utils.GraphicOverlay
-        android:id="@+id/graphicOverlay"
-        android:layout_gravity="center"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content" />
-</FrameLayout>
+</RelativeLayout>

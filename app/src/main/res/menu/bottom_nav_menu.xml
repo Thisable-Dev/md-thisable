@@ -4,17 +4,20 @@
     <item
         android:id="@+id/homeFragment"
         android:icon="@drawable/ic_home"
+        android:contentDescription="@string/label_beranda_menu"
         android:title="@string/menu_home"/>
 
     <item
         android:id="@+id/coreActivity"
         android:icon="@drawable/ic_all_in_one_camera"
+        android:contentDescription="@string/label_tedi_menu"
         android:iconTintMode="multiply"
         android:title="@string/menu_TeDi"/>
 
     <item
         android:id="@+id/profileFragment"
         android:icon="@drawable/ic_profile"
+        android:contentDescription="@string/label_profil_menu"
         android:title="@string/menu_profile"/>
 
 </menu>

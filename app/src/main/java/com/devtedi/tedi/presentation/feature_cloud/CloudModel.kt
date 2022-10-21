@@ -59,7 +59,6 @@ class CloudModel {
             }
             .addOnSuccessListener {
                 successSignLanguageListener(it)
-
             }
             .addOnCanceledListener {
                 canceledSignLanguageListener()

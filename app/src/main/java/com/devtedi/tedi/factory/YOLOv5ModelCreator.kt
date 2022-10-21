@@ -232,12 +232,6 @@ open class YOLOv5ModelCreator(
         return nmsRecognitions
     }
 
-    /**
-     * 对所有数据不区分类别做非极大抑制
-     *
-     * @param allRecognitions
-     * @return
-     */
     private fun nmsAllClass(allRecognitions: ArrayList<RecognitionRes>): ArrayList<RecognitionRes> {
         val nmsRecognitions: ArrayList<RecognitionRes> =
             ArrayList<RecognitionRes>()
@@ -247,14 +241,12 @@ open class YOLOv5ModelCreator(
             r.getConfidence().compareTo(l.getConfidence())
         }
 
-        // 相同类别的过滤出来, 且obj要大于设定的阈值
         for (j in allRecognitions.indices) {
             if (allRecognitions[j].getConfidence() > DETECT_THRESHOLD) {
                 pq.add(allRecognitions[j])
             }
         }
         while (pq.size > 0) {
-            // 概率最大的先拿出来
             val a: Array<RecognitionRes?> = arrayOfNulls(pq.size)
             val detections: Array<RecognitionRes> = pq.toArray(a)
             val max: RecognitionRes = detections[0]
@@ -266,7 +258,6 @@ open class YOLOv5ModelCreator(
                 if (iou < IOU_CLASS_DUPLICATED_THRESHOLD) pq.add(detection)
             }
         }
-        Log.d("LOGS",nmsRecognitions.toString())
         return nmsRecognitions
     }
 

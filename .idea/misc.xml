@@ -125,13 +125,39 @@
         <entry key="..\:/Project/AndroidStudio/Bangkit/Capstone/thisable-app/app/src/main/res/layout/tedi_setting_button.xml" value="0.12960526315789472" />
         <entry key="..\:/Project/AndroidStudio/Bangkit/Capstone/thisable-app/app/src/main/res/layout/thisable_setting_button.xml" value="0.15" />
         <entry key="..\:/Project/AndroidStudio/Bangkit/Capstone/thisable-app/app/src/main/res/menu/bottom_nav_menu.xml" value="0.14" />
+        <entry key="..\:/TeDiBang/md-thisable/app/src/main/res/drawable/bg_button.xml" value="0.1" />
+        <entry key="..\:/TeDiBang/md-thisable/app/src/main/res/drawable/bg_circle.xml" value="0.1" />
+        <entry key="..\:/TeDiBang/md-thisable/app/src/main/res/drawable/bg_edit_text.xml" value="0.1" />
+        <entry key="..\:/TeDiBang/md-thisable/app/src/main/res/drawable/bg_google_button.xml" value="0.1" />
+        <entry key="..\:/TeDiBang/md-thisable/app/src/main/res/drawable/bg_home_header.xml" value="0.1" />
+        <entry key="..\:/TeDiBang/md-thisable/app/src/main/res/drawable/bg_rounded_gray.xml" value="0.1" />
+        <entry key="..\:/TeDiBang/md-thisable/app/src/main/res/drawable/bg_tv_border.xml" value="0.1" />
+        <entry key="..\:/TeDiBang/md-thisable/app/src/main/res/drawable/bg_warning_button.xml" value="0.1" />
+        <entry key="..\:/TeDiBang/md-thisable/app/src/main/res/drawable/bg_white_button.xml" value="0.1" />
+        <entry key="..\:/TeDiBang/md-thisable/app/src/main/res/drawable/ic_about.xml" value="0.1" />
+        <entry key="..\:/TeDiBang/md-thisable/app/src/main/res/drawable/ic_action_volume_off.xml" value="0.1" />
+        <entry key="..\:/TeDiBang/md-thisable/app/src/main/res/drawable/ic_all_in_one_camera.xml" value="0.1" />
+        <entry key="..\:/TeDiBang/md-thisable/app/src/main/res/drawable/ic_arrow_back.xml" value="0.1" />
+        <entry key="..\:/TeDiBang/md-thisable/app/src/main/res/drawable/ic_baseline_keyboard_24.xml" value="0.1" />
+        <entry key="..\:/TeDiBang/md-thisable/app/src/main/res/drawable/ic_bisindo_translator.xml" value="0.1" />
         <entry key="..\:/TeDiBang/md-thisable/app/src/main/res/drawable/ic_chevron_right.xml" value="0.18" />
         <entry key="..\:/TeDiBang/md-thisable/app/src/main/res/drawable/ic_currency_detection.xml" value="0.18" />
+        <entry key="..\:/TeDiBang/md-thisable/app/src/main/res/drawable/ic_delete_24.xml" value="0.1" />
+        <entry key="..\:/TeDiBang/md-thisable/app/src/main/res/drawable/ic_fqa.xml" value="0.1" />
         <entry key="..\:/TeDiBang/md-thisable/app/src/main/res/layout/activity_core.xml" value="0.2884963768115942" />
+        <entry key="..\:/TeDiBang/md-thisable/app/src/main/res/layout/activity_main.xml" value="0.24375" />
+        <entry key="..\:/TeDiBang/md-thisable/app/src/main/res/layout/custom_alertdialog_signlanguage.xml" value="0.24375" />
+        <entry key="..\:/TeDiBang/md-thisable/app/src/main/res/layout/custom_dialog_core.xml" value="0.24375" />
+        <entry key="..\:/TeDiBang/md-thisable/app/src/main/res/layout/custom_dialog_object.xml" value="0.24375" />
+        <entry key="..\:/TeDiBang/md-thisable/app/src/main/res/layout/custom_keyboard_dialog.xml" value="0.24375" />
+        <entry key="..\:/TeDiBang/md-thisable/app/src/main/res/layout/fragment_color.xml" value="0.24375" />
+        <entry key="..\:/TeDiBang/md-thisable/app/src/main/res/layout/fragment_contant_bottom_sheet.xml" value="0.24375" />
         <entry key="..\:/TeDiBang/md-thisable/app/src/main/res/layout/fragment_currency.xml" value="0.18802083333333333" />
         <entry key="..\:/TeDiBang/md-thisable/app/src/main/res/layout/fragment_home.xml" value="0.22" />
         <entry key="..\:/TeDiBang/md-thisable/app/src/main/res/layout/fragment_object_detection.xml" value="0.21510416666666668" />
         <entry key="..\:/TeDiBang/md-thisable/app/src/main/res/layout/fragment_sign_language.xml" value="0.21510416666666668" />
+        <entry key="..\:/TeDiBang/md-thisable/app/src/main/res/layout/fragment_text_detection.xml" value="0.3776041666666667" />
+        <entry key="..\:/TeDiBang/md-thisable/app/src/main/res/menu/bottom_nav_menu.xml" value="0.24375" />
       </map>
     </option>
   </component>

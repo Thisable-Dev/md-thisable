@@ -7,7 +7,7 @@ import com.devtedi.tedi.data.remote.cloudmodel.CloudModelData
 import com.devtedi.tedi.databinding.ItemLayoutCloudmodelBinding
 
 class CloudModelAdapter(
-    private val listCloudModel : Array<CloudModelData>, private val onClick : (value : String) -> Unit
+    private val listCloudModel : ArrayList<CloudModelData>
 
 ) : RecyclerView.Adapter<CloudModelAdapter.ViewHolder>(){
 
@@ -18,6 +18,9 @@ class CloudModelAdapter(
             binding.tvNamaModel.text = data.modelName
             binding.tvModelversion.text = data.modelVersion
             binding.btnStatusmodel.setText(data.modelStatus)
+            binding.btnStatusmodel.setOnClickListener {
+
+            }
         }
     }
     override fun onCreateViewHolder(
@@ -36,4 +39,5 @@ class CloudModelAdapter(
     override fun getItemCount(): Int {
         return listCloudModel.size
     }
+
 }

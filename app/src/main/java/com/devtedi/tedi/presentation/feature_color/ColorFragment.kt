@@ -63,6 +63,8 @@ class ColorFragment : Fragment() {
 
             }
         }
+
+        binding.ivGoogle.setOnClickListener {  }
     }
 
     private fun startCamera() {

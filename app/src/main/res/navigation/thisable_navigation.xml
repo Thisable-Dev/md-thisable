@@ -83,6 +83,9 @@
         <action
             android:id="@+id/action_homeFragment_to_familyHelpFragment"
             app:destination="@id/familyHelpFragment" />
+        <action
+            android:id="@+id/action_homeFragment_to_cloudFragment"
+            app:destination="@id/cloudFragment" />
     </fragment>
     <fragment
         android:id="@+id/profileFragment"
@@ -222,4 +225,9 @@
         android:id="@+id/familyHelpFragment"
         android:name="com.devtedi.tedi.presentation.familyhelp.FamilyHelpFragment"
         android:label="FamilyHelpFragment" />
+    <fragment
+        android:id="@+id/cloudFragment"
+        android:name="com.devtedi.tedi.presentation.feature_cloud.CloudFragment"
+        android:label="fragment_cloud"
+        tools:layout="@layout/fragment_cloud" />
 </navigation>

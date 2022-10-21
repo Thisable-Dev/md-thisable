@@ -2,6 +2,7 @@
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:contentDescription="@string/label_fragmentHome_page"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools">
 
@@ -59,6 +60,7 @@
         <com.devtedi.tedi.presentation.view.TediMainMenuButton
             android:id="@+id/btnTextDetection"
             android:layout_width="0dp"
+            android:contentDescription="@string/label_textDetection"
             android:layout_height="wrap_content"
             android:layout_columnWeight="1"
             app:titleMenu="@string/text_detection"
@@ -70,33 +72,37 @@
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_columnWeight="1"
+            android:contentDescription="@string/label_objectDetection"
             app:titleMenu="@string/label_object_detection"
             app:iconMenu="@drawable/ic_object_detection"
-            app:isBeta="true"/>
+            app:isBeta="false"/>
 
         <com.devtedi.tedi.presentation.view.TediMainMenuButton
             android:id="@+id/btnBisindoTranslator"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_columnWeight="1"
+            android:contentDescription="@string/label_signLanguage"
             app:titleMenu="@string/label_bisindo_translator"
             app:iconMenu="@drawable/ic_bisindo_translator"
-            app:isBeta="true"/>
+            app:isBeta="false"/>
 
         <com.devtedi.tedi.presentation.view.TediMainMenuButton
             android:id="@+id/btnCurrencyDetection"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_columnWeight="1"
+            android:contentDescription="@string/label_currencyDetection"
             app:titleMenu="@string/label_currency_detection"
             app:iconMenu="@drawable/ic_currency_detection"
-            app:isBeta="true"/>
+            app:isBeta="false"/>
 
         <com.devtedi.tedi.presentation.view.TediMainMenuButton
             android:id="@+id/btnColorDetection"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_columnWeight="1"
+            android:contentDescription="@string/label_color_detection"
             app:titleMenu="@string/label_color_detection"
             app:iconMenu="@drawable/ic_color_detection"/>
 
@@ -107,6 +113,14 @@
             android:layout_columnWeight="1"
             app:titleMenu="@string/label_family_help"
             app:iconMenu="@drawable/ic_family_help"/>
+
+        <Button
+            android:id="@+id/btnSettingsTest"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_columnWeight="1"
+            android:text="Halo Bang"
+            />
 
     </GridLayout>
 

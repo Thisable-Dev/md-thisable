@@ -35,8 +35,15 @@ class HomeFragment: Fragment() {
         initUI()
         loadBanner()
         initAction()
+
+        initTestingSettings()
     }
 
+    private fun initTestingSettings() {
+        binding.btnSettingsTest.setOnClickListener {
+            findNavController().navigate(R.id.action_homeFragment_to_cloudFragment)
+        }
+    }
 
     private fun initFirebase() {
         auth = Firebase.auth

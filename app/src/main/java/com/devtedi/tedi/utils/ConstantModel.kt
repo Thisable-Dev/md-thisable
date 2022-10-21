@@ -12,8 +12,6 @@ const val LABEL_CURRENCY : String = "label_currency.txt"
 const val LABEL_COLOR : String = "file:///android_asset/color.txt"
 const val LABEL_BISINDO : String = "label_sign_language.txt"
 
-const val NUM_THREADS : Int = 2
-
 const val default_img_size = 320
 val MODEL_IMG_SIZE_obj : Size = Size(default_img_size, default_img_size)
 val MODEL_IMG_SIZE_signLanguage: Size = Size(default_img_size, default_img_size)
@@ -49,7 +47,6 @@ const val impl_oc_ocl_obj : String = "oc_ocl_obj"
 const val impl_oc_ocl_currency : String = "oc_ocl_currency"
 const val impl_oc_ocl_color : String = "oc_ocl_color"
 const val impl_oc_ocl_text : String = "oc_ocl_text"
-
 
 //constant for IOU model
 const val IOU_THRESHOLD_object : Float = 0.8f

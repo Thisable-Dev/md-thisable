@@ -40,6 +40,17 @@
             app:layout_constraintEnd_toEndOf="parent"
             />
 
+        <ImageView
+            android:id="@+id/iv_google"
+            android:layout_width="60dp"
+            android:layout_height="60dp"
+            android:layout_marginTop="30dp"
+            android:layout_marginStart="10dp"
+            android:contentDescription="Fitur Login Dengan Google"
+            android:src="@drawable/google_img"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            />
         <androidx.cardview.widget.CardView
             android:id="@+id/card_terjemahan"
             android:layout_width="match_parent"

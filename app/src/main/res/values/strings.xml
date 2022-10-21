@@ -69,9 +69,25 @@
     <string name="label_required">*Wajib diisi</string>
     <string name="label_user_understand">Saya Mengerti</string>
     <string name="label_term_and_agreement"><b>Syarat &amp; Ketentuan</b>\nDiperbarui pada 2022-06-10\n\n<b>Ketentuan Umum</b>\nDengan mengakses dan melakukan pemesanan dengan , Anda mengonfirmasi bahwa Anda setuju dan terikat dengan persyaratan layanan yang tercantum dalam Syarat &amp; Ketentuan yang diuraikan di bawah ini. Persyaratan ini berlaku untuk seluruh situs web dan email atau jenis komunikasi lainnya antara Anda.\n\nDalam keadaan apa pun tim tidak bertanggung jawab atas segala kerusakan langsung, tidak langsung, khusus, insidental atau konsekuensial, termasuk, namun tidak terbatas pada, kehilangan data atau keuntungan, yang timbul dari penggunaan, atau ketidakmampuan untuk menggunakan, materi di situs ini. , bahkan jika tim atau perwakilan resmi telah diberitahu tentang kemungkinan kerusakan tersebut. Jika penggunaan Anda atas materi dari situs ini mengakibatkan perlunya servis, perbaikan, atau koreksi peralatan atau data, Anda menanggung semua biayanya.\n\nTidak akan bertanggung jawab atas hasil apa pun yang mungkin terjadi selama penggunaan sumber daya kami. Kami berhak untuk mengubah harga dan merevisi kebijakan penggunaan sumber daya setiap saat.\n\n<b>Lisensi</b>\nTeDi memberi Anda lisensi terbatas yang dapat dibatalkan, non-eksklusif, tidak dapat dialihkan, untuk mengunduh, menginstal, dan menggunakan layanan kami secara ketat sesuai dengan ketentuan Perjanjian ini. Syarat &amp; Ketentuan ini adalah kontrak antara Anda dan TeDi (dalam Syarat &amp; Ketentuan ini disebut sebagai "TeDi", atau "milik kami"), penyedia situs web TeDi dan layanan yang dapat diakses dari situs web TeDi (yang secara bersama-sama disebut dalam Syarat &amp; Ketentuan ini sebagai "Layanan TeDi").\n\nAnda setuju untuk terikat dengan Syarat &amp; Ketentuan ini. Jika Anda tidak menyetujui Syarat &amp; Ketentuan ini, mohon untuk tidak menggunakan Layanan. Dalam Syarat &amp; Ketentuan ini, "Anda" merujuk kepada Anda sebagai individu dan entitas yang Anda wakili. Jika Anda melanggar salah satu dari Syarat &amp; Ketentuan ini, kami berhak untuk membatalkan akun Anda atau memblokir akses ke akun Anda tanpa pemberitahuan.</string>
-    <string name="label_welcome_home">Selamat Datang, %1$s</string>
     <string name="label_emergency_contact">Kontak Darurat : %1$s</string>
 
+
+    <!-- Android Description For Activity Main Menu -->
+    <string name="label_beranda_menu">Tombol Menuju Beranda</string>
+    <string name="label_tedi_menu">Tombol Menuju Halaman Fitur Tedi</string>
+    <string name="label_profil_menu">Tombol Menuju Halaman Profil</string>
+    <!-- Android Descritpion For Activity Main Menu End -->
+
+    <!-- Android Description For Fragment Home -->
+    <string name="label_fragmentHome_page">Anda Berada pada Beranda TeDi</string>
+    <string name="label_welcome_home">Selamat Datang, %1$s</string>
+    <string name="label_textDetection">Fitur Deteksi Teks</string>
+    <string name="label_signLanguage">Fitur BISINDO</string>
+    <string name="label_objectDetection">Fitur Deteksi Objek</string>
+    <string name="label_currencyDetection">Fitur Deteksi Uang</string>
+    <string name="label_color_detection">Fitur Deteksi Warna</string>
+    <string name="label_family_help">Family Help</string>
+    <!-- Android Descripotion For Fragment Home End -->
 
     <!-- Sign Language COntent Description -->
     <string name="label_signLanguage_page">Halaman Penerjemaha Bisindo Dipilih</string>
@@ -93,13 +109,18 @@
     <!-- Currency Content Description End -->
 
     <!-- Color Sound Description-->
-    <string name="label_color_detection">Fitur Deteksi Warna</string>
     <string name="label_color_detection_page">Halaman Deteksi Warna Dipilih</string>
     <string name="label_color_btn">Tombol Penangkap Gambar</string>
     <string name="label_color_pb">Mempersiapkan Fitur Deteksi Warna anda</string>
     <string name="label_color_previewView">Anda Berada Pada Fitur Deteksi Warna</string>
     <!-- color Content Description End -->
 
+
+    <!-- Text Content Description -->
+    <string name="label_text_page">Halaman Teks Dipilih</string>
+    <string name="label_text_btn">Tombol Untuk Menangkap Gambar</string>
+
+    <!-- Text Content Description End -->
     <string name="question_1_obj_detection"> Ada apa saja Didepan saya ?</string>
     <string name="question_2_obj_detection">Ada berapa orang didepan saya</string>
 
@@ -118,9 +139,6 @@
 
     <!-- end args for core activity -->
 
-
-
-
     <string name="question_1_currency_detection">Lembaran uang berapa saja yang saya miliki ?</string>
     <string name="question_2_currency_detection">Berapa banyak uang yang saya pegang ?</string>
 
@@ -138,6 +156,14 @@
     <!-- Response Color -->
     <string name="response_1_color_detection">Warna yang terdeteksi adalah warna </string>
 
+
+    <!-- Model Array -->
+    <string-array name="ModelArray">
+        <item>SignlanguageModel</item>
+        <item>ObjectDetectionModel</item>
+        <item>CurrencyModel</item>
+    </string-array>
+    <!-- Model Array end -->
     <!-- TODO: Remove or change this placeholder text -->
     <string name="label_hint_use">Petunjuk Penggunaan</string>
     <string name="label_for_all_disabilities">Dapat digunakan semua jenis disabilitas.</string>
@@ -317,7 +343,6 @@
     <string name="action_edit_emergency_contact">Edit Kontak Darurat</string>
     <string name="label_edit_emergency_contact">Ubah Nomor Kontak Darurat</string>
     <string name="hint_input_emergency_contact">Masukkan nomor kontak darurat</string>
-    <string name="label_family_help">Family Help</string>
 
     <string name="write_your_text_here">Write your text here..</string>
     <string name="writer">Writer</string>
