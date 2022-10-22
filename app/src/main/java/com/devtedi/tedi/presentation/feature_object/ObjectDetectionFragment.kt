@@ -4,6 +4,7 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Toast
 import androidx.camera.view.PreviewView
 import androidx.core.view.isGone
 import androidx.fragment.app.Fragment
@@ -64,6 +65,7 @@ class ObjectDetectionFragment : Fragment(), FeatureBaseline, AnalyzerSubject{
 
         viewModel.isSoundOn.observe(viewLifecycleOwner) { isOn ->
             binding.btnToggleSoundOnOff.setImageResource(if (isOn) R.drawable.sound_on else R.drawable.sound_off)
+            Toast.makeText(requireContext(), getString(if (isOn) R.string.info_sound_on else R.string.info_sound_off), Toast.LENGTH_SHORT).show()
         }
 
         binding.btnToggleSoundOnOff.setOnClickListener {
