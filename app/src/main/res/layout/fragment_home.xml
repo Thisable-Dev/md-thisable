@@ -114,14 +114,6 @@
             app:titleMenu="@string/label_family_help"
             app:iconMenu="@drawable/ic_family_help"/>
 
-        <Button
-            android:id="@+id/btnSettingsTest"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_columnWeight="1"
-            android:text="Halo Bang"
-            />
-
     </GridLayout>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

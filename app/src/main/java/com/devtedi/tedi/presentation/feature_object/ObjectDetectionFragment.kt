@@ -14,6 +14,7 @@ import com.devtedi.tedi.databinding.FragmentObjectDetectionBinding
 import com.devtedi.tedi.factory.YOLOv5ModelCreator
 import com.devtedi.tedi.interfaces.observer_analyzer.AnalyzerObserver
 import com.devtedi.tedi.interfaces.observer_analyzer.AnalyzerSubject
+import com.devtedi.tedi.presentation.feature_cloud.CloudModel
 import com.devtedi.tedi.utils.*
 
 class ObjectDetectionFragment : Fragment(), FeatureBaseline, AnalyzerSubject{
@@ -40,8 +41,6 @@ class ObjectDetectionFragment : Fragment(), FeatureBaseline, AnalyzerSubject{
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        viewModel.initModel(const_object_detector, requireContext())
-
         viewModel.isLoading.observe(viewLifecycleOwner) { isLoading ->
             binding.progressBar.isGone = !isLoading
         }
@@ -59,7 +58,7 @@ class ObjectDetectionFragment : Fragment(), FeatureBaseline, AnalyzerSubject{
         super.onResume()
         try {
             if (viewModel.yolov5TFLiteDetector.value == null) {
-                viewModel.initModel(const_object_detector, requireContext())
+                viewModel.initModel(const_object_detector, CloudModel.fileObjectDetection!! ,requireContext())
             }
             val rotation = requireActivity().windowManager.defaultDisplay.rotation
             viewModel.yolov5TFLiteDetector.observe(viewLifecycleOwner) { model ->

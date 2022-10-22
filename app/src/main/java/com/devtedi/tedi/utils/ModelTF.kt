@@ -6,6 +6,7 @@ import android.util.Size
 import com.devtedi.tedi.factory.YOLOv5ModelCreator
 import org.tensorflow.lite.Interpreter
 import org.tensorflow.lite.Tensor
+import java.io.File
 
 abstract class ModelTF(
     var inputSize: Size,
@@ -14,7 +15,7 @@ abstract class ModelTF(
     protected var IOU_threshold : Float,
     protected var IOU_class_duplicated_threshold : Float,
     protected var label_file : String,
-    protected var model_file: String,
+    protected var model_file: File,
     protected var IS_INT_8: Boolean = false
 ) {
 

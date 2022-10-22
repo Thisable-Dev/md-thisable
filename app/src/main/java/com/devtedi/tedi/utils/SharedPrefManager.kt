@@ -26,6 +26,7 @@ class SharedPrefManager(context: Context) {
         editor.apply()
     }
 
+
     fun clearPreferenceByKey(prefKey: String){
         editor.remove(prefKey)
         editor.apply()
@@ -38,5 +39,6 @@ class SharedPrefManager(context: Context) {
     val getEmail = prefs.getString(KEY_EMAIL, "")
     val isIntro = prefs.getBoolean(KEY_IS_INTRO, false)
     val getEmergencyContact = prefs.getString(KEY_EMERGENCY_CONTACT, "");
+
 
 }

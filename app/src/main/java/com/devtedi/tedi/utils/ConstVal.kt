@@ -22,4 +22,8 @@ object ConstVal {
     // LABEL
     const val TEXT_DETECTION_LABEL = "text_detection"
 
+    // LocalModel If Exists
+    const val LOCAL_MODEL_PATH_OD : String = "LocalModelObjectDetection"
+    const val LOCAL_MODEL_PATH_SL : String = "LocalModelSignlanguage"
+    const val LOCAL_MODEL_PATH_CD : String = "LocalModelCurrencyDetection"
 }

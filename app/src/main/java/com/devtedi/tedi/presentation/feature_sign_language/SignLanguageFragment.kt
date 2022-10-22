@@ -15,6 +15,7 @@ import com.devtedi.tedi.factory.YOLOv5ModelCreator
 import com.devtedi.tedi.interfaces.FeedbackSignLanguageListener
 import com.devtedi.tedi.interfaces.SignLanguageListener
 import com.devtedi.tedi.interfaces.SignlanguageContentListener
+import com.devtedi.tedi.presentation.feature_cloud.CloudModel
 import com.devtedi.tedi.utils.*
 import com.google.android.material.bottomsheet.BottomSheetDialog
 import java.lang.StringBuilder
@@ -45,7 +46,6 @@ class SignLanguageFragment : Fragment(), FeatureBaseline {
         super.onViewCreated(view, savedInstanceState)
         rotation = requireActivity().windowManager.defaultDisplay.rotation
 
-        viewModel.initModel(const_bisindo_translator, requireContext())
         viewModel.isLoading.observe(viewLifecycleOwner) {
             binding.progressBar.isGone = !it
         }
@@ -70,7 +70,7 @@ class SignLanguageFragment : Fragment(), FeatureBaseline {
 
         try {
             if (viewModel.yolov5TFLiteDetector.value == null) {
-                viewModel.initModel(const_bisindo_translator, requireContext())
+                viewModel.initModel(const_bisindo_translator, CloudModel.fileSignLanguage!!,requireContext())
             }
             viewModel.yolov5TFLiteDetector.observe(viewLifecycleOwner) {
                 fullImageAnalyse = FullImageAnalyse(

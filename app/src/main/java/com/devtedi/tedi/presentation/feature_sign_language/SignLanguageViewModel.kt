@@ -11,6 +11,7 @@ import com.devtedi.tedi.factory.YOLOv5ModelCreator
 import com.devtedi.tedi.interfaces.observer_core.CoreObserver
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
+import java.io.File
 
 class SignLanguageViewModel : ViewModel(), CoreObserver {
 
@@ -91,13 +92,13 @@ class SignLanguageViewModel : ViewModel(), CoreObserver {
 
          */
     }
-    fun initModel(modelName : String, context : Context)
+    fun initModel(modelName : String, filePath : File,context : Context)
     {
         _isLoading.value = true
         viewModelScope.launch(Dispatchers.IO)
         {
             try {
-                val model = ObjectDetectorStore(context).createModel(modelName).apply {
+                val model = ObjectDetectorStore(context).createModel(modelName, filePath).apply {
                     addGpuDelegate()
                     initialModel(context)
                 }

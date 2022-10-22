@@ -6,9 +6,10 @@ import com.devtedi.tedi.core_model.BisindoTranslator
 import com.devtedi.tedi.core_model.CurrencyDetector
 import com.devtedi.tedi.core_model.ObjectDetector
 import com.devtedi.tedi.utils.*
+import java.io.File
 
 class ObjectDetectorStore(context: Context) : ModelStore(context) {
-    override suspend fun createModel(type: String): YOLOv5ModelCreator {
+    override suspend fun createModel(type: String, filePath : File): YOLOv5ModelCreator {
         when (type) {
             const_object_detector -> {
 
@@ -18,7 +19,7 @@ class ObjectDetectorStore(context: Context) : ModelStore(context) {
                     DETECT_THRESHOLD_object,
                     IOU_THRESHOLD_object,
                     IOU_CLASS_DUPLICATED_THRESHOLD_object,
-                    LABEL_OBJ, test_model,
+                    LABEL_OBJ, filePath,
                     false)
 
                 val yolOv5ModelCreator = YOLOv5ModelCreator(
@@ -38,7 +39,7 @@ class ObjectDetectorStore(context: Context) : ModelStore(context) {
                         DETECT_THRESHOLD_bisindo,
                         IOU_THRESHOLD_bisindo,
                         IOU_CLASS_DUPLICATED_THRESHOLD_bisindo,
-                        LABEL_BISINDO, MODEL_FILE_BISINDO,
+                        LABEL_BISINDO, filePath,
                         false)
 
                 val yolov5ModelCreator = YOLOv5ModelCreator(
@@ -58,7 +59,7 @@ class ObjectDetectorStore(context: Context) : ModelStore(context) {
                         DETECT_THRESHOLD_currency,
                         IOU_THRESHOLD_currency,
                         IOU_CLASS_DUPLICATED_THRESHOLD_currency,
-                        LABEL_CURRENCY, MODEL_FILE_CURRENCY,
+                        LABEL_CURRENCY, filePath,
                         false
                     )
 

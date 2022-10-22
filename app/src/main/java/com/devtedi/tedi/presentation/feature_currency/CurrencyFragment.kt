@@ -17,6 +17,7 @@ import com.devtedi.tedi.databinding.FragmentCurrencyBinding
 import com.devtedi.tedi.factory.YOLOv5ModelCreator
 import com.devtedi.tedi.interfaces.observer_analyzer.AnalyzerObserver
 import com.devtedi.tedi.interfaces.observer_analyzer.AnalyzerSubject
+import com.devtedi.tedi.presentation.feature_cloud.CloudModel
 import com.devtedi.tedi.utils.*
 
 class CurrencyFragment : Fragment(), FeatureBaseline, AnalyzerSubject {
@@ -48,7 +49,7 @@ class CurrencyFragment : Fragment(), FeatureBaseline, AnalyzerSubject {
         super.onViewCreated(view, savedInstanceState)
 
         init()
-        viewModel.initModel(const_currency_detector, requireContext())
+        viewModel.initModel(const_currency_detector, CloudModel.fileCurrencyDetection!! ,requireContext())
         viewModel.isLoading.observe(viewLifecycleOwner) {
             binding.progressBar.isGone = !it
         }

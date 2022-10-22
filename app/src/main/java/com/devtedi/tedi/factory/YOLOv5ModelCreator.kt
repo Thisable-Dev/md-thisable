@@ -26,6 +26,7 @@ import org.tensorflow.lite.support.image.ImageProcessor
 import org.tensorflow.lite.support.image.TensorImage
 import org.tensorflow.lite.support.image.ops.ResizeOp
 import org.tensorflow.lite.support.tensorbuffer.TensorBuffer
+import java.io.File
 import java.nio.ByteBuffer
 import java.util.*
 import kotlin.collections.ArrayList
@@ -38,7 +39,7 @@ open class YOLOv5ModelCreator(
     IOU_threshold: Float,
     IOU_class_duplicated_threshold: Float,
     label_file: String,
-    model_file: String,
+    model_file: File,
     is_int_8: Boolean,
 
     ) : ModelTF(input_size, output_size,
@@ -80,11 +81,11 @@ open class YOLOv5ModelCreator(
     }
 
     override suspend fun initialModel(activity: Context) {
-        Log.d("YOLOv5ModelCreator", Thread.currentThread().name)
         kotlin.runCatching {
             withContext(Dispatchers.IO) {
-                val tfliteModel: ByteBuffer = FileUtil.loadMappedFile(activity, model_file)
-                tflite = Interpreter(tfliteModel, options)
+                //val tfliteModel: ByteBuffer = FileUtil.loadMappedFile(activity, model_file)
+
+                tflite = Interpreter(model_file, options)
                 associatedAxisLabels = FileUtil.loadLabels(activity, label_file)
             }
         }

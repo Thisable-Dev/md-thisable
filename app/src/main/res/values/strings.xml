@@ -163,7 +163,15 @@
         <item>ObjectDetectionModel</item>
         <item>CurrencyModel</item>
     </string-array>
+
+
+
     <!-- Model Array end -->
+    <!-- CloudFragment StringContent -->
+    <string name="signLanguageModelCloud">SignLanguageModel</string>
+    <string name="objectDetectorModelCloud">ObjectDetectionModel</string>
+    <string name="currencyModelCloud">CurrencyModel</string>
+    <!-- CloudFragment StringContent End-->
     <!-- TODO: Remove or change this placeholder text -->
     <string name="label_hint_use">Petunjuk Penggunaan</string>
     <string name="label_for_all_disabilities">Dapat digunakan semua jenis disabilitas.</string>

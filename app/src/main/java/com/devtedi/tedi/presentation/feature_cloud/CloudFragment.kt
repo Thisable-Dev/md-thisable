@@ -5,6 +5,7 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Toast
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.devtedi.tedi.R
 import com.devtedi.tedi.adapter.CloudModelAdapter
@@ -29,6 +30,28 @@ class CloudFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         initiateArray()
+        initiateReyclerview()
+    }
+
+    private fun downloadModel(modelName : String)
+    {
+        when(modelName)
+        {
+            resources.getString(R.string.signLanguageModelCloud) ->
+            {
+                CloudModel.downloadSignLanguageModel()
+            }
+            resources.getString(R.string.currencyModelCloud) ->
+            {
+
+                CloudModel.downloadCurrencyDetectionModel()
+            }
+            resources.getString(R.string.objectDetectorModelCloud) ->
+            {
+                Toast.makeText(requireContext(), "Downloading Object Detection Model", Toast.LENGTH_SHORT).show()
+                CloudModel.downloadObjectDetectionModel()
+            }
+        }
     }
 
     private fun initiateArray()
@@ -49,10 +72,9 @@ class CloudFragment : Fragment() {
     private fun initiateReyclerview()
     {
         val linearLayout = LinearLayoutManager(requireContext())
-        val adapter = CloudModelAdapter(arrayOfModels)
+        val adapter = CloudModelAdapter(arrayOfModels,::downloadModel)
         binding.rvCloudmodel.layoutManager = linearLayout
-        binding.rvCloudmodel.adapter =
-
+        binding.rvCloudmodel.adapter = adapter
     }
 
 }

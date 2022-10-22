@@ -1,6 +1,7 @@
 package com.devtedi.tedi.core_model
 
 import android.util.Size
+import java.io.File
 
 abstract class ObjectDetectorType {
 
@@ -10,7 +11,7 @@ abstract class ObjectDetectorType {
     abstract var IOU_threshold : Float
     abstract var IOU_class_duplicated_threshold : Float
     abstract var label_file : String
-    abstract var model_file : String
+    abstract var model_file : File
     abstract var IS_INT_8 : Boolean
 
 }

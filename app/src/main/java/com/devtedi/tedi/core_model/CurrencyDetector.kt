@@ -1,6 +1,7 @@
 package com.devtedi.tedi.core_model
 
 import android.util.Size
+import java.io.File
 
 class CurrencyDetector (
     override var inputSize: Size,
@@ -9,7 +10,7 @@ class CurrencyDetector (
     override var IOU_threshold: Float,
     override var IOU_class_duplicated_threshold: Float,
     override var label_file: String,
-    override var model_file: String,
+    override var model_file: File,
     override var IS_INT_8: Boolean,
     )
     : ObjectDetectorType()

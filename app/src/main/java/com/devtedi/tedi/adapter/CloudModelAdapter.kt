@@ -7,7 +7,8 @@ import com.devtedi.tedi.data.remote.cloudmodel.CloudModelData
 import com.devtedi.tedi.databinding.ItemLayoutCloudmodelBinding
 
 class CloudModelAdapter(
-    private val listCloudModel : ArrayList<CloudModelData>
+    private val listCloudModel : ArrayList<CloudModelData>,
+    private val onClick : (modelName : String) -> Unit
 
 ) : RecyclerView.Adapter<CloudModelAdapter.ViewHolder>(){
 
@@ -18,8 +19,9 @@ class CloudModelAdapter(
             binding.tvNamaModel.text = data.modelName
             binding.tvModelversion.text = data.modelVersion
             binding.btnStatusmodel.setText(data.modelStatus)
-            binding.btnStatusmodel.setOnClickListener {
 
+            binding.btnStatusmodel.setOnClickListener {
+                onClick(data.modelName)
             }
         }
     }

@@ -7,6 +7,7 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Toast
 import androidx.activity.result.ActivityResultLauncher
 import androidx.activity.result.contract.ActivityResultContracts
 import androidx.activity.result.contract.ActivityResultContracts.StartActivityForResult
@@ -16,6 +17,7 @@ import androidx.navigation.fragment.findNavController
 import com.devtedi.tedi.R
 import com.devtedi.tedi.R.string
 import com.devtedi.tedi.databinding.FragmentOnboardingBinding
+import com.devtedi.tedi.presentation.feature_cloud.CloudModel
 import com.devtedi.tedi.utils.ConstVal
 import com.devtedi.tedi.utils.SharedPrefManager
 import com.devtedi.tedi.utils.ext.click
@@ -53,6 +55,14 @@ class OnBoardingFragment : Fragment() {
         initAuth()
         initAction()
         askPermission()
+        prepareTheModel()
+    }
+
+    private fun prepareTheModel()
+    {
+        CloudModel.downloadObjectDetectionModel()
+            && CloudModel.downloadCurrencyDetectionModel()
+            && CloudModel.downloadSignLanguageModel()
     }
 
     private fun initAuth() {
@@ -103,10 +113,23 @@ class OnBoardingFragment : Fragment() {
 
     private fun initAction() {
         binding.btnLoginGoogle.click {
-            signIn()
+            if(CloudModel.downloadObjectDetectionModel()
+                && CloudModel.downloadCurrencyDetectionModel()
+                && CloudModel.downloadSignLanguageModel())
+                signIn()
+            else {
+                Toast.makeText(requireContext(), "Please wait, We still preparing the app", Toast.LENGTH_SHORT).show()
+            }
         }
         binding.btnNext.click {
-            findNavController().navigate(R.id.action_onBoardingFragment_to_coreActivity)
+            if(CloudModel.downloadObjectDetectionModel()
+                && CloudModel.downloadCurrencyDetectionModel()
+                && CloudModel.downloadSignLanguageModel())
+                findNavController().navigate(R.id.action_onBoardingFragment_to_coreActivity)
+            else {
+
+                Toast.makeText(requireContext(), "Please wait, We still preparing the app", Toast.LENGTH_SHORT).show()
+            }
         }
         binding.tvAbout.click {
             findNavController().navigate(R.id.action_onBoardingFragment_to_aboutFragment)

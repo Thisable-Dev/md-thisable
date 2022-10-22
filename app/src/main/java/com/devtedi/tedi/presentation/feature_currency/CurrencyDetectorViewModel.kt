@@ -9,6 +9,7 @@ import com.devtedi.tedi.factory.ObjectDetectorStore
 import com.devtedi.tedi.factory.YOLOv5ModelCreator
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
+import java.io.File
 
 class CurrencyDetectionViewModel : ViewModel(){
 
@@ -24,13 +25,13 @@ class CurrencyDetectionViewModel : ViewModel(){
         _yolov5TFLiteDetector.value?.close()
     }
 
-    fun initModel(modelName : String, context : Context)
+    fun initModel(modelName : String, filePath : File,context : Context)
     {
         _isLoading.value = true
         viewModelScope.launch(Dispatchers.IO)
         {
             try {
-                val model = ObjectDetectorStore(context).createModel(modelName).apply {
+                val model = ObjectDetectorStore(context).createModel(modelName, filePath).apply {
                     addGpuDelegate()
                     initialModel(context)
                 }

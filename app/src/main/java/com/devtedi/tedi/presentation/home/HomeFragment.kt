@@ -11,6 +11,7 @@ import androidx.recyclerview.widget.LinearSnapHelper
 import com.devtedi.tedi.R
 import com.devtedi.tedi.data.dummy.BannerDummy.getBannerList
 import com.devtedi.tedi.databinding.FragmentHomeBinding
+import com.devtedi.tedi.presentation.feature_cloud.CloudModel
 import com.devtedi.tedi.utils.ext.click
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.ktx.auth
@@ -36,13 +37,6 @@ class HomeFragment: Fragment() {
         loadBanner()
         initAction()
 
-        initTestingSettings()
-    }
-
-    private fun initTestingSettings() {
-        binding.btnSettingsTest.setOnClickListener {
-            findNavController().navigate(R.id.action_homeFragment_to_cloudFragment)
-        }
     }
 
     private fun initFirebase() {
