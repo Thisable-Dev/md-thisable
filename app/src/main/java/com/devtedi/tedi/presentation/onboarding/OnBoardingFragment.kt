@@ -4,6 +4,7 @@ import android.app.Activity
 import android.app.AlertDialog
 import android.content.pm.PackageManager
 import android.os.Bundle
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -17,10 +18,12 @@ import androidx.navigation.fragment.findNavController
 import com.devtedi.tedi.R
 import com.devtedi.tedi.R.string
 import com.devtedi.tedi.databinding.FragmentOnboardingBinding
+import com.devtedi.tedi.interfaces.observer_cloud.CloudModelObserver
 import com.devtedi.tedi.presentation.feature_cloud.CloudModel
 import com.devtedi.tedi.utils.ConstVal
 import com.devtedi.tedi.utils.SharedPrefManager
 import com.devtedi.tedi.utils.ext.click
+import com.devtedi.tedi.utils.ext.enable
 import com.devtedi.tedi.utils.ext.showToast
 import com.google.android.gms.auth.api.signin.GoogleSignIn
 import com.google.android.gms.auth.api.signin.GoogleSignInClient
@@ -32,10 +35,12 @@ import com.google.firebase.auth.ktx.auth
 import com.google.firebase.ktx.Firebase
 import timber.log.Timber
 
-class OnBoardingFragment : Fragment() {
+class OnBoardingFragment : Fragment(), CloudModelObserver {
 
     private lateinit var oneTapClient: GoogleSignInClient
     private lateinit var auth: FirebaseAuth
+    private var modelCounterDownload : Int = 0
+    private var booleanModelDownloaded : Boolean = true
 
     private var _fragmentOnBoardingBinding: FragmentOnboardingBinding? = null
     private val binding get() = _fragmentOnBoardingBinding!!
@@ -51,20 +56,47 @@ class OnBoardingFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
 
         pref = SharedPrefManager(requireContext())
-
+        CloudModel.registerObserver(this)
         initAuth()
         initAction()
         askPermission()
         prepareTheModel()
+        //btnState()
     }
 
     private fun prepareTheModel()
     {
-        CloudModel.downloadObjectDetectionModel()
-            && CloudModel.downloadCurrencyDetectionModel()
-            && CloudModel.downloadSignLanguageModel()
+        if( pref.getObjectDetectorPath.isNullOrEmpty()  &&
+            pref.getCurrencyDetectorPath.isNullOrEmpty()  &&
+            pref.getSignLanguagePath.isNullOrEmpty() && modelCounterDownload <= 3
+        )
+        {
+            booleanModelDownloaded = false
+            showToast("Downloading the model ...")
+
+            UIDownloadState(true)
+            CloudModel.downloadObjectDetectionModel()
+            CloudModel.downloadCurrencyDetectionModel()
+            CloudModel.downloadSignLanguageModel()
+        }
     }
 
+    private fun UIDownloadState(state : Boolean)
+    {
+        if(state)
+        {
+            binding.viewBgDownload.visibility = View.VISIBLE
+            binding.pbLoadingModel.visibility = View.VISIBLE
+            binding.viewBgDownload.setOnClickListener {
+                Toast.makeText(requireContext(), "StillDownloading Model, Please wait !!", Toast.LENGTH_SHORT).show()
+            }
+        }
+        else
+        {
+            binding.viewBgDownload.visibility = View.INVISIBLE
+            binding.pbLoadingModel.visibility = View.INVISIBLE
+        }
+    }
     private fun initAuth() {
         val gso = GoogleSignInOptions
             .Builder(GoogleSignInOptions.DEFAULT_SIGN_IN)
@@ -110,26 +142,29 @@ class OnBoardingFragment : Fragment() {
             }
         checkPermission(requestPermissionLauncher)
     }
+/*
+    private fun btnState()
+    {
+        if(modelCounterDownload != 3)
+        {
+            binding.btnLoginGoogle.isEnabled = false
+            binding.btnNext.isEnabled = false
+        }
+        if (modelCounterDownload == 3 || booleanModelDownloaded)
+        {
+            binding.btnLoginGoogle.isEnabled = true
+            binding.btnNext.isEnabled = true
+        }
+    }
 
+ */
     private fun initAction() {
         binding.btnLoginGoogle.click {
-            if(CloudModel.downloadObjectDetectionModel()
-                && CloudModel.downloadCurrencyDetectionModel()
-                && CloudModel.downloadSignLanguageModel())
-                signIn()
-            else {
-                Toast.makeText(requireContext(), "Please wait, We still preparing the app", Toast.LENGTH_SHORT).show()
-            }
+            signIn()
         }
         binding.btnNext.click {
-            if(CloudModel.downloadObjectDetectionModel()
-                && CloudModel.downloadCurrencyDetectionModel()
-                && CloudModel.downloadSignLanguageModel())
-                findNavController().navigate(R.id.action_onBoardingFragment_to_coreActivity)
-            else {
-
-                Toast.makeText(requireContext(), "Please wait, We still preparing the app", Toast.LENGTH_SHORT).show()
-            }
+            Log.d("DOWNLOADTAGS",modelCounterDownload.toString())
+            findNavController().navigate(R.id.action_onBoardingFragment_to_coreActivity)
         }
         binding.tvAbout.click {
             findNavController().navigate(R.id.action_onBoardingFragment_to_aboutFragment)
@@ -185,5 +220,28 @@ class OnBoardingFragment : Fragment() {
             .addOnFailureListener {
                 Timber.e("<<<<<<<<<<<, Error $it")
             }
+    }
+
+    override fun updateObserver() {
+        modelCounterDownload += 1
+        showToast("Downloading model $modelCounterDownload / 3")
+        Log.d("DOWNLOADTAGS", "$modelCounterDownload / 3")
+        if(modelCounterDownload == 3)
+        {
+            showToast("Downloading Successfully ")
+
+            if(CloudModel.fileObjectDetection != null)
+                pref.setStringPreference(ConstVal.LOCAL_MODEL_PATH_OD, CloudModel.fileObjectDetection!!.path as String )
+
+            if(CloudModel.fileCurrencyDetection != null)
+                pref.setStringPreference(ConstVal.LOCAL_MODEL_PATH_SL, CloudModel.fileCurrencyDetection!!.path as String)
+
+            if(CloudModel.fileSignLanguage != null )
+                pref.setStringPreference(ConstVal.LOCAL_MODEL_PATH_SL, CloudModel.fileSignLanguage!!.path as String)
+
+            booleanModelDownloaded = true
+           // btnState()
+            UIDownloadState(false)
+        }
     }
 }

@@ -1,4 +1,4 @@
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
@@ -7,11 +7,40 @@
     android:gravity="center"
     tools:context=".presentation.onboarding.OnBoardingFragment">
 
+    <ProgressBar
+        android:id="@+id/pb_loadingModel"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:elevation="4dp"
+        android:visibility="invisible"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        />
+
+    <View
+        android:id="@+id/view_bgDownload"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="#54000000"
+        android:elevation="4dp"
+        android:visibility="invisible"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+    />
     <ImageView
         android:id="@+id/imgIllustration"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:src="@drawable/ic_people_illustration_2"/>
+        android:src="@drawable/ic_people_illustration_2"
+        android:layout_marginTop="80dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        />
 
     <TextView
         android:id="@+id/tvTitle"
@@ -19,7 +48,12 @@
         android:layout_height="wrap_content"
         android:text="@string/label_welcome_enablers"
         android:layout_marginTop="@dimen/dimen_16dp"
-        style="@style/TextContent.Title" />
+        style="@style/TextContent.Title"
+
+        app:layout_constraintTop_toBottomOf="@id/imgIllustration"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        />
 
     <TextView
         android:id="@+id/tvSubTitle"
@@ -29,7 +63,12 @@
         android:layout_marginTop="@dimen/dimen_16dp"
         android:layout_marginHorizontal="@dimen/dimen_50dp"
         android:textAlignment="center"
-        style="@style/TextContent.SubTitle" />
+        style="@style/TextContent.SubTitle"
+
+        app:layout_constraintTop_toBottomOf="@id/tvTitle"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        />
 
     <com.google.android.material.button.MaterialButton
         android:id="@+id/btnLoginGoogle"
@@ -47,8 +86,15 @@
         app:icon="@drawable/google"
         app:iconTintMode="multiply"
         app:backgroundTint="@color/colorBlue"
-        app:layout_constraintTop_toBottomOf="@+id/tvOr"
-        style="@style/ButtonContent" />
+
+        style="@style/ButtonContent"
+
+        app:layout_constraintTop_toBottomOf="@id/tvSubTitle"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+
+
+        />
 
     <Button
         android:id="@+id/btnNext"
@@ -63,7 +109,13 @@
         android:textAllCaps="false"
         android:textColor="@color/black"
         app:backgroundTint="@null"
-        style="@style/ButtonContent"/>
+        style="@style/ButtonContent"
+
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/btnLoginGoogle"
+
+        />
 
     <TextView
         android:id="@+id/tvTermAgreement"
@@ -72,13 +124,23 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="@dimen/dimen_16dp"
         android:layout_marginHorizontal="@dimen/dimen_50dp"
-        android:textAlignment="center" />
+        android:textAlignment="center"
+
+        app:layout_constraintTop_toBottomOf="@id/btnNext"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        />
 
     <com.google.android.material.divider.MaterialDivider
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="@dimen/dimen_16dp"
-        android:layout_marginHorizontal="@dimen/dimen_50dp"/>
+        android:layout_marginHorizontal="@dimen/dimen_50dp"
+
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/tvTermAgreement"
+        />
 
     <TextView
         android:id="@+id/tvAbout"
@@ -87,6 +149,11 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="@dimen/dimen_16dp"
         android:clickable="true"
-        style="@style/TextContent.SmallBoldBlue"/>
+        style="@style/TextContent.SmallBoldBlue"
 
-</LinearLayout>
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent"
+        />
+
+</androidx.constraintlayout.widget.ConstraintLayout>
