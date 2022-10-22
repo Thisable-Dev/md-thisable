@@ -9,6 +9,9 @@ import com.devtedi.tedi.utils.ConstVal.KEY_IS_LOGIN
 import com.devtedi.tedi.utils.ConstVal.KEY_TOKEN
 import com.devtedi.tedi.utils.ConstVal.KEY_USER_ID
 import com.devtedi.tedi.utils.ConstVal.KEY_USER_NAME
+import com.devtedi.tedi.utils.ConstVal.LOCAL_MODEL_PATH_CD
+import com.devtedi.tedi.utils.ConstVal.LOCAL_MODEL_PATH_OD
+import com.devtedi.tedi.utils.ConstVal.LOCAL_MODEL_PATH_SL
 import com.devtedi.tedi.utils.ConstVal.PREFS_NAME
 
 class SharedPrefManager(context: Context) {
@@ -39,6 +42,10 @@ class SharedPrefManager(context: Context) {
     val getEmail = prefs.getString(KEY_EMAIL, "")
     val isIntro = prefs.getBoolean(KEY_IS_INTRO, false)
     val getEmergencyContact = prefs.getString(KEY_EMERGENCY_CONTACT, "");
+
+    val getSignLanguagePath = prefs.getString(LOCAL_MODEL_PATH_SL, "");
+    val getCurrencyDetectorPath = prefs.getString(LOCAL_MODEL_PATH_CD, "");
+    val getObjectDetectorPath = prefs.getString(LOCAL_MODEL_PATH_OD, "")
 
 
 }
