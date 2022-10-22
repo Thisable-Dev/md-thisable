@@ -16,30 +16,18 @@ import androidx.navigation.fragment.findNavController
 import com.devtedi.tedi.R
 import com.devtedi.tedi.R.string
 import com.devtedi.tedi.data.remote.ApiResponse
-import com.devtedi.tedi.data.remote.general.report.ReportBugBody
-import com.devtedi.tedi.data.remote.general.request.FileRequest
-import com.devtedi.tedi.data.remote.general.request.SpecificationBody
 import com.devtedi.tedi.databinding.FragmentBugReportBinding
+import com.devtedi.tedi.utils.*
 import com.devtedi.tedi.utils.ext.*
-import com.devtedi.tedi.utils.getDeviceName
-import com.devtedi.tedi.utils.getDeviceVersion
-import com.devtedi.tedi.utils.hideLoading
-import com.devtedi.tedi.utils.showLoading
-import com.devtedi.tedi.utils.uriToFile
 import com.google.android.material.snackbar.Snackbar
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.ktx.auth
 import com.google.firebase.ktx.Firebase
 import dagger.hilt.android.AndroidEntryPoint
-import okhttp3.MediaType
-import okhttp3.MediaType.Companion.toMediaType
 import okhttp3.MediaType.Companion.toMediaTypeOrNull
 import okhttp3.MultipartBody
-import okhttp3.Request
-import okhttp3.RequestBody
 import okhttp3.RequestBody.Companion.asRequestBody
 import okhttp3.RequestBody.Companion.toRequestBody
-import retrofit2.http.Multipart
 import timber.log.Timber
 import java.io.File
 
@@ -54,8 +42,6 @@ class BugReportFragment : Fragment() {
     private lateinit var auth: FirebaseAuth
 
     private var uploadFile: File? = null
-
-    private var fileRequest: FileRequest? = null
 
     private var imageMultipart: MultipartBody.Part? = null
 
@@ -128,18 +114,6 @@ class BugReportFragment : Fragment() {
                         }
                     }
                     else -> {
-                        /*val reportBody = ReportBugBody(
-                            name = name,
-                            email = email,
-                            message = message,
-                            severity = severity,
-                            specificationBody = SpecificationBody(
-                                phoneBrand = getDeviceName(),
-                                ram = getTotalMemories(),
-                                androidVersion = getDeviceVersion()
-                            ),
-                        )*/
-
                         val bodyName = name.toRequestBody("multipart/form-data".toMediaTypeOrNull())
                         val bodyEmail = email.toRequestBody("multipart/form-data".toMediaTypeOrNull())
                         val bodyMessage = message.toRequestBody("multipart/form-data".toMediaTypeOrNull())
@@ -198,7 +172,7 @@ class BugReportFragment : Fragment() {
                     }
                     Snackbar.make(requireView(), response.errorMessage, Snackbar.LENGTH_SHORT)
                         .show()
-                    Timber.e("Error <<<<<<<< ${response.errorMessage}");
+                    Timber.e("Error <<<<<<<< ${response.errorMessage}")
                 }
                 else -> {
                     Timber.e(getString(string.message_unknown_state))
