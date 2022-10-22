@@ -32,6 +32,14 @@ class ObjectDetectionFragment : Fragment(), FeatureBaseline, AnalyzerSubject{
     private lateinit var pref : SharedPrefManager
 
     private val observers : ArrayList<AnalyzerObserver> = ArrayList()
+
+    private var soundPlayer: SoundPlayer? = null
+
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+        soundPlayer = SoundPlayer.getInstance(requireContext())
+    }
+
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?,
@@ -53,6 +61,14 @@ class ObjectDetectionFragment : Fragment(), FeatureBaseline, AnalyzerSubject{
             cameraProcess.requestPermission(requireActivity())
         }
         cameraPreviewView = binding.cameraPreviewWrap
+
+        viewModel.isSoundOn.observe(viewLifecycleOwner) { isOn ->
+            binding.btnToggleSoundOnOff.setImageResource(if (isOn) R.drawable.sound_on else R.drawable.sound_off)
+        }
+
+        binding.btnToggleSoundOnOff.setOnClickListener {
+            viewModel.toggleSoundOnOff()
+        }
     }
 
     override fun onResume() {
@@ -69,7 +85,12 @@ class ObjectDetectionFragment : Fragment(), FeatureBaseline, AnalyzerSubject{
                         cameraPreviewView,
                         rotation,
                         it,
-                        graphicOverlay = binding.graphicOverlay
+                        graphicOverlay = binding.graphicOverlay,
+                        onResult = { label ->
+                            if (viewModel.isSoundOn.value == true) {
+                                soundPlayer?.playSound(label)
+                            }
+                        }
                     )
                     cameraProcess.startCamera(
                         requireActivity(),
@@ -97,6 +118,11 @@ class ObjectDetectionFragment : Fragment(), FeatureBaseline, AnalyzerSubject{
     override fun onDestroyView() {
         super.onDestroyView()
         _binding = null
+    }
+
+    override fun onDestroy() {
+        super.onDestroy()
+        soundPlayer?.dispose()
     }
 
     private fun initGraphicListenerHandler(modelan : YOLOv5ModelCreator) {

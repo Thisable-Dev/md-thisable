@@ -16,6 +16,7 @@ class FullImageAnalyse(
     private val yolov5TFLiteDetector: YOLOv5ModelCreator,
     private val ImageProcess: ImageProcess = ImageProcess(),
     private val graphicOverlay: GraphicOverlay,
+    private val onResult: (String) -> Unit
 ) : ImageAnalysis.Analyzer, AnalyzerObserver {
 
     private var onDetect: Boolean = true
@@ -131,7 +132,7 @@ class FullImageAnalyse(
             }
 
             recognitions.toSet().forEach {
-                playSound(it.getLabelName())
+                onResult(it.getLabelName())
             }
         }
 
@@ -146,15 +147,6 @@ class FullImageAnalyse(
     }
 
     private var lastPlayTime: Long = 0L
-
-    private fun playSound(label: String) {
-        val currentTime = System.currentTimeMillis()
-
-        if (currentTime - lastPlayTime >= TIME_INTERVAL_WORD) {
-            soundPlayer.playSound(label)
-            lastPlayTime = currentTime
-        }
-    }
 
     companion object {
         private const val TIME_INTERVAL_WORD: Long = 500

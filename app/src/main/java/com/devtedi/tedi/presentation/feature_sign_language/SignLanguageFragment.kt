@@ -35,6 +35,13 @@ class SignLanguageFragment : Fragment(), FeatureBaseline {
 
     private lateinit var keyboardListener : FeedbackSignLanguageListener
 
+    private var soundPlayer: SoundPlayer? = null
+
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+        soundPlayer = SoundPlayer.getInstance(requireContext())
+    }
+
     lateinit var fullImageAnalyse : FullImageAnalyse
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -65,10 +72,6 @@ class SignLanguageFragment : Fragment(), FeatureBaseline {
 
     }
 
-    override fun onPause() {
-        super.onPause()
-    }
-
     override fun onResume() {
         super.onResume()
 
@@ -82,7 +85,10 @@ class SignLanguageFragment : Fragment(), FeatureBaseline {
                     cameraPreviewView,
                     rotation,
                     it,
-                    graphicOverlay = binding.graphicOverlay
+                    graphicOverlay = binding.graphicOverlay,
+                    onResult = { label ->
+                        soundPlayer?.playSound(label)
+                    }
                 )
                 it.registerObserver(viewModel)
                 cameraProcess.startCamera(
@@ -112,6 +118,10 @@ class SignLanguageFragment : Fragment(), FeatureBaseline {
         _binding = null
     }
 
+    override fun onDestroy() {
+        super.onDestroy()
+        soundPlayer?.dispose()
+    }
 
     private fun initPoseListener() {
 
