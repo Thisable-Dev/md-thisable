@@ -162,11 +162,11 @@
     <string name="raw_sound_4">desktop computer</string>
     <string name="label_continue">Lanjut</string>
     <string name="raw_soundcurrency_seribu">seribu</string>
-    <string name="raw_soundcurrency_duaribu">duaribu</string>
-    <string name="raw_soundcurrency_limaribu">limaribu</string>
-    <string name="raw_soundcurrency_sepuluhribu">sepuluhribu</string>
-    <string name="raw_soundcurrency_limapuluhribu">limapuluhribu</string>
-    <string name="raw_soundcurrency_seratusribu">seratusribu</string>
+    <string name="raw_soundcurrency_duaribu">dua ribu</string>
+    <string name="raw_soundcurrency_limaribu">lima ribu</string>
+    <string name="raw_soundcurrency_sepuluhribu">sepuluh ribu</string>
+    <string name="raw_soundcurrency_limapuluhribu">lima puluh ribu</string>
+    <string name="raw_soundcurrency_seratusribu">seratus ribu</string>
 
     <string name="raw_soundobj_orang">orang</string>
     <string name="raw_soundobj_sepeda">sepeda</string>

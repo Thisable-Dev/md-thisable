@@ -20,7 +20,7 @@ class CurrencyDetectionViewModel : ViewModel() {
     private val _isLoading: MutableLiveData<Boolean> = MutableLiveData(false)
     val isLoading: LiveData<Boolean> = _isLoading
 
-    private val _isSoundOn: MutableLiveData<Boolean> = MutableLiveData()
+    private val _isSoundOn: MutableLiveData<Boolean> = MutableLiveData(false)
     val isSoundOn: LiveData<Boolean> = _isSoundOn
 
     fun closeModel() {
