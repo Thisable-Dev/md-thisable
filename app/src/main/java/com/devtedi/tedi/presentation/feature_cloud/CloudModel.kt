@@ -32,13 +32,18 @@ object CloudModel : CloudModelSubject {
     var fileCurrencyDetection : File?= null
     var fileObjectDetection : File?= null
 
+    private var updatedFileSignLanguage : File ?= null
+    private var updatedCurrencyDetection : File ?= null
+    private var updatedObjectDetection : File ?= null
+
     private var isFileSignlanguageDownloaded : Boolean = false
     private var isFileCurrencyDetectorDownloaded : Boolean = false
     private var isFileObjectDetectorDownloaded : Boolean = false
 
     private val downloadType = DownloadType.LOCAL_MODEL
-    private val downloadTypeLatest = DownloadType.LATEST_MODEL
+    private val downloadTypeLatest = DownloadType.LOCAL_MODEL_UPDATE_IN_BACKGROUND
 
+    @JvmStatic
     fun downloadObjectDetectionModel() : Boolean {
 
         FirebaseModelDownloader.getInstance()
@@ -52,7 +57,7 @@ object CloudModel : CloudModelSubject {
             }.addOnCompleteListener{
 
                 if(it.isSuccessful) {
-                    completedObjectDetectionListener()
+                    completedObjectDetectionListener(false)
                 }
             }
         if(fileObjectDetection != null) return true
@@ -60,6 +65,7 @@ object CloudModel : CloudModelSubject {
 
     }
 
+    @JvmStatic
     fun downloadCurrencyDetectionModel() : Boolean {
         FirebaseModelDownloader.getInstance()
             .getModel(MODEL_CLOUD_CD_NAME, downloadType, modelCondition)
@@ -75,13 +81,14 @@ object CloudModel : CloudModelSubject {
             .addOnCompleteListener {
 
                 if(it.isSuccessful) {
-                    completedCurrencyDetectionListener()
+                    completedCurrencyDetectionListener(false)
                 }
             }
         if(fileCurrencyDetection != null) return true
         return false
     }
 
+    @JvmStatic
     fun downloadSignLanguageModel() : Boolean {
         FirebaseModelDownloader.getInstance()
             .getModel(MODEL_CLOUD_SL_NAME, downloadType, modelCondition)
@@ -96,13 +103,14 @@ object CloudModel : CloudModelSubject {
             }
             .addOnCompleteListener {
                 if(it.isSuccessful) {
-                    completedSignLanguageListener()
+                    completedSignLanguageListener(false)
                 }
             }
 
         if(fileSignLanguage != null) return true
         return false
     }
+
 
     private fun downloadLatestSignlanguageModel()
     {
@@ -118,7 +126,9 @@ object CloudModel : CloudModelSubject {
             .addOnCanceledListener {
 
             }
-            .addOnCompleteListener {  }
+            .addOnCompleteListener {
+
+            }
     }
 
     private fun downloadLatestObjectDetectionModel()
@@ -136,7 +146,12 @@ object CloudModel : CloudModelSubject {
             .addOnCanceledListener {
 
             }
-            .addOnCompleteListener {  }
+            .addOnCompleteListener {
+                if(it.isSuccessful)
+                {
+                    completedObjectDetectionListener(true)
+                }
+            }
     }
 
     private fun downloadLatestCurrencyDetectionModel()
@@ -154,7 +169,9 @@ object CloudModel : CloudModelSubject {
             .addOnCanceledListener {
 
             }
-            .addOnCompleteListener {  }
+            .addOnCompleteListener {
+                completedCurrencyDetectionListener(true)
+            }
     }
 
     private fun failureObjectDetectionListener(it: Exception) {
@@ -176,10 +193,18 @@ object CloudModel : CloudModelSubject {
 
     }
 
-    private fun completedObjectDetectionListener ()
+    private fun completedObjectDetectionListener (isLatest : Boolean)
     {
-        isFileObjectDetectorDownloaded = true
-        notifyObserver()
+
+        if(!isLatest) {
+            isFileObjectDetectorDownloaded = true
+            notifyObserver()
+        }
+        else
+        {
+            // Do anotherstuff
+            //Delete and Update
+        }
     }
 
 
@@ -189,6 +214,7 @@ object CloudModel : CloudModelSubject {
     }
 
     private fun successCurrencyDetectionListener(it: CustomModel) {
+
 
         val tempFile = it.file
         if (tempFile != null) {
@@ -201,10 +227,16 @@ object CloudModel : CloudModelSubject {
 
     }
 
-    private fun completedCurrencyDetectionListener()
+    private fun completedCurrencyDetectionListener(isLatest :Boolean )
     {
-        isFileCurrencyDetectorDownloaded = true
-        notifyObserver()
+        if(!isLatest) {
+            isFileCurrencyDetectorDownloaded = true
+            notifyObserver()
+        }
+        else
+        {
+            // Do another Kek Delete Model
+        }
     }
 
     private fun failureSignLanguageListener(it: Exception) {
@@ -222,12 +254,29 @@ object CloudModel : CloudModelSubject {
 
     }
 
-    private fun completedSignLanguageListener()
+    private fun completedSignLanguageListener(isLatest : Boolean)
     {
-        isFileSignlanguageDownloaded = true
-        notifyObserver()
+        if(!isLatest) {
+            isFileSignlanguageDownloaded = true
+            notifyObserver()
+        }
+        else {
+            // Remove Model
+            val pathFile : String? = fileSignLanguage?.path
+            if(pathFile != null) {
+                deleteModel(pathFile)
+            }
+
+        }
+
     }
 
+
+    //Delete model methods
+    private fun deleteModel(modelName : String)
+    {
+        FirebaseModelDownloader.getInstance().deleteDownloadedModel(modelName)
+    }
 
     override fun registerObserver(o: CloudModelObserver) {
         observers.add(o)

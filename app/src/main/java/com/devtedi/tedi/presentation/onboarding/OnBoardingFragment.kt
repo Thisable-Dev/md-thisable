@@ -64,6 +64,11 @@ class OnBoardingFragment : Fragment(), CloudModelObserver {
         //btnState()
     }
 
+    fun checkLatestModel()
+    {
+
+    }
+
     private fun prepareTheModel()
     {
         if( pref.getObjectDetectorPath.isNullOrEmpty()  &&
@@ -234,7 +239,7 @@ class OnBoardingFragment : Fragment(), CloudModelObserver {
                 pref.setStringPreference(ConstVal.LOCAL_MODEL_PATH_OD, CloudModel.fileObjectDetection!!.path as String )
 
             if(CloudModel.fileCurrencyDetection != null)
-                pref.setStringPreference(ConstVal.LOCAL_MODEL_PATH_SL, CloudModel.fileCurrencyDetection!!.path as String)
+                pref.setStringPreference(ConstVal.LOCAL_MODEL_PATH_CD, CloudModel.fileCurrencyDetection!!.path as String)
 
             if(CloudModel.fileSignLanguage != null )
                 pref.setStringPreference(ConstVal.LOCAL_MODEL_PATH_SL, CloudModel.fileSignLanguage!!.path as String)
