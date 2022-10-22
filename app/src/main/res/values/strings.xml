@@ -103,7 +103,6 @@
     <string name="args_binding_currency">deteksiUang</string>
     <string name="args_binding_color">deteksiWarna</string>
     <string name="args_binding_text">deteksiTeks</string>
-
     <!-- end args for core activity -->
 
     <string name="question_1_currency_detection">Lembaran uang berapa saja yang saya miliki ?</string>

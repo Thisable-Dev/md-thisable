@@ -11,22 +11,27 @@ import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 import java.io.File
 
-class CurrencyDetectionViewModel : ViewModel(){
+class CurrencyDetectionViewModel : ViewModel() {
 
 
-    private val _yolov5TFLiteDetector : MutableLiveData<YOLOv5ModelCreator> = MutableLiveData()
-    val yolov5TFLiteDetector : LiveData<YOLOv5ModelCreator> = _yolov5TFLiteDetector
+    private val _yolov5TFLiteDetector: MutableLiveData<YOLOv5ModelCreator> = MutableLiveData()
+    val yolov5TFLiteDetector: LiveData<YOLOv5ModelCreator> = _yolov5TFLiteDetector
 
-    private val _isLoading : MutableLiveData<Boolean> = MutableLiveData(false)
-    val isLoading : LiveData<Boolean> = _isLoading
+    private val _isLoading: MutableLiveData<Boolean> = MutableLiveData(false)
+    val isLoading: LiveData<Boolean> = _isLoading
 
-    fun closeModel()
-    {
+    private val _isSoundOn: MutableLiveData<Boolean> = MutableLiveData()
+    val isSoundOn: LiveData<Boolean> = _isSoundOn
+
+    fun closeModel() {
         _yolov5TFLiteDetector.value?.close()
     }
 
-    fun initModel(modelName : String, filePath : File,context : Context)
-    {
+    fun toggleSoundOnOff() {
+        _isSoundOn.value = isSoundOn.value?.let { !it }
+    }
+
+    fun initModel(modelName: String, filePath: File, context: Context) {
         _isLoading.value = true
         viewModelScope.launch(Dispatchers.IO)
         {
@@ -37,9 +42,7 @@ class CurrencyDetectionViewModel : ViewModel(){
                 }
                 _yolov5TFLiteDetector.postValue(model)
                 _isLoading.postValue(false)
-            }
-            catch (e : Exception)
-            {
+            } catch (e: Exception) {
                 e.printStackTrace()
             }
 

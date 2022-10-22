@@ -1,13 +1,10 @@
 package com.devtedi.tedi.presentation.feature_currency
 
-import android.media.SoundPool
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.Toast
 import androidx.camera.view.PreviewView
-import androidx.core.content.ContextCompat
 import androidx.core.view.isGone
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
@@ -17,7 +14,6 @@ import com.devtedi.tedi.databinding.FragmentCurrencyBinding
 import com.devtedi.tedi.factory.YOLOv5ModelCreator
 import com.devtedi.tedi.interfaces.observer_analyzer.AnalyzerObserver
 import com.devtedi.tedi.interfaces.observer_analyzer.AnalyzerSubject
-import com.devtedi.tedi.presentation.feature_cloud.CloudModel
 import com.devtedi.tedi.utils.*
 import java.io.File
 
@@ -35,6 +31,14 @@ class CurrencyFragment : Fragment(), FeatureBaseline, AnalyzerSubject {
     private var observers : ArrayList<AnalyzerObserver> = ArrayList()
     lateinit var fullImageAnalyse : FullImageAnalyse
     private var rotation : Int = 0
+
+    private var soundPlayer: SoundPlayer? = null
+
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+        soundPlayer = SoundPlayer.getInstance(requireContext())
+    }
+
     //Soundplayer Variabels
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -60,6 +64,12 @@ class CurrencyFragment : Fragment(), FeatureBaseline, AnalyzerSubject {
         viewModel.yolov5TFLiteDetector.observe(viewLifecycleOwner) {
             initGraphicListenerHandler(it)
         }
+
+        viewModel.isSoundOn.observe(viewLifecycleOwner) { isOn ->
+            binding.btnToggleSoundOnOff.setImageResource(if (isOn) R.drawable.sound_on else R.drawable.sound_off)
+        }
+
+        initViews()
     }
 
     override fun onPause() {
@@ -67,19 +77,29 @@ class CurrencyFragment : Fragment(), FeatureBaseline, AnalyzerSubject {
         notifyObserver()
     }
 
+    private fun initViews() {
+        binding.btnToggleSoundOnOff.setOnClickListener {
+            viewModel.toggleSoundOnOff()
+        }
+    }
 
     override fun onResume() {
         super.onResume()
         try {
             rotation = requireActivity().windowManager.defaultDisplay.rotation
-            viewModel.yolov5TFLiteDetector.observe(viewLifecycleOwner) {
+            viewModel.yolov5TFLiteDetector.observe(viewLifecycleOwner) { it ->
 
                 fullImageAnalyse = FullImageAnalyse(
                     requireContext(),
                     cameraPreviewView,
                     rotation,
                     it,
-                    graphicOverlay = binding.graphicOverlay
+                    graphicOverlay = binding.graphicOverlay,
+                    onResult = { label ->
+                        if (viewModel.isSoundOn.value == true) {
+                            soundPlayer?.playSound(label)
+                        }
+                    }
                 )
                 cameraProcess.startCamera(requireContext(), fullImageAnalyse, cameraPreviewView)
             }
@@ -106,6 +126,10 @@ class CurrencyFragment : Fragment(), FeatureBaseline, AnalyzerSubject {
         _binding = null
     }
 
+    override fun onDestroy() {
+        super.onDestroy()
+        soundPlayer?.dispose()
+    }
 
     override fun registerObserver(o: AnalyzerObserver) {
         observers.add(o)

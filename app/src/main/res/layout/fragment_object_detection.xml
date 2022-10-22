@@ -42,7 +42,7 @@
         />
 
     <ImageView
-        android:id="@+id/sound"
+        android:id="@+id/btn_toggle_sound_on_off"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:contentDescription="@string/label_object_detection_imageViewSound"

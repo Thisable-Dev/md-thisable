@@ -20,12 +20,18 @@ class ObjectDetectionViewModel : ViewModel() {
     private val _isLoading: MutableLiveData<Boolean> = MutableLiveData(false)
     val isLoading: LiveData<Boolean> = _isLoading
 
-    fun closeModel()
-    {
+    private val _isSoundOn: MutableLiveData<Boolean> = MutableLiveData(false)
+    val isSoundOn: LiveData<Boolean> = _isSoundOn
+
+    fun toggleSoundOnOff() {
+        _isSoundOn.value = isSoundOn.value?.let { !it }
+    }
+
+    fun closeModel() {
         yolov5TFLiteDetector.value?.close()
     }
 
-    fun initModel(modelName: String, filePath : File,context: Context) {
+    fun initModel(modelName: String, filePath: File, context: Context) {
         _isLoading.value = true
         viewModelScope.launch(Dispatchers.IO) {
 
