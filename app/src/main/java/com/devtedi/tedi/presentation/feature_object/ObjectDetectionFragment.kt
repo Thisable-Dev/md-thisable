@@ -16,6 +16,7 @@ import com.devtedi.tedi.interfaces.observer_analyzer.AnalyzerObserver
 import com.devtedi.tedi.interfaces.observer_analyzer.AnalyzerSubject
 import com.devtedi.tedi.presentation.feature_cloud.CloudModel
 import com.devtedi.tedi.utils.*
+import java.io.File
 
 class ObjectDetectionFragment : Fragment(), FeatureBaseline, AnalyzerSubject{
 
@@ -28,6 +29,7 @@ class ObjectDetectionFragment : Fragment(), FeatureBaseline, AnalyzerSubject{
     override lateinit var yolov5TFLiteDetector: YOLOv5ModelCreator
     override lateinit var cameraProcess: CameraProcess
     private lateinit var fullImageAnalyse: FullImageAnalyse
+    private lateinit var pref : SharedPrefManager
 
     private val observers : ArrayList<AnalyzerObserver> = ArrayList()
     override fun onCreateView(
@@ -41,6 +43,7 @@ class ObjectDetectionFragment : Fragment(), FeatureBaseline, AnalyzerSubject{
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
+        pref = SharedPrefManager(requireContext())
         viewModel.isLoading.observe(viewLifecycleOwner) { isLoading ->
             binding.progressBar.isGone = !isLoading
         }
@@ -49,16 +52,14 @@ class ObjectDetectionFragment : Fragment(), FeatureBaseline, AnalyzerSubject{
         if (!cameraProcess.allPermissionGranted(requireContext())) {
             cameraProcess.requestPermission(requireActivity())
         }
-
         cameraPreviewView = binding.cameraPreviewWrap
-
     }
 
     override fun onResume() {
         super.onResume()
         try {
             if (viewModel.yolov5TFLiteDetector.value == null) {
-                viewModel.initModel(const_object_detector, CloudModel.fileObjectDetection!! ,requireContext())
+                viewModel.initModel(const_object_detector, File(pref.getObjectDetectorPath as String) ,requireContext())
             }
             val rotation = requireActivity().windowManager.defaultDisplay.rotation
             viewModel.yolov5TFLiteDetector.observe(viewLifecycleOwner) { model ->

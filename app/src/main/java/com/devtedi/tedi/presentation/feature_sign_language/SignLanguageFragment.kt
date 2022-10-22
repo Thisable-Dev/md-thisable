@@ -18,6 +18,7 @@ import com.devtedi.tedi.interfaces.SignlanguageContentListener
 import com.devtedi.tedi.presentation.feature_cloud.CloudModel
 import com.devtedi.tedi.utils.*
 import com.google.android.material.bottomsheet.BottomSheetDialog
+import java.io.File
 import java.lang.StringBuilder
 
 class SignLanguageFragment : Fragment(), FeatureBaseline {
@@ -30,6 +31,7 @@ class SignLanguageFragment : Fragment(), FeatureBaseline {
     override lateinit var yolov5TFLiteDetector: YOLOv5ModelCreator
     private val viewModel : SignLanguageViewModel by viewModels()
     private var rotation : Int = 0
+    private lateinit var pref : SharedPrefManager
 
     private lateinit var keyboardListener : FeedbackSignLanguageListener
 
@@ -49,6 +51,8 @@ class SignLanguageFragment : Fragment(), FeatureBaseline {
         viewModel.isLoading.observe(viewLifecycleOwner) {
             binding.progressBar.isGone = !it
         }
+
+        pref = SharedPrefManager(requireContext())
 
         initPoseListener()
         initKeyboard()
@@ -70,7 +74,7 @@ class SignLanguageFragment : Fragment(), FeatureBaseline {
 
         try {
             if (viewModel.yolov5TFLiteDetector.value == null) {
-                viewModel.initModel(const_bisindo_translator, CloudModel.fileSignLanguage!!,requireContext())
+                viewModel.initModel(const_bisindo_translator, File(pref.getSignLanguagePath as String),requireContext())
             }
             viewModel.yolov5TFLiteDetector.observe(viewLifecycleOwner) {
                 fullImageAnalyse = FullImageAnalyse(
