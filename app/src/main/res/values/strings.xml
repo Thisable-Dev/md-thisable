@@ -37,7 +37,6 @@
     <string name="label_feature">Fitur</string>
     <string name="label_bisindo_translator">Penerjemah BISINDO</string>
 
-    <string name="label_object_detection">Pendeteksi Objek</string>
     <string name="label_currency_detection">Pendeteksi Mata Uang</string>
     <string name="label_text_detection">Pendeteksi Teks</string>
     <string name="label_dummy_name">Bintang Putera</string>
@@ -308,7 +307,7 @@
     <string name="label_TeDi_contact">Kontak TeDi</string>
     <string name="label_TeDi_email">Surel : C22-PS003@bangkit.academy</string>
     <string name="label_android_engineer">Android Engineer</string>
-    <string name="label_android_engineer_contact">Bintang Putera\na7129f1592@bangkit.academy \nPratama Azmi\na7012g1330@bangkit.academy</string>
+    <string name="label_android_engineer_contact">Bintang Putera\na7129f1592@bangkit.academy \nPratama Azmi\na7012g1330@bangkit.academy \nEko Prasetyo\na2006f0578@bangkit.academy</string>
     <string name="label_ml_engineer_contact">Julio Fachrel\nm2011f1173@bangkit.academy \nNajma\nm2011f1166@bangkit.academy</string>
     <string name="label_cc_engineer_contact">Gilang Martadinata\nc2306h2613@bangkit.academy \nHazlan Muhammad Qodri\nc2297f2531@bangkit.academy</string>
     <string name="label_machine_learning_engineer">Machine Learning Engineer</string>
@@ -355,6 +354,8 @@
     <string name="write_your_text_here">Write your text here..</string>
     <string name="writer">Writer</string>
     <string name="info_dan">dan</string>
+    <string name="label_object_detection">Pendeteksi Objek</string>
+    <string name="message_text_not_detected">Text tidak terdeteksi</string>
 
     <string-array name="array_severity_level">
         <item>Perlu diperbaiki segera mungkin</item>

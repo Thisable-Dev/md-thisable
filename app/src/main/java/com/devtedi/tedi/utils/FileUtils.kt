@@ -37,6 +37,6 @@ fun uriToFile(selectedImg: Uri, context: Context, uri: Uri): File {
 
 fun createTempFile(context: Context, uri: Uri): File {
     val storageDir: File? = context.getExternalFilesDir(Environment.DIRECTORY_PICTURES)
-    val suffix = uri.extension
+    val suffix = if (uri.extension == "pdf") "pdf" else "jpg"
     return File.createTempFile(timeStamp, ".$suffix", storageDir)
 }

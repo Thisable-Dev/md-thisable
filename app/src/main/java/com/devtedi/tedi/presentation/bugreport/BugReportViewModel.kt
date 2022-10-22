@@ -11,17 +11,38 @@ import com.devtedi.tedi.data.remote.general.request.FileRequest
 import com.devtedi.tedi.data.repository.GeneralRepository
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.launch
+import okhttp3.MultipartBody
+import okhttp3.RequestBody
 import javax.inject.Inject
 
 @HiltViewModel
-class BugReportViewModel @Inject constructor(private val generalRepository: GeneralRepository): ViewModel() {
+class BugReportViewModel @Inject constructor(private val generalRepository: GeneralRepository) :
+    ViewModel() {
 
     val addNewReportBugResult: LiveData<ApiResponse<BugReportResponse>> by lazy { _addNewReportBugResult }
     private val _addNewReportBugResult = MutableLiveData<ApiResponse<BugReportResponse>>()
 
-    fun addNewReportBug(reportBugBody: ReportBugBody, file: FileRequest) {
+    fun addNewReportBug(
+        name: RequestBody,
+        email: RequestBody,
+        message: RequestBody,
+        severity: RequestBody,
+        phoneBrand: RequestBody,
+        ram: RequestBody,
+        androidVersion: RequestBody,
+        file: MultipartBody.Part
+    ) {
         viewModelScope.launch {
-            generalRepository.addNewReportBug(reportBugBody, file).collect {
+            generalRepository.addNewReportBug(
+                name,
+                email,
+                message,
+                severity,
+                phoneBrand,
+                ram,
+                androidVersion,
+                file
+            ).collect {
                 _addNewReportBugResult.postValue(it)
             }
         }
