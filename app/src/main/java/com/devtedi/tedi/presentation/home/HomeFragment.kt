@@ -36,7 +36,6 @@ class HomeFragment: Fragment() {
         initUI()
         loadBanner()
         initAction()
-
     }
 
     private fun initFirebase() {
