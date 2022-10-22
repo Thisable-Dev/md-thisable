@@ -1,75 +1,43 @@
 <resources>
     <string name="app_name">TeDi</string>
     <string name="label_version">v.0.0.1</string>
-    <string name="label_welcome">Selamat Datang !</string>
-    <string name="label_login_with_email_and_password">Silakan masuk dengan email dan password kamu.</string>
-    <string name="label_email">Surel*</string>
-    <string name="hint_email">Contoh : bintangputera@gmail.com</string>
-    <string name="label_password">Password</string>
-    <string name="action_login">Masuk</string>
-    <string name="label_or">atau</string>
-    <string name="action_login_with_google">Masuk dengan Google</string>
-    <string name="label_doesnt_have_account">Belum punya akun ?</string>
-    <string name="label_register_here">Daftar disini</string>
-    <string name="label_create_account">Buat Akun</string>
-    <string name="label_register_instruction">Buat akun dengan email dan \npassword kamu.</string>
-    <string name="label_fullname">Nama Lengkap</string>
-    <string name="hint_password">Minimal 8 karakter</string>
-    <string name="hint_fullname">Contoh : Bintang Putera</string>
-    <string name="label_confirm_password">Konfirmasi Password</string>
-    <string name="hint_confirm_password">Password harus sama</string>
-    <string name="action_register">Daftar</string>
-    <string name="action_register_with_google">Daftar dengan Google</string>
-    <string name="label_have_account">Sudah punya akun ?</string>
-    <string name="label_login_here">Masuk disini</string>
+
+    <!-- Onboarding Page -->
     <string name="label_skip">Skip ></string>
     <string name="label_welcome_enablers">Selamat Datang, TeDinians!</string>
     <string name="label_message_for_enablers">Salam hangat dari kami untuk para pengguna aplikasi ini, TeDinians.</string>
-    <string name="action_lanjut">Lanjut</string>
     <string name="label_enjoy_feature">Nikmati berbagai fitur aksesibilitas!</string>
     <string name="label_enjoy_the_feature">Aplikasi ini memiliki 4 fitur, yaitu Penerjemah BISINDO, Pendeteksi Mata Uang, Pendeteksi Objek, dan Pendeteksi Teks.</string>
     <string name="action_start">Mulai</string>
     <string name="action_finish">Selesai</string>
+    <string name="label_activate_talkback"><u>Ketuk disini untuk mengaktfikan fitur Talkback</u></string>
+    <string name="action_login_with_google">Masuk dengan Google</string>
+    <string name="label_TeDi_agreement">Dengan membuat akun berarti kamu setuju dengan <b><u>Ketentuan Layanan TeDi</u></b></string>
+    <string name="label_user_understand">Saya Mengerti</string>
+
+    <!--  Bottom Nav Menu  -->
     <string name="menu_home">Beranda</string>
     <string name="menu_TeDi">TeDi</string>
     <string name="menu_profile">Profil</string>
-    <string name="label_dummy_welcome">Selamat Datang, Bintang !</string>
+
+    <!-- Home Page -->
     <string name="label_feature">Fitur</string>
     <string name="label_bisindo_translator">Penerjemah BISINDO</string>
-
     <string name="label_currency_detection">Pendeteksi Mata Uang</string>
     <string name="label_text_detection">Pendeteksi Teks</string>
-    <string name="label_dummy_name">Bintang Putera</string>
-    <string name="label_dummy_email">bintangputera@gmail.com</string>
+
+    <!--  Profile Page  -->
     <string name="label_my_account">Akun Saya</string>
     <string name="label_help">Bantuan</string>
     <string name="label_fqa">Tanya Jawab</string>
     <string name="label_report_bug"><u>Laporkan Masalah</u></string>
     <string name="action_logout">Keluar</string>
-    <string name="message_information">Informasi</string>
-    <string name="message_login_failed">Username atau Password salah, silahkan coba lagi</string>
-    <string name="message_unknown_state">Unknown State</string>
-    <string name="hint_password_login">*********</string>
-    <string name="message_logout_confirmation">Anda yakin ingin keluar ?</string>
-    <string name="label_change_password">Ganti Password</string>
-    <string name="label_old_password">Password Lama</string>
-    <string name="label_new_password">Password baru</string>
-    <string name="action_save">Simpan</string>
-    <string name="title_my_account">Akun Saya</string>
-    <string name="label_activate_talkback"><u>Ketuk disini untuk mengaktfikan fitur Talkback</u></string>
-    <string name="label_try_ayo_camera">Coba AYO Kamera!</string>
-    <string name="label_TeDi_agreement">Dengan membuat akun berarti kamu setuju dengan <b><u>Ketentuan Layanan TeDi</u></b></string>
     <string name="label_about_TeDi">Tentang TeDi</string>
-    <string name="label_bug_happen">Terjadi masalah ?</string>
-    <string name="label_help_to_report_bug">Bantu kami menjadi lebih baik dengan laporkan masalahmu!</string>
-    <string name="label_name">Nama*</string>
-    <string name="label_identity">Identitas</string>
-    <string name="label_report">Laporan</string>
-    <string name="label_required">*Wajib diisi</string>
-    <string name="label_user_understand">Saya Mengerti</string>
-    <string name="label_term_and_agreement"><b>Syarat &amp; Ketentuan</b>\nDiperbarui pada 2022-06-10\n\n<b>Ketentuan Umum</b>\nDengan mengakses dan melakukan pemesanan dengan , Anda mengonfirmasi bahwa Anda setuju dan terikat dengan persyaratan layanan yang tercantum dalam Syarat &amp; Ketentuan yang diuraikan di bawah ini. Persyaratan ini berlaku untuk seluruh situs web dan email atau jenis komunikasi lainnya antara Anda.\n\nDalam keadaan apa pun tim tidak bertanggung jawab atas segala kerusakan langsung, tidak langsung, khusus, insidental atau konsekuensial, termasuk, namun tidak terbatas pada, kehilangan data atau keuntungan, yang timbul dari penggunaan, atau ketidakmampuan untuk menggunakan, materi di situs ini. , bahkan jika tim atau perwakilan resmi telah diberitahu tentang kemungkinan kerusakan tersebut. Jika penggunaan Anda atas materi dari situs ini mengakibatkan perlunya servis, perbaikan, atau koreksi peralatan atau data, Anda menanggung semua biayanya.\n\nTidak akan bertanggung jawab atas hasil apa pun yang mungkin terjadi selama penggunaan sumber daya kami. Kami berhak untuk mengubah harga dan merevisi kebijakan penggunaan sumber daya setiap saat.\n\n<b>Lisensi</b>\nTeDi memberi Anda lisensi terbatas yang dapat dibatalkan, non-eksklusif, tidak dapat dialihkan, untuk mengunduh, menginstal, dan menggunakan layanan kami secara ketat sesuai dengan ketentuan Perjanjian ini. Syarat &amp; Ketentuan ini adalah kontrak antara Anda dan TeDi (dalam Syarat &amp; Ketentuan ini disebut sebagai "TeDi", atau "milik kami"), penyedia situs web TeDi dan layanan yang dapat diakses dari situs web TeDi (yang secara bersama-sama disebut dalam Syarat &amp; Ketentuan ini sebagai "Layanan TeDi").\n\nAnda setuju untuk terikat dengan Syarat &amp; Ketentuan ini. Jika Anda tidak menyetujui Syarat &amp; Ketentuan ini, mohon untuk tidak menggunakan Layanan. Dalam Syarat &amp; Ketentuan ini, "Anda" merujuk kepada Anda sebagai individu dan entitas yang Anda wakili. Jika Anda melanggar salah satu dari Syarat &amp; Ketentuan ini, kami berhak untuk membatalkan akun Anda atau memblokir akses ke akun Anda tanpa pemberitahuan.</string>
-    <string name="label_emergency_contact">Kontak Darurat : %1$s</string>
 
+    <!--  Dialog  -->
+    <string name="message_information">Informasi</string>
+    <string name="message_unknown_state">Unknown State</string>
+    <string name="message_logout_confirmation">Anda yakin ingin keluar ?</string>
 
     <!-- Android Description For Activity Main Menu -->
     <string name="label_beranda_menu">Tombol Menuju Beranda</string>
@@ -164,7 +132,6 @@
     </string-array>
 
 
-
     <!-- Model Array end -->
     <!-- CloudFragment StringContent -->
     <string name="signLanguageModelCloud">SignLanguageModel</string>
@@ -182,14 +149,6 @@
     <string name="label_i_understand">Saya Mengerti</string>
     <string name="action_report">Laporkan</string>
 
-    <string name="default_web_client">76310350536-ttu13i6g4j27lm8hg06dvp3fj771ha5t.apps.googleusercontent.com</string>
-    <string name="label_report_char_counter">0/300</string>
-    <string name="title_report_bug">Laporkan Masalah</string>
-    <string name="message_report_success">Laporan berhasil ditambahkan</string>
-    <string name="message_must_not_null">Nama tidak boleh kosong</string>
-    <string name="message_email_not_null">Surel tidak boleh kosong</string>
-    <string name="message_report_must_not_null">Pesan tidak boleh kosong</string>
-
     <!-- Home Fragment Action -->
     <string name="action_object_detection">deteksiObjek</string>
     <string name="action_text_detection">deteksiTeks</string>
@@ -197,15 +156,12 @@
     <string name="action_color_detection">deteksiWarna</string>
     <string name="action_sign_language">bisindo</string>
 
-
     <string name="lorem_ipsum">Lorem Ipsum Dolor Sit amet</string>
     <string name="raw_sound_1">iPod</string>
     <string name="raw_sound_2">monitor</string>
     <string name="raw_sound_3">laptop</string>
     <string name="raw_sound_4">desktop computer</string>
     <string name="label_continue">Lanjut</string>
-    <string name="label_report_success_send">Laporan berhasil dikirim</string>
-    <string name="label_report_description">Keterangan*</string>
     <string name="raw_soundcurrency_seribu">seribu</string>
     <string name="raw_soundcurrency_duaribu">duaribu</string>
     <string name="raw_soundcurrency_limaribu">limaribu</string>
@@ -292,12 +248,13 @@
     <string name="raw_soundobj_boneka_beruang">boneka beruang</string>
     <string name="raw_soundobj_pengering_rambut">pengering rambut</string>
     <string name="raw_soundobj_sikat_gigi">sikat gigi</string>
+    <string name="raw_sound_mobil">car</string>
 
-
-
-
+    <!--  About Page  -->
     <string name="title_about_TeDi">Tentang TeDi</string>
     <string name="label_about">TeDi adalah start-up aplikasi aksesibilitas terpusat pertama di Indonesia. Kami memiliki tujuan untuk menyediakan layanan aplikasi aksesibilitas mobile kepada masyarakat Indonesia, terutama penyandang disabilitas untuk memudahkan difabel dalam berkomunikasi dan menjalani kehidupan sehari-hari.\n\nKami berusaha untuk memecahkan masalah nyata di masyarakat, terutama untuk kenyamanan para penyandang disabilitas untuk berinteraksi. Kami ingin memperjuangkan kesetaraan komunikasi, terlepas dari kekurangan apa yang dimiliki seseorang. Kami juga berencana untuk mengembangkan aplikasi ini menjadi aplikasi super aksesibilitas yang lebih canggih sehingga dapat digunakan oleh penyandang disabilitas khususnya di Indonesia.</string>
+
+    <!--  Help Page  -->
     <string name="label_ketentuanLayanan">Ketentuan Layanan</string>
     <string name="par_ketentuanLayanan"><b>Syarat &amp; Ketentuan</b>\nDiperbarui pada 2022-06-10\n\n<b>Ketentuan Umum</b>\nDengan mengakses dan melakukan pemesanan dengan , Anda mengonfirmasi bahwa Anda setuju dan terikat dengan persyaratan layanan yang tercantum dalam Syarat &amp; Ketentuan yang diuraikan di bawah ini. Persyaratan ini berlaku untuk seluruh situs web dan email atau jenis komunikasi lainnya antara Anda.\n\nDalam keadaan apa pun tim tidak bertanggung jawab atas segala kerusakan langsung, tidak langsung, khusus, insidental atau konsekuensial, termasuk, namun tidak terbatas pada, kehilangan data atau keuntungan, yang timbul dari penggunaan, atau ketidakmampuan untuk menggunakan, materi di situs ini. , bahkan jika tim atau perwakilan resmi telah diberitahu tentang kemungkinan kerusakan tersebut. Jika penggunaan Anda atas materi dari situs ini mengakibatkan perlunya servis, perbaikan, atau koreksi peralatan atau data, Anda menanggung semua biayanya.\n\nTidak akan bertanggung jawab atas hasil apa pun yang mungkin terjadi selama penggunaan sumber daya kami. Kami berhak untuk mengubah harga dan merevisi kebijakan penggunaan sumber daya setiap saat.\n\n<b>Lisensi</b>\nTeDi memberi Anda lisensi terbatas yang dapat dibatalkan, non-eksklusif, tidak dapat dialihkan, untuk mengunduh, menginstal, dan menggunakan layanan kami secara ketat sesuai dengan ketentuan Perjanjian ini. Syarat &amp; Ketentuan ini adalah kontrak antara Anda dan TeDi (dalam Syarat &amp; Ketentuan ini disebut sebagai "TeDi", atau "milik kami"), penyedia situs web TeDi dan layanan yang dapat diakses dari situs web TeDi (yang secara bersama-sama disebut dalam Syarat &amp; Ketentuan ini sebagai "Layanan TeDi").\n\nAnda setuju untuk terikat dengan Syarat &amp; Ketentuan ini. Jika Anda tidak menyetujui Syarat &amp; Ketentuan ini, mohon untuk tidak menggunakan Layanan. Dalam Syarat &amp; Ketentuan ini, "Anda" merujuk kepada Anda sebagai individu dan entitas yang Anda wakili. Jika Anda melanggar salah satu dari Syarat &amp; Ketentuan ini, kami berhak untuk membatalkan akun Anda atau memblokir akses ke akun Anda tanpa pemberitahuan. \n\n\n
     </string>
@@ -312,11 +269,14 @@
     <string name="label_cc_engineer_contact">Gilang Martadinata\nc2306h2613@bangkit.academy \nHazlan Muhammad Qodri\nc2297f2531@bangkit.academy</string>
     <string name="label_machine_learning_engineer">Machine Learning Engineer</string>
     <string name="label_cloud_engineer">Cloud Engineer</string>
+
+    <!--  FAQ Page  -->
     <string name="label_question_answer">Tanya Jawab</string>
     <string name="label_frequently_asked_question">Daftar pertanyaan yang sering ditanyakan pengguna TeDi.</string>
     <string name="label_what_is_TeDi">Apa itu TeDi ?</string>
     <string name="label_TeDi_meaning">TeDi adalah start-up aplikasi aksesibilitas terpusat pertama di Indonesia. Kami memiliki tujuan untuk menyediakan layanan aplikasi aksesibilitas mobile kepada masyarakat Indonesia, terutama penyandang disabilitas untuk memudahkan difabel dalam berkomunikasi dan menjalani kehidupan sehari-hari.</string>
-    <string name="raw_sound_mobil">car</string>
+
+
     <string name="onClickInfoObjectDetection">Ketuk dan Tahan Untuk mengetahui ada apa saja didepan anda</string>
     <string name="info_noObjectDetected">Tidak ada yang terdeteksi</string>
     <string name="info_layout_detection_suara">Nyalakan Atau Matikan Suara</string>
@@ -329,13 +289,7 @@
     <string name="active_currency_detection">Fitur Deteksi Uang Aktif</string>
     <string name="active_bisindo">Fitur Penerjemah Bisindo Aktif</string>
     <string name="label_beta">BETA</string>
-    <string name="label_detection_result">Hasil Deteksi</string>
-    <string name="sample_lorem">Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor. Aenean massa. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Donec quam felis, ultricies nec, pellentesque eu, pretium quis, sem. Nulla consequat massa quis enim. Donec</string>
-    <string name="label_redetect">Deteksi Ulang</string>
-    <string name="label_copy_text">Salin Teks</string>
-    <string name="label_text_copied">Teks telah disalin</string>
-    <string name="label_severity">Tingkat Keparahan*</string>
-    <string name="label_attachment">Lampiran (opsional)</string>
+
     <string name="title_warning">Peringatan</string>
     <string name="message_ask_camera_permission">Aplikasi ini menggunakan kamera gawai anda untuk dapat digunakan, Mohon Berikan Akses untuk kamera</string>
     <string name="action_give_access">Beri Akses</string>
@@ -345,18 +299,28 @@
     <string name="message_sound_activated">Suara Diaktifkan</string>
     <string name="message_sound_deactivated">Suara Dimatikan</string>
     <string name="message_permisson_not_granted">Permission not Granted</string>
+
+    <!-- Bug Report Feature -->
+    <string name="label_severity">Tingkat Keparahan*</string>
+    <string name="label_attachment">Lampiran (opsional)</string>
     <string name="label_choose_attachment">Pilih Lampiran</string>
-    <string name="label_need_emergency_help">Butuh Bantuan Darurat ?</string>
-    <string name="action_edit_emergency_contact">Edit Kontak Darurat</string>
-    <string name="label_edit_emergency_contact">Ubah Nomor Kontak Darurat</string>
-    <string name="hint_input_emergency_contact">Masukkan nomor kontak darurat</string>
-
-    <string name="write_your_text_here">Write your text here..</string>
-    <string name="writer">Writer</string>
-    <string name="info_dan">dan</string>
-    <string name="label_object_detection">Pendeteksi Objek</string>
-    <string name="message_text_not_detected">Text tidak terdeteksi</string>
-
+    <string name="label_name">Nama*</string>
+    <string name="label_identity">Identitas</string>
+    <string name="label_report">Laporan</string>
+    <string name="label_required">*Wajib diisi</string>
+    <string name="label_bug_happen">Terjadi masalah ?</string>
+    <string name="label_help_to_report_bug">Bantu kami menjadi lebih baik dengan laporkan masalahmu!</string>
+    <string name="label_report_char_counter">0/300</string>
+    <string name="title_report_bug">Laporkan Masalah</string>
+    <string name="message_report_success">Laporan berhasil ditambahkan</string>
+    <string name="message_must_not_null">Nama tidak boleh kosong</string>
+    <string name="message_email_not_null">Surel tidak boleh kosong</string>
+    <string name="message_report_must_not_null">Pesan tidak boleh kosong</string>
+    <string name="label_report_success_send">Laporan berhasil dikirim</string>
+    <string name="label_report_description">Keterangan*</string>
+    <string name="label_email">Surel</string>
+    <string name="hint_bug_report_notes">Jelaskan kendala yang kamu alami dalam menggunakan aplikasi ini</string>
+    <!--  Severity Level on Bug Report  -->
     <string-array name="array_severity_level">
         <item>Perlu diperbaiki segera mungkin</item>
         <item>Parah</item>
@@ -364,5 +328,28 @@
         <item>Kecil</item>
         <item>Saran</item>
     </string-array>
+
+    <!-- Text Detection Feature -->
+    <string name="label_detection_result">Hasil Deteksi</string>
+    <string name="label_redetect">Deteksi Ulang</string>
+    <string name="label_copy_text">Salin Teks</string>
+    <string name="label_text_copied">Teks telah disalin</string>
+
+    <!--  Family Help Feature  -->
+    <string name="label_need_emergency_help">Butuh Bantuan Darurat ?</string>
+    <string name="action_edit_emergency_contact">Edit Kontak Darurat</string>
+    <string name="label_edit_emergency_contact">Ubah Nomor Kontak Darurat</string>
+    <string name="hint_input_emergency_contact">Masukkan nomor kontak darurat</string>
+    <string name="action_save">Simpan</string>
+    <string name="label_emergency_contact">Kontak Darurat : %1$s</string>
+
+    <string name="write_your_text_here">Write your text here..</string>
+    <string name="writer">Writer</string>
+    <string name="info_dan">dan</string>
+    <string name="label_object_detection">Pendeteksi Objek</string>
+    <string name="message_text_not_detected">Text tidak terdeteksi</string>
+
+    <!--  Credential  -->
+    <string name="default_web_client">76310350536-ttu13i6g4j27lm8hg06dvp3fj771ha5t.apps.googleusercontent.com</string>
 
 </resources>
