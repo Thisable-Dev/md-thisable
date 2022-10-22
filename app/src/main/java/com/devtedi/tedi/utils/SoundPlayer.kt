@@ -16,30 +16,14 @@ class SoundPlayer private constructor(private val context: Context) {
 
     private fun getResources(label: String): Int? {
         return when (label) {
-
             // *********** Object Detection Resources *********** //
-            context.resources.getString(R.string.raw_soundobj_orang) -> {
-                R.raw.orang
-            }
-            context.resources.getString(R.string.raw_soundobj_sepeda) -> {
-                R.raw.sepeda
-            }
-            context.resources.getString(R.string.raw_soundobj_mobil) -> {
-                R.raw.mobil
-            }
-
-            context.resources.getString(R.string.raw_soundobj_sepedamotor) -> {
-                R.raw.sepedamotor
-            }
-            context.resources.getString(R.string.raw_soundobj_pesawat_terbang) -> {
-                R.raw.pesawatterbang
-            }
-            context.resources.getString(R.string.raw_soundobj_bis) -> {
-                R.raw.bis
-            }
+            context.resources.getString(R.string.raw_soundobj_orang) -> R.raw.orang
+            context.resources.getString(R.string.raw_soundobj_sepeda) -> R.raw.sepeda
+            context.resources.getString(R.string.raw_soundobj_mobil) -> R.raw.mobil
+            context.resources.getString(R.string.raw_soundobj_sepedamotor) -> R.raw.sepedamotor
+            context.resources.getString(R.string.raw_soundobj_pesawat_terbang) -> R.raw.pesawatterbang
+            context.resources.getString(R.string.raw_soundobj_bis) -> R.raw.bis
             context.resources.getString(R.string.raw_soundobj_kereta) -> R.raw.kereta
-
-
             context.resources.getString(R.string.raw_soundobj_truk) -> R.raw.truk
             context.resources.getString(R.string.raw_soundobj_kapal) -> R.raw.kapal
             context.resources.getString(R.string.raw_soundobj_lampu_lalu_lintas) -> R.raw.lampulalulintas
@@ -109,7 +93,6 @@ class SoundPlayer private constructor(private val context: Context) {
             context.resources.getString(R.string.raw_soundobj_boneka_beruang) -> R.raw.bonekaberuang
             context.resources.getString(R.string.raw_soundobj_pengering_rambut) -> R.raw.pengeringrambut
             context.resources.getString(R.string.raw_soundobj_sikat_gigi) -> R.raw.sikatgigi
-
 
             // *********** Currency Detection Resources *********** //
             context.resources.getString(R.string.raw_soundcurrency_seribu) -> {
