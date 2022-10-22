@@ -20,12 +20,7 @@ import com.devtedi.tedi.data.remote.general.report.ReportBugBody
 import com.devtedi.tedi.data.remote.general.request.FileRequest
 import com.devtedi.tedi.data.remote.general.request.SpecificationBody
 import com.devtedi.tedi.databinding.FragmentBugReportBinding
-import com.devtedi.tedi.utils.ext.clearText
-import com.devtedi.tedi.utils.ext.click
-import com.devtedi.tedi.utils.ext.disable
-import com.devtedi.tedi.utils.ext.getTotalMemories
-import com.devtedi.tedi.utils.ext.onTextChanged
-import com.devtedi.tedi.utils.ext.showToast
+import com.devtedi.tedi.utils.ext.*
 import com.devtedi.tedi.utils.getDeviceName
 import com.devtedi.tedi.utils.getDeviceVersion
 import com.devtedi.tedi.utils.hideLoading
@@ -36,9 +31,15 @@ import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.ktx.auth
 import com.google.firebase.ktx.Firebase
 import dagger.hilt.android.AndroidEntryPoint
+import okhttp3.MediaType
+import okhttp3.MediaType.Companion.toMediaType
 import okhttp3.MediaType.Companion.toMediaTypeOrNull
 import okhttp3.MultipartBody
+import okhttp3.Request
+import okhttp3.RequestBody
 import okhttp3.RequestBody.Companion.asRequestBody
+import okhttp3.RequestBody.Companion.toRequestBody
+import retrofit2.http.Multipart
 import timber.log.Timber
 import java.io.File
 
@@ -56,7 +57,13 @@ class BugReportFragment : Fragment() {
 
     private var fileRequest: FileRequest? = null
 
-    override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
+    private var imageMultipart: MultipartBody.Part? = null
+
+    override fun onCreateView(
+        inflater: LayoutInflater,
+        container: ViewGroup?,
+        savedInstanceState: Bundle?
+    ): View? {
         _fragmentReportBinding = FragmentBugReportBinding.inflate(inflater, container, false)
         return _fragmentReportBinding?.root
     }
@@ -121,26 +128,46 @@ class BugReportFragment : Fragment() {
                         }
                     }
                     else -> {
-                        fileRequest?.let {
-                            val reportBody = ReportBugBody(
-                                name = name,
-                                email = email,
-                                message = message,
-                                severity = severity,
-                                specificationBody = SpecificationBody(
-                                    phoneBrand = getDeviceName(),
-                                    ram = getTotalMemories(),
-                                    androidVersion = getDeviceVersion()
-                                ),
+                        /*val reportBody = ReportBugBody(
+                            name = name,
+                            email = email,
+                            message = message,
+                            severity = severity,
+                            specificationBody = SpecificationBody(
+                                phoneBrand = getDeviceName(),
+                                ram = getTotalMemories(),
+                                androidVersion = getDeviceVersion()
+                            ),
+                        )*/
+
+                        val bodyName = name.toRequestBody("multipart/form-data".toMediaTypeOrNull())
+                        val bodyEmail = email.toRequestBody("multipart/form-data".toMediaTypeOrNull())
+                        val bodyMessage = message.toRequestBody("multipart/form-data".toMediaTypeOrNull())
+                        val bodySeverity = severity.toRequestBody("multipart/form-data".toMediaTypeOrNull())
+                        val bodyPhoneBrand = getDeviceName().toRequestBody("multipart/form-data".toMediaTypeOrNull())
+                        val bodyRam = getTotalMemories().toString().toRequestBody("multipart/form-data".toMediaTypeOrNull())
+                        val bodyAndroidVersion = getDeviceVersion().toRequestBody("multipart/form-data".toMediaTypeOrNull())
+
+                        imageMultipart?.let {
+                            bugReportViewModel.addNewReportBug(
+                                bodyName,
+                                bodyEmail,
+                                bodyMessage,
+                                bodySeverity,
+                                bodyPhoneBrand,
+                                bodyRam,
+                                bodyAndroidVersion,
+                                it
                             )
-                            bugReportViewModel.addNewReportBug(reportBody, it)
                         }
                     }
                 }
             }
             btnAttachment.click {
                 val intent = Intent()
-                val mimeTypes = arrayOf("image/*", "application/pdf")
+                val mimeTypes = arrayOf(
+                    "image/png", "image/jpg", "image/jpeg", "image/gif", "application/pdf"
+                )
                 intent.action = ACTION_GET_CONTENT
                 intent.type = "*/*"
                 intent.putExtra(Intent.EXTRA_MIME_TYPES, mimeTypes)
@@ -169,7 +196,9 @@ class BugReportFragment : Fragment() {
                     binding.apply {
                         hideLoading(bgDim, progressBar)
                     }
-                    Snackbar.make(requireView(), response.errorMessage, Snackbar.LENGTH_SHORT).show()
+                    Snackbar.make(requireView(), response.errorMessage, Snackbar.LENGTH_SHORT)
+                        .show()
+                    Timber.e("Error <<<<<<<< ${response.errorMessage}");
                 }
                 else -> {
                     Timber.e(getString(string.message_unknown_state))
@@ -183,27 +212,21 @@ class BugReportFragment : Fragment() {
     ) { result ->
         if (result.resultCode == AppCompatActivity.RESULT_OK) {
             val selectedImg: Uri = result.data?.data as Uri
-            showToast(selectedImg.toString())
+            showToast(selectedImg.extension)
+
             val file = uriToFile(selectedImg, requireContext(), selectedImg)
 
-            val requestImageFile = file.asRequestBody("image/jpeg".toMediaTypeOrNull())
-            val imageMultipart = MultipartBody.Part.createFormData(
-                "photo",
+            val requestImageFile = file.asRequestBody("multipart/form-data".toMediaTypeOrNull())
+            imageMultipart = MultipartBody.Part.createFormData(
+                "file",
                 file.name,
                 requestImageFile
             )
 
-            val requestPdfFile = file.asRequestBody("application/pdf".toMediaTypeOrNull())
-            val pdfMultipart = MultipartBody.Part.createFormData(
-                "",
-                file.name,
-                requestImageFile
-            )
-
-            fileRequest =
+            /*fileRequest =
                 FileRequest(
                     photo = imageMultipart,
-                )
+                )*/
 
             uploadFile = file
             showToast(uploadFile.toString())
