@@ -10,14 +10,21 @@ import javax.inject.Inject
 import javax.inject.Singleton
 
 @Singleton
-class VisionApiDataSource @Inject constructor(private val service: VisionApiService){
+class VisionApiDataSource @Inject constructor(private val service: VisionApiService) {
 
-    suspend fun textDetection(apiKey: String, textDetectionRequest: TextDetectionRequest): Flow<ApiResponse<TextDetectionResponse>> {
+    suspend fun textDetection(
+        apiKey: String,
+        textDetectionRequest: TextDetectionRequest
+    ): Flow<ApiResponse<TextDetectionResponse>> {
         return flow {
             try {
                 emit(ApiResponse.Loading)
                 val response = service.textDetection(apiKey, textDetectionRequest)
-                emit(ApiResponse.Success(response))
+                if (response.responses[0].fullTextAnnotation == null) {
+                    emit(ApiResponse.Empty)
+                } else {
+                    emit(ApiResponse.Success(response))
+                }
             } catch (ex: Exception) {
                 emit(ApiResponse.Error(ex.message.toString()))
             }

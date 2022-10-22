@@ -72,9 +72,7 @@ class CurrencyFragment : Fragment(), FeatureBaseline, AnalyzerSubject {
     {
         prepareSound()
     }
-    private fun prepareSound()
-    {
-
+    private fun prepareSound() {
         sp = SoundPool.Builder()
             .setMaxStreams(10)
             .build()
@@ -85,7 +83,6 @@ class CurrencyFragment : Fragment(), FeatureBaseline, AnalyzerSubject {
                 setupCanPlaySound()
             }
             else {
-
                 setupCannotPlaySound()
             }
         }

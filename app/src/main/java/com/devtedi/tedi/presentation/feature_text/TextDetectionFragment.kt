@@ -15,6 +15,7 @@ import androidx.camera.lifecycle.ProcessCameraProvider
 import androidx.core.content.ContextCompat
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
+import com.devtedi.tedi.R
 import com.devtedi.tedi.analyzer.TextDetectionAnalyzer
 import com.devtedi.tedi.data.remote.ApiResponse
 import com.devtedi.tedi.data.remote.visionapi.model.FeatureItem
@@ -86,12 +87,18 @@ class TextDetectionFragment : Fragment() {
                 e.printStackTrace()
             }
         }
-        cameraProviderFuture.addListener(runnableInterface, ContextCompat.getMainExecutor(requireContext()))
+        cameraProviderFuture.addListener(
+            runnableInterface,
+            ContextCompat.getMainExecutor(requireContext())
+        )
     }
 
     override fun onResume() {
         super.onResume()
-        binding.viewFinder.performAccessibilityAction(AccessibilityNodeInfo.ACTION_ACCESSIBILITY_FOCUS, null)
+        binding.viewFinder.performAccessibilityAction(
+            AccessibilityNodeInfo.ACTION_ACCESSIBILITY_FOCUS,
+            null
+        )
         binding.viewFinder.sendAccessibilityEvent(AccessibilityEvent.TYPE_VIEW_FOCUSED)
         startCamera()
     }
@@ -142,14 +149,25 @@ class TextDetectionFragment : Fragment() {
                     checkLoading(false)
                     TextDetectionResultDialogFragment.newInstance(
                         response.data.responses[0].fullTextAnnotation.text
-                    ).show(childFragmentManager, TextDetectionResultDialogFragment::class.java.simpleName)
+                    ).show(
+                        childFragmentManager,
+                        TextDetectionResultDialogFragment::class.java.simpleName
+                    )
                 }
                 is ApiResponse.Error -> {
                     checkLoading(false)
                     Timber.e("Error visionapi : ${response.errorMessage}")
                     showToast(response.errorMessage)
                 }
-                else -> {}
+                else -> {
+                    checkLoading(false)
+                    TextDetectionResultDialogFragment.newInstance(
+                        getString(R.string.message_text_not_detected)
+                    ).show(
+                        childFragmentManager,
+                        TextDetectionResultDialogFragment::class.java.simpleName
+                    )
+                }
             }
         }
     }
