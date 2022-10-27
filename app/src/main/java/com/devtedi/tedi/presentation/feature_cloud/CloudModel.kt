@@ -309,4 +309,12 @@ object CloudModel : CloudModelSubject {
         }
     }
 
+    override fun notifyObserverFailure() {
+
+        for(o in observers)
+        {
+            o.updateFailureObserver()
+        }
+    }
+
 }

@@ -10,6 +10,8 @@ import org.opencv.android.Utils
 import org.opencv.core.*
 import org.opencv.imgproc.Imgproc
 import java.lang.StringBuilder
+import java.util.*
+import kotlin.collections.ArrayList
 
 class ColorGenerator(private val context : Activity, private val inputImage : Bitmap) : ColorStore(context){
 
@@ -31,6 +33,7 @@ class ColorGenerator(private val context : Activity, private val inputImage : Bi
 
         val contours : MutableList<MatOfPoint> = mutableListOf()
         var bboxContour : Rect = Rect()
+        val listOfAreaMaps : MutableMap<Double, String> = mutableMapOf()
 
         Imgproc.cvtColor(maskColor, maskColor, Imgproc.COLOR_BGR2GRAY)
         Imgproc.findContours(
@@ -43,7 +46,7 @@ class ColorGenerator(private val context : Activity, private val inputImage : Bi
 
         for(c in contours)
         {
-            val area = Imgproc.contourArea(c)
+            val area : Double = Imgproc.contourArea(c)
             if(area > thresholdArea )
             {
                 bboxContour = Imgproc.boundingRect(c)
@@ -66,11 +69,28 @@ class ColorGenerator(private val context : Activity, private val inputImage : Bi
                     2.0,
                     defaultColor
                 )
-
-                addColor(colorName)
+                listOfAreaMaps[area] = colorName
+                //addColor(colorName)
             }
         }
+        if(listOfAreaMaps.isNotEmpty())
+        findMaximum(listOfAreaMaps)
+    }
 
+    private fun findMaximum(listOfAreaMaps : MutableMap<Double, String>)
+    {
+        val sortedKeys = listOfAreaMaps.keys.sortedDescending()
+        if(sortedKeys.size == 1) {
+            val maximunOne  : Double = sortedKeys[0]
+            addColor(listOfAreaMaps[maximunOne] as String)
+        }
+        else
+        {
+            val maximunOne: Double = sortedKeys[0]
+            val maximumTwo: Double= sortedKeys[1]
+            addColor(listOfAreaMaps[maximunOne] as String)
+            addColor(listOfAreaMaps[maximumTwo] as String)
+        }
     }
 
     private fun checkColorImage()
@@ -115,7 +135,6 @@ class ColorGenerator(private val context : Activity, private val inputImage : Bi
             }
             else
             {
-//                stringBuilder.append("dan"))
                 stringBuilder.append(stringResult[indx])
             }
         }

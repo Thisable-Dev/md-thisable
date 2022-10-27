@@ -205,6 +205,7 @@
     <string name="raw_soundobj_tongkat_bisbol">tongkat bisbol</string>
     <string name="raw_soundobj_sarung_bisbol">sarung tangan bisbol</string>
     <string name="raw_soundobj_skateboard">skateboard</string>
+
     <!-- Check bagian yang ini<string name="raw_soundobj_papan"-->
     <string name="raw_soundobj_raket_tenis">raket tenis</string>
     <string name="raw_soundobj_botol">botol</string>
@@ -319,6 +320,7 @@
     <string name="label_report_description">Keterangan*</string>
     <string name="label_email">Surel</string>
     <string name="hint_bug_report_notes">Jelaskan kendala yang kamu alami dalam menggunakan aplikasi ini</string>
+
     <!--  Severity Level on Bug Report  -->
     <string-array name="array_severity_level">
         <item>Perlu diperbaiki segera mungkin</item>
@@ -333,6 +335,7 @@
     <string name="label_redetect">Deteksi Ulang</string>
     <string name="label_copy_text">Salin Teks</string>
     <string name="label_text_copied">Teks telah disalin</string>
+
 
     <!--  Family Help Feature  -->
     <string name="label_need_emergency_help">Butuh Bantuan Darurat ?</string>

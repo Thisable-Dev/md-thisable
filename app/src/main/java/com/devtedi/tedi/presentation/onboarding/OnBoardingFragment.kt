@@ -19,7 +19,9 @@ import com.devtedi.tedi.R
 import com.devtedi.tedi.R.string
 import com.devtedi.tedi.databinding.FragmentOnboardingBinding
 import com.devtedi.tedi.interfaces.observer_cloud.CloudModelObserver
+import com.devtedi.tedi.interfaces.observer_cloudstorage.CloudStorageObserver
 import com.devtedi.tedi.presentation.feature_cloud.CloudModel
+import com.devtedi.tedi.presentation.feature_cloud.CloudStorage
 import com.devtedi.tedi.utils.ConstVal
 import com.devtedi.tedi.utils.SharedPrefManager
 import com.devtedi.tedi.utils.ext.click
@@ -35,12 +37,16 @@ import com.google.firebase.auth.ktx.auth
 import com.google.firebase.ktx.Firebase
 import timber.log.Timber
 
-class OnBoardingFragment : Fragment(), CloudModelObserver {
+class OnBoardingFragment : Fragment(), CloudModelObserver, CloudStorageObserver {
 
     private lateinit var oneTapClient: GoogleSignInClient
     private lateinit var auth: FirebaseAuth
+
     private var modelCounterDownload : Int = 0
+    private var labelCounterDownload : Int = 0
+
     private var booleanModelDownloaded : Boolean = true
+    private var booleanLabelsDownloaded : Boolean = true
 
     private var _fragmentOnBoardingBinding: FragmentOnboardingBinding? = null
     private val binding get() = _fragmentOnBoardingBinding!!
@@ -73,8 +79,7 @@ class OnBoardingFragment : Fragment(), CloudModelObserver {
     {
         if( pref.getObjectDetectorPath.isNullOrEmpty()  &&
             pref.getCurrencyDetectorPath.isNullOrEmpty()  &&
-            pref.getSignLanguagePath.isNullOrEmpty() && modelCounterDownload <= 3
-        )
+            pref.getSignLanguagePath.isNullOrEmpty() && modelCounterDownload <= 3)
         {
             booleanModelDownloaded = false
             showToast("Downloading the model ...")
@@ -84,6 +89,15 @@ class OnBoardingFragment : Fragment(), CloudModelObserver {
             CloudModel.downloadCurrencyDetectionModel()
             CloudModel.downloadSignLanguageModel()
         }
+
+        if ( pref.getSignLanguageLabelPath.isNullOrEmpty() &&
+             pref.getCurrencyDetectorLabelPath.isNullOrEmpty() &&
+             pref.getObjectDetectorLabelPath.isNullOrEmpty()   )
+        {
+            booleanLabelsDownloaded = false
+
+            CloudStorage.downloadLabelFiles()
+        }
     }
 
     private fun UIDownloadState(state : Boolean)
@@ -92,14 +106,17 @@ class OnBoardingFragment : Fragment(), CloudModelObserver {
         {
             binding.viewBgDownload.visibility = View.VISIBLE
             binding.pbLoadingModel.visibility = View.VISIBLE
+            binding.tvInfoModelLoading.visibility = View.VISIBLE
+
             binding.viewBgDownload.setOnClickListener {
-                Toast.makeText(requireContext(), "StillDownloading Model, Please wait !!", Toast.LENGTH_SHORT).show()
+                Toast.makeText(requireContext(), "StillDownloading Model, $modelCounterDownload / 3", Toast.LENGTH_SHORT).show()
             }
         }
         else
         {
             binding.viewBgDownload.visibility = View.INVISIBLE
             binding.pbLoadingModel.visibility = View.INVISIBLE
+            binding.tvInfoModelLoading.visibility = View.INVISIBLE
         }
     }
     private fun initAuth() {
@@ -147,6 +164,7 @@ class OnBoardingFragment : Fragment(), CloudModelObserver {
             }
         checkPermission(requestPermissionLauncher)
     }
+
 /*
     private fun btnState()
     {
@@ -168,7 +186,6 @@ class OnBoardingFragment : Fragment(), CloudModelObserver {
             signIn()
         }
         binding.btnNext.click {
-            Log.d("DOWNLOADTAGS",modelCounterDownload.toString())
             findNavController().navigate(R.id.action_onBoardingFragment_to_coreActivity)
         }
         binding.tvAbout.click {
@@ -230,7 +247,7 @@ class OnBoardingFragment : Fragment(), CloudModelObserver {
     override fun updateObserver() {
         modelCounterDownload += 1
         showToast("Downloading model $modelCounterDownload / 3")
-        Log.d("DOWNLOADTAGS", "$modelCounterDownload / 3")
+        //Log.d("DOWNLOADTAGS", "$modelCounterDownload / 3")
         if(modelCounterDownload == 3)
         {
             showToast("Downloading Successfully ")
@@ -248,5 +265,30 @@ class OnBoardingFragment : Fragment(), CloudModelObserver {
            // btnState()
             UIDownloadState(false)
         }
+    }
+
+    private fun handleDownloadLabels()
+    {
+        labelCounterDownload += 1
+
+        if(labelCounterDownload == 3)
+        {
+
+        }
+
+    }
+
+    override fun updateFailureObserver() {
+        //TODO( Nambahin UpdateFailureObserver)
+    }
+
+    override fun updateObserverCloudStorageSuccess() {
+
+        handleDownloadLabels()
+        booleanLabelsDownloaded = true
+    }
+
+    override fun updateObserverCloudStorageFailure() {
+
     }
 }

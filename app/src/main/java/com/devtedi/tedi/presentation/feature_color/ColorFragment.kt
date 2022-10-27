@@ -16,6 +16,7 @@ import com.devtedi.tedi.R
 import com.devtedi.tedi.analyzer.ColorDetectionAnalyzer
 import com.devtedi.tedi.databinding.FragmentColorBinding
 import com.devtedi.tedi.factory.ColorGenerator
+import com.devtedi.tedi.utils.SoundPlayer
 import com.devtedi.tedi.utils.scaleBitmapDown
 import org.opencv.android.OpenCVLoader
 import java.io.ByteArrayOutputStream
@@ -56,6 +57,7 @@ class ColorFragment : Fragment() {
     private fun initAction() {
         binding.btnCapture.setOnClickListener {
             val image = colorAnalyzer.getDetectedImage()
+            SoundPlayer.getInstance(requireContext()).playSound("anjing")
             if (image != null)
             {
                 val currImage = scaleBitmapDown(image, maxDimension)

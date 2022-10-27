@@ -25,7 +25,9 @@
         <activity
             android:name="com.devtedi.tedi.MainActivity"
             android:launchMode="singleTop"
-            android:exported="true">
+            android:exported="true"
+            android:screenOrientation="portrait"
+            >
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
@@ -33,7 +35,9 @@
             </intent-filter>
         </activity>
         <activity android:name="com.devtedi.tedi.CoreActivity"
-            android:windowSoftInputMode="adjustNothing">
+            android:windowSoftInputMode="adjustNothing"
+            android:screenOrientation="portrait"
+            >
 
         </activity>
         <meta-data

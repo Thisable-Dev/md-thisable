@@ -2,6 +2,7 @@ package com.devtedi.tedi.utils
 
 import android.content.Context
 import android.content.SharedPreferences
+import com.devtedi.tedi.utils.ConstVal.IS_NOTIFICATION_INITIATED
 import com.devtedi.tedi.utils.ConstVal.KEY_EMAIL
 import com.devtedi.tedi.utils.ConstVal.KEY_EMERGENCY_CONTACT
 import com.devtedi.tedi.utils.ConstVal.KEY_IS_INTRO
@@ -9,6 +10,9 @@ import com.devtedi.tedi.utils.ConstVal.KEY_IS_LOGIN
 import com.devtedi.tedi.utils.ConstVal.KEY_TOKEN
 import com.devtedi.tedi.utils.ConstVal.KEY_USER_ID
 import com.devtedi.tedi.utils.ConstVal.KEY_USER_NAME
+import com.devtedi.tedi.utils.ConstVal.LOCAL_LABEL_MODEL_PATH_CD
+import com.devtedi.tedi.utils.ConstVal.LOCAL_LABEL_MODEL_PATH_OD
+import com.devtedi.tedi.utils.ConstVal.LOCAL_LABEL_MODEL_PATH_SL
 import com.devtedi.tedi.utils.ConstVal.LOCAL_MODEL_PATH_CD
 import com.devtedi.tedi.utils.ConstVal.LOCAL_MODEL_PATH_OD
 import com.devtedi.tedi.utils.ConstVal.LOCAL_MODEL_PATH_SL
@@ -43,9 +47,17 @@ class SharedPrefManager(context: Context) {
     val isIntro = prefs.getBoolean(KEY_IS_INTRO, false)
     val getEmergencyContact = prefs.getString(KEY_EMERGENCY_CONTACT, "");
 
+    // ModelPath
     val getSignLanguagePath = prefs.getString(LOCAL_MODEL_PATH_SL, "");
     val getCurrencyDetectorPath = prefs.getString(LOCAL_MODEL_PATH_CD, "");
     val getObjectDetectorPath = prefs.getString(LOCAL_MODEL_PATH_OD, "")
 
+    // LabelPath
+    val getSignLanguageLabelPath = prefs.getString(LOCAL_LABEL_MODEL_PATH_SL, "")
+    val getObjectDetectorLabelPath = prefs.getString(LOCAL_LABEL_MODEL_PATH_OD, "")
+    val getCurrencyDetectorLabelPath = prefs.getString(LOCAL_LABEL_MODEL_PATH_CD, "")
+
+    // Notification
+    public val getIsNotificationInitiated = prefs.getBoolean(IS_NOTIFICATION_INITIATED, false)
 
 }

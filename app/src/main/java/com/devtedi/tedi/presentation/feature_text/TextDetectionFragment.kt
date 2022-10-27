@@ -26,6 +26,7 @@ import com.devtedi.tedi.databinding.FragmentTextDetectionBinding
 import com.devtedi.tedi.presentation.dialog.TextDetectionResultDialogFragment
 import com.devtedi.tedi.utils.ConstVal.API_KEY
 import com.devtedi.tedi.utils.FrameMetadata
+import com.devtedi.tedi.utils.SoundPlayer
 import com.devtedi.tedi.utils.ext.click
 import com.devtedi.tedi.utils.ext.disable
 import com.devtedi.tedi.utils.ext.enable
@@ -111,6 +112,7 @@ class TextDetectionFragment : Fragment() {
     private fun initAction() {
         binding.btnCapture.click {
             val image = textDetectionAnalyzer.getDetectedImage()
+            SoundPlayer.getInstance(requireContext()).playSound("anjing")
             if (image != null) {
                 val metadata = FrameMetadata(image.width, image.height, 0)
                 val currImage = scaleBitmapDown(image, 640)

@@ -26,4 +26,12 @@ object ConstVal {
     const val LOCAL_MODEL_PATH_OD : String = "LocalModelObjectDetection"
     const val LOCAL_MODEL_PATH_SL : String = "LocalModelSignlanguage"
     const val LOCAL_MODEL_PATH_CD : String = "LocalModelCurrencyDetection"
+
+    // LocalTxtPath if Exists
+    const val LOCAL_LABEL_MODEL_PATH_OD : String = "LocalModelObjectDetection"
+    const val LOCAL_LABEL_MODEL_PATH_SL : String = "LocalModelSignlanguage"
+    const val LOCAL_LABEL_MODEL_PATH_CD : String = "LocalModelCurrencyDetection"
+
+    // Notification If Exists
+    const val IS_NOTIFICATION_INITIATED : String = "notification.initiated"
 }

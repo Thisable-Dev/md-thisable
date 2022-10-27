@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout
+<androidx.constraintlayout.widget.ConstraintLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
@@ -13,13 +13,18 @@
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        tools:ignore="MissingConstraints">
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        >
 
         <androidx.camera.view.PreviewView
 
             android:id="@+id/camera_preview_wrap"
             android:layout_width="0dp"
             android:layout_height="0dp"
+            android:elevation="2dp"
             android:contentDescription="@string/label_signLanguage_previewView"
             android:background="#00000000"
             app:layout_constraintBottom_toTopOf="@id/card_terjemahan"
@@ -58,6 +63,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:background="@color/white"
+            android:elevation="2dp"
             android:layout_marginBottom="20dp"
             app:cardCornerRadius="5dp"
             app:layout_constraintEnd_toEndOf="parent"
@@ -69,7 +75,6 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:orientation="vertical">
-
 
                 <TextView
                     android:id="@+id/tvResultTitle"
@@ -87,6 +92,7 @@
                     android:focusable="false"
                     android:gravity="start"
                     android:padding="15dp" />
+
             </LinearLayout>
         </androidx.cardview.widget.CardView>
 
@@ -97,6 +103,10 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:visibility="invisible"
-        android:layout_centerInParent="true" />
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        />
 
-</RelativeLayout>
+</androidx.constraintlayout.widget.ConstraintLayout>
