@@ -7,6 +7,7 @@ import com.devtedi.tedi.BuildConfig
 import com.devtedi.tedi.interfaces.observer_cloudstorage.CloudStorageObserver
 import com.devtedi.tedi.interfaces.observer_cloudstorage.CloudStorageSubject
 import com.devtedi.tedi.utils.ConstVal
+import com.devtedi.tedi.utils.isEndWithTxt
 import com.google.firebase.storage.FirebaseStorage
 import com.google.firebase.storage.StorageReference
 import java.io.File
@@ -125,7 +126,7 @@ object CloudStorage : CloudStorageSubject {
 
                                     if( isTwoFileDifferent(originalFileObjectDetection.toPath(), tempFile.toPath()))
                                     {
-                                        Log.d("DEBUGTAGS", "F")
+                                        Log.d("DEBUGTAGS", "ObjectDetectionDifferent")
                                         val originalFile = saveToPermanentFile(targetPath, tempFile )
                                         successListener(prefix, originalFile.path)
                                     }
@@ -137,6 +138,7 @@ object CloudStorage : CloudStorageSubject {
 
                                     if( isTwoFileDifferent(originalFileSignLanguage.toPath(), tempFile.toPath()))
                                     {
+                                        Log.d("DEBUGTAGS", "SignLanguageDifferent")
                                         val originalFile = saveToPermanentFile(targetPath, tempFile )
                                         successListener(prefix, originalFile.path)
                                     }
@@ -149,6 +151,7 @@ object CloudStorage : CloudStorageSubject {
                     }
                     .addOnFailureListener {
                         // nanti ini dimasukin failure
+                        failureListener()
                     }
 
             }
@@ -171,11 +174,15 @@ object CloudStorage : CloudStorageSubject {
                 labelFileSignLanguage = path
             }
         }
+
         updateObserverSuccess()
     }
 
     private fun failureListener()
     {
+        clearCacheLabels()
+        clearTheLabelFile()
+        clearTheFiles()
         updateObserverFailure()
     }
 
@@ -222,6 +229,45 @@ object CloudStorage : CloudStorageSubject {
         }.toString())
 
         saveToLocalFile(PREFIX_SL, SUFFIX_ALL, gsReferenceSignLanguageFile)
+    }
+
+
+    private fun clearCacheLabels()
+    {
+        // Clear the cache
+        val pathToDelete  : File = File(StringBuilder().apply {
+            append(ConstVal.ABSOLUTE_PATH)
+            append("/cache/")
+        }.toString())
+
+        if(pathToDelete.isDirectory)  {
+            pathToDelete.listFiles().forEach {
+                if(isEndWithTxt(it.path)) {
+                    it.delete()
+                    Log.d("DEBUGTAGS", "Deleted ${it.toString()}")
+                }
+            }
+        }
+    }
+
+    private fun clearTheFiles()
+    {
+        labelFileCurrencyDetection = null
+        labelFileSignLanguage = null
+        labelFileObjectDetection = null
+    }
+
+    private fun clearTheLabelFile()
+    {
+        // Cleat the label File
+        val pathToDelete : File = File(ConstVal.ABSOLUTE_PATH)
+        pathToDelete.listFiles().forEach {
+            if(isEndWithTxt(it.path))
+            {
+                it.delete()
+                Log.d("DEBUGTAGS", "Deleted ${it.toString()}")
+            }
+        }
     }
 
     override fun registerObserver(o: CloudStorageObserver) {
