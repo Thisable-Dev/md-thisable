@@ -78,7 +78,7 @@ class OnBoardingFragment : Fragment(), CloudModelObserver, CloudStorageObserver 
     {
         if( pref.getObjectDetectorPath.isNullOrEmpty()  &&
             pref.getCurrencyDetectorPath.isNullOrEmpty()  &&
-            pref.getSignLanguagePath.isNullOrEmpty() && modelCounterDownload <= TOTAL_MODEL)
+            pref.getSignLanguagePath.isNullOrEmpty())
         {
             booleanModelDownloaded = false
             showToast("Downloading the model ...")
@@ -89,7 +89,7 @@ class OnBoardingFragment : Fragment(), CloudModelObserver, CloudStorageObserver 
 
             if ( pref.getSignLanguageLabelPath.isNullOrEmpty() &&
                 pref.getCurrencyDetectorLabelPath.isNullOrEmpty() &&
-                pref.getObjectDetectorLabelPath.isNullOrEmpty()  && labelCounterDownload <= TOTAL_LABEL )
+                pref.getObjectDetectorLabelPath.isNullOrEmpty())
             {
                 booleanLabelsDownloaded = false
 
