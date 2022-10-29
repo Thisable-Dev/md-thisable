@@ -14,15 +14,16 @@ import androidx.activity.result.contract.ActivityResultContracts.StartActivityFo
 import androidx.core.content.ContextCompat
 import androidx.core.view.isGone
 import androidx.fragment.app.Fragment
+import androidx.lifecycle.Observer
 import androidx.navigation.fragment.findNavController
 import com.devtedi.tedi.R
-import com.devtedi.tedi.R.string
 import com.devtedi.tedi.databinding.FragmentOnboardingBinding
 import com.devtedi.tedi.interfaces.observer_cloud.CloudModelObserver
 import com.devtedi.tedi.interfaces.observer_cloudstorage.CloudStorageObserver
 import com.devtedi.tedi.presentation.feature_cloud.CloudModel
 import com.devtedi.tedi.presentation.feature_cloud.CloudStorage
 import com.devtedi.tedi.utils.ConstVal
+import com.devtedi.tedi.utils.InternetConnectivityLiveData
 import com.devtedi.tedi.utils.SharedPrefManager
 import com.devtedi.tedi.utils.ext.click
 import com.devtedi.tedi.utils.ext.showToast
@@ -52,6 +53,8 @@ class OnBoardingFragment : Fragment(), CloudModelObserver, CloudStorageObserver 
 
     private lateinit var pref: SharedPrefManager
 
+    private lateinit var connectivityStatus: InternetConnectivityLiveData
+
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
@@ -69,11 +72,24 @@ class OnBoardingFragment : Fragment(), CloudModelObserver, CloudStorageObserver 
         initAuth()
         initAction()
         askPermission()
+        observeConnectivity()
         //btnState()
     }
 
-    fun checkLatestModel() {
+    private fun observeConnectivity() {
+        connectivityStatus = InternetConnectivityLiveData(requireContext())
 
+        val observer = Observer<InternetConnectivityLiveData.Status> {
+            when (it) {
+                InternetConnectivityLiveData.Status.Connected -> {}
+                InternetConnectivityLiveData.Status.NotConnected -> {
+                    showDownloadUI(false)
+                    showToast(getString(R.string.info_no_wifi_connection))
+                }
+                null -> {}
+            }
+        }
+        connectivityStatus.observe(viewLifecycleOwner, observer)
     }
 
     private fun prepareTheModel() {
@@ -97,13 +113,13 @@ class OnBoardingFragment : Fragment(), CloudModelObserver, CloudStorageObserver 
                 CloudStorage.getLabelFilesFromCloud()
 
             }
-            if (!booleanModelDownloaded && !booleanLabelsDownloaded) UIDownloadState(true)
+            if (!booleanModelDownloaded && !booleanLabelsDownloaded) showDownloadUI(true)
         }
 
 
     }
 
-    private fun UIDownloadState(state: Boolean) {
+    private fun showDownloadUI(state: Boolean) {
         if (state) {
             binding.viewBgDownload.visibility = View.VISIBLE
             binding.pbLoadingModel.visibility = View.VISIBLE
@@ -123,8 +139,8 @@ class OnBoardingFragment : Fragment(), CloudModelObserver, CloudStorageObserver 
     private fun initAuth() {
         val gso = GoogleSignInOptions
             .Builder(GoogleSignInOptions.DEFAULT_SIGN_IN)
-            .requestIdToken(getString(string.default_web_client))
-            .requestServerAuthCode(getString(string.default_web_client))
+            .requestIdToken(getString(R.string.default_web_client))
+            .requestServerAuthCode(getString(R.string.default_web_client))
             .requestEmail()
             .build()
 
@@ -144,13 +160,13 @@ class OnBoardingFragment : Fragment(), CloudModelObserver, CloudStorageObserver 
             }
             else -> {
                 val dialog: AlertDialog = AlertDialog.Builder(requireContext())
-                    .setTitle(getString(string.title_warning))
-                    .setMessage(getString(string.message_ask_camera_permission))
-                    .setPositiveButton(getString(string.action_give_access)) { _, _ ->
+                    .setTitle(getString(R.string.title_warning))
+                    .setMessage(getString(R.string.message_ask_camera_permission))
+                    .setPositiveButton(getString(R.string.action_give_access)) { _, _ ->
                         requestPermissionLauncher.launch(android.Manifest.permission.CAMERA)
                     }
-                    .setNegativeButton(getString(string.action_no)) { _, _ ->
-                        showToast(getString(string.message_app_will_close))
+                    .setNegativeButton(getString(R.string.action_no)) { _, _ ->
+                        showToast(getString(R.string.message_app_will_close))
                         requireActivity().finish()
                     }.create()
                 dialog.show()
@@ -164,7 +180,7 @@ class OnBoardingFragment : Fragment(), CloudModelObserver, CloudStorageObserver 
                 if (is_granted) {
                     //
                     prepareTheModel()
-                    showToast(getString(string.message_now_you_can_use_the_app))
+                    showToast(getString(R.string.message_now_you_can_use_the_app))
                 }
             }
         checkPermission(requestPermissionLauncher)
@@ -225,7 +241,7 @@ class OnBoardingFragment : Fragment(), CloudModelObserver, CloudStorageObserver 
                 Timber.w("Google sign in failed : $e")
             }
         } else {
-            showToast("Login Failed ${result}")
+            showToast("Login Failed $result")
         }
     }
 
@@ -278,7 +294,7 @@ class OnBoardingFragment : Fragment(), CloudModelObserver, CloudStorageObserver 
 
             booleanModelDownloaded = true
             // btnState()
-            UIDownloadState(false)
+            showDownloadUI(false)
         }
     }
 
@@ -307,7 +323,7 @@ class OnBoardingFragment : Fragment(), CloudModelObserver, CloudStorageObserver 
 
     override fun updateFailureObserver(message: String) {
         showToast(message)
-        UIDownloadState(false)
+        showDownloadUI(false)
         showRetryDialog(false)
     }
 
