@@ -12,7 +12,7 @@ android {
 
     defaultConfig {
         buildConfigField("String", "BASE_URL", '"http://34.101.177.97:5000/"')
-        buildConfigField("String", "API_KEY", '"eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwibmFtZSI6IkhhemxhbiBNdWhhbW1hZCBRb2RyaSIsImlhdCI6MTY1NDA3OTM2NH0.bMzTbHT9WEnOQUA3vZNL32K9slNf77_IpECsZ6xUL9c"')
+        buildConfigField("String", "API_KEY", '"eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwiaWF0IjoxNjY2NzMwMjIxfQ.SpgrDKCAns394l0JnWTv-42eqrOrVlLLAeazzZ1WNK8"')
         buildConfigField("String", "FIREBASE_STORAGE_PATH", '"gs://devthisable.appspot.com"')
         buildConfigField("String", "CURRENCY_DETECTION_STORAGE_PATH", '"https://firebasestorage.googleapis.com/v0/b/devthisable.appspot.com/o/labels%2Flabel_currency.txt?alt=media"')
         buildConfigField("String", "OBJECT_DETECTION_STORAGE_PATH", '"https://firebasestorage.googleapis.com/v0/b/devthisable.appspot.com/o/labels%2Flabel_obj_detection.txt?alt=media"')
@@ -124,13 +124,15 @@ dependencies {
     implementation("org.jetbrains.kotlinx:kotlinx-coroutines-core:1.6.1")
     implementation 'androidx.legacy:legacy-support-v4:1.0.0'
 
-
     //firebase and mlkit
     def bomversion = "31.0.0"
     def firebaseMlVersion = "24.1.0"
     implementation platform("com.google.firebase:firebase-bom:$bomversion")
     implementation "com.google.firebase:firebase-ml-modeldownloader-ktx:$firebaseMlVersion"
     implementation "com.google.firebase:firebase-storage-ktx"
+
+    // Worker
+    implementation "androidx.work:work-runtime-ktx:2.7.1"
 
     implementation 'androidx.core:core-ktx:1.7.0'
     implementation 'androidx.appcompat:appcompat:1.4.2'

@@ -28,7 +28,6 @@ class GeneralDataSource @Inject constructor(private val service: GeneralService)
         file: MultipartBody.Part
     ): Flow<ApiResponse<BugReportResponse>> {
         return flow {
-            val token = BuildConfig.API_KEY
             try {
                 emit(ApiResponse.Loading)
                 val response = service.addReportBug(
@@ -39,8 +38,7 @@ class GeneralDataSource @Inject constructor(private val service: GeneralService)
                     phoneBrand,
                     ram,
                     androidVersion,
-                    file,
-                    token
+                    file
                 )
                 if (response.error!!) {
                     emit(ApiResponse.Error(response.message.toString()))

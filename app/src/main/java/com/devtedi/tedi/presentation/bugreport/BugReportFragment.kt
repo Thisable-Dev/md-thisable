@@ -197,11 +197,6 @@ class BugReportFragment : Fragment() {
                 requestImageFile
             )
 
-            /*fileRequest =
-                FileRequest(
-                    photo = imageMultipart,
-                )*/
-
             uploadFile = file
             showToast(uploadFile.toString())
         }

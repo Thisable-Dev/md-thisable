@@ -15,9 +15,12 @@ import androidx.core.content.ContextCompat
 import androidx.fragment.app.Fragment
 import com.devtedi.tedi.R
 import com.devtedi.tedi.databinding.FragmentFamilyHelpBinding
+import com.devtedi.tedi.utils.ConstVal
+import com.devtedi.tedi.utils.ConstVal.KEY_EMERGENCY_CONTACT
 import com.devtedi.tedi.utils.SharedPrefManager
 import com.devtedi.tedi.utils.ext.click
 import com.devtedi.tedi.utils.ext.showDataBottomSheet
+import com.devtedi.tedi.utils.ext.showToast
 import timber.log.Timber
 
 
@@ -63,60 +66,28 @@ class FamilyHelpFragment : Fragment() {
                     binding.tvEmergencyContact.text =
                         getString(R.string.label_emergency_contact, it)
                     phoneNumber = it
+                    saveNewEmergencyContact(phoneNumber)
                 }
             })
         }
         binding.btnCall.click {
-            val intent = Intent(Intent.ACTION_CALL)
-            intent.data = Uri.parse("tel:${phoneNumber}")
-            startActivity(intent)
+            if (pref.getEmergencyContact.isNullOrEmpty()) {
+                showDataBottomSheet(listener = {
+                    showToast(it)
+                    if (it.isNotEmpty()) {
+                        binding.tvEmergencyContact.text =
+                            getString(R.string.label_emergency_contact, it)
+                        phoneNumber = it
+                        saveNewEmergencyContact(phoneNumber)
+                    }
+                })
+            } else {
+                val intent = Intent(Intent.ACTION_CALL)
+                intent.data = Uri.parse("tel:${phoneNumber}")
+                startActivity(intent)
+            }
         }
     }
-
-    /*private fun initCallProjection() {
-        val projection = arrayOf(
-            ContactsContract.Data._ID,
-            ContactsContract.Data.DISPLAY_NAME,
-            ContactsContract.Data.MIMETYPE
-        )
-        val resolver = context?.contentResolver
-
-        val cursor: Cursor? = resolver?.query(
-            ContactsContract.Data.CONTENT_URI,
-            projection, null, null,
-            ContactsContract.Contacts.DISPLAY_NAME
-        )
-        cursor?.let {
-            val _id = it.getLong(it.getColumnIndexOrThrow(ContactsContract.Data._ID))
-            val displayName =
-                it.getString(it.getColumnIndexOrThrow(ContactsContract.Data.DISPLAY_NAME))
-            val mimeType =
-                it.getString(it.getColumnIndexOrThrow(ContactsContract.Data.MIMETYPE))
-
-            Timber.d("<<<<<<<<<<<<< MimeType : $mimeType")
-
-            *//*if (mimeType.equals("vnd.android.cursor.item/vnd.com.whatsapp.voip.call") || mimeType.equals(
-                    "vnd.android.cursor.item/vnd.com.whatsapp.video.call"
-                )
-            ) {
-                if (mimeType.equals("vnd.android.cursor.item/vnd.com.whatsapp.voip.call")) {
-                    val voiceCallID = _id.toString();
-                    val intent = Intent()
-                    intent.action = Intent.ACTION_VIEW
-
-                    intent.setDataAndType(
-                        Uri.parse("content://com.android.contacts/data/$voiceCallID"),
-                        "vnd.android.cursor.item/vnd.com.whatsapp.voip.call"
-                    )
-                    intent.setPackage("com.whatsapp")
-
-                    startActivity(intent)
-                } else {
-                    val videoCallID = _id.toString();
-                }
-            }*//*
-        }
-    }*/
 
     private fun checkPermission(permission: Array<String>): Boolean = permission.all {
         ContextCompat.checkSelfPermission(requireContext(), it) == PackageManager.PERMISSION_GRANTED
@@ -131,6 +102,10 @@ class FamilyHelpFragment : Fragment() {
         if (!checkPermission(listOfPermission)) {
             ActivityCompat.requestPermissions(requireActivity(), listOfPermission, 1)
         }
+    }
+
+    private fun saveNewEmergencyContact(phoneNumber: String) {
+        pref.updateStringPreferenceValue(KEY_EMERGENCY_CONTACT, phoneNumber)
     }
 
 }
