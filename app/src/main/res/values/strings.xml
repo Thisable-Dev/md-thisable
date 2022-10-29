@@ -1,6 +1,7 @@
 <resources>
     <string name="app_name">TeDi</string>
-    <string name="label_version">v.0.0.1</string>
+    <string name="label_version">v.1.0.0</string>
+    <string name="tedi_email">info@temandisabilitas.com</string>
 
     <!-- Onboarding Page -->
     <string name="label_skip">Skip ></string>
@@ -262,13 +263,14 @@
     <string name="label_need_help">Butuh bantuan ?</string>
     <string name="label_call_for_help">Hubungi kami jika kamu butuh bantuan!</string>
     <string name="label_TeDi_contact">Kontak TeDi</string>
-    <string name="label_TeDi_email">Surel : C22-PS003@bangkit.academy</string>
+    <string name="label_TeDi_email">Surel : info@temandisabilitas.com</string>
     <string name="label_android_engineer">Android Engineer</string>
     <string name="label_android_engineer_contact">Bintang Putera\na7129f1592@bangkit.academy \nPratama Azmi\na7012g1330@bangkit.academy \nEko Prasetyo\na2006f0578@bangkit.academy</string>
     <string name="label_ml_engineer_contact">Julio Fachrel\nm2011f1173@bangkit.academy \nNajma\nm2011f1166@bangkit.academy</string>
     <string name="label_cc_engineer_contact">Gilang Martadinata\nc2306h2613@bangkit.academy \nHazlan Muhammad Qodri\nc2297f2531@bangkit.academy</string>
     <string name="label_machine_learning_engineer">Machine Learning Engineer</string>
     <string name="label_cloud_engineer">Cloud Engineer</string>
+    <string name="label_subject_template">Hallo, Team Teman Disabilitas</string>
 
     <!--  FAQ Page  -->
     <string name="label_question_answer">Tanya Jawab</string>

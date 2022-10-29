@@ -28,6 +28,12 @@ class SharedPrefManager(context: Context) {
         editor.apply()
     }
 
+    fun updateStringPreferenceValue(prefKey: String, value: String) {
+        editor.remove(prefKey)
+        editor.putString(prefKey, value)
+        editor.apply()
+    }
+
     fun setBooleanPreference(prefKey: String, value: Boolean){
         editor.putBoolean(prefKey, value)
         editor.apply()

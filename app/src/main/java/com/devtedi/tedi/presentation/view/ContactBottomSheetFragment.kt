@@ -46,7 +46,14 @@ class ContactBottomSheetFragment : BottomSheetDialogFragment() {
         super.onViewCreated(view, savedInstanceState)
         pref = SharedPrefManager(requireContext())
 
+        initUI()
         initAction()
+    }
+
+    private fun initUI() {
+        pref.getEmergencyContact?.let {
+            binding.edtPhoneNumber.setText(it)
+        }
     }
 
     private fun initAction() {
@@ -55,7 +62,6 @@ class ContactBottomSheetFragment : BottomSheetDialogFragment() {
             if (phoneNumber.isPhoneNumberValid()) {
                 listener?.invoke(phoneNumber)
                 dismiss()
-                saveNewEmergencyContact(phoneNumber)
             } else {
                 binding.edtPhoneNumber.apply {
                     requestFocus()
@@ -63,10 +69,6 @@ class ContactBottomSheetFragment : BottomSheetDialogFragment() {
                 }
             }
         }
-    }
-
-    private fun saveNewEmergencyContact(phoneNumber: String) {
-        pref.setStringPreference(KEY_EMERGENCY_CONTACT, phoneNumber)
     }
 
 }

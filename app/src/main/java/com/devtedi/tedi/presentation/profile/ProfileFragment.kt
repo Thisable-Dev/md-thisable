@@ -11,6 +11,7 @@ import com.devtedi.tedi.R
 import com.devtedi.tedi.R.string
 import com.devtedi.tedi.databinding.FragmentProfileBinding
 import com.devtedi.tedi.utils.ConstVal.KEY_EMAIL
+import com.devtedi.tedi.utils.ConstVal.KEY_EMERGENCY_CONTACT
 import com.devtedi.tedi.utils.ConstVal.KEY_IS_LOGIN
 import com.devtedi.tedi.utils.ConstVal.KEY_TOKEN
 import com.devtedi.tedi.utils.ConstVal.KEY_USER_ID
@@ -90,6 +91,7 @@ class ProfileFragment : Fragment() {
                 clearPreferenceByKey(KEY_USER_NAME)
                 clearPreferenceByKey(KEY_IS_LOGIN)
                 clearPreferenceByKey(KEY_EMAIL)
+                clearPreferenceByKey(KEY_EMERGENCY_CONTACT)
             }
         }
     }
