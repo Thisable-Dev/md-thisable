@@ -18,8 +18,6 @@ class CloudModelAdapter(
         {
             binding.tvNamaModel.text = data.modelName
             binding.tvModelversion.text = data.modelVersion
-            binding.btnStatusmodel.setText(data.modelStatus)
-
             binding.btnStatusmodel.setOnClickListener {
                 onClick(data.modelName)
             }

@@ -1,5 +1,8 @@
 package com.devtedi.tedi.utils
 
+import android.os.Environment
+import java.lang.StringBuilder
+
 object ConstVal {
 
     const val CLOUD_VISION_API = "https://vision.googleapis.com/v1/"
@@ -34,4 +37,13 @@ object ConstVal {
 
     // Notification If Exists
     const val IS_NOTIFICATION_INITIATED : String = "notification.initiated"
+
+    //Path
+     val ABSOLUTE_PATH : String =
+        StringBuilder().apply {
+            append(Environment.getDataDirectory().absolutePath)
+            append("/user/")
+            append("0")
+            append("/com.devtedi.tedi/")
+        }.toString()
 }

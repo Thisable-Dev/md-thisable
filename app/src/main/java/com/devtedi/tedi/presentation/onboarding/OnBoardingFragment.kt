@@ -66,7 +66,6 @@ class OnBoardingFragment : Fragment(), CloudModelObserver, CloudStorageObserver 
         initAuth()
         initAction()
         askPermission()
-        prepareTheModel()
         //btnState()
     }
 
@@ -79,25 +78,28 @@ class OnBoardingFragment : Fragment(), CloudModelObserver, CloudStorageObserver 
     {
         if( pref.getObjectDetectorPath.isNullOrEmpty()  &&
             pref.getCurrencyDetectorPath.isNullOrEmpty()  &&
-            pref.getSignLanguagePath.isNullOrEmpty() && modelCounterDownload <= 3)
+            pref.getSignLanguagePath.isNullOrEmpty() && modelCounterDownload <= TOTAL_MODEL)
         {
             booleanModelDownloaded = false
             showToast("Downloading the model ...")
 
-            UIDownloadState(true)
             CloudModel.downloadObjectDetectionModel()
             CloudModel.downloadCurrencyDetectionModel()
             CloudModel.downloadSignLanguageModel()
+
+            if ( pref.getSignLanguageLabelPath.isNullOrEmpty() &&
+                pref.getCurrencyDetectorLabelPath.isNullOrEmpty() &&
+                pref.getObjectDetectorLabelPath.isNullOrEmpty()  && labelCounterDownload <= TOTAL_LABEL )
+            {
+                booleanLabelsDownloaded = false
+
+                CloudStorage.getLabelFilesFromCloud()
+
+            }
+            if(!booleanModelDownloaded && !booleanLabelsDownloaded) UIDownloadState(true)
         }
 
-        if ( pref.getSignLanguageLabelPath.isNullOrEmpty() &&
-             pref.getCurrencyDetectorLabelPath.isNullOrEmpty() &&
-             pref.getObjectDetectorLabelPath.isNullOrEmpty()   )
-        {
-            booleanLabelsDownloaded = false
 
-            CloudStorage.downloadLabelFiles()
-        }
     }
 
     private fun UIDownloadState(state : Boolean)
@@ -107,7 +109,6 @@ class OnBoardingFragment : Fragment(), CloudModelObserver, CloudStorageObserver 
             binding.viewBgDownload.visibility = View.VISIBLE
             binding.pbLoadingModel.visibility = View.VISIBLE
             binding.tvInfoModelLoading.visibility = View.VISIBLE
-
             binding.viewBgDownload.setOnClickListener {
                 Toast.makeText(requireContext(), "StillDownloading Model, $modelCounterDownload / 3", Toast.LENGTH_SHORT).show()
             }
@@ -137,7 +138,9 @@ class OnBoardingFragment : Fragment(), CloudModelObserver, CloudStorageObserver 
             ContextCompat.checkSelfPermission(
                 requireContext(),
                 android.Manifest.permission.CAMERA
-            ) -> {}
+            ) -> {
+                prepareTheModel()
+            }
             else -> {
                 val dialog: AlertDialog = AlertDialog.Builder(requireContext())
                     .setTitle(getString(string.title_warning))
@@ -159,6 +162,7 @@ class OnBoardingFragment : Fragment(), CloudModelObserver, CloudStorageObserver 
             registerForActivityResult(ActivityResultContracts.RequestPermission()) { is_granted: Boolean ->
                 if (is_granted) {
                     //
+                    prepareTheModel()
                     showToast(getString(string.message_now_you_can_use_the_app))
                 }
             }
@@ -245,10 +249,15 @@ class OnBoardingFragment : Fragment(), CloudModelObserver, CloudStorageObserver 
     }
 
     override fun updateObserver() {
+        handleDownloadModels()
+    }
+
+    private fun handleDownloadModels()
+    {
         modelCounterDownload += 1
         showToast("Downloading model $modelCounterDownload / 3")
         //Log.d("DOWNLOADTAGS", "$modelCounterDownload / 3")
-        if(modelCounterDownload == 3)
+        if(modelCounterDownload == TOTAL_MODEL)
         {
             showToast("Downloading Successfully ")
 
@@ -262,7 +271,7 @@ class OnBoardingFragment : Fragment(), CloudModelObserver, CloudStorageObserver 
                 pref.setStringPreference(ConstVal.LOCAL_MODEL_PATH_SL, CloudModel.fileSignLanguage!!.path as String)
 
             booleanModelDownloaded = true
-           // btnState()
+            // btnState()
             UIDownloadState(false)
         }
     }
@@ -271,24 +280,41 @@ class OnBoardingFragment : Fragment(), CloudModelObserver, CloudStorageObserver 
     {
         labelCounterDownload += 1
 
-        if(labelCounterDownload == 3)
+        if(labelCounterDownload == TOTAL_LABEL)
         {
+            if(CloudStorage.labelFileCurrencyDetection != null)
+            {
+                pref.setStringPreference(ConstVal.LOCAL_LABEL_MODEL_PATH_CD, CloudStorage.labelFileObjectDetection as String)
+            }
 
+            if(CloudStorage.labelFileObjectDetection != null)
+            {
+                pref.setStringPreference(ConstVal.LOCAL_LABEL_MODEL_PATH_OD, CloudStorage.labelFileObjectDetection as String)
+            }
+
+            if(CloudStorage.labelFileSignLanguage != null)
+            {
+                pref.setStringPreference(ConstVal.LOCAL_LABEL_MODEL_PATH_SL, CloudStorage.labelFileSignLanguage as String)
+            }
+
+            booleanLabelsDownloaded = true
         }
-
     }
 
     override fun updateFailureObserver() {
-        //TODO( Nambahin UpdateFailureObserver)
+
     }
 
     override fun updateObserverCloudStorageSuccess() {
 
         handleDownloadLabels()
-        booleanLabelsDownloaded = true
     }
 
     override fun updateObserverCloudStorageFailure() {
 
+    }
+    companion object {
+        private const val TOTAL_LABEL : Int = 3
+        private const val TOTAL_MODEL : Int = 3
     }
 }

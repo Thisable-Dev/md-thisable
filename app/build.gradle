@@ -14,6 +14,10 @@ android {
         buildConfigField("String", "BASE_URL", '"http://34.101.177.97:5000/"')
         buildConfigField("String", "API_KEY", '"eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwibmFtZSI6IkhhemxhbiBNdWhhbW1hZCBRb2RyaSIsImlhdCI6MTY1NDA3OTM2NH0.bMzTbHT9WEnOQUA3vZNL32K9slNf77_IpECsZ6xUL9c"')
         buildConfigField("String", "FIREBASE_STORAGE_PATH", '"gs://devthisable.appspot.com"')
+        buildConfigField("String", "CURRENCY_DETECTION_STORAGE_PATH", '"https://firebasestorage.googleapis.com/v0/b/devthisable.appspot.com/o/labels%2Flabel_currency.txt?alt=media"')
+        buildConfigField("String", "OBJECT_DETECTION_STORAGE_PATH", '"https://firebasestorage.googleapis.com/v0/b/devthisable.appspot.com/o/labels%2Flabel_obj_detection.txt?alt=media"')
+        buildConfigField("String", "SIGN_LANGUAGE_CLOUD_STORAGE_PATH", '"https://firebasestorage.googleapis.com/v0/b/devthisable.appspot.com/o/labels%2Flabel_sign_language.txt?alt=media"')
+
         applicationId "com.devtedi.tedi"
         minSdk 26
         targetSdk 32

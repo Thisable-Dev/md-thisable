@@ -50,10 +50,12 @@ class ColorGenerator(private val context : Activity, private val inputImage : Bi
             if(area > thresholdArea )
             {
                 bboxContour = Imgproc.boundingRect(c)
+
                 val bbox_x = bboxContour.x.toDouble()
                 val bbox_y = bboxContour.y.toDouble()
                 val bbox_w = bboxContour.width.toDouble()
                 val bbox_h = bboxContour.height.toDouble()
+
                 Imgproc.rectangle(
                     inputImageMat,
                     Point(bbox_x, bbox_y),
