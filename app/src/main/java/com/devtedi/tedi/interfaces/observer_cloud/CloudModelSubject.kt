@@ -5,5 +5,5 @@ interface CloudModelSubject {
     fun registerObserver(o : CloudModelObserver)
     fun removeObserver(o : CloudModelObserver)
     fun notifyObserver()
-    fun notifyObserverFailure()
+    fun notifyObserverFailure(message: String)
 }

@@ -151,6 +151,7 @@ object CloudStorage : CloudStorageSubject {
                     }
                     .addOnFailureListener {
                         // nanti ini dimasukin failure
+                        failureListener()
                     }
 
             }
@@ -174,13 +175,14 @@ object CloudStorage : CloudStorageSubject {
             }
         }
 
-        //clearCacheLabels()
-        //clearTheLabelFile()
         updateObserverSuccess()
     }
 
     private fun failureListener()
     {
+        clearCacheLabels()
+        clearTheLabelFile()
+        clearTheFiles()
         updateObserverFailure()
     }
 
