@@ -174,4 +174,32 @@
         app:layout_constraintTop_toBottomOf="@id/divider"
         />
 
+    <FrameLayout
+        android:id="@+id/errorOverlay"
+        android:visibility="gone"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:translationZ="@dimen/dimen_100dp"
+        android:background="@color/colorBlackTransparent">
+        <Button
+            android:id="@+id/btnRetry"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginHorizontal="@dimen/dimen_50dp"
+            android:layout_marginTop="@dimen/dimen_16dp"
+            android:layout_gravity="center"
+            android:background="@drawable/bg_white_button"
+            app:icon="@drawable/ic_retry"
+            app:iconGravity="textStart"
+            app:iconTint="@color/black"
+            android:paddingTop="@dimen/dimen_12dp"
+            android:paddingBottom="@dimen/dimen_12dp"
+            android:text="@string/label_try_again"
+            android:textAllCaps="false"
+            android:textColor="@color/black"
+            app:backgroundTint="@null"
+            style="@style/ButtonContent"
+            />
+    </FrameLayout>
+
 </androidx.constraintlayout.widget.ConstraintLayout>
