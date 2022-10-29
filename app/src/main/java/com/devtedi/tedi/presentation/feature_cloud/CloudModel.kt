@@ -51,7 +51,6 @@ object CloudModel : CloudModelSubject {
             }.addOnCanceledListener {
                 canceledObjectDetectionListener()
             }.addOnCompleteListener{
-
                 if(it.isSuccessful) {
                     completedObjectDetectionListener(false)
                 }
@@ -79,6 +78,7 @@ object CloudModel : CloudModelSubject {
                 if(it.isSuccessful) {
                     completedCurrencyDetectionListener(false)
                 }
+
             }
         if(fileCurrencyDetection != null) return true
         return false

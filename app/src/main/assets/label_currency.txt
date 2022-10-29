@@ -1,7 +1,7 @@
-seribu
-dua ribu
-lima ribu
-sepuluh ribu
-dua puluh ribu
-lima puluh ribu
-seratus ribu
+one
+two
+three 
+four
+five
+six
+seven

@@ -36,6 +36,8 @@ import com.google.firebase.auth.GoogleAuthProvider
 import com.google.firebase.auth.ktx.auth
 import com.google.firebase.ktx.Firebase
 import timber.log.Timber
+import java.io.File
+import java.lang.StringBuilder
 
 class OnBoardingFragment : Fragment(), CloudModelObserver, CloudStorageObserver {
 
@@ -69,13 +71,9 @@ class OnBoardingFragment : Fragment(), CloudModelObserver, CloudStorageObserver 
         //btnState()
     }
 
-    fun checkLatestModel()
-    {
-
-    }
-
     private fun prepareTheModel()
     {
+
         if( pref.getObjectDetectorPath.isNullOrEmpty()  &&
             pref.getCurrencyDetectorPath.isNullOrEmpty()  &&
             pref.getSignLanguagePath.isNullOrEmpty() && modelCounterDownload <= TOTAL_MODEL)
@@ -94,11 +92,9 @@ class OnBoardingFragment : Fragment(), CloudModelObserver, CloudStorageObserver 
                 booleanLabelsDownloaded = false
 
                 CloudStorage.getLabelFilesFromCloud()
-
             }
             if(!booleanModelDownloaded && !booleanLabelsDownloaded) UIDownloadState(true)
         }
-
 
     }
 
@@ -304,6 +300,7 @@ class OnBoardingFragment : Fragment(), CloudModelObserver, CloudStorageObserver 
     override fun updateFailureObserver() {
 
     }
+
 
     override fun updateObserverCloudStorageSuccess() {
 

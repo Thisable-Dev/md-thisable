@@ -34,7 +34,10 @@ fun uriToFile(selectedImg: Uri, context: Context, uri: Uri): File {
 
     return myFile
 }
-
+fun isEndWithTxt(filename : String) : Boolean
+{
+    return filename.endsWith(".txt")
+}
 fun createTempFile(context: Context, uri: Uri): File {
     val storageDir: File? = context.getExternalFilesDir(Environment.DIRECTORY_PICTURES)
     val suffix = if (uri.extension == "pdf") "pdf" else "jpg"
