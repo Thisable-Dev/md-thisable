@@ -1,12 +1,13 @@
 package com.devtedi.tedi.data.remote.general
 
+import com.devtedi.tedi.BuildConfig
 import okhttp3.MultipartBody
 import okhttp3.RequestBody
 import retrofit2.http.*
 
 interface GeneralService {
 
-    @POST("report")
+    @POST("api/report/create")
     @Multipart
     suspend fun addReportBug(
         @Part("name") name: RequestBody,
@@ -17,7 +18,7 @@ interface GeneralService {
         @Part("ram") ram: RequestBody,
         @Part("android_version") androidVersion: RequestBody,
         @Part photo: MultipartBody.Part,
-        @Query("token") token: String,
+        @Header("x-access-token") token: String = BuildConfig.API_KEY
     ): BugReportResponse
 
 }
