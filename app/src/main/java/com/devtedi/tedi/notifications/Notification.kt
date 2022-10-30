@@ -1,6 +1,5 @@
 package com.devtedi.tedi.notifications
 
-import android.annotation.SuppressLint
 import android.app.NotificationChannel
 import android.app.NotificationManager
 import android.app.PendingIntent
@@ -11,27 +10,22 @@ import android.os.Build
 import androidx.core.app.NotificationCompat
 import androidx.work.Worker
 import androidx.work.WorkerParameters
+import com.devtedi.tedi.MainActivity
 import com.devtedi.tedi.R
 import com.devtedi.tedi.presentation.home.HomeFragment
-import com.devtedi.tedi.utils.SharedPrefManager
 
 class Notification(ctx : Context, params : WorkerParameters) : Worker(ctx, params)
 {
-    private lateinit var prefs : SharedPrefManager
 
     override fun doWork(): Result {
-        prefs = SharedPrefManager(applicationContext)
-        val isAlreadyInitiated = prefs.getIsNotificationInitiated
-
-        if(!isAlreadyInitiated)
-            setupNotification()
+        setupNotification()
 
         return Result.success()
     }
 
     private fun getPendingIntent() : PendingIntent
     {
-        val intent = Intent(applicationContext, HomeFragment::class.java)
+        val intent = Intent(applicationContext, MainActivity::class.java)
         return TaskStackBuilder.create(applicationContext).run {
             addNextIntentWithParentStack(intent)
             getPendingIntent(request_code, PendingIntent.FLAG_UPDATE_CURRENT)
@@ -42,7 +36,7 @@ class Notification(ctx : Context, params : WorkerParameters) : Worker(ctx, param
     {
         val notificationManager = applicationContext.getSystemService(Context.NOTIFICATION_SERVICE) as NotificationManager
         val notification = NotificationCompat.Builder(applicationContext, NOTIFICATION_CHANNEL_ID )
-            .setSmallIcon(R.drawable.ic_icon_thisable)
+            .setSmallIcon(R.drawable.ic_logo_tedi)
             .setContentTitle("Judul Notifikasi")
             .setContentText("Content Notifikasi")
             .setContentIntent(this.getPendingIntent())

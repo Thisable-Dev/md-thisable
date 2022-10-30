@@ -29,7 +29,13 @@ class MainActivity : AppCompatActivity() {
         setContentView(_activityMainBinding.root)
 
         prefs = SharedPrefManager(this)
-        prepareNotification()
+
+        val notifIsInitiated = prefs.getIsNotificationInitiated
+
+        if (!notifIsInitiated) {
+            prepareNotification()
+        }
+
         val navHostBottomBar = supportFragmentManager.findFragmentById(R.id.nav_host_fragment) as NavHostFragment
         val navControllerBottomBar = navHostBottomBar.navController
 
@@ -48,7 +54,7 @@ class MainActivity : AppCompatActivity() {
     {
         val workManager = WorkManager.getInstance(this)
 
-        val periodicWorker = PeriodicWorkRequestBuilder<Notification>(2, TimeUnit.MINUTES).build()
+        val periodicWorker = PeriodicWorkRequestBuilder<Notification>(1, TimeUnit.DAYS).build()
 
         workManager.enqueue(periodicWorker)
 
