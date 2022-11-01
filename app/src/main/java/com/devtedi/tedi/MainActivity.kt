@@ -2,6 +2,7 @@ package com.devtedi.tedi
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.util.Log
 import androidx.navigation.fragment.NavHostFragment
 import androidx.navigation.ui.setupWithNavController
 import androidx.work.PeriodicWorkRequest
@@ -34,6 +35,7 @@ class MainActivity : AppCompatActivity() {
 
         if (!notifIsInitiated) {
             prepareNotification()
+
         }
 
         val navHostBottomBar = supportFragmentManager.findFragmentById(R.id.nav_host_fragment) as NavHostFragment
@@ -54,7 +56,7 @@ class MainActivity : AppCompatActivity() {
     {
         val workManager = WorkManager.getInstance(this)
 
-        val periodicWorker = PeriodicWorkRequestBuilder<Notification>(1, TimeUnit.DAYS).build()
+        val periodicWorker = PeriodicWorkRequestBuilder<Notification>(2, TimeUnit.MINUTES).build()
 
         workManager.enqueue(periodicWorker)
 

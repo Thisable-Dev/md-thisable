@@ -15,8 +15,8 @@ import com.devtedi.tedi.databinding.FragmentObjectDetectionBinding
 import com.devtedi.tedi.factory.YOLOv5ModelCreator
 import com.devtedi.tedi.interfaces.observer_analyzer.AnalyzerObserver
 import com.devtedi.tedi.interfaces.observer_analyzer.AnalyzerSubject
-import com.devtedi.tedi.presentation.feature_cloud.CloudModel
 import com.devtedi.tedi.utils.*
+import com.devtedi.tedi.utils.dialogs.DialogGenerator
 import java.io.File
 
 class ObjectDetectionFragment : Fragment(), FeatureBaseline, AnalyzerSubject{

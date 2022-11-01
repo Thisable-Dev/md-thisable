@@ -12,16 +12,26 @@ import androidx.work.Worker
 import androidx.work.WorkerParameters
 import com.devtedi.tedi.MainActivity
 import com.devtedi.tedi.R
-import com.devtedi.tedi.presentation.home.HomeFragment
+import com.devtedi.tedi.utils.ConstVal
+import com.devtedi.tedi.utils.SharedPrefManager
 
 class Notification(ctx : Context, params : WorkerParameters) : Worker(ctx, params)
 {
-
+    private lateinit var  pref : SharedPrefManager
     override fun doWork(): Result {
-        setupNotification()
-
-        return Result.success()
+        try {
+            setupNotification()
+            pref = SharedPrefManager(applicationContext)
+            pref.setBooleanPreference(ConstVal.IS_MODEL_UPDATE, true)
+          //  prepareTheModel()
+            return Result.success()
+        }
+        catch (e : Exception)
+        {
+            return Result.failure()
+        }
     }
+
 
     private fun getPendingIntent() : PendingIntent
     {
@@ -58,10 +68,12 @@ class Notification(ctx : Context, params : WorkerParameters) : Worker(ctx, param
 
     }
 
+
     companion object {
         const val NOTIFICATION_CHANNEL_ID = "1"
         const val CHANNEL_NAME = "notification_compat"
         const val request_code : Int = 0
     }
+
 }
 

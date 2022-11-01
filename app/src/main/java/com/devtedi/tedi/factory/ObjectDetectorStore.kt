@@ -1,7 +1,6 @@
 package com.devtedi.tedi.factory
 
 import android.content.Context
-import android.util.Size
 import com.devtedi.tedi.core_model.BisindoTranslator
 import com.devtedi.tedi.core_model.CurrencyDetector
 import com.devtedi.tedi.core_model.ObjectDetector
@@ -19,7 +18,7 @@ class ObjectDetectorStore(context: Context) : ModelStore(context) {
                     DETECT_THRESHOLD_object,
                     IOU_THRESHOLD_object,
                     IOU_CLASS_DUPLICATED_THRESHOLD_object,
-                    LABEL_OBJ, filePath,
+                    LABEL_USED_OBJ_PATH, filePath,
                     false)
 
                 val yolOv5ModelCreator = YOLOv5ModelCreator(
@@ -39,7 +38,7 @@ class ObjectDetectorStore(context: Context) : ModelStore(context) {
                         DETECT_THRESHOLD_bisindo,
                         IOU_THRESHOLD_bisindo,
                         IOU_CLASS_DUPLICATED_THRESHOLD_bisindo,
-                        LABEL_BISINDO, filePath,
+                        LABEL_USED_SL_PATH, filePath,
                         false)
 
                 val yolov5ModelCreator = YOLOv5ModelCreator(
@@ -59,7 +58,7 @@ class ObjectDetectorStore(context: Context) : ModelStore(context) {
                         DETECT_THRESHOLD_currency,
                         IOU_THRESHOLD_currency,
                         IOU_CLASS_DUPLICATED_THRESHOLD_currency,
-                        LABEL_CURRENCY, filePath,
+                        LABEL_USED_CD_PATH, filePath,
                         false
                     )
 
