@@ -1,7 +1,9 @@
 package com.devtedi.tedi.utils
 
+import android.Manifest
 import android.os.Environment
 import java.lang.StringBuilder
+import java.util.ArrayList
 
 object ConstVal {
 
@@ -31,12 +33,13 @@ object ConstVal {
     const val LOCAL_MODEL_PATH_CD : String = "LocalModelCurrencyDetection"
 
     // LocalTxtPath if Exists
-    const val LOCAL_LABEL_MODEL_PATH_OD : String = "LocalModelObjectDetection"
-    const val LOCAL_LABEL_MODEL_PATH_SL : String = "LocalModelSignlanguage"
-    const val LOCAL_LABEL_MODEL_PATH_CD : String = "LocalModelCurrencyDetection"
+    const val LOCAL_LABEL_MODEL_PATH_OD : String = "LocalModelObjectDetectionLabel"
+    const val LOCAL_LABEL_MODEL_PATH_SL : String = "LocalModelSignlanguageLabel"
+    const val LOCAL_LABEL_MODEL_PATH_CD : String = "LocalModelCurrencyDetectionLabel"
 
     // Notification If Exists
     const val IS_NOTIFICATION_INITIATED : String = "notification.initiated"
+    const val IS_MODEL_UPDATE : String = "notification.isupdate"
 
     //Path
      val ABSOLUTE_PATH : String =
@@ -46,4 +49,10 @@ object ConstVal {
             append("0")
             append("/com.devtedi.tedi/")
         }.toString()
+
+    // ya
+
+    val arrayOfPermissions : Array<String> = arrayOf(
+        Manifest.permission.CAMERA, Manifest.permission.WRITE_EXTERNAL_STORAGE
+    )
 }

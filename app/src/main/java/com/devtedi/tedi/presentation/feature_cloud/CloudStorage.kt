@@ -1,7 +1,5 @@
 package com.devtedi.tedi.presentation.feature_cloud
 
-import android.os.Environment
-import android.os.FileUtils
 import android.util.Log
 import com.devtedi.tedi.BuildConfig
 import com.devtedi.tedi.interfaces.observer_cloudstorage.CloudStorageObserver
@@ -17,7 +15,6 @@ import java.io.IOException
 import java.nio.channels.FileChannel
 import java.nio.file.Files
 import java.nio.file.Path
-import java.util.*
 import kotlin.collections.ArrayList
 import kotlin.text.StringBuilder
 
@@ -65,8 +62,8 @@ object CloudStorage : CloudStorageSubject {
     private fun saveToLocalFile(prefix : String, suffix : String, gsReference : StorageReference)
     {
         try {
-            if (labelFileSignLanguage == null &&
-                labelFileObjectDetection == null &&
+            if (labelFileSignLanguage == null ||
+                labelFileObjectDetection == null ||
                 labelFileCurrencyDetection == null
             ) {
                 val tempFile = File.createTempFile(prefix, suffix)
@@ -89,6 +86,9 @@ object CloudStorage : CloudStorageSubject {
                         Log.d("DEBUGTAGSFAILURE", it.toString())
                         failureListener()
                     }
+
+                if(labelFileObjectDetection != null &&
+                    labelFileCurrencyDetection != null && labelFileSignLanguage != null) clearCacheLabels()
             }
             else if (
                     labelFileSignLanguage != null &&
@@ -244,7 +244,6 @@ object CloudStorage : CloudStorageSubject {
             pathToDelete.listFiles().forEach {
                 if(isEndWithTxt(it.path)) {
                     it.delete()
-                    Log.d("DEBUGTAGS", "Deleted ${it.toString()}")
                 }
             }
         }
@@ -265,7 +264,6 @@ object CloudStorage : CloudStorageSubject {
             if(isEndWithTxt(it.path))
             {
                 it.delete()
-                Log.d("DEBUGTAGS", "Deleted ${it.toString()}")
             }
         }
     }

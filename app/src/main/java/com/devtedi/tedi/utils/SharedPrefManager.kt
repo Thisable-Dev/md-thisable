@@ -2,6 +2,7 @@ package com.devtedi.tedi.utils
 
 import android.content.Context
 import android.content.SharedPreferences
+import com.devtedi.tedi.utils.ConstVal.IS_MODEL_UPDATE
 import com.devtedi.tedi.utils.ConstVal.IS_NOTIFICATION_INITIATED
 import com.devtedi.tedi.utils.ConstVal.KEY_EMAIL
 import com.devtedi.tedi.utils.ConstVal.KEY_EMERGENCY_CONTACT
@@ -64,6 +65,7 @@ class SharedPrefManager(context: Context) {
     val getCurrencyDetectorLabelPath = prefs.getString(LOCAL_LABEL_MODEL_PATH_CD, "")
 
     // Notification
-    public val getIsNotificationInitiated = prefs.getBoolean(IS_NOTIFICATION_INITIATED, false)
+    val getIsNotificationInitiated = prefs.getBoolean(IS_NOTIFICATION_INITIATED, false)
+    val getIsModelUpdate = prefs.getBoolean(IS_MODEL_UPDATE, false)
 
 }

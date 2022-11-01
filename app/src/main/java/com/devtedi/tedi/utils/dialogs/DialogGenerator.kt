@@ -1,10 +1,8 @@
-package com.devtedi.tedi.utils
+package com.devtedi.tedi.utils.dialogs
 
 import android.app.Activity
 import android.app.AlertDialog
 import android.app.Dialog
-import android.graphics.Color
-import android.graphics.drawable.ColorDrawable
 import android.os.Bundle
 import androidx.fragment.app.DialogFragment
 import androidx.recyclerview.widget.LinearLayoutManager
@@ -12,6 +10,10 @@ import com.devtedi.tedi.adapter.ObjectOptionsAdapter
 import com.devtedi.tedi.databinding.CustomDialogCoreBinding
 import com.devtedi.tedi.factory.AdapterCoreHandlersFactory
 import com.devtedi.tedi.factory.YOLOv5ModelCreator
+import com.devtedi.tedi.utils.impl_oc_ocl_color
+import com.devtedi.tedi.utils.impl_oc_ocl_currency
+import com.devtedi.tedi.utils.impl_oc_ocl_obj
+import com.devtedi.tedi.utils.impl_oc_ocl_text
 
 class DialogGenerator(
     context: Activity, private val listQuestions: Array<String>,

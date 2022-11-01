@@ -26,7 +26,7 @@ class CameraProcess {
     private  var cameraProvider : ProcessCameraProvider? = null
 
     fun allPermissionGranted(context: Context): Boolean {
-        for (permission in REQUIRED_PERMISSIONS) {
+        for (permission in ConstVal.arrayOfPermissions) {
             if (ContextCompat.checkSelfPermission(context,
                     permission) != PackageManager.PERMISSION_GRANTED
             ) {
@@ -38,7 +38,7 @@ class CameraProcess {
 
     fun requestPermission(activity: Activity) {
         ActivityCompat.requestPermissions(
-            activity, REQUIRED_PERMISSIONS,
+            activity, ConstVal.arrayOfPermissions,
             REQUEST_CODE_PERMISSION
         )
     }
@@ -112,8 +112,6 @@ class CameraProcess {
     }
 
     companion object {
-        private val REQUIRED_PERMISSIONS =
-            arrayOf("android.permission.CAMERA", "android.permission.WRITE_EXTERNAL_STORAGE", "android.permission.READ_EXTERNAL_STORAGE")
         private const val REQUEST_CODE_PERMISSION: Int = 1001
     }
 }

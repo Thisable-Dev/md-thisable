@@ -12,6 +12,21 @@ const val LABEL_CURRENCY : String = "label_currency.txt"
 const val LABEL_COLOR : String = "file:///android_asset/color.txt"
 const val LABEL_BISINDO : String = "label_sign_language.txt"
 
+val LABEL_USED_OBJ_PATH : String = StringBuilder().apply {
+    append(ConstVal.ABSOLUTE_PATH)
+    append(label_obj)
+}.toString()
+
+val LABEL_USED_CD_PATH : String = StringBuilder().apply {
+    append(ConstVal.ABSOLUTE_PATH)
+    append(label_cd)
+}.toString()
+
+val LABEL_USED_SL_PATH : String = StringBuilder().apply {
+    append(ConstVal.ABSOLUTE_PATH)
+    append(label_sl)
+}.toString()
+
 const val default_img_size = 320
 val MODEL_IMG_SIZE_obj : Size = Size(default_img_size, default_img_size)
 val MODEL_IMG_SIZE_signLanguage: Size = Size(default_img_size, default_img_size)
@@ -41,6 +56,11 @@ const val test_label_file : String = "file:///android_asset/customclasses.txt"
 //const val TF_OD_API_IS_QUANTIZED = false
 //const val TF_OD_API_MODEL_FILE = "best-fp16.tflite"
 //const val TF_OD_API_LABELS_FILE = "file:///android_asset/customclasses.txt"
+
+//Constant LabelFileName
+const val label_cd : String = "label_CD.txt"
+const val label_sl : String = "label_SL.txt"
+const val label_obj : String = "label_OD.txt"
 
 /// Constant Ywe
 const val impl_oc_ocl_obj : String = "oc_ocl_obj"
