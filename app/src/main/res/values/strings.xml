@@ -26,6 +26,7 @@
     <string name="label_bisindo_translator">Penerjemah BISINDO</string>
     <string name="label_currency_detection">Pendeteksi Mata Uang</string>
     <string name="label_text_detection">Pendeteksi Teks</string>
+    <string name="info_pengunduhan">Sedang Mengunduh %1$s dari %2$s</string>
 
     <!--  Profile Page  -->
     <string name="label_my_account">Akun Saya</string>
@@ -55,6 +56,7 @@
     <string name="label_currencyDetection">Fitur Deteksi Uang</string>
     <string name="label_color_detection">Fitur Deteksi Warna</string>
     <string name="label_family_help">Family Help</string>
+    <string name="info_text_pembaharuan">Mohon Tunggu sebentar, sedang dilakukan pembaharuan</string>
     <!-- Android Descripotion For Fragment Home End -->
 
     <!-- Sign Language COntent Description -->

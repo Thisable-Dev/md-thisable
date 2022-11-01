@@ -11,7 +11,7 @@
         android:id="@+id/pb_loadingModel"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:elevation="4dp"
+        android:elevation="5dp"
         android:visibility="invisible"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
@@ -19,6 +19,18 @@
         app:layout_constraintStart_toStartOf="parent"
         />
 
+    <TextView
+        android:id="@+id/tv_pembaharuan"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:elevation="5dp"
+        android:textColor="@color/white"
+        android:visibility="invisible"
+        android:text="@string/info_text_pembaharuan"
+        app:layout_constraintTop_toBottomOf="@id/pb_loadingModel"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        />
     <View
         android:id="@+id/view_bgDownload"
         android:layout_width="match_parent"
@@ -141,5 +153,35 @@
             app:iconMenu="@drawable/ic_family_help"/>
 
     </GridLayout>
+
+    <FrameLayout
+        android:id="@+id/errorOverlay"
+        android:visibility="gone"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:translationZ="100dp"
+        android:background="@color/colorBlackTransparent"
+        >
+        <Button
+            android:id="@+id/btnRetry"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginHorizontal="@dimen/dimen_50dp"
+            android:layout_marginTop="@dimen/dimen_16dp"
+            android:layout_gravity="center"
+            android:background="@drawable/bg_white_button"
+            app:icon="@drawable/ic_retry"
+            app:iconGravity="textStart"
+            app:iconTint="@color/black"
+            android:paddingTop="@dimen/dimen_12dp"
+            android:paddingBottom="@dimen/dimen_12dp"
+            android:text="@string/label_try_again"
+            android:textAllCaps="false"
+            android:textColor="@color/black"
+            app:backgroundTint="@null"
+            style="@style/ButtonContent"
+            />
+
+    </FrameLayout>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

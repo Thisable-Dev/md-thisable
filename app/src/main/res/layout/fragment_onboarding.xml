@@ -176,7 +176,8 @@
 
     <FrameLayout
         android:id="@+id/errorOverlay"
-        android:visibility="gone"
+        android:visibility="invisible"
+        android:elevation="4dp"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:translationZ="@dimen/dimen_100dp"
