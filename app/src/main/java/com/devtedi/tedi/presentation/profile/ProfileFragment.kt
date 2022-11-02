@@ -17,9 +17,7 @@ import com.devtedi.tedi.utils.ConstVal.KEY_TOKEN
 import com.devtedi.tedi.utils.ConstVal.KEY_USER_ID
 import com.devtedi.tedi.utils.ConstVal.KEY_USER_NAME
 import com.devtedi.tedi.utils.SharedPrefManager
-import com.devtedi.tedi.utils.ext.click
-import com.devtedi.tedi.utils.ext.popTap
-import com.devtedi.tedi.utils.ext.setImageUrl
+import com.devtedi.tedi.utils.ext.*
 import com.google.android.gms.auth.api.signin.GoogleSignIn
 import com.google.android.gms.auth.api.signin.GoogleSignInClient
 import com.google.android.gms.auth.api.signin.GoogleSignInOptions
@@ -37,7 +35,11 @@ class ProfileFragment : Fragment() {
     private lateinit var auth: FirebaseAuth
     private lateinit var mGoogleSignInClient: GoogleSignInClient
 
-    override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
+    override fun onCreateView(
+        inflater: LayoutInflater,
+        container: ViewGroup?,
+        savedInstanceState: Bundle?
+    ): View? {
         _fragmentProfileBinding = FragmentProfileBinding.inflate(inflater, container, false)
         return _fragmentProfileBinding?.root
     }
@@ -97,19 +99,21 @@ class ProfileFragment : Fragment() {
     }
 
     private fun showLogoutDialog() {
-        AlertDialog.Builder(requireContext()).apply {
-            setTitle(getString(string.message_information))
-            setMessage(getString(string.message_logout_confirmation))
-            setPositiveButton("OK") { _, _ ->
+        showCustomDialog(
+            title = getString(string.message_information),
+            message = getString(string.message_logout_confirmation),
+            positiveButton = getString(string.action_give_access),
+            negativeButton = getString(string.action_no),
+            onClickPositive = {
                 try {
                     logout()
                 } finally {
                     findNavController().navigate(R.id.action_profileFragment_to_onBoardingFragment)
                 }
+            },
+            onClickNegative = {
+                it.dismiss()
             }
-            setNegativeButton("Batal") { p0, _ ->
-                p0.dismiss()
-            }
-        }.create().show()
+        )
     }
 }

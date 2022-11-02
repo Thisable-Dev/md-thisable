@@ -13,7 +13,7 @@ import com.devtedi.tedi.R
 import com.devtedi.tedi.databinding.FragmentHelpBinding
 import com.devtedi.tedi.utils.SharedPrefManager
 import com.devtedi.tedi.utils.ext.click
-import com.devtedi.tedi.utils.ext.showToast
+import com.devtedi.tedi.utils.ext.showCustomToast
 
 class HelpFragment : Fragment() {
 
@@ -53,7 +53,7 @@ class HelpFragment : Fragment() {
             try {
                 startActivity(Intent.createChooser(intentToEmailApp, "Send mail..."))
             } catch (ex: ActivityNotFoundException) {
-                showToast("Email App is not installed")
+                showCustomToast(getString(R.string.message_email_app_not_installed))
             }
         }
     }

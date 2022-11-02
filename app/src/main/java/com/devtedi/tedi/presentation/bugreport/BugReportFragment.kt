@@ -186,7 +186,6 @@ class BugReportFragment : Fragment() {
     ) { result ->
         if (result.resultCode == AppCompatActivity.RESULT_OK) {
             val selectedImg: Uri = result.data?.data as Uri
-            showToast(selectedImg.extension)
 
             val file = uriToFile(selectedImg, requireContext(), selectedImg)
 
@@ -198,7 +197,6 @@ class BugReportFragment : Fragment() {
             )
 
             uploadFile = file
-            showToast(uploadFile.toString())
         }
     }
 

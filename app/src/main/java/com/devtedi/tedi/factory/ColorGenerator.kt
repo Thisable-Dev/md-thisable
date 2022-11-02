@@ -6,6 +6,7 @@ import android.util.Log
 import android.widget.Toast
 import com.devtedi.tedi.R
 import com.devtedi.tedi.databinding.CustomToastV1Binding
+import com.devtedi.tedi.utils.ext.showCustomToast
 import org.opencv.android.Utils
 import org.opencv.core.*
 import org.opencv.imgproc.Imgproc
@@ -112,8 +113,6 @@ class ColorGenerator(private val context : Activity, private val inputImage : Bi
 
     private fun showResult(stringResult : List<String>)
     {
-        val toastCustomLayout : CustomToastV1Binding = CustomToastV1Binding.inflate(context.layoutInflater)
-
         val stringBuilder : StringBuilder= StringBuilder()
         stringBuilder.append(
             context.getString(R.string.response_1_color_detection)
@@ -140,12 +139,7 @@ class ColorGenerator(private val context : Activity, private val inputImage : Bi
                 stringBuilder.append(stringResult[indx])
             }
         }
-        toastCustomLayout.textCustom.setText(stringBuilder.toString())
-
-        val toast = Toast(context)
-        toast.duration = Toast.LENGTH_SHORT
-        toast.view = toastCustomLayout.root
-        toast.show()
+        context.showCustomToast(stringBuilder.toString())
 
     }
 

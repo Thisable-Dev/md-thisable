@@ -3,10 +3,8 @@ package com.devtedi.tedi.presentation.familyhelp
 import android.Manifest
 import android.content.Intent
 import android.content.pm.PackageManager
-import android.database.Cursor
 import android.net.Uri
 import android.os.Bundle
-import android.provider.ContactsContract
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -15,13 +13,10 @@ import androidx.core.content.ContextCompat
 import androidx.fragment.app.Fragment
 import com.devtedi.tedi.R
 import com.devtedi.tedi.databinding.FragmentFamilyHelpBinding
-import com.devtedi.tedi.utils.ConstVal
 import com.devtedi.tedi.utils.ConstVal.KEY_EMERGENCY_CONTACT
 import com.devtedi.tedi.utils.SharedPrefManager
 import com.devtedi.tedi.utils.ext.click
 import com.devtedi.tedi.utils.ext.showDataBottomSheet
-import com.devtedi.tedi.utils.ext.showToast
-import timber.log.Timber
 
 
 class FamilyHelpFragment : Fragment() {
@@ -73,7 +68,6 @@ class FamilyHelpFragment : Fragment() {
         binding.btnCall.click {
             if (pref.getEmergencyContact.isNullOrEmpty()) {
                 showDataBottomSheet(listener = {
-                    showToast(it)
                     if (it.isNotEmpty()) {
                         binding.tvEmergencyContact.text =
                             getString(R.string.label_emergency_contact, it)

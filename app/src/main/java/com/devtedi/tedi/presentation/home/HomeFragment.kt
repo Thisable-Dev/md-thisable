@@ -25,32 +25,37 @@ import com.devtedi.tedi.presentation.feature_cloud.CloudStorage
 import com.devtedi.tedi.utils.*
 import com.devtedi.tedi.utils.dialogs.DialogAgreementCreator
 import com.devtedi.tedi.utils.ext.click
-import com.devtedi.tedi.utils.ext.showToast
+import com.devtedi.tedi.utils.ext.showCustomDialog
+import com.devtedi.tedi.utils.ext.showCustomToast
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.ktx.auth
 import com.google.firebase.ktx.Firebase
 
-class HomeFragment: Fragment() , CloudModelObserver, CloudStorageObserver {
+class HomeFragment : Fragment(), CloudModelObserver, CloudStorageObserver {
 
     private var _fragmentHomeBinding: FragmentHomeBinding? = null
     private val binding get() = _fragmentHomeBinding!!
-    private lateinit var prefs : SharedPrefManager
+    private lateinit var prefs: SharedPrefManager
 
-    private var modelCounterDownload : Int = 0
-    private var labelCounterDownload : Int = 0
+    private var modelCounterDownload: Int = 0
+    private var labelCounterDownload: Int = 0
 
-    private var booleanLabelsDownloaded : Boolean = true
-    private var booleanModelDownloaded : Boolean = true
+    private var booleanLabelsDownloaded: Boolean = true
+    private var booleanModelDownloaded: Boolean = true
 
-    private var isCurrentlyDownloading : Boolean = false
-    private var isConnectedToInternet : Boolean = false
+    private var isCurrentlyDownloading: Boolean = false
+    private var isConnectedToInternet: Boolean = false
 
     private lateinit var auth: FirebaseAuth
 
-    private lateinit var connectivityStatus  : InternetConnectivityLiveData
+    private lateinit var connectivityStatus: InternetConnectivityLiveData
 
 
-    override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
+    override fun onCreateView(
+        inflater: LayoutInflater,
+        container: ViewGroup?,
+        savedInstanceState: Bundle?
+    ): View? {
         _fragmentHomeBinding = FragmentHomeBinding.inflate(inflater, container, false)
         return _fragmentHomeBinding?.root
     }
@@ -65,54 +70,57 @@ class HomeFragment: Fragment() , CloudModelObserver, CloudStorageObserver {
         initUI()
         loadBanner()
         initAction()
-         if(prefs.getIsModelUpdate && isWifiOn()) {
-             DialogAgreementCreator.getDialog(requireContext(), "Yo", "yo",
-                     "yo", "No", ::dialogHandlerYes, ::dialogHandlerNo).show()
+        if (prefs.getIsModelUpdate && isWifiOn()) {
+            showCustomDialog(
+                "Yo",
+                "yo",
+                "yo",
+                "No",
+                onClickPositive = { dialogHandlerYes() },
+                onClickNegative = { dialogHandlerNo() }
+            )
         }
     }
-    private fun dialogHandlerNo()
-    {
+
+    private fun dialogHandlerNo() {
 
     }
 
-    private fun dialogHandlerYes()
-    {
-        Log.d("BLOKPRIM","asdas")
+    private fun dialogHandlerYes() {
+        Log.d("BLOKPRIM", "asdas")
         observeConnectivity()
         isConnectedToInternet = true
     }
 
-    private fun checkLatestModel()
-    {
-        if(isAllLabelDownloaded(prefs))
-        {
+    private fun checkLatestModel() {
+        if (isAllLabelDownloaded(prefs)) {
             booleanLabelsDownloaded = false
             CloudStorage.getLabelFilesFromCloud()
         }
 
-        if(isAllModelDownloaded(prefs)){
+        if (isAllModelDownloaded(prefs)) {
             booleanModelDownloaded = false
             CloudModel.downloadLatestSignlanguageModel()
             CloudModel.downloadLatestObjectDetectionModel()
             CloudModel.downloadLatestCurrencyDetectionModel()
         }
 
-        if(!booleanModelDownloaded && !booleanLabelsDownloaded) showDownloadUI(true)
+        if (!booleanModelDownloaded && !booleanLabelsDownloaded) showDownloadUI(true)
     }
 
-    private fun isWifiOn() : Boolean
-    {
-        val wifi : WifiManager =  requireActivity().applicationContext.getSystemService(Context.WIFI_SERVICE) as WifiManager
+    private fun isWifiOn(): Boolean {
+        val wifi: WifiManager =
+            requireActivity().applicationContext.getSystemService(Context.WIFI_SERVICE) as WifiManager
         if (wifi.isWifiEnabled) return true
         return false
 
     }
-    private fun showRetryDialog(isGone : Boolean)
-    {
+
+    private fun showRetryDialog(isGone: Boolean) {
         binding.errorOverlay.isGone = isGone
     }
-    private fun observeConnectivity()
-    {
+
+    private fun observeConnectivity() {
         connectivityStatus = InternetConnectivityLiveData(requireContext())
 
         val observer = Observer<InternetConnectivityLiveData.Status> {
@@ -120,8 +128,7 @@ class HomeFragment: Fragment() , CloudModelObserver, CloudStorageObserver {
                 InternetConnectivityLiveData.Status.Connected -> {
                     isConnectedToInternet = true
                     isCurrentlyDownloading = true
-                    if(isConnectedToInternet && isCurrentlyDownloading)
-                    {
+                    if (isConnectedToInternet && isCurrentlyDownloading) {
                         modelCounterDownload = 0
                         labelCounterDownload = 0
                         checkLatestModel()
@@ -147,17 +154,20 @@ class HomeFragment: Fragment() , CloudModelObserver, CloudStorageObserver {
     private fun initUI() {
         val snapHelper = LinearSnapHelper()
         snapHelper.attachToRecyclerView(binding.rvBanner)
-        binding.rvBanner.layoutManager = LinearLayoutManager(context, LinearLayoutManager.HORIZONTAL, false)
+        binding.rvBanner.layoutManager =
+            LinearLayoutManager(context, LinearLayoutManager.HORIZONTAL, false)
 
         val name = auth.currentUser?.displayName.toString().split(" ")
         binding.tvWelcomeWithName.text = getString(R.string.label_welcome_home, name[0])
     }
 
-    private fun validatePermission() : Boolean
-    {
-        for (permission in ConstVal.arrayOfPermissions)
-        {
-            if (ActivityCompat.checkSelfPermission(requireContext(), permission) != PackageManager.PERMISSION_GRANTED)
+    private fun validatePermission(): Boolean {
+        for (permission in ConstVal.arrayOfPermissions) {
+            if (ActivityCompat.checkSelfPermission(
+                    requireContext(),
+                    permission
+                ) != PackageManager.PERMISSION_GRANTED
+            )
                 return false
         }
         return true
@@ -166,7 +176,7 @@ class HomeFragment: Fragment() , CloudModelObserver, CloudStorageObserver {
     private fun initAction() {
         var bundleData = Bundle()
 
-        if(isAllModelDownloaded(prefs) && isAllLabelDownloaded(prefs)) {
+        if (isAllModelDownloaded(prefs) && isAllLabelDownloaded(prefs)) {
             Log.d("BLOGPRIM", prefs.getSignLanguagePath.toString())
             binding.btnObjectDetection.click {
                 bundleData.putString(
@@ -222,19 +232,23 @@ class HomeFragment: Fragment() , CloudModelObserver, CloudStorageObserver {
         binding.rvBanner.adapter = adapter
     }
 
-    private fun showDownloadUI(showUi : Boolean) {
-        if(showUi)
-        {
-            showToast(getString(R.string.info_text_pembaharuan))
+    private fun showDownloadUI(showUi: Boolean) {
+        if (showUi) {
+            showCustomToast(getString(R.string.info_text_pembaharuan))
             binding.tvPembaharuan.visibility = View.VISIBLE
             binding.viewBgDownload.visibility = View.VISIBLE
             binding.pbLoadingModel.visibility = View.VISIBLE
-            binding.viewBgDownload.setOnClickListener{
-                showToast(getString(R.string.info_pengunduhan, modelCounterDownload.toString(), TOTAL_MODEL.toString()))
+            binding.viewBgDownload.setOnClickListener {
+                showCustomToast(
+                    getString(
+                        R.string.info_pengunduhan,
+                        modelCounterDownload.toString(),
+                        TOTAL_MODEL.toString()
+                    )
+                )
             }
-        }
-        else {
-            binding.viewBgDownload.visibility= View.INVISIBLE
+        } else {
+            binding.viewBgDownload.visibility = View.INVISIBLE
             binding.pbLoadingModel.visibility = View.INVISIBLE
             binding.tvPembaharuan.visibility = View.INVISIBLE
         }
@@ -247,13 +261,18 @@ class HomeFragment: Fragment() , CloudModelObserver, CloudStorageObserver {
 
     // CloudModel Interface Implementation
 
-    private fun handleModelDownload()
-    {
+    private fun handleModelDownload() {
         modelCounterDownload += 1
-        showToast(getString(R.string.info_pengunduhan, modelCounterDownload.toString(), TOTAL_MODEL.toString()))
+        showCustomToast(
+            getString(
+                R.string.info_pengunduhan,
+                modelCounterDownload.toString(),
+                TOTAL_MODEL.toString()
+            )
+        )
         //Log.d("DOWNLOADTAGS", "$modelCounterDownload / 3")
         if (modelCounterDownload == TOTAL_MODEL) {
-            showToast("Downloading Successfully ")
+            showCustomToast("Downloading Successfully ")
             setModelPreference(prefs)
             setUpdateModelPreference(prefs)
             booleanModelDownloaded = true
@@ -263,17 +282,17 @@ class HomeFragment: Fragment() , CloudModelObserver, CloudStorageObserver {
         }
     }
 
-    private fun handleModelFailureDownload()
-    {
+    private fun handleModelFailureDownload() {
         showDownloadUI(false)
     }
+
     override fun updateObserver() {
         handleModelDownload()
     }
 
     override fun updateFailureObserver(message: String) {
 
-        showToast(message)
+        showCustomToast(message)
         showRetryDialog(false)
         handleModelFailureDownload()
     }
@@ -283,8 +302,7 @@ class HomeFragment: Fragment() , CloudModelObserver, CloudStorageObserver {
 
     //CloudStorage Interface Implementation
 
-    private fun handleLabelDownload()
-    {
+    private fun handleLabelDownload() {
         labelCounterDownload += 1
         if (labelCounterDownload == TOTAL_LABEL) {
             setLabelsPreference(prefs)
@@ -293,10 +311,10 @@ class HomeFragment: Fragment() , CloudModelObserver, CloudStorageObserver {
     }
 
 
-    private fun handleLabelFailureDownload()
-    {
+    private fun handleLabelFailureDownload() {
 
     }
+
     override fun updateObserverCloudStorageSuccess() {
         handleLabelDownload()
     }
@@ -307,10 +325,10 @@ class HomeFragment: Fragment() , CloudModelObserver, CloudStorageObserver {
 
     // Cloud Storage Interface Implementatio End
 
-    companion object  {
-        const val EXTRA_DATA_HOME : String = "EXTRA_DATA"
-        const val TOTAL_MODEL : Int = 3
-        const val TOTAL_LABEL : Int = 3
+    companion object {
+        const val EXTRA_DATA_HOME: String = "EXTRA_DATA"
+        const val TOTAL_MODEL: Int = 3
+        const val TOTAL_LABEL: Int = 3
     }
 
 }

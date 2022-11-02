@@ -27,12 +27,7 @@ import com.devtedi.tedi.presentation.dialog.TextDetectionResultDialogFragment
 import com.devtedi.tedi.utils.ConstVal.API_KEY
 import com.devtedi.tedi.utils.FrameMetadata
 import com.devtedi.tedi.utils.SoundPlayer
-import com.devtedi.tedi.utils.ext.click
-import com.devtedi.tedi.utils.ext.disable
-import com.devtedi.tedi.utils.ext.enable
-import com.devtedi.tedi.utils.ext.gone
-import com.devtedi.tedi.utils.ext.show
-import com.devtedi.tedi.utils.ext.showToast
+import com.devtedi.tedi.utils.ext.*
 import com.devtedi.tedi.utils.scaleBitmapDown
 import dagger.hilt.android.AndroidEntryPoint
 import timber.log.Timber
@@ -159,7 +154,6 @@ class TextDetectionFragment : Fragment() {
                 is ApiResponse.Error -> {
                     checkLoading(false)
                     Timber.e("Error visionapi : ${response.errorMessage}")
-                    showToast(response.errorMessage)
                 }
                 else -> {
                     checkLoading(false)

@@ -27,7 +27,8 @@ import com.devtedi.tedi.presentation.feature_cloud.CloudModel
 import com.devtedi.tedi.presentation.feature_cloud.CloudStorage
 import com.devtedi.tedi.utils.*
 import com.devtedi.tedi.utils.ext.click
-import com.devtedi.tedi.utils.ext.showToast
+import com.devtedi.tedi.utils.ext.showCustomDialog
+import com.devtedi.tedi.utils.ext.showCustomToast
 import com.google.android.gms.auth.api.signin.GoogleSignIn
 import com.google.android.gms.auth.api.signin.GoogleSignInClient
 import com.google.android.gms.auth.api.signin.GoogleSignInOptions
@@ -37,8 +38,6 @@ import com.google.firebase.auth.GoogleAuthProvider
 import com.google.firebase.auth.ktx.auth
 import com.google.firebase.ktx.Firebase
 import timber.log.Timber
-import java.io.File
-import java.lang.NullPointerException
 
 class OnBoardingFragment : Fragment(), CloudModelObserver, CloudStorageObserver {
 
@@ -50,8 +49,8 @@ class OnBoardingFragment : Fragment(), CloudModelObserver, CloudStorageObserver 
 
     private var booleanModelDownloaded: Boolean = true
     private var booleanLabelsDownloaded: Boolean = true
-    private var isCurrentlyDownloading : Boolean = false
-    private var isConnectedToInternet : Boolean = false
+    private var isCurrentlyDownloading: Boolean = false
+    private var isConnectedToInternet: Boolean = false
 
     private var _fragmentOnBoardingBinding: FragmentOnboardingBinding? = null
     private val binding get() = _fragmentOnBoardingBinding!!
@@ -91,7 +90,7 @@ class OnBoardingFragment : Fragment(), CloudModelObserver, CloudStorageObserver 
                 InternetConnectivityLiveData.Status.Connected -> {
                     isConnectedToInternet = true
                     isCurrentlyDownloading = true
-                    if(isConnectedToInternet && isCurrentlyDownloading) {
+                    if (isConnectedToInternet && isCurrentlyDownloading) {
                         modelCounterDownload = 0
                         prepareTheModel()
                         showRetryDialog(true)
@@ -101,7 +100,7 @@ class OnBoardingFragment : Fragment(), CloudModelObserver, CloudStorageObserver 
                     showRetryDialog(false)
                     isCurrentlyDownloading = false
                     isConnectedToInternet = false
-                    showToast(getString(R.string.info_no_wifi_connection))
+                    showCustomToast(getString(R.string.info_no_wifi_connection))
                 }
                 null -> {}
             }
@@ -109,12 +108,13 @@ class OnBoardingFragment : Fragment(), CloudModelObserver, CloudStorageObserver 
         connectivityStatus.observe(viewLifecycleOwner, observer)
     }
 
-    private fun validatePermission() : Boolean
-    {
-        for ( permission in ConstVal.arrayOfPermissions)
-        {
-            if ( ActivityCompat.checkSelfPermission(requireContext(), permission) != PackageManager.PERMISSION_GRANTED)
-            {
+    private fun validatePermission(): Boolean {
+        for (permission in ConstVal.arrayOfPermissions) {
+            if (ActivityCompat.checkSelfPermission(
+                    requireContext(),
+                    permission
+                ) != PackageManager.PERMISSION_GRANTED
+            ) {
                 return false
             }
         }
@@ -127,7 +127,7 @@ class OnBoardingFragment : Fragment(), CloudModelObserver, CloudStorageObserver 
             pref.getSignLanguagePath.isNullOrEmpty()
         ) {
             booleanModelDownloaded = false
-            showToast("Downloading the model ...")
+            showCustomToast(getString(R.string.message_downloading_the_model))
 
             CloudModel.downloadObjectDetectionModel()
             CloudModel.downloadCurrencyDetectionModel()
@@ -139,7 +139,7 @@ class OnBoardingFragment : Fragment(), CloudModelObserver, CloudStorageObserver 
             ) {
                 booleanLabelsDownloaded = false
                 CloudStorage.getLabelFilesFromCloud()
-        }
+            }
             if (!booleanModelDownloaded && !booleanLabelsDownloaded) showDownloadUI(true)
         }
     }
@@ -150,9 +150,14 @@ class OnBoardingFragment : Fragment(), CloudModelObserver, CloudStorageObserver 
             binding.pbLoadingModel.visibility = View.VISIBLE
             binding.tvInfoModelLoading.visibility = View.VISIBLE
             binding.viewBgDownload.setOnClickListener {
-                Toast.makeText(requireContext(),
-                    "StillDownloading Model, ${if(modelCounterDownload <= 3) modelCounterDownload else {} } / 3",
-                    Toast.LENGTH_SHORT).show()
+                Toast.makeText(
+                    requireContext(),
+                    "StillDownloading Model, ${
+                        if (modelCounterDownload <= 3) modelCounterDownload else {
+                        }
+                    } / 3",
+                    Toast.LENGTH_SHORT
+                ).show()
             }
         } else {
             binding.viewBgDownload.visibility = View.INVISIBLE
@@ -178,42 +183,57 @@ class OnBoardingFragment : Fragment(), CloudModelObserver, CloudStorageObserver 
         ConstVal.arrayOfPermissions.forEach {
             when (PackageManager.PERMISSION_GRANTED) {
                 ContextCompat.checkSelfPermission(
-                    requireContext(),it
+                    requireContext(), it
                 ),
-                -> {}
+                -> {
+                }
                 else -> {
-                 when(it) {
-                     Manifest.permission.CAMERA -> {
-                         val dialog: AlertDialog = AlertDialog.Builder(requireContext())
-                             .setTitle(getString(R.string.title_warning))
-                             .setMessage(getString(R.string.message_ask_camera_permission))
-                             .setPositiveButton(getString(R.string.action_give_access)) { _, _ ->
-                                 requestPermissionLauncher.launch(it)
-                             }
-                             .setNegativeButton(getString(R.string.action_no)) { _, _ ->
-                                 showToast(getString(R.string.message_app_will_close))
-                                 requireActivity().finish()
-                             }.create()
-                         dialog.show()
-                     }
-                     Manifest.permission.WRITE_EXTERNAL_STORAGE ->
-                     {
-                         val dialog: AlertDialog = AlertDialog.Builder(requireContext())
-                             .setTitle(getString(R.string.title_warning))
-                             .setMessage(getString(R.string.message_ask_camera_permission))
-                             .setPositiveButton(getString(R.string.action_give_access)) { _, _ ->
-                                 requestPermissionLauncher.launch(it)
-                             }
-                             .setNegativeButton(getString(R.string.action_no)) { _, _ ->
-                                 showToast(getString(R.string.message_app_will_close))
-                                 requireActivity().finish()
-                             }.create()
-                         dialog.show()
-                     }
-                     else -> {
+                    when (it) {
+                        Manifest.permission.CAMERA -> {
+                            showCustomDialog(
+                                title = getString(R.string.title_warning),
+                                message = getString(R.string.message_ask_camera_permission),
+                                positiveButton = getString(R.string.action_give_access),
+                                negativeButton = getString(R.string.action_no),
+                                onClickPositive = {
+                                    requestPermissionLauncher.launch(it)
+                                },
+                                onClickNegative = {
+                                    showCustomToast(getString(R.string.message_app_will_close))
+                                    requireActivity().finish()
+                                }
+                            )
+                            /*val dialog: AlertDialog = AlertDialog.Builder(requireContext())
+                                .setTitle(getString(R.string.title_warning))
+                                .setMessage(getString(R.string.message_ask_camera_permission))
+                                .setPositiveButton(getString(R.string.action_give_access)) { _, _ ->
+                                    requestPermissionLauncher.launch(it)
+                                }
+                                .setNegativeButton(getString(R.string.action_no)) { _, _ ->
+                                    showCustomToast(getString(R.string.message_app_will_close))
+                                    requireActivity().finish()
+                                }.create()
+                            dialog.show()*/
+                        }
+                        Manifest.permission.WRITE_EXTERNAL_STORAGE -> {
+                            showCustomDialog(
+                                title = getString(R.string.title_warning),
+                                message = getString(R.string.message_ask_camera_permission),
+                                positiveButton = getString(R.string.action_give_access),
+                                negativeButton = getString(R.string.action_no),
+                                onClickPositive = {
+                                    requestPermissionLauncher.launch(it)
+                                },
+                                onClickNegative = {
+                                    showCustomToast(getString(R.string.message_app_will_close))
+                                    requireActivity().finish()
+                                }
+                            )
+                        }
+                        else -> {
 
-                     }
-                 }
+                        }
+                    }
                 }
             }
         }
@@ -221,7 +241,7 @@ class OnBoardingFragment : Fragment(), CloudModelObserver, CloudStorageObserver 
 
     override fun onResume() {
         super.onResume()
-        if(isAllLabelDownloaded(pref) && isAllModelDownloaded(pref)) {
+        if (isAllLabelDownloaded(pref) && isAllModelDownloaded(pref)) {
             showDownloadUI(false)
         }
     }
@@ -231,8 +251,7 @@ class OnBoardingFragment : Fragment(), CloudModelObserver, CloudStorageObserver 
             registerForActivityResult(ActivityResultContracts.RequestPermission()) { is_granted: Boolean ->
                 if (is_granted) {
                     counter += 1
-                    if(counter == ConstVal.arrayOfPermissions.size)
-                    {
+                    if (counter == ConstVal.arrayOfPermissions.size) {
                         if (!setupTheCloudModelStorage(pref)) {
                             if (!isConnectedToInternet)
                                 showRetryDialog(false)
@@ -240,15 +259,15 @@ class OnBoardingFragment : Fragment(), CloudModelObserver, CloudStorageObserver 
                                 observeConnectivity()
                         }
                     }
-                }
-                else if (!is_granted){
+                } else if (!is_granted) {
                     isNotgranted += 1
-                    if(isNotgranted > 0 )
+                    if (isNotgranted > 0)
                         requireActivity().finish()
                 }
             }
         checkPermission(requestPermissionLauncher)
     }
+
     /*
         private fun btnState()
         {
@@ -266,12 +285,10 @@ class OnBoardingFragment : Fragment(), CloudModelObserver, CloudStorageObserver 
      */
     private fun initAction() {
         binding.btnLoginGoogle.click {
-            if(validatePermission()) {
-                if(isAllLabelDownloaded(pref) && isAllModelDownloaded(pref) )
-                {
+            if (validatePermission()) {
+                if (isAllLabelDownloaded(pref) && isAllModelDownloaded(pref)) {
                     signIn()
-                }
-                else {
+                } else {
                     if (!setupTheCloudModelStorage(pref)) {
                         if (!isConnectedToInternet)
                             showRetryDialog(false)
@@ -279,19 +296,15 @@ class OnBoardingFragment : Fragment(), CloudModelObserver, CloudStorageObserver 
                             observeConnectivity()
                     }
                 }
-            }
-            else
-            {
+            } else {
                 askPermission()
             }
         }
         binding.btnNext.click {
-            if(validatePermission()) {
-                if(isAllLabelDownloaded(pref) && isAllModelDownloaded(pref) ) {
+            if (validatePermission()) {
+                if (isAllLabelDownloaded(pref) && isAllModelDownloaded(pref)) {
                     findNavController().navigate(R.id.action_onBoardingFragment_to_coreActivity)
-                }
-                else
-                {
+                } else {
                     Log.d("DEBUGTAGSGAN", pref.getSignLanguagePath.toString())
                     if (!setupTheCloudModelStorage(pref)) {
                         if (!isConnectedToInternet)
@@ -300,8 +313,7 @@ class OnBoardingFragment : Fragment(), CloudModelObserver, CloudStorageObserver 
                             observeConnectivity()
                     }
                 }
-            }
-            else {
+            } else {
                 askPermission()
             }
         }
@@ -313,16 +325,14 @@ class OnBoardingFragment : Fragment(), CloudModelObserver, CloudStorageObserver 
             findNavController().navigate(R.id.action_onBoardingFragment_to_termAgreementFragment)
         }
         binding.btnRetry.click {
-            if(!isCurrentlyDownloading && isConnectedToInternet) {
+            if (!isCurrentlyDownloading && isConnectedToInternet) {
                 modelCounterDownload = 0
                 labelCounterDownload = 0
                 showRetryDialog(true)
                 prepareTheModel()
-            }
-            else if(!isCurrentlyDownloading && !isConnectedToInternet)
-            {
+            } else if (!isCurrentlyDownloading && !isConnectedToInternet) {
                 showRetryDialog(false)
-                showToast("Pastikan Internet anda aktif")
+                showCustomToast(getString(R.string.message_make_sure_you_connected))
             }
         }
     }
@@ -347,7 +357,7 @@ class OnBoardingFragment : Fragment(), CloudModelObserver, CloudStorageObserver 
                 Timber.w("Google sign in failed : $e")
             }
         } else {
-            showToast("Login Failed $result")
+            showCustomToast(getString(R.string.message_login_failed))
         }
     }
 
@@ -367,7 +377,7 @@ class OnBoardingFragment : Fragment(), CloudModelObserver, CloudStorageObserver 
                     findNavController().navigate(R.id.action_onBoardingFragment_to_instructionFragment)
                 } else {
                     Timber.w("sign in with credential failure ${task.exception}")
-                    showToast("Error occurred")
+                    showCustomToast(getString(R.string.message_error_occured_try_again))
                 }
             }
             .addOnFailureListener {
@@ -382,10 +392,10 @@ class OnBoardingFragment : Fragment(), CloudModelObserver, CloudStorageObserver 
     private fun handleDownloadModels() {
         modelCounterDownload += 1
         try {
-            showToast("Downloading model $modelCounterDownload / 3")
+            showCustomToast("Downloading model $modelCounterDownload / 3")
             //Log.d("DOWNLOADTAGS", "$modelCounterDownload / 3")
             if (modelCounterDownload == TOTAL_MODEL) {
-                showToast("Downloading Successfully ")
+                showCustomToast(getString(R.string.message_download_successfull))
                 setModelPreference(pref)
                 pref = SharedPrefManager(requireContext())
                 booleanModelDownloaded = true
@@ -393,8 +403,7 @@ class OnBoardingFragment : Fragment(), CloudModelObserver, CloudStorageObserver 
                 showDownloadUI(false)
                 initAction()
             }
-        }
-        catch (e : NullPointerException) {
+        } catch (e: NullPointerException) {
             e.printStackTrace()
         }
     }
@@ -407,15 +416,13 @@ class OnBoardingFragment : Fragment(), CloudModelObserver, CloudStorageObserver 
                 setLabelsPreference(pref)
                 booleanLabelsDownloaded = true
             }
-        }
-        catch (e : NullPointerException )
-        {
+        } catch (e: NullPointerException) {
             e.printStackTrace()
         }
     }
 
     override fun updateFailureObserver(message: String) {
-        showToast(message)
+        showCustomToast(message)
         showDownloadUI(false)
         showRetryDialog(false)
     }
