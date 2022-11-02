@@ -4,7 +4,6 @@ import android.content.Context
 import android.graphics.Bitmap
 import android.graphics.RectF
 import android.os.Build
-import android.util.Log
 import android.util.Size
 import com.devtedi.tedi.interfaces.observer_core.CoreObserver
 import com.devtedi.tedi.interfaces.observer_core.CoreSubject
@@ -27,9 +26,7 @@ import org.tensorflow.lite.support.image.TensorImage
 import org.tensorflow.lite.support.image.ops.ResizeOp
 import org.tensorflow.lite.support.tensorbuffer.TensorBuffer
 import java.io.File
-import java.nio.ByteBuffer
 import java.util.*
-import kotlin.collections.ArrayList
 import kotlin.math.max
 
 open class YOLOv5ModelCreator(
@@ -42,12 +39,15 @@ open class YOLOv5ModelCreator(
     model_file: File,
     is_int_8: Boolean,
 
+    override var tflite: Interpreter? = null,
+    override var associatedAxisLabels: List<String>? = null,
+
     ) : ModelTF(input_size, output_size,
     detect_threshold, IOU_threshold,
     IOU_class_duplicated_threshold, label_file,
     model_file, is_int_8), CoreSubject {
 
-    private var observers  = arrayListOf<CoreObserver>()
+    private var observers = arrayListOf<CoreObserver>()
     private var nmsRecognitionRes = ArrayList<RecognitionRes>()
 
     override suspend fun create(context: Context): YOLOv5ModelCreator {
@@ -96,7 +96,6 @@ open class YOLOv5ModelCreator(
     }
 
     override fun detect(bitmap: Bitmap): ArrayList<RecognitionRes> {
-
         var yolov5sTfliteInput: TensorImage
         val imageProcessor: ImageProcessor
         if (IS_INT_8) {
@@ -129,7 +128,7 @@ open class YOLOv5ModelCreator(
             TensorBuffer.createFixedSize(outputSize, DataType.FLOAT32)
         }
 
-        tflite.run(yolov5sTfliteInput.buffer, probabilityBuffer.buffer)
+        tflite?.run(yolov5sTfliteInput.buffer, probabilityBuffer.buffer)
 
         if (IS_INT_8) {
             val tensorProcessor = TensorProcessor.Builder()
@@ -186,8 +185,10 @@ open class YOLOv5ModelCreator(
 
         for (recognition in nmsFilterBoxDuplicationRecognitions) {
             val labelId: Int = recognition.getLabelId()
-            val labelName = associatedAxisLabels[labelId]
-            recognition.setLabelName(labelName)
+            val labelName = associatedAxisLabels?.get(labelId)
+            if (labelName != null) {
+                recognition.setLabelName(labelName)
+            }
         }
         nmsRecognitionRes = nmsFilterBoxDuplicationRecognitions
         notifyObserver()
@@ -196,7 +197,7 @@ open class YOLOv5ModelCreator(
     }
 
     override fun close() {
-        tflite.close()
+        tflite?.close()
     }
 
     private fun nms(allRecognitions: ArrayList<RecognitionRes>): ArrayList<RecognitionRes> {
@@ -278,8 +279,7 @@ open class YOLOv5ModelCreator(
         return if (w < 0 || h < 0) 0f else w * h
     }
 
-    fun getResult() : ArrayList<RecognitionRes>
-    {
+    fun getResult(): ArrayList<RecognitionRes> {
         return this.nmsRecognitionRes
     }
 
@@ -298,8 +298,7 @@ open class YOLOv5ModelCreator(
 
     override fun notifyObserver() {
 
-        for(obs in observers)
-        {
+        for (obs in observers) {
             obs.update_observer()
         }
     }

@@ -19,8 +19,8 @@ abstract class ModelTF(
     protected var IS_INT_8: Boolean = false
 ) {
 
-    protected lateinit var tflite : Interpreter
-    protected lateinit var associatedAxisLabels : List<String>
+    abstract var tflite : Interpreter?
+    abstract var associatedAxisLabels : List<String>?
     protected var input5SINT8QuantParams: Tensor.QuantizationParams =
         Tensor.QuantizationParams(0.003921568859368563f, 0)
     protected var output5SINT8QuantParams: Tensor.QuantizationParams =
