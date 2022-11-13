@@ -326,7 +326,6 @@ class OnBoardingFragment : Fragment(), CloudModelObserver, CloudStorageObserver 
     private var resultLauncher = registerForActivityResult(
         StartActivityForResult()
     ) { result ->
-        showCustomToast(result.resultCode.toString())
         if (result.resultCode == Activity.RESULT_OK) {
             val task = GoogleSignIn.getSignedInAccountFromIntent(result.data)
             try {

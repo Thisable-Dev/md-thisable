@@ -154,6 +154,29 @@ class BugReportFragment : Fragment() {
         }
     }
 
+    private fun enableUi(enable : Boolean)
+    {
+
+        if(enable)
+        {
+            binding.apply {
+                edtReport.enable()
+                spinnerSeverity.enable()
+                btnAttachment.enable()
+                btnReport.enable()
+            }
+        }
+        else
+        {
+            binding.apply {
+                edtReport.disable()
+                spinnerSeverity.disable()
+                btnAttachment.disable()
+                btnReport.disable()
+            }
+        }
+    }
+
     private fun initObservers() {
         bugReportViewModel.addNewReportBugResult.observe(viewLifecycleOwner) { response ->
             when (response) {
@@ -161,11 +184,13 @@ class BugReportFragment : Fragment() {
                     binding.apply {
                         showLoading(bgDim, progressBar)
                     }
+                    enableUi(false)
                 }
                 is ApiResponse.Success -> {
                     binding.apply {
                         hideLoading(bgDim, progressBar)
                     }
+                    enableUi(true)
                     clearInput()
                     findNavController().navigate(R.id.action_bugReportFragment_to_fragmentSuccessCustomDialog)
                 }
@@ -173,11 +198,13 @@ class BugReportFragment : Fragment() {
                     binding.apply {
                         hideLoading(bgDim, progressBar)
                     }
+                    enableUi(true)
                     Snackbar.make(requireView(), response.errorMessage, Snackbar.LENGTH_SHORT)
                         .show()
                     Timber.e("Error <<<<<<<< ${response.errorMessage}")
                 }
                 else -> {
+                    enableUi(true)
                     Timber.e(getString(string.message_unknown_state))
                 }
             }

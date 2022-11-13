@@ -281,16 +281,19 @@ class HomeFragment : Fragment(), CloudModelObserver, CloudStorageObserver {
 
     private fun handleModelDownload() {
         modelCounterDownload += 1
-        showCustomToast(
-            getString(
-                R.string.info_pengunduhan,
-                modelCounterDownload.toString(),
-                TOTAL_MODEL.toString()
+        if(modelCounterDownload <= TOTAL_MODEL ) {
+            showCustomToast(
+                getString(
+                    R.string.info_pengunduhan,
+                    modelCounterDownload.toString(),
+                    TOTAL_MODEL.toString()
+                )
             )
-        )
+        }
         //Log.d("DOWNLOADTAGS", "$modelCounterDownload / 3")
         if (modelCounterDownload == TOTAL_MODEL) {
-            showCustomToast(getString(R.string.info_pengunduhan,modelCounterDownload.toString(), TOTAL_MODEL.toString()))
+            if(modelCounterDownload <= TOTAL_MODEL )
+                showCustomToast(getString(R.string.info_pengunduhan,modelCounterDownload.toString(), TOTAL_MODEL.toString()))
             setModelPreference(prefs)
             setUpdateModelPreference(prefs)
             booleanModelDownloaded = true
