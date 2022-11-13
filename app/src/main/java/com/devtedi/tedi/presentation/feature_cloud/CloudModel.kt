@@ -124,6 +124,12 @@ object CloudModel : CloudModelSubject {
             }
     }
 
+    fun getTotalModels() : Int
+    {
+        FirebaseModelDownloader.getInstance()
+        return 0;
+    }
+
     fun downloadLatestObjectDetectionModel() {
 
         FirebaseModelDownloader.getInstance().getModel(

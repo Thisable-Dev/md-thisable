@@ -13,21 +13,23 @@ import androidx.appcompat.widget.AppCompatEditText
 import androidx.core.content.ContextCompat
 import com.devtedi.tedi.R
 import com.devtedi.tedi.interfaces.FeedbackSignLanguageListener
+import com.devtedi.tedi.interfaces.observer_keyboard.KeyboardObserver
+import com.devtedi.tedi.interfaces.observer_keyboard.KeyboardSubject
+import okhttp3.internal.notify
 
-class CustomEditText  : AppCompatEditText, View.OnTouchListener {
+class CustomEditText  : AppCompatEditText, View.OnTouchListener, KeyboardSubject {
     private lateinit var clearButtonImage : Drawable
     private lateinit var keyboardButtonImage : Drawable
+    private var observers : ArrayList<KeyboardObserver> = ArrayList()
     private var stateKeyboard : Boolean = false
     private var stateClear : Boolean = false
     private var subscribeKeyboardSignLanguageListener : FeedbackSignLanguageListener? = null
     constructor(context : Context) : super(context) {
         init()
-
     }
 
     constructor(context : Context, attrs:AttributeSet) : super(context, attrs) {
         init()
-
     }
 
     override fun onDraw(canvas: Canvas?) {
@@ -57,6 +59,7 @@ class CustomEditText  : AppCompatEditText, View.OnTouchListener {
                     hideClearButton()
                     stateKeyboard = true
                     stateClear = false
+                    notifyObserver()
                     showKeyboardButton()
                 }
             }
@@ -88,7 +91,6 @@ class CustomEditText  : AppCompatEditText, View.OnTouchListener {
         endOfTheText : Drawable? = null,
         bottomOfTheText : Drawable? = null
     ) {
-
         // Set Location of the drawable with desired Location ( Not Null Value )
         setCompoundDrawablesWithIntrinsicBounds(
             startOfTheText,
@@ -138,7 +140,6 @@ class CustomEditText  : AppCompatEditText, View.OnTouchListener {
 
                             text.isNullOrBlank() -> {
                                 stateKeyboard = true
-                                Log.d("YOMANGans",stateKeyboard.toString())
                             }
 
                             text != null ->
@@ -149,12 +150,10 @@ class CustomEditText  : AppCompatEditText, View.OnTouchListener {
 
                         }
                         if (stateKeyboard) {
-                            Log.d("YOMAN",stateKeyboard.toString())
                             showKeyboardButton()
                             subscribeKeyboardSignLanguageListener?.onListenerKeyboard(true)
                         }
                         else {
-                            Log.d("YOMAN",stateKeyboard.toString())
                             subscribeKeyboardSignLanguageListener?.onListenerKeyboard(false)
                             showKeyboardButton()
                         }
@@ -170,4 +169,23 @@ class CustomEditText  : AppCompatEditText, View.OnTouchListener {
     fun setKeyboardListener(keyboardSignLanguageListener : FeedbackSignLanguageListener) {
         this.subscribeKeyboardSignLanguageListener = keyboardSignLanguageListener
     }
+
+    override fun registerObserver(o: KeyboardObserver) {
+        if(!observers.contains(o))
+        {
+            observers.add(o)
+        }
+    }
+
+    override fun removeObserver(o: KeyboardObserver) {
+        if(observers.contains(o)) observers.remove(o)
+    }
+
+    override fun notifyObserver() {
+        for( observer in observers)
+        {
+            observer.updateObserver()
+        }
+    }
+
 }

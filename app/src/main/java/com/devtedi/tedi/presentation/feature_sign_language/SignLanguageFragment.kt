@@ -13,19 +13,18 @@ import com.devtedi.tedi.analysis.FullImageAnalyse
 import com.devtedi.tedi.databinding.FragmentSignLanguageBinding
 import com.devtedi.tedi.factory.YOLOv5ModelCreator
 import com.devtedi.tedi.interfaces.FeedbackSignLanguageListener
-import com.devtedi.tedi.interfaces.SignLanguageListener
-import com.devtedi.tedi.interfaces.SignlanguageContentListener
-import com.devtedi.tedi.presentation.feature_cloud.CloudModel
+import com.devtedi.tedi.interfaces.observer_keyboard.KeyboardObserver
 import com.devtedi.tedi.utils.*
 import com.google.android.material.bottomsheet.BottomSheetDialog
 import java.io.File
 import java.lang.StringBuilder
+import java.security.Key
+import java.util.*
 
-class SignLanguageFragment : Fragment(), FeatureBaseline {
+class SignLanguageFragment : Fragment(), FeatureBaseline, KeyboardObserver{
 
     private var _binding : FragmentSignLanguageBinding? = null
     private val binding : FragmentSignLanguageBinding get() = _binding!!
-
     override lateinit var cameraPreviewView: PreviewView
     override lateinit var cameraProcess: CameraProcess
     override lateinit var yolov5TFLiteDetector: YOLOv5ModelCreator
@@ -63,13 +62,13 @@ class SignLanguageFragment : Fragment(), FeatureBaseline {
 
         initPoseListener()
         initKeyboard()
+        registerKeyboard()
 
         cameraProcess = CameraProcess()
         cameraPreviewView = binding.cameraPreviewWrap
         if(!cameraProcess.allPermissionGranted(requireContext())) {
             cameraProcess.requestPermission(requireActivity())
         }
-
     }
 
     override fun onResume() {
@@ -112,6 +111,10 @@ class SignLanguageFragment : Fragment(), FeatureBaseline {
             e.printStackTrace()
         }
     }
+    private fun registerKeyboard()
+    {
+        binding.etOutputTerjemahan.registerObserver(this)
+    }
 
     override fun onDestroyView() {
         super.onDestroyView()
@@ -128,11 +131,10 @@ class SignLanguageFragment : Fragment(), FeatureBaseline {
         keyboardListener = object : FeedbackSignLanguageListener {
             override fun onListenerKeyboard(state: Boolean) {
                 if(state) {
-                    subscribeSignlanguageContentListener?.onListenContent(true)
                     openKeyboardDialog()
                 }
                 else {
-                    subscribeSignlanguageContentListener?.onListenContent(false)
+
                 }
             }
 
@@ -151,10 +153,10 @@ class SignLanguageFragment : Fragment(), FeatureBaseline {
 
         bottomSheetDialog.show()
     }
-    companion object {
-        private  var subscribeSignlanguageContentListener: SignlanguageContentListener? = null
-        fun setSignLanguageContentListener(signlanguageContentListener: SignlanguageContentListener) {
-            this.subscribeSignlanguageContentListener = signlanguageContentListener
-        }
+
+    override fun updateObserver() {
+        viewModel.removePredictionContent()
+
     }
+
 }

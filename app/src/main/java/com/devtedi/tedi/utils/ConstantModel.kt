@@ -3,15 +3,6 @@ package com.devtedi.tedi.utils
 import android.util.Size
 import com.devtedi.tedi.R
 
-const val MODEL_FILE_OBJ: String = "ObjectDetectionModel.tflite"
-const val MODEL_FILE_CURRENCY : String = "CurrencyModel.tflite"
-const val MODEL_FILE_BISINDO : String ="SignlanguageModel.tflite"
-
-const val LABEL_OBJ : String = "label_obj_detection.txt"
-const val LABEL_CURRENCY : String = "label_currency.txt"
-const val LABEL_COLOR : String = "file:///android_asset/color.txt"
-const val LABEL_BISINDO : String = "label_sign_language.txt"
-
 val LABEL_USED_OBJ_PATH : String = StringBuilder().apply {
     append(ConstVal.ABSOLUTE_PATH)
     append(label_obj)
@@ -37,15 +28,14 @@ const val ISQUANTIZED : Boolean = false
 const val const_object_detector : String = "obj_detector"
 const val const_bisindo_translator : String = "bisindo_translator"
 const val const_currency_detector : String = "currency_detector"
-const val const_color_classifier : String = "color_classifier"
 
 const val total_label_object : Int = 80;
 const val total_label_bisindo : Int = 50;
 const val total_label_currency : Int = 7;
 
-const val DETECT_THRESHOLD : Float = 0.8f
-const val IOU_THRESHOLD : Float = 0.8f
-const val IOU_CLASS_DUPLICATED_THRESHOLD : Float = 0.85f
+//const val DETECT_THRESHOLD : Float = 0.8f
+//const val IOU_THRESHOLD : Float = 0.8f
+//const val IOU_CLASS_DUPLICATED_THRESHOLD : Float = 0.85f
 const val test_model : String = "yolov5n-fp16-320.tflite"
 // Testing Variables
 const val const_test_model : String= "test"
@@ -79,6 +69,6 @@ const val DETECT_THRESHOLD_bisindo : Float= 0.9f
 const val DETECT_THRESHOLD_currency : Float = 0.8f
 
 //Constant for IOU CLASS DUPLICATED THRESHOLD
-const val IOU_CLASS_DUPLICATED_THRESHOLD_object : Float = 0.85f;
-const val IOU_CLASS_DUPLICATED_THRESHOLD_bisindo : Float = 0.95f
+const val IOU_CLASS_DUPLICATED_THRESHOLD_object : Float = 0.8f;
+const val IOU_CLASS_DUPLICATED_THRESHOLD_bisindo : Float = 0.9f;
 const val IOU_CLASS_DUPLICATED_THRESHOLD_currency : Float = 0.85f

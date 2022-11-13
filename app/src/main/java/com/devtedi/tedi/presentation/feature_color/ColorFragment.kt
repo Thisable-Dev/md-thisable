@@ -29,6 +29,7 @@ class ColorFragment : Fragment() {
     private lateinit var colorAnalyzer : ColorDetectionAnalyzer
     private lateinit var colorGenerator: ColorGenerator
     private lateinit var cameraExecutor : ExecutorService
+    private var soundPlayer : SoundPlayer ?= null
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
@@ -42,6 +43,7 @@ class ColorFragment : Fragment() {
         OpenCVLoader.initDebug()
         initConfiguration()
         initAction()
+        soundPlayer = SoundPlayer.getInstance(requireContext())
     }
 
     override fun onResume() {
@@ -57,12 +59,11 @@ class ColorFragment : Fragment() {
     private fun initAction() {
         binding.btnCapture.setOnClickListener {
             val image = colorAnalyzer.getDetectedImage()
-            SoundPlayer.getInstance(requireContext()).playSound("anjing")
+            soundPlayer?.playSound(requireContext().resources.getString(R.string.raw_sound_take_pict))
             if (image != null)
             {
                 val currImage = scaleBitmapDown(image, maxDimension)
                 colorGenerator = ColorGenerator(requireActivity(), currImage)
-
             }
         }
 

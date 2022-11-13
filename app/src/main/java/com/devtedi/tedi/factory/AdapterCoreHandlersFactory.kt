@@ -13,6 +13,7 @@ class AdapterCoreHandlersFactory(
 ) : CoreObserver {
     private var recognitionRes: ArrayList<RecognitionRes>? = null
     private var toastLayout :  CustomToastV1Binding
+    private var pattern : String = "[{}]+"
     init {
         this.yolOv5ModelCreator.registerObserver(this)
         toastLayout = CustomToastV1Binding.inflate(context.layoutInflater)
@@ -21,7 +22,6 @@ class AdapterCoreHandlersFactory(
     fun onClickObjectInfo(info: String) {
 
         toastLayout.textCustom.setText(info)
-
         val toast : Toast = Toast(context)
         toast.duration = Toast.LENGTH_LONG
         toast.setView(toastLayout.root)
@@ -43,7 +43,7 @@ class AdapterCoreHandlersFactory(
                     toast.show()
                 }
                 else {
-                    toastLayout.textCustom.text = context.getString(R.string.response_1_obj_detection, items.toString())
+                    toastLayout.textCustom.text = context.getString(R.string.response_1_obj_detection, replacePattern(pattern,items.toString()))
                     toast.duration = Toast.LENGTH_LONG
                     toast.setView(toastLayout.root)
                     toast.show()
@@ -54,6 +54,10 @@ class AdapterCoreHandlersFactory(
                 toast.show()
             }
         }
+    }
+    private fun replacePattern(pattern:  String,text : String)  : String
+    {
+        return Regex(pattern).replace(text, "")
     }
 
     fun onClickLongCurrencyDetection(info : String) {
@@ -69,7 +73,7 @@ class AdapterCoreHandlersFactory(
                     toastLayout.textCustom.text = context.getString(R.string.response_no_detection_currency_detection)
                 }
                 else {
-                    toastLayout.textCustom.text = context.getString(R.string.response_1_currency_detection, items.toString())
+                    toastLayout.textCustom.text = context.getString(R.string.response_1_currency_detection, replacePattern(pattern,items.toString()))
                 }
                 toast.duration = Toast.LENGTH_LONG
                 toast.setView(toastLayout.root)
@@ -96,7 +100,6 @@ class AdapterCoreHandlersFactory(
     // For ObjectDetection Handler
     private fun calculateUniqueItems() : MutableMap<String, Int>
     {
-
         val uniqueMap = mutableMapOf<String, Int>()
         if(recognitionRes != null)
         {

@@ -54,13 +54,6 @@ class ObjectGraphic(var graphic: GraphicOverlay, private var objs: RecognitionRe
         yLabelOffset -= 2 * lineHeight
 
         val rect = RectF(objs.getLocation())
-        val x0 = translateX(rect.left)
-        val x1 = translateY(rect.right)
-
-        rect.left = Math.min(x0, x1)
-        rect.right = Math.max(x0, x1)
-        rect.top = translateY(rect.top)
-        rect.bottom = translateY(rect.bottom)
         canvas?.drawRect(rect, boxPaints[colorID])
 
         // Draw miscelenaous
@@ -84,8 +77,7 @@ class ObjectGraphic(var graphic: GraphicOverlay, private var objs: RecognitionRe
             String.format(
                 Locale.US,
                 LABEL_FORMAT,
-                objs.getConfidence() * 100,
-                1
+                objs.getConfidence() * 100
             ),
             rect.left,
             rect.top + yLabelOffset,
@@ -113,7 +105,7 @@ class ObjectGraphic(var graphic: GraphicOverlay, private var objs: RecognitionRe
             intArrayOf(Color.BLACK, Color.GREEN)
         )
 
-        private const val LABEL_FORMAT = "%.2f%% confidence(index : %d)"
+        private const val LABEL_FORMAT = "%.2f%% confidence "
     }
 
 

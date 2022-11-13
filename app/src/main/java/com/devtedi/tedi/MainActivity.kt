@@ -5,6 +5,7 @@ import android.os.Bundle
 import android.util.Log
 import androidx.navigation.fragment.NavHostFragment
 import androidx.navigation.ui.setupWithNavController
+import androidx.work.OneTimeWorkRequestBuilder
 import androidx.work.PeriodicWorkRequest
 import androidx.work.PeriodicWorkRequestBuilder
 import androidx.work.WorkManager
@@ -14,6 +15,7 @@ import com.devtedi.tedi.utils.ConstVal
 import com.devtedi.tedi.utils.SharedPrefManager
 import com.devtedi.tedi.utils.ext.gone
 import com.devtedi.tedi.utils.ext.show
+import com.devtedi.tedi.utils.ext.showCustomToast
 import dagger.hilt.android.AndroidEntryPoint
 import java.util.concurrent.TimeUnit
 
@@ -35,7 +37,6 @@ class MainActivity : AppCompatActivity() {
 
         if (!notifIsInitiated) {
             prepareNotification()
-
         }
 
         val navHostBottomBar = supportFragmentManager.findFragmentById(R.id.nav_host_fragment) as NavHostFragment
@@ -56,11 +57,12 @@ class MainActivity : AppCompatActivity() {
     {
         val workManager = WorkManager.getInstance(this)
 
-        val periodicWorker = PeriodicWorkRequestBuilder<Notification>(2, TimeUnit.MINUTES).build()
-
+        val periodicWorker = PeriodicWorkRequestBuilder<Notification>(30, TimeUnit.DAYS).build()
+        //val periodicWorker = OneTimeWorkRequestBuilder<Notification>().build()
         workManager.enqueue(periodicWorker)
 
         prefs.setBooleanPreference(ConstVal.IS_NOTIFICATION_INITIATED, true)
+        prefs.setBooleanPreference(ConstVal.IS_MODEL_UPDATE, false)
     }
 
 }

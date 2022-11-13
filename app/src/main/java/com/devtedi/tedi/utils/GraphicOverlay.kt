@@ -20,7 +20,7 @@ class GraphicOverlay(context: Context?, attrs: AttributeSet?) :
 
     // The factor of overlay View size to image size. Anything in the image coordinates need to be
     // scaled by this amount to fit with the area of overlay View. Semakin besar maka nanti pas prediksi bakaln kedeteksi multiple item pada satu bounding box
-    private var scaleFactor = 1.0f
+    private var scaleFactor : Float = 1.0f
 
     // The number of horizontal pixels needed to be cropped on each side to fit the image with the
     // area of overlay View after scaling.
@@ -101,44 +101,40 @@ class GraphicOverlay(context: Context?, attrs: AttributeSet?) :
 
     private fun updateTransformation() {
 
+
         // INi mastiin inputan imagenya valid
         if (!needUpdateTransformation || imageWidth <= 0 || imageHeight <= 0) return
         else {
-            val viewAspectRatio = width.toFloat() / height
-            val imageAspectRatio = imageWidth.toFloat() / imageHeight
-
-            postScaleHeightOffset =0f
+            postScaleHeightOffset = 0f
             postScaleWidthOffset = 0f
+            val viewAspectRatio : Float = ( width / height ).toFloat()
+            val imageAspectRatio : Float = (imageWidth / imageHeight).toFloat()
 
-            if (viewAspectRatio > imageAspectRatio) {
-                scaleFactor = width.toFloat() / imageWidth
-                postScaleHeightOffset = (width.toFloat() / imageAspectRatio - height) / 4
-                postScaleWidthOffset = (height.toFloat()  / imageAspectRatio - width) / 4
+            if(viewAspectRatio > imageAspectRatio)
+            {
+                scaleFactor = (width / imageWidth).toFloat()
+                postScaleHeightOffset = (width / imageAspectRatio - height ) / 2
             }
-
             else {
-                scaleFactor =
-                    height.toFloat() / imageHeight
-                postScaleWidthOffset = (height.toFloat() / imageAspectRatio - width) / 4
-                postScaleHeightOffset = (width.toFloat() / imageAspectRatio - height) / 4
+                scaleFactor = (height / imageHeight).toFloat()
+                postScaleWidthOffset = (height / imageAspectRatio - width ) / 2
             }
+
 
             transformationMatrix.reset()
-            transformationMatrix.setScale(scaleFactor, scaleFactor)
+            transformationMatrix.setScale(scaleFactor  , scaleFactor)
             transformationMatrix.postTranslate(-postScaleWidthOffset, -postScaleHeightOffset)
-            if (isImageFlipped) transformationMatrix.postScale(-1f, 1f, width/ 2f, height/ 2f)
+            if (isImageFlipped) transformationMatrix.postScale(-1f, 1f, width / 2f, height / 2f)
             needUpdateTransformation = false
         }
     }
-
-    override fun onDraw(canvas: Canvas?) {
-        super.onDraw(canvas)
-        synchronized(lock) {
-            updateTransformation()
-            for (graphic in graphics)
-            {
-                graphic.draw(canvas)
+        override fun onDraw(canvas: Canvas?) {
+            super.onDraw(canvas)
+            synchronized(lock) {
+                updateTransformation()
+                for (graphic in graphics) {
+                    graphic.draw(canvas)
+                }
             }
         }
-    }
 }

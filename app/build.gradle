@@ -8,6 +8,14 @@ plugins {
 }
 
 android {
+    signingConfigs {
+        debug {
+            storeFile file('E:\\Ngoding\\KeePassX-2.0.3\\KeySignedAndroid\\TeDi.jks')
+            storePassword 'tediDeveloper990'
+            keyPassword 'tediDeveloper990'
+            keyAlias 'key_tedi'
+        }
+    }
     compileSdk 32
 
     defaultConfig {
@@ -31,6 +39,7 @@ android {
     buildTypes {
         release {
             minifyEnabled false
+            debuggable true
             proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
         }
     }

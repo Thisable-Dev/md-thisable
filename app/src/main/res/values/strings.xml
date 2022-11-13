@@ -21,12 +21,13 @@
     <string name="menu_TeDi">TeDi</string>
     <string name="menu_profile">Profil</string>
 
+    <!-- Home Page && OnBoarding Page -->
+    <string name="info_pengunduhan">Sedang Mengunduh %1$s dari %2$s</string>
     <!-- Home Page -->
     <string name="label_feature">Fitur</string>
     <string name="label_bisindo_translator">Penerjemah BISINDO</string>
     <string name="label_currency_detection">Pendeteksi Mata Uang</string>
     <string name="label_text_detection">Pendeteksi Teks</string>
-    <string name="info_pengunduhan">Sedang Mengunduh %1$s dari %2$s</string>
 
     <!--  Profile Page  -->
     <string name="label_my_account">Akun Saya</string>
@@ -36,6 +37,9 @@
     <string name="action_logout">Keluar</string>
     <string name="label_about_TeDi">Tentang TeDi</string>
 
+    <!-- Notification -->
+    <string name="label_judul_notifikasi">Notifikasi Info Pembaharuan</string>
+    <string name="label_konten_notifikasi">Terdapat pembaharuan Model yang lebih baik dari sebelumnya</string>
     <!--  Dialog  -->
     <string name="message_information">Informasi</string>
     <string name="message_unknown_state">Unknown State</string>
@@ -57,6 +61,10 @@
     <string name="label_color_detection">Fitur Deteksi Warna</string>
     <string name="label_family_help">Family Help</string>
     <string name="info_text_pembaharuan">Mohon Tunggu sebentar, sedang dilakukan pembaharuan</string>
+    <string name="info_dialog_title_unduhPembaharuan">Pembaharuan Aplikasi</string>
+    <string name="info_dialog_content_unduhPembaharuan">Mohon melakukan pengunduhan sistem aplikasi yang terbaru, untuk kemampuan model yang terbaru</string>
+    <string name="info_dialog_content_iya">Unduh</string>
+    <string name="info_dialog_content_tidak">Nanti Saja</string>
     <!-- Android Descripotion For Fragment Home End -->
 
     <!-- Sign Language COntent Description -->
@@ -64,18 +72,21 @@
     <string name="label_signLanguage_previewView">Anda Berada Pada Fitur Penerjemah Bisindo</string>
     <string name="label_signLanguage_cardView">Hasil Terjemahan BISINDO</string>
     <string name="label_signLanguage_terjemahan">Terjemahan</string>
+    <string name="label_signLanguage_go">Anda berada pada fitur Penerjemah Bisindo </string>
     <!-- Sign Language Content Description End -->
 
     <!-- Object Content Description -->
     <string name="label_object_detection_page">Halaman Deteksi Objek Dipilih</string>
     <string name="label_object_detection_previewView">Anda Berada pada fitur deteksi Objek</string>
     <string name="label_object_detection_imageViewSound">Fitur Aktivasi Suara Objek Deteksi</string>
+    <string name="label_object_go">Anda berada pada fitur deteksi objek</string>
     <!-- Object Content Description End -->
 
     <!-- Currency Content Description -->
     <string name="label_currency_detection_page">Halaman Deteksi Uang Dipilih</string>
     <string name="label_currency_pv">Anda berada pada Fitur Deteksi Uang</string>
     <string name="label_currency_imageViewSound">Fitur aktivasi suara Deteksi Uang</string>
+    <string name="label_currency_go">Anda berada pada fitur deteksi uang</string>
     <!-- Currency Content Description End -->
 
     <!-- Color Sound Description-->
@@ -209,7 +220,8 @@
     <string name="raw_soundobj_sarung_bisbol">sarung tangan bisbol</string>
     <string name="raw_soundobj_skateboard">skateboard</string>
 
-    <!-- Check bagian yang ini<string name="raw_soundobj_papan"-->
+    <!-- Check bagian yang ini<string name="raw_soundobj_papan" < Soundnya belom > -->
+    <string name="raw_soundobj_papanselancar">papan selancar</string>
     <string name="raw_soundobj_raket_tenis">raket tenis</string>
     <string name="raw_soundobj_botol">botol</string>
     <string name="raw_soundobj_gelas_anggur">gelas anggur</string>
@@ -251,7 +263,9 @@
     <string name="raw_soundobj_boneka_beruang">boneka beruang</string>
     <string name="raw_soundobj_pengering_rambut">pengering rambut</string>
     <string name="raw_soundobj_sikat_gigi">sikat gigi</string>
-    <string name="raw_sound_mobil">car</string>
+    <!--   <string name="raw_sound_mobil">car</string> -->
+
+    <string name="raw_sound_take_pict">mengambil_gambar</string>
 
     <!--  About Page  -->
     <string name="title_about_TeDi">Tentang TeDi</string>
@@ -296,6 +310,7 @@
 
     <string name="title_warning">Peringatan</string>
     <string name="message_ask_camera_permission">Aplikasi ini menggunakan kamera gawai anda untuk dapat digunakan, Mohon Berikan Akses untuk kamera</string>
+    <string name="message_ask_readwrite_permission">Aplikasi ini membutuhkan akses read/write pada gawai anda, Mohon Berikan Akses</string>
     <string name="action_give_access">Beri Akses</string>
     <string name="action_no">Tidak</string>
     <string name="message_app_will_close">Aplikasi Akan Ditutup</string>
@@ -364,7 +379,7 @@
     <string name="message_email_app_not_installed">Email App is not installed</string>
     <string name="message_downloading_the_model">Downloading the model ...</string>
     <string name="message_make_sure_you_connected">Pastikan Internet anda aktif</string>
-    <string name="message_login_failed">\"Login gagal, silahkan coba lagi beberapa \"</string>
+    <string name="message_login_failed">\"Login gagal, silahkan coba lagi beberapa saat \"</string>
     <string name="message_error_occured_try_again">Terjadi kesalahan, silahkan coba beberapa saat</string>
     <string name="message_download_successfull">\"Downloading Successfully \"</string>
     <string name="attachment_must_not_empty">Lampiran tidak boleh kosong</string>

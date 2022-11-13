@@ -85,7 +85,7 @@ class FullImageAnalyse(
             Bitmap.createBitmap(fullImageBitmap, 0, 0, previewWidth, previewHeight)
 
         val previewToModelTransform: Matrix = ImageProcess.getTransformationMatrix(
-            cropImageBitmap.width, cropImageBitmap.height,
+            previewWidth, previewHeight,
             yolov5TFLiteDetector.inputSize.width,
             yolov5TFLiteDetector.inputSize.height,
             0, false
@@ -101,10 +101,6 @@ class FullImageAnalyse(
         if (onDetect) {
             val recognitions: ArrayList<RecognitionRes> =
                 yolov5TFLiteDetector.detect(modelInputBitmap)
-            val emptyCropSizeBitmap =
-                Bitmap.createBitmap(previewWidth, previewHeight, Bitmap.Config.ARGB_8888)
-            val cropCanvas = Canvas(emptyCropSizeBitmap)
-
             val boxPaint = Paint()
             boxPaint.strokeWidth = 5F
             boxPaint.style = Paint.Style.STROKE
@@ -117,18 +113,10 @@ class FullImageAnalyse(
 
             graphicOverlay.clear()
             for (res in recognitions) {
+                var location: RectF = res.getLocation()
+                modelToPreviewTransform.mapRect(location, location)
+                res.setLocation(location)
                 graphicOverlay.add(ObjectGraphic(this.graphicOverlay, res))
-                val location: RectF = res.getLocation()
-                val label: String = res.getLabelName()
-                val confidence: Float = res.getConfidence()
-                modelToPreviewTransform.mapRect(location)
-                cropCanvas.drawRect(location, boxPaint)
-                cropCanvas.drawText(
-                    label + ":" + String.format("%.2f", confidence),
-                    location.left,
-                    location.top,
-                    textPain
-                )
             }
 
             recognitions.toSet().forEach {

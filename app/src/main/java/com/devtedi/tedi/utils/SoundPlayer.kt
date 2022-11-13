@@ -93,7 +93,7 @@ class SoundPlayer private constructor(private val context: Context) {
             context.resources.getString(R.string.raw_soundobj_boneka_beruang) -> R.raw.bonekaberuang
             context.resources.getString(R.string.raw_soundobj_pengering_rambut) -> R.raw.pengeringrambut
             context.resources.getString(R.string.raw_soundobj_sikat_gigi) -> R.raw.sikatgigi
-
+            context.resources.getString(R.string.raw_soundobj_papanselancar) -> R.raw.papanselancar
             // *********** Currency Detection Resources *********** //
             context.resources.getString(R.string.raw_soundcurrency_seribu) -> {
                 R.raw.seribu
@@ -112,6 +112,10 @@ class SoundPlayer private constructor(private val context: Context) {
             }
             context.resources.getString(R.string.raw_soundcurrency_seratusribu) -> {
                 R.raw.seratusribu
+            }
+            // ** Take Pict Sound
+            context.resources.getString(R.string.raw_sound_take_pict) -> {
+                R.raw.take_pict
             }
 
             else -> null
