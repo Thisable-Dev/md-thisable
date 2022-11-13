@@ -24,6 +24,7 @@ class InternetConnectivityLiveData(context: Context) : LiveData<InternetConnecti
         val networkRequest = NetworkRequest.Builder()
             .addCapability(NetworkCapabilities.NET_CAPABILITY_INTERNET)
             .addTransportType(NetworkCapabilities.TRANSPORT_WIFI)
+            .addTransportType(NetworkCapabilities.TRANSPORT_CELLULAR)
             .build()
 
         connectivityManager.registerNetworkCallback(networkRequest, networkCallback)

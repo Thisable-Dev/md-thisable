@@ -43,7 +43,7 @@ class TextDetectionFragment : Fragment() {
     private lateinit var _fragmentTextDetectionBinding: FragmentTextDetectionBinding
     private val binding get() = _fragmentTextDetectionBinding
     private lateinit var cameraExecutor: ExecutorService
-
+    private var soundPlayer : SoundPlayer ?= null
     private lateinit var textDetectionAnalyzer: TextDetectionAnalyzer
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
@@ -52,6 +52,7 @@ class TextDetectionFragment : Fragment() {
         initAnalyzer()
         initAction()
         startCamera()
+        soundPlayer = SoundPlayer.getInstance(requireContext())
     }
 
     override fun onCreateView(
@@ -107,7 +108,7 @@ class TextDetectionFragment : Fragment() {
     private fun initAction() {
         binding.btnCapture.click {
             val image = textDetectionAnalyzer.getDetectedImage()
-            SoundPlayer.getInstance(requireContext()).playSound("anjing")
+            soundPlayer?.playSound(getString(R.string.raw_sound_take_pict))
             if (image != null) {
                 val metadata = FrameMetadata(image.width, image.height, 0)
                 val currImage = scaleBitmapDown(image, 640)

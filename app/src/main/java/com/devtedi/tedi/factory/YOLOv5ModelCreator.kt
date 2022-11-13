@@ -4,6 +4,7 @@ import android.content.Context
 import android.graphics.Bitmap
 import android.graphics.RectF
 import android.os.Build
+import android.util.Log
 import android.util.Size
 import com.devtedi.tedi.interfaces.observer_core.CoreObserver
 import com.devtedi.tedi.interfaces.observer_core.CoreSubject
@@ -26,6 +27,9 @@ import org.tensorflow.lite.support.image.TensorImage
 import org.tensorflow.lite.support.image.ops.ResizeOp
 import org.tensorflow.lite.support.tensorbuffer.TensorBuffer
 import java.io.File
+import java.io.FileInputStream
+import java.io.InputStream
+import java.io.InputStreamReader
 import java.util.*
 import kotlin.math.max
 
@@ -86,7 +90,9 @@ open class YOLOv5ModelCreator(
                 //val tfliteModel: ByteBuffer = FileUtil.loadMappedFile(activity, model_file)
 
                 tflite = Interpreter(model_file, options)
-                associatedAxisLabels = FileUtil.loadLabels(activity, label_file)
+                val fileInputStream : InputStream = FileInputStream(File(label_file))
+                associatedAxisLabels = FileUtil.loadLabels( fileInputStream )
+                Log.d("DEBUGTAGS",associatedAxisLabels.toString())
             }
         }
     }
@@ -212,7 +218,7 @@ open class YOLOv5ModelCreator(
             }
 
             for (j in allRecognitions.indices) {
-                if (allRecognitions[j].getLabelId() == i && allRecognitions[j].getConfidence() > DETECT_THRESHOLD) {
+                if (allRecognitions[j].getLabelId() == i && allRecognitions[j].getConfidence() > this.detect_threshold) {
                     pq.add(allRecognitions[j])
                 }
             }
@@ -225,12 +231,13 @@ open class YOLOv5ModelCreator(
                 pq.clear()
                 for (k in 1 until detections.size) {
                     val detection: RecognitionRes = detections[k]
-                    if (boxIou(max.getLocation(), detection.getLocation()) < IOU_THRESHOLD) {
+                    if (boxIou(max.getLocation(), detection.getLocation()) < this.IOU_threshold) {
                         pq.add(detection)
                     }
                 }
             }
         }
+        Log.d("DEBUGTAGS", nmsRecognitions.toString())
         return nmsRecognitions
     }
 
@@ -244,7 +251,7 @@ open class YOLOv5ModelCreator(
         }
 
         for (j in allRecognitions.indices) {
-            if (allRecognitions[j].getConfidence() > DETECT_THRESHOLD) {
+            if (allRecognitions[j].getConfidence() > this.detect_threshold) {
                 pq.add(allRecognitions[j])
             }
         }
@@ -257,7 +264,7 @@ open class YOLOv5ModelCreator(
             for (k in 1 until detections.size) {
                 val detection: RecognitionRes = detections[k]
                 val iou = boxIou(max.getLocation(), detection.getLocation())
-                if (iou < IOU_CLASS_DUPLICATED_THRESHOLD) pq.add(detection)
+                if (iou < this.IOU_class_duplicated_threshold) pq.add(detection)
             }
         }
         return nmsRecognitions

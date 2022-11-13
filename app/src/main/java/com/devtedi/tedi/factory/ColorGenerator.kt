@@ -27,7 +27,6 @@ class ColorGenerator(private val context : Activity, private val inputImage : Bi
 
     override fun dilateColor() {
         super.dilateColor()
-
     }
 
     override fun doContour(maskColor : Mat, colorName : String )  {
@@ -44,11 +43,10 @@ class ColorGenerator(private val context : Activity, private val inputImage : Bi
             Imgproc.RETR_TREE,
             Imgproc.CHAIN_APPROX_SIMPLE
         )
-
         for(c in contours)
         {
             val area : Double = Imgproc.contourArea(c)
-            if(area > thresholdArea )
+            if(area >= thresholdArea )
             {
                 bboxContour = Imgproc.boundingRect(c)
 
@@ -77,7 +75,7 @@ class ColorGenerator(private val context : Activity, private val inputImage : Bi
             }
         }
         if(listOfAreaMaps.isNotEmpty())
-        findMaximum(listOfAreaMaps)
+            findMaximum(listOfAreaMaps)
     }
 
     private fun findMaximum(listOfAreaMaps : MutableMap<Double, String>)
@@ -107,12 +105,16 @@ class ColorGenerator(private val context : Activity, private val inputImage : Bi
 
         val bitmap = Bitmap.createBitmap(inputImageMat.cols(), inputImageMat.rows(), Bitmap.Config.ARGB_8888)
         Utils.matToBitmap(inputImageMat, bitmap)
-
-        showResult(mUniqueColor.toList())
+        if(mUniqueColor.isNotEmpty())
+            showResult(mUniqueColor.toList())
     }
 
     private fun showResult(stringResult : List<String>)
     {
+        if(stringResult.isEmpty()) {
+            context.showCustomToast("Tidak ada warna yang terdeteksi")
+            return
+        }
         val stringBuilder : StringBuilder= StringBuilder()
         stringBuilder.append(
             context.getString(R.string.response_1_color_detection)
@@ -126,21 +128,15 @@ class ColorGenerator(private val context : Activity, private val inputImage : Bi
                 stringBuilder.append(stringResult[0])
                 stringBuilder.append(", ")
                 stringBuilder.append(stringResult[indx])
-                stringBuilder.append(", ")
             }
-            else if(indx != stringResult.size - 1)
+            else if(stringResult.size == 2)
             {
                 stringBuilder.append(stringResult[indx])
-                stringBuilder.append(", ")
+            }
 
-            }
-            else
-            {
-                stringBuilder.append(stringResult[indx])
-            }
         }
         context.showCustomToast(stringBuilder.toString())
-
+        mUniqueColor.clear()
     }
 
     fun addColor(colorName : String)
@@ -148,7 +144,7 @@ class ColorGenerator(private val context : Activity, private val inputImage : Bi
         mUniqueColor.add(colorName)
     }
     companion object {
-        private const val thresholdArea = 10.0
+        private const val thresholdArea = 500.0
         val defaultColor = Scalar(255.0,255.0,255.0)
 
     }

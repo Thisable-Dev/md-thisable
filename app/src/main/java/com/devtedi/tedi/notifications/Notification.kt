@@ -12,6 +12,7 @@ import androidx.work.Worker
 import androidx.work.WorkerParameters
 import com.devtedi.tedi.MainActivity
 import com.devtedi.tedi.R
+import com.devtedi.tedi.presentation.home.HomeFragment
 import com.devtedi.tedi.utils.ConstVal
 import com.devtedi.tedi.utils.SharedPrefManager
 
@@ -20,7 +21,7 @@ class Notification(ctx : Context, params : WorkerParameters) : Worker(ctx, param
     private lateinit var  pref : SharedPrefManager
     override fun doWork(): Result {
         try {
-            setupNotification()
+            //setupNotification()
             pref = SharedPrefManager(applicationContext)
             pref.setBooleanPreference(ConstVal.IS_MODEL_UPDATE, true)
           //  prepareTheModel()
@@ -32,10 +33,9 @@ class Notification(ctx : Context, params : WorkerParameters) : Worker(ctx, param
         }
     }
 
-
     private fun getPendingIntent() : PendingIntent
     {
-        val intent = Intent(applicationContext, MainActivity::class.java)
+        val intent = Intent(applicationContext, HomeFragment::class.java)
         return TaskStackBuilder.create(applicationContext).run {
             addNextIntentWithParentStack(intent)
             getPendingIntent(request_code, PendingIntent.FLAG_UPDATE_CURRENT)
@@ -47,8 +47,8 @@ class Notification(ctx : Context, params : WorkerParameters) : Worker(ctx, param
         val notificationManager = applicationContext.getSystemService(Context.NOTIFICATION_SERVICE) as NotificationManager
         val notification = NotificationCompat.Builder(applicationContext, NOTIFICATION_CHANNEL_ID )
             .setSmallIcon(R.drawable.ic_logo_tedi)
-            .setContentTitle("Judul Notifikasi")
-            .setContentText("Content Notifikasi")
+            .setContentTitle(applicationContext.getString(R.string.label_judul_notifikasi))
+            .setContentText(applicationContext.getString(R.string.label_konten_notifikasi))
             .setContentIntent(this.getPendingIntent())
             .setPriority(NotificationCompat.PRIORITY_HIGH)
             .setDefaults(NotificationCompat.DEFAULT_ALL)
@@ -64,8 +64,6 @@ class Notification(ctx : Context, params : WorkerParameters) : Worker(ctx, param
         }
 
         notificationManager.notify(request_code, notification.build())
-
-
     }
 
 

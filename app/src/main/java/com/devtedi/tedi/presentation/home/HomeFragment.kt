@@ -27,9 +27,11 @@ import com.devtedi.tedi.utils.dialogs.DialogAgreementCreator
 import com.devtedi.tedi.utils.ext.click
 import com.devtedi.tedi.utils.ext.showCustomDialog
 import com.devtedi.tedi.utils.ext.showCustomToast
+import com.google.android.material.bottomnavigation.BottomNavigationView
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.ktx.auth
 import com.google.firebase.ktx.Firebase
+import com.google.firebase.ml.modeldownloader.FirebaseModelDownloader
 
 class HomeFragment : Fragment(), CloudModelObserver, CloudStorageObserver {
 
@@ -70,27 +72,44 @@ class HomeFragment : Fragment(), CloudModelObserver, CloudStorageObserver {
         initUI()
         loadBanner()
         initAction()
-        if (prefs.getIsModelUpdate && isWifiOn()) {
+        /*if (prefs.getIsModelUpdate && isWifiOn()) {
             showCustomDialog(
-                "Yo",
-                "yo",
-                "yo",
-                "No",
+                getString(R.string.info_dialog_title_unduhPembaharuan),
+                getString(R.string.info_dialog_content_unduhPembaharuan),
+                getString(R.string.info_dialog_content_iya),
+                getString(R.string.info_dialog_content_tidak),
                 onClickPositive = { dialogHandlerYes() },
                 onClickNegative = { dialogHandlerNo() }
             )
         }
+
+         */
     }
 
     private fun dialogHandlerNo() {
-
+        showBottomNavigationBar(true)
     }
 
     private fun dialogHandlerYes() {
-        Log.d("BLOKPRIM", "asdas")
         observeConnectivity()
         isConnectedToInternet = true
+        showBottomNavigationBar(false)
     }
+
+    private fun showBottomNavigationBar(state : Boolean)
+    {
+        if(!state)
+        {
+            val navBar : BottomNavigationView = requireActivity().findViewById(R.id.bottom_nav)
+            navBar.isGone = true
+        }
+        else
+        {
+            val navBar : BottomNavigationView = requireActivity().findViewById(R.id.bottom_nav)
+            navBar.isGone = false
+        }
+    }
+
 
     private fun checkLatestModel() {
         if (isAllLabelDownloaded(prefs)) {
@@ -177,7 +196,6 @@ class HomeFragment : Fragment(), CloudModelObserver, CloudStorageObserver {
         var bundleData = Bundle()
 
         if (isAllModelDownloaded(prefs) && isAllLabelDownloaded(prefs)) {
-            Log.d("BLOGPRIM", prefs.getSignLanguagePath.toString())
             binding.btnObjectDetection.click {
                 bundleData.putString(
                     EXTRA_DATA_HOME,
@@ -272,12 +290,13 @@ class HomeFragment : Fragment(), CloudModelObserver, CloudStorageObserver {
         )
         //Log.d("DOWNLOADTAGS", "$modelCounterDownload / 3")
         if (modelCounterDownload == TOTAL_MODEL) {
-            showCustomToast("Downloading Successfully ")
+            showCustomToast(getString(R.string.info_pengunduhan,modelCounterDownload.toString(), TOTAL_MODEL.toString()))
             setModelPreference(prefs)
             setUpdateModelPreference(prefs)
             booleanModelDownloaded = true
             prefs = SharedPrefManager(requireContext())
             // btnState()
+            showBottomNavigationBar(true)
             showDownloadUI(false)
         }
     }

@@ -50,7 +50,7 @@ object CloudStorage : CloudStorageSubject {
         val originalBytes = Files.readAllBytes(originalFile)
         val newFileBytes = Files.readAllBytes(newFile)
 
-        return originalBytes.contentEquals(newFileBytes)
+        return !originalBytes.contentEquals(newFileBytes)
     }
 
     private fun saveToLocalFile(prefix: String, suffix: String, gsReference: StorageReference) {
@@ -61,7 +61,6 @@ object CloudStorage : CloudStorageSubject {
             ) {
                 val tempFile = File.createTempFile(prefix, suffix)
 
-                Log.d("DEBUGTAGS", "saveToLocalFile")
                 gsReference.getFile(tempFile)
                     .addOnCompleteListener {
                         if (it.isSuccessful) {
@@ -76,7 +75,6 @@ object CloudStorage : CloudStorageSubject {
                     }
                     .addOnFailureListener {
                         // Handle any Errors
-                        Log.d("DEBUGTAGSFAILURE", it.toString())
                         failureListener()
                     }
 

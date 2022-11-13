@@ -12,6 +12,7 @@ import com.devtedi.tedi.interfaces.observer_core.CoreObserver
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 import java.io.File
+import java.lang.StringBuilder
 
 class SignLanguageViewModel : ViewModel(), CoreObserver {
 
@@ -47,16 +48,15 @@ class SignLanguageViewModel : ViewModel(), CoreObserver {
                     if (wordList[0] != sentence.last())
                     {
                         sentence.add(wordList[0])
-                        _tobeWrittenString.value = sentence.toString()
+                        _tobeWrittenString.value = makeStringOnly(sentence)
                     }
                 }
 
                 else
                 {
                     sentence.add(wordList[0])
-                    _tobeWrittenString.value = sentence.toString()
+                    _tobeWrittenString.value = makeStringOnly(sentence)
                 }
-
             }
 
             if (sentence.size > 10)
@@ -92,6 +92,22 @@ class SignLanguageViewModel : ViewModel(), CoreObserver {
 
          */
     }
+
+    private fun makeStringOnly( arr : ArrayList<String>)  : String
+    {
+        val strBuilder = StringBuilder()
+        arr.forEach {
+            strBuilder.append(it)
+        }
+        return strBuilder.toString()
+    }
+
+    fun removePredictionContent()
+    {
+        wordList.clear()
+        sentence.clear()
+        //_tobeWrittenString.value = "Cleared"
+    }
     fun initModel(modelName : String, filePath : File,context : Context)
     {
         _isLoading.value = true
@@ -119,4 +135,5 @@ class SignLanguageViewModel : ViewModel(), CoreObserver {
         Log.d("UpdateObserverTerpanggil","bang")
         getOutputValue()
     }
+
 }

@@ -18,5 +18,6 @@ object DialogAgreementCreator {
         .setNegativeButton(negativeMessage) { dialog , _ ->
             negativeHandler.invoke(dialog)
         }
+        .setCancelable(false)
         .create()
 }
