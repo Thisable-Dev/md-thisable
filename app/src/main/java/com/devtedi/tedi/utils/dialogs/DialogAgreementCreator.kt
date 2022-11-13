@@ -12,6 +12,7 @@ object DialogAgreementCreator {
         positiveHandler:() -> Unit , negativeHandler: (DialogInterface) -> Unit) : AlertDialog = AlertDialog.Builder(context)
         .setTitle(title)
         .setMessage(message)
+        .setCancelable(false)
         .setPositiveButton(positiveMessage) {_, _ ->
             positiveHandler()
         }

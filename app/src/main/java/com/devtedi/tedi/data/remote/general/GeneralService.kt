@@ -14,9 +14,9 @@ interface GeneralService {
         @Part("email") email: RequestBody,
         @Part("message") message: RequestBody,
         @Part("severity") severity: RequestBody,
-        @Part("phone_brand") phoneBrand: RequestBody,
-        @Part("ram") ram: RequestBody,
-        @Part("android_version") androidVersion: RequestBody,
+        @Part("PhoneBrand") phoneBrand: RequestBody,
+        @Part("Ram") ram: RequestBody,
+        @Part("AndroidVersion") androidVersion: RequestBody,
         @Part photo: MultipartBody.Part,
         @Header("x-access-token") token: String = BuildConfig.API_KEY
     ): BugReportResponse

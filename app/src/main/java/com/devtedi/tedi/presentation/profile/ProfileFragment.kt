@@ -102,8 +102,8 @@ class ProfileFragment : Fragment() {
         showCustomDialog(
             title = getString(string.message_information),
             message = getString(string.message_logout_confirmation),
-            positiveButton = getString(string.action_give_access),
-            negativeButton = getString(string.action_no),
+            positiveButton = getString(string.aciton_yes),
+            negativeButton = getString(string.action_cancel),
             onClickPositive = {
                 try {
                     logout()

@@ -113,6 +113,9 @@ class BugReportFragment : Fragment() {
                             error = context.getString(string.message_report_must_not_null)
                         }
                     }
+                    uploadFile == null -> {
+                        showCustomToast(getString(string.attachment_must_not_empty))
+                    }
                     else -> {
                         val bodyName = name.toRequestBody("multipart/form-data".toMediaTypeOrNull())
                         val bodyEmail = email.toRequestBody("multipart/form-data".toMediaTypeOrNull())
@@ -205,6 +208,14 @@ class BugReportFragment : Fragment() {
             edtName.clearText()
             edtEmail.clearText()
             edtReport.clearText()
+            uploadFile = null
+            imageMultipart = null
         }
     }
+
+    override fun onDestroyView() {
+        super.onDestroyView()
+        _fragmentReportBinding = null
+    }
+
 }
