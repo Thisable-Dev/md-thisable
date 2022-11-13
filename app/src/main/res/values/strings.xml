@@ -321,7 +321,7 @@
 
     <!-- Bug Report Feature -->
     <string name="label_severity">Tingkat Keparahan*</string>
-    <string name="label_attachment">Lampiran (opsional)</string>
+    <string name="label_attachment">Lampiran</string>
     <string name="label_choose_attachment">Pilih Lampiran</string>
     <string name="label_name">Nama*</string>
     <string name="label_identity">Identitas</string>

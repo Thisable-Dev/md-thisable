@@ -205,8 +205,6 @@ class BugReportFragment : Fragment() {
 
     private fun clearInput() {
         binding.apply {
-            edtName.clearText()
-            edtEmail.clearText()
             edtReport.clearText()
             uploadFile = null
             imageMultipart = null
