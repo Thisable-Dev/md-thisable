@@ -13,7 +13,7 @@ android {
             storeFile file('E:\\Ngoding\\KeePassX-2.0.3\\KeySignedAndroid\\TeDi.jks')
             storePassword 'tediDeveloper990'
             keyPassword 'tediDeveloper990'
-            keyAlias 'key_tedi'
+            keyAlias 'key_tedi_sso'
         }
     }
     compileSdk 32
@@ -34,12 +34,10 @@ android {
 
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
     }
-
-
     buildTypes {
         release {
-            minifyEnabled false
-            debuggable true
+            minifyEnabled true
+            debuggable false
             proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
         }
     }

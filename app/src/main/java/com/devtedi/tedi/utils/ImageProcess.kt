@@ -24,7 +24,6 @@ class ImageProcess {
     fun YUV2RGB(yParams : Int,  uParams : Int, vParams : Int)  : Int
     {
 
-
         val y = if ( yParams - 16 < 0) 0 else yParams - 16
         val u  = uParams - 128;
         val v = vParams - 128

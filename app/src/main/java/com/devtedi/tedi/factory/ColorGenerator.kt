@@ -109,36 +109,31 @@ class ColorGenerator(private val context : Activity, private val inputImage : Bi
             showResult(mUniqueColor.toList())
     }
 
-    private fun showResult(stringResult : List<String>)
-    {
-        if(stringResult.isEmpty()) {
+    private fun showResult(stringResult : List<String>) {
+        if (stringResult.isEmpty()) {
             context.showCustomToast("Tidak ada warna yang terdeteksi")
             return
-        }
-        val stringBuilder : StringBuilder= StringBuilder()
-        stringBuilder.append(
-            context.getString(R.string.response_1_color_detection)
-        )
-        stringBuilder.append(" ")
-        for (indx in 1 until stringResult.size)
-        {
+        } else {
+            val stringBuilder: StringBuilder = StringBuilder()
+            stringBuilder.append(
+                context.getString(R.string.response_1_color_detection)
+            )
+            stringBuilder.append(" ")
+            for (indx in 1 until stringResult.size) {
 
-            if(indx == 1)
-            {
-                stringBuilder.append(stringResult[0])
-                stringBuilder.append(", ")
-                stringBuilder.append(stringResult[indx])
+                if (indx == 1) {
+                    stringBuilder.append(stringResult[0])
+                    stringBuilder.append(", ")
+                    stringBuilder.append(stringResult[indx])
+                } else if (stringResult.size == 2) {
+                    stringBuilder.append(stringResult[indx])
+                }
             }
-            else if(stringResult.size == 2)
-            {
-                stringBuilder.append(stringResult[indx])
-            }
-
+            context.showCustomToast(stringBuilder.toString())
+            mUniqueColor.clear()
         }
-        context.showCustomToast(stringBuilder.toString())
-        mUniqueColor.clear()
+
     }
-
     fun addColor(colorName : String)
     {
         mUniqueColor.add(colorName)

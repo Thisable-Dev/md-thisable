@@ -107,6 +107,10 @@ class SoundPlayer private constructor(private val context: Context) {
             context.resources.getString(R.string.raw_soundcurrency_sepuluhribu) -> {
                 R.raw.sepuluhribu
             }
+            context.resources.getString(R.string.raw_soundcurrency_duapuluhribu) ->
+            {
+                R.raw.duapuluhribu
+            }
             context.resources.getString(R.string.raw_soundcurrency_limapuluhribu) -> {
                 R.raw.limapuluhribu
             }
