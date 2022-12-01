@@ -119,14 +119,20 @@ class ColorGenerator(private val context : Activity, private val inputImage : Bi
                 context.getString(R.string.response_1_color_detection)
             )
             stringBuilder.append(" ")
-            for (indx in 1 until stringResult.size) {
-
-                if (indx == 1) {
-                    stringBuilder.append(stringResult[0])
-                    stringBuilder.append(", ")
-                    stringBuilder.append(stringResult[indx])
-                } else if (stringResult.size == 2) {
-                    stringBuilder.append(stringResult[indx])
+            if(stringResult.size == 1)
+            {
+                stringBuilder.append(stringResult[0])
+            }
+            else
+            {
+                for (indx in 1 until stringResult.size) {
+                    if (indx == 1) {
+                        stringBuilder.append(stringResult[0])
+                        stringBuilder.append(", ")
+                        stringBuilder.append(stringResult[indx])
+                    } else if (stringResult.size == 2) {
+                        stringBuilder.append(stringResult[indx])
+                    }
                 }
             }
             context.showCustomToast(stringBuilder.toString())

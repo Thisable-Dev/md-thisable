@@ -10,6 +10,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         app:navigationIcon="@drawable/ic_chevron_left"
+        app:navigationContentDescription="@string/kembali"
         android:gravity="center"
         app:titleTextAppearance="@style/TextContent.TitleToolbar"
         app:layout_constraintTop_toTopOf="parent" />

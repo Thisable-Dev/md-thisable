@@ -98,6 +98,7 @@ class SignLanguageViewModel : ViewModel(), CoreObserver {
         val strBuilder = StringBuilder()
         arr.forEach {
             strBuilder.append(it)
+            strBuilder.append(" ")
         }
         return strBuilder.toString()
     }

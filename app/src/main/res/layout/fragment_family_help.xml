@@ -10,6 +10,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         app:navigationIcon="@drawable/ic_chevron_left"
+        app:navigationContentDescription="@string/kembali"
         android:gravity="center"
         app:titleTextAppearance="@style/TextContent.TitleToolbar"
         app:layout_constraintTop_toTopOf="parent" />
@@ -51,6 +52,7 @@
         android:id="@+id/btnCall"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:contentDescription="Tombol Memanggil Kontak Darurat"
         android:background="@null"
         android:src="@drawable/ic_call"
         android:layout_marginTop="32dp"

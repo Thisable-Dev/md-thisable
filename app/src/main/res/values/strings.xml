@@ -168,6 +168,7 @@
     <string name="action_currency_detection">deteksiUang</string>
     <string name="action_color_detection">deteksiWarna</string>
     <string name="action_sign_language">bisindo</string>
+    <string name="kembali">Kembali</string>
 
     <string name="lorem_ipsum">Lorem Ipsum Dolor Sit amet</string>
     <string name="raw_sound_1">iPod</string>
