@@ -1,6 +1,6 @@
 <h1 align="center"> TeDi - Teman Disabilitas</h1> <br>
 <p align="center">
-  <a href="https://gitpoint.co/">
+  <a href="https://user-images.githubusercontent.com/36506828/208969534-2c0a1d21-f1a6-4241-98e0-76bd39899885.png">
     <img alt="TeDi" title="TeDi" src="https://user-images.githubusercontent.com/36506828/208969534-2c0a1d21-f1a6-4241-98e0-76bd39899885.png" width="500">
   </a>
 </p>
