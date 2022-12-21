@@ -68,7 +68,7 @@ A few features SumbanginAja's has on this app :
   - `onboarding`
   - `profile`
   - `splash`
-  ` `termagreement`
+  - `termagreement`
   - `view`
 * `utils`
   - `dialogs`
