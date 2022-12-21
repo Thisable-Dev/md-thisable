@@ -1,3 +1,10 @@
+<h1 align="center"> MangaKu</h1> <br>
+<p align="center">
+  <a href="https://gitpoint.co/">
+    <img alt="TeDi" title="TeDi" src="https://user-images.githubusercontent.com/36506828/208969534-2c0a1d21-f1a6-4241-98e0-76bd39899885.png" width="500">
+  </a>
+</p>
+
 # Tedi (Teman Disablitas)
 
 ## <a name="introduction"></a> Introduction :
@@ -46,7 +53,7 @@ A few features SumbanginAja's has on this app :
 * `interfaces`
   - `observer_analyzer`
   - `observer_cloud`
-  - `observer_cloudstorage`
+  - `observer_cloudstorage`!
   - `observer_core`
   - `observer_keyboard`
 * `notification`
