@@ -15,7 +15,9 @@ import java.util.*
 import kotlin.collections.ArrayList
 
 class ColorGenerator(private val context : Activity, private val inputImage : Bitmap) : ColorStore(context){
+    /*
 
+     */
     init {
         Utils.bitmapToMat(inputImage, inputImageMat)
         Imgproc.cvtColor(inputImageMat, hsvFrame, Imgproc.COLOR_BGR2HSV)

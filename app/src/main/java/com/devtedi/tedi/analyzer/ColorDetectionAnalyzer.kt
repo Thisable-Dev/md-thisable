@@ -8,10 +8,22 @@ import androidx.camera.core.ImageProxy
 import com.devtedi.tedi.utils.image_utility.YuvToRgbConverter
 
 class ColorDetectionAnalyzer(private val context : Context) : ImageAnalysis.Analyzer{
+    /*
+        Kelas yang implement interface Analyzer, bisa cek dokumentasinya
+        Inti dari kelas ini adalah Provide Gambar dengan format yang sesuai
+        untuk dapat bekerja pada Model nantinya
+        kelas digunakan untuk ColorDetection
+     */
+
     private lateinit var currImage : Bitmap
 
     @SuppressLint("UnsafeOptInUsageError")
     override fun analyze(image: ImageProxy) {
+        /*
+            Simplenya Ini cuman ngambil image Data saja lalu di konversi menjadi Rgb
+            karena pada dasarnya image yang diprovide masih dalam bentuk Yuv
+            YUV ? Cari sendiri
+         */
         val targetImage = image.image
         if(targetImage != null)
         {

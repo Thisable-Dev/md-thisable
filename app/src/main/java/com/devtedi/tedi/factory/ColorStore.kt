@@ -5,6 +5,10 @@ import org.opencv.core.*
 import org.opencv.imgproc.Imgproc
 
 abstract class ColorStore(context : Context) {
+    /*
+        Abstract Class untuk mendefinisikan Requirement warna yang hendak digunakan
+        maupun operasi - operasi untuk seluruh warna
+     */
     protected val mColorRed : String = "merah"
     protected val mColorBlue : String = "biru"
     protected val mColorGreen : String = "hijau"
@@ -93,6 +97,9 @@ abstract class ColorStore(context : Context) {
 
     fun reset()
     {
+        /*
+            Reset, menghapus seluruh informasi yang ada
+         */
         mUniqueColor.clear()
         redMask  = Mat()
         blueMask = Mat()
@@ -111,6 +118,9 @@ abstract class ColorStore(context : Context) {
 
     protected open fun detectColorByBitwise()
     {
+        /*
+            Pake Bitwise deteks
+         */
         Core.bitwise_and(inputImageMat, inputImageMat, redResult, redMask)
         Core.bitwise_and(inputImageMat, inputImageMat, greenResult, greenMask)
         Core.bitwise_and(inputImageMat, inputImageMat, blueResult, blueMask)
@@ -123,6 +133,10 @@ abstract class ColorStore(context : Context) {
     }
     protected open fun iniateBoundaryColor ()
     {
+        /*
+                Membuat Boundary Color, lalu hasilnya disimpan di redMask
+                Kek misalnya merah itu boundary dari lower berapa sampai upper berapa
+         */
         Imgproc.cvtColor(inputImageMat, hsvFrame, Imgproc.COLOR_RGB2HSV)
         Core.inRange(hsvFrame, redLower, redUpper, redMask)
         Core.inRange(hsvFrame, greenLower, greenUpper, greenMask)
@@ -136,6 +150,9 @@ abstract class ColorStore(context : Context) {
     }
     protected open fun dilateColor() {
 
+        /*
+            Dilate, https://docs.opencv.org/3.4/db/df6/tutorial_erosion_dilatation.html
+         */
         Imgproc.dilate(redMask, redMask, kernel)
         Imgproc.dilate(greenMask, greenMask, kernel)
         Imgproc.dilate(blueMask, blueMask, kernel)

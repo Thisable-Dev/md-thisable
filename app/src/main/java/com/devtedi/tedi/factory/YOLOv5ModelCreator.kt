@@ -51,15 +51,34 @@ open class YOLOv5ModelCreator(
     IOU_class_duplicated_threshold, label_file,
     model_file, is_int_8), CoreSubject {
 
+    /*
+        Lookslike the most important class
+        input_size : Size image yang dipakai ketika training model
+        output_size : Output size dalam bentuk flattened, cek di :
+        detect_threshold :
+        IOU_threshold :
+        IOU_class_duplicated_threshold :
+        label_file : Lokasi Label file nya, .txt
+        model_file : Lokasi Model Filenya
+        is_int_8 : Apa itu namanya, modelnya support
+     */
+
     private var observers = arrayListOf<CoreObserver>()
     private var nmsRecognitionRes = ArrayList<RecognitionRes>()
 
     override suspend fun create(context: Context): YOLOv5ModelCreator {
+        /*
+            Create Yolov5ModelCreator
+         */
         initialModel(context)
         return this
     }
 
     override fun addGpuDelegate() {
+        /*
+        Add GPU Delegate for the interpreter
+         perlu diperhatikan tidak semua HP support ini, dan saat ini belum diaktifkan untuk aplikasi
+         */
         val compatibilityList = CompatibilityList()
         if (compatibilityList.isDelegateSupportedOnThisDevice) {
             val delegateOptions = compatibilityList.bestOptionsForThisDevice
@@ -72,6 +91,10 @@ open class YOLOv5ModelCreator(
     }
 
     override fun addNNApiDelegate() {
+        /*
+            Nambahin NNApiDelegate, Ya tujuannya untuk provide acceleration untuk Model
+            https://www.tensorflow.org/lite/android/delegates/nnapi
+         */
         val nnApiDelegate: NnApiDelegate
 
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.P) {
@@ -85,6 +108,9 @@ open class YOLOv5ModelCreator(
     }
 
     override suspend fun initialModel(activity: Context) {
+        /*
+            Initiate the model dan juga label yang akan digunakan
+         */
         kotlin.runCatching {
             withContext(Dispatchers.IO) {
                 //val tfliteModel: ByteBuffer = FileUtil.loadMappedFile(activity, model_file)
@@ -96,12 +122,23 @@ open class YOLOv5ModelCreator(
             }
         }
     }
-
     override fun addThread(thread: Int) {
         options.numThreads = thread
     }
 
     override fun detect(bitmap: Bitmap): ArrayList<RecognitionRes> {
+        /*
+            Fungsinya untuk melakukan deteksi terhadap input gambar
+            Di fungsi ini bakalan dilakukan beberapa hal ya
+            - Preprocessing : Kayak Resize Operation, Normalisasi dan juga Convert type data
+            - Terus nanti seluruh hasil yang telah dibentuk bakalan dilakukan iterasi untuk menyimpan seluruh informasi hasil prediksi, hasil prediksi pertama ini masih banyak
+            anchor yang belum sesuai terhadap prediksi, makanya perlu dilakukan NMS
+            - Tahap selanjutnya masuk ke NMS, hasil NMS tadi sudah bisa dikatakan bbox nya sesuai, namun terdapat kekurangan, yaitu bisa terdapat
+            bbox yang duplicate, makanya di akhir terdapat filtering hasil NMS itu sendiri
+
+            bitmap : Gambar input
+
+         */
         var yolov5sTfliteInput: TensorImage
         val imageProcessor: ImageProcessor
         if (IS_INT_8) {
@@ -207,6 +244,13 @@ open class YOLOv5ModelCreator(
     }
 
     private fun nms(allRecognitions: ArrayList<RecognitionRes>): ArrayList<RecognitionRes> {
+        /*
+            Perhitungan NMS : https://medium.com/analytics-vidhya/non-max-suppression-nms-6623e6572536#:~:text=Non%20max%20suppression%20is%20a,with%20only%20the%20green%20box.
+
+            allRecognitions : Seluruh hasil prediksi dengan Anchor yang berantakan, bbox belum sesuai
+            return bbox yang telah sesuai
+
+         */
         val nmsRecognitions: ArrayList<RecognitionRes> =
             ArrayList<RecognitionRes>()
 
@@ -237,7 +281,6 @@ open class YOLOv5ModelCreator(
                 }
             }
         }
-        Log.d("DEBUGTAGS", nmsRecognitions.toString())
         return nmsRecognitions
     }
 
@@ -271,12 +314,14 @@ open class YOLOv5ModelCreator(
     }
 
     private fun boxIou(a: RectF, b: RectF): Float {
+        // Perhitungan IOU
         val intersection = boxIntersection(a, b)
         val union = boxUnion(a, b)
         return if (union <= 0) 1f else intersection / union
     }
 
     private fun boxIntersection(a: RectF, b: RectF): Float {
+        // Mengambil Input intersection nya
         val maxLeft = max(a.left, b.left)
         val maxTop = max(a.top, b.top)
         val minRight = java.lang.Float.min(a.right, b.right)
@@ -291,6 +336,7 @@ open class YOLOv5ModelCreator(
     }
 
     private fun boxUnion(a: RectF, b: RectF): Float {
+        // Calculate Union Of Box nya
         val i = boxIntersection(a, b)
         return (a.right - a.left) * (a.bottom - a.top) + (b.right - b.left) * (b.bottom - b.top) - i
     }
