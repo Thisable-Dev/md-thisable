@@ -74,7 +74,7 @@ class ObjectOptionsAdapter(
     }
 
     /**
-     * Fungsi untuk bind/memasukkan isi [data] ke properti yang ada pada view.
+     * Fungsi yang dibutuhkan oleh RecyclerView untuk mengetahui jumlah data yang ada di list.
      * @return mengembalikan ukuran list data yang akan dipakai RecyclerView untuk merender item.
      */
     override fun getItemCount(): Int {
