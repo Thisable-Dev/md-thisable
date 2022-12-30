@@ -21,6 +21,12 @@ import java.lang.StringBuilder
 import java.security.Key
 import java.util.*
 
+/**
+ *
+ * Kelas ini digunakan untuk melakukan deteksi bahasa isyarat menggunakan Machine Learning
+ *
+ * @constructor untuk buat instance dari SignLanguageFragment.
+ */
 class SignLanguageFragment : Fragment(), FeatureBaseline, KeyboardObserver{
 
     private var _binding : FragmentSignLanguageBinding? = null
@@ -36,12 +42,15 @@ class SignLanguageFragment : Fragment(), FeatureBaseline, KeyboardObserver{
 
     private var soundPlayer: SoundPlayer? = null
 
+    lateinit var fullImageAnalyse : FullImageAnalyse
+
+    // Initialize SoundPlayer
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         soundPlayer = SoundPlayer.getInstance(requireContext())
     }
 
-    lateinit var fullImageAnalyse : FullImageAnalyse
+    // Initialize binding
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
@@ -75,9 +84,12 @@ class SignLanguageFragment : Fragment(), FeatureBaseline, KeyboardObserver{
         super.onResume()
 
         try {
+            // Initialize yoloV5 if null
             if (viewModel.yolov5TFLiteDetector.value == null) {
                 viewModel.initModel(const_bisindo_translator, File(pref.getSignLanguagePath as String),requireContext())
             }
+
+            // Observe yoloV5, if exist then initialize and start CameraX
             viewModel.yolov5TFLiteDetector.observe(viewLifecycleOwner) {
                 fullImageAnalyse = FullImageAnalyse(
                     requireContext(),
