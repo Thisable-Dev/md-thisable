@@ -14,11 +14,16 @@ import kotlinx.coroutines.launch
 import java.io.File
 import java.lang.StringBuilder
 
+/**
+ *
+ * Kelas ini digunakan sebagai ViewModel dari SignLanguageFragment
+ *
+ */
 class SignLanguageViewModel : ViewModel(), CoreObserver {
 
+    // Instance yoloV5
     private val _yolov5TFLiteDetector : MutableLiveData<YOLOv5ModelCreator> = MutableLiveData()
     val yolov5TFLiteDetector : LiveData<YOLOv5ModelCreator> = _yolov5TFLiteDetector
-
 
     private val _tobeWrittenString : MutableLiveData<String> = MutableLiveData()
     val tobeWrittenString : LiveData<String> = _tobeWrittenString
