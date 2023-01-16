@@ -12,7 +12,9 @@ import com.devtedi.tedi.adapter.CloudModelAdapter
 import com.devtedi.tedi.data.remote.cloudmodel.CloudModelData
 import com.devtedi.tedi.databinding.FragmentCloudBinding
 
-
+/***
+ * This class is not used
+ */
 class CloudFragment : Fragment() {
 
     private var _binding : FragmentCloudBinding ?= null

@@ -16,6 +16,18 @@ import java.nio.channels.FileChannel
 import java.nio.file.Files
 import java.nio.file.Path
 
+/***
+ *
+ * CloudStorage pada dasarnya Ditujukan untuk mengunduh label file setiap model
+ * @property PREFIX_SL -> nama awal File Label Signlanguage
+ * @property PREFIX_OD --> nama awal File Label Signlanguage
+ * @property PREFIX_CD-> nama awal File Label CurrencyDetector
+ * @property SUFFIX_ALL --> Ekstensi File
+ * @property labelFileObjectDetection -> Untuk menampung Lokasi file dari LabelObjectDetection
+ * @property labelFileSignLanguage-> Untuk menampung Lokasi file dari LabelSignLanguage
+ * @property labelFileCurrencyDetection-> Untuk menampung Lokasi file dari LabelFileCurrencyDetection
+ */
+
 object CloudStorage : CloudStorageSubject {
 
     private const val PREFIX_SL: String = "label_SL"
@@ -43,6 +55,11 @@ object CloudStorage : CloudStorageSubject {
         getTheSignLanguageFile()
     }
 
+    /***
+     * Check If 2 txt files is differnt based on the content, thats why its using Bytes
+     * @param originalFile -> the original txt file
+     * @param newFile -> the new File txt file
+     */
     private fun isTwoFileDifferent(originalFile: Path, newFile: Path): Boolean {
         if (Files.size(originalFile) != Files.size(newFile)) {
             return false
@@ -53,6 +70,12 @@ object CloudStorage : CloudStorageSubject {
         return !originalBytes.contentEquals(newFileBytes)
     }
 
+    /***
+     *  Fungsi untuk saving file di lokal aplikasi
+     *  @param prefix --> Awalan nama file
+     *  @param suffix --> Ekstensi file
+     *  @param gsReference --> Lokasi pada google storage
+     */
     private fun saveToLocalFile(prefix: String, suffix: String, gsReference: StorageReference) {
         try {
             if (labelFileSignLanguage == null ||
@@ -170,6 +193,9 @@ object CloudStorage : CloudStorageSubject {
         updateObserverSuccess()
     }
 
+    /***
+     * Clear all labelFile!, if downloading failed
+     */
     private fun failureListener() {
         clearCacheLabels()
         clearTheLabelFile()
@@ -177,6 +203,12 @@ object CloudStorage : CloudStorageSubject {
         updateObserverFailure()
     }
 
+    /***
+     * Saving file from cache/temporary to permanent
+     * @param fileName -> the Name of fileyou want to be saved
+     * @param tempFile -> The Temporary File information
+     * @return the Saved file
+     */
     private fun saveToPermanentFile(fileName: String, tempFile: File): File {
 
         Log.d("DEBUGTAGS", tempFile.path)
@@ -189,6 +221,9 @@ object CloudStorage : CloudStorageSubject {
         return originalFile
     }
 
+    /***
+     * The Get Object Detection File from google storage
+     */
     private fun getTheObjectDetectionFile() {
         try {
             val gsReferenceObjectDetectionFile = storage.getReferenceFromUrl(
@@ -203,6 +238,9 @@ object CloudStorage : CloudStorageSubject {
         }
     }
 
+    /***
+     * The Get Currency Detection File from google storage
+     */
     private fun getTheCurrencyDetectionFile() {
         try {
             val gsReferenceCurrencyDetectionFile = storage.getReferenceFromUrl(StringBuilder().apply {
@@ -216,6 +254,9 @@ object CloudStorage : CloudStorageSubject {
         }
     }
 
+    /***
+     * The Get SignLanguage File from google storage
+     */
     private fun getTheSignLanguageFile() {
         try {
             val gsReferenceSignLanguageFile = storage.getReferenceFromUrl(StringBuilder().apply {
@@ -230,7 +271,9 @@ object CloudStorage : CloudStorageSubject {
         }
     }
 
-
+    /***
+     * Clear the cache files from the download
+     */
     private fun clearCacheLabels() {
         // Clear the cache
         val pathToDelete: File = File(StringBuilder().apply {
@@ -247,12 +290,18 @@ object CloudStorage : CloudStorageSubject {
         }
     }
 
+    /***
+     * Clear the Variables path for label
+     */
     private fun clearTheFiles() {
         labelFileCurrencyDetection = null
         labelFileSignLanguage = null
         labelFileObjectDetection = null
     }
 
+    /***
+     * Clear the Label File from the permanent location
+     */
     private fun clearTheLabelFile() {
         // Cleat the label File
         val pathToDelete: File = File(ConstVal.ABSOLUTE_PATH)

@@ -2,7 +2,12 @@ package com.devtedi.tedi.utils
 
 import android.util.Size
 import com.devtedi.tedi.R
+/*
+    Seluruh Constant untuk setiap  fitur machine learning, baiknya ntar di tarok aja di static field setiap fitur, Right now this is a bad habit
 
+    // Simply cuman nilai ya, jadi tidak perlu dipersyulit
+
+ */
 val LABEL_USED_OBJ_PATH : String = StringBuilder().apply {
     append(ConstVal.ABSOLUTE_PATH)
     append(label_obj)

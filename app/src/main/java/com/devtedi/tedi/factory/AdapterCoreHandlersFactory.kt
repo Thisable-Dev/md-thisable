@@ -19,8 +19,20 @@ class AdapterCoreHandlersFactory(
         toastLayout = CustomToastV1Binding.inflate(context.layoutInflater)
     }
 
-    fun onClickObjectInfo(info: String) {
+    /*
+            Kelas ini yang handle seluruh output TEXT yang dikeluarkan dari hasil luaran model ( MODEL ) Berarti tidak berlaku ke fitur warna,
+             Kayak misalnya
+             - terdapat 1 Objek a, dan 2 Objek b
+             - Terdapat 1 5000, 2  10rb
 
+
+     */
+
+    fun onClickObjectInfo(info: String) {
+        /*
+            Fungsi yang cuman nampilin custom toast message aja
+            info : message yang hendak diperlihatkan
+         */
         toastLayout.textCustom.setText(info)
         val toast : Toast = Toast(context)
         toast.duration = Toast.LENGTH_LONG
@@ -30,6 +42,10 @@ class AdapterCoreHandlersFactory(
 
     fun onClickLongObjectDetection(info : String)
     {
+        /*
+            Ini untuk handler ClickLongObjectDetection Pada Fitur Object detection,
+            Output : Toast dengan Unique Object Detection Feature
+         */
         when(info)
         {
             context.getString(R.string.question_1_obj_detection) ->
@@ -57,10 +73,17 @@ class AdapterCoreHandlersFactory(
     }
     private fun replacePattern(pattern:  String,text : String)  : String
     {
+        /*
+        Just Simple Replacer untuk pattern tertentu saja menjadi ""
+         */
         return Regex(pattern).replace(text, "")
     }
 
     fun onClickLongCurrencyDetection(info : String) {
+        /*
+            Ini untuk handler ClickLongCurrencyDetection Pada Fitur Currency detection,
+            Output : Toast dengan Unique Currency Detection
+         */
         when(info)
         {
             context.getString(R.string.question_1_currency_detection) ->
@@ -84,6 +107,9 @@ class AdapterCoreHandlersFactory(
     }
 
     fun onClickLongTextDetection(info : String) {
+        /*
+            Untuk Text, If ada fitur tambahan yang hendak dilakukan aja
+         */
         when (info)
         {
             // Nanti
@@ -91,6 +117,9 @@ class AdapterCoreHandlersFactory(
     }
 
     fun onClickLongColorDetection(info : String) {
+        /*
+               Fungsi ini belum digunakan, maybe digunakan
+         */
         Toast.makeText(context, recognitionRes.toString(), Toast.LENGTH_LONG).show()
     }
     override fun update_observer() {
@@ -100,6 +129,9 @@ class AdapterCoreHandlersFactory(
     // For ObjectDetection Handler
     private fun calculateUniqueItems() : MutableMap<String, Int>
     {
+        /*
+            Untuk Get Unique Items aja
+         */
         val uniqueMap = mutableMapOf<String, Int>()
         if(recognitionRes != null)
         {

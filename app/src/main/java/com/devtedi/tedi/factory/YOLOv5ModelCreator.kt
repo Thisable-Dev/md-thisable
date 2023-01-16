@@ -33,6 +33,12 @@ import java.io.InputStreamReader
 import java.util.*
 import kotlin.math.max
 
+/**
+ *
+    Kelas yang bertanggung jawab terhadap perhitunga perhitungan dan prediksi  dari model itu sendiri
+    Properties and other, Disini detail nya bakalan aku coba jelasin
+    *@see YOLOv5ModelCreator
+ */
 open class YOLOv5ModelCreator(
     input_size: Size,
     output_size: IntArray,
@@ -51,17 +57,6 @@ open class YOLOv5ModelCreator(
     IOU_class_duplicated_threshold, label_file,
     model_file, is_int_8), CoreSubject {
 
-    /*
-        Lookslike the most important class
-        input_size : Size image yang dipakai ketika training model
-        output_size : Output size dalam bentuk flattened, cek di :
-        detect_threshold :
-        IOU_threshold :
-        IOU_class_duplicated_threshold :
-        label_file : Lokasi Label file nya, .txt
-        model_file : Lokasi Model Filenya
-        is_int_8 : Apa itu namanya, modelnya support
-     */
 
     private var observers = arrayListOf<CoreObserver>()
     private var nmsRecognitionRes = ArrayList<RecognitionRes>()
@@ -135,9 +130,6 @@ open class YOLOv5ModelCreator(
             anchor yang belum sesuai terhadap prediksi, makanya perlu dilakukan NMS
             - Tahap selanjutnya masuk ke NMS, hasil NMS tadi sudah bisa dikatakan bbox nya sesuai, namun terdapat kekurangan, yaitu bisa terdapat
             bbox yang duplicate, makanya di akhir terdapat filtering hasil NMS itu sendiri
-
-            bitmap : Gambar input
-
          */
         var yolov5sTfliteInput: TensorImage
         val imageProcessor: ImageProcessor
@@ -285,6 +277,9 @@ open class YOLOv5ModelCreator(
     }
 
     private fun nmsAllClass(allRecognitions: ArrayList<RecognitionRes>): ArrayList<RecognitionRes> {
+        /**
+         * Remove the duplicated Untuk seluruh kelas, if any
+         */
         val nmsRecognitions: ArrayList<RecognitionRes> =
             ArrayList<RecognitionRes>()
         val pq: PriorityQueue<RecognitionRes> = PriorityQueue(

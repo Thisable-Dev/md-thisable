@@ -7,18 +7,17 @@ import com.devtedi.tedi.core_model.ObjectDetector
 import com.devtedi.tedi.utils.*
 import java.io.File
 
-/*
-Additional Notes :
-    - Kelas Yolov5ModelCreator BIsa dibuat Sebagai Abstraksi
-    - Untuk Future Plan, kelas ini bisa diubah ke Abstract Factory ( yang implement Family dari sebuah Feature )
- */
-class ObjectDetectorStore(context: Context) : ModelStore(context) {
-    /*
-        Factory Class For ObjectDetector
-        - Bisindo ( Signlanguage )
-        - ObjectDetection
-        - Currency Detection
-     */
+ /**
+  *
+    Factory Class For ObjectDetector
+    - Bisindo ( Signlanguage )
+    - ObjectDetection
+    - Currency Detection
+  *
+  * Tujuannya hanya untuk membentuk model yang diminta oleh Client
+  * @see ModelStore
+  * */
+ class ObjectDetectorStore(context: Context) : ModelStore(context) {
     override suspend fun createModel(type: String, filePath : File): YOLOv5ModelCreator {
         /*
                 Creator Function, Create Setiap YOLOv5ModelCreator yang dibutuhkan

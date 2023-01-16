@@ -125,6 +125,12 @@ fun showAlertDialogSignLanguage(context : Context, signlanguageContentListener: 
 
 }
 
+/**
+ * Fungsi untuk melakukan Scaling down pada input gambar
+ * @param [bitmap] Gambar yang dilakukan scaling down
+ * @param [maxDimension] Max dimension untuk di lakukan scaling down
+ * @return Bitmap yang telah discaling !
+ */
 fun scaleBitmapDown(bitmap: Bitmap, maxDimension: Int): Bitmap {
     val originalWidth = bitmap.width
     val originalHeight = bitmap.height
@@ -145,6 +151,12 @@ fun scaleBitmapDown(bitmap: Bitmap, maxDimension: Int): Bitmap {
     return Bitmap.createScaledBitmap(bitmap, resizedWidth, resizedHeight, false)
 }
 
+/**
+ * Fungsi untuk mendapatkan Nama Dari Device :
+ * Model number of device, wkwk
+ * @return Capitalize name Device model dan manufakturnya
+ */
+
 fun getDeviceName(): String {
     val manufacturer = Build.MANUFACTURER
     val model = Build.MODEL
@@ -155,6 +167,11 @@ fun getDeviceName(): String {
     }
 }
 
+/**
+ * Fungsi untuk Kapitalisasi String
+ * @param [s] String aja gan
+ *
+ */
 private fun capitalize(s: String?): String {
     if (s == null || s.isEmpty()) {
         return ""
