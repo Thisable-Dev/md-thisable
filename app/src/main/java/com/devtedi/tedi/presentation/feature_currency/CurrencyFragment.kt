@@ -20,6 +20,12 @@ import com.devtedi.tedi.utils.dialogs.DialogGenerator
 import com.devtedi.tedi.utils.ext.showCustomToast
 import java.io.File
 
+/**
+ *
+ * Kelas ini digunakan untuk melakukan deteksi mata uang menggunakan Machine Learning
+ *
+ * @constructor untuk buat instance dari CurrencyFragment.
+ */
 class CurrencyFragment : Fragment(), FeatureBaseline, AnalyzerSubject {
 
     private var _binding: FragmentCurrencyBinding? = null
@@ -37,12 +43,13 @@ class CurrencyFragment : Fragment(), FeatureBaseline, AnalyzerSubject {
 
     private var soundPlayer: SoundPlayer? = null
 
+    // Initialize SoundPlayer
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         soundPlayer = SoundPlayer.getInstance(requireContext())
     }
 
-    //Soundplayer Variabels
+    // Initialize binding
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?,
@@ -64,10 +71,13 @@ class CurrencyFragment : Fragment(), FeatureBaseline, AnalyzerSubject {
         if (!cameraProcess.allPermissionGranted(requireContext())) {
             cameraProcess.requestPermission(requireActivity())
         }
+
+        // Observe yoloV5 model, jika sudah ada modelnya, maka lanjut inisialisasi GraphicListenerHandler
         viewModel.yolov5TFLiteDetector.observe(viewLifecycleOwner) {
             initGraphicListenerHandler(it)
         }
 
+        // Observe state isSoundOn, update UI berdaasarkan state dan menampilkan toast.
         viewModel.isSoundOn.observe(viewLifecycleOwner) { isOn ->
             binding.btnToggleSoundOnOff.setImageResource(if (isOn) R.drawable.sound_on else R.drawable.sound_off)
             showCustomToast(getString(if (isOn) R.string.info_sound_on else R.string.info_sound_off))
@@ -100,6 +110,7 @@ class CurrencyFragment : Fragment(), FeatureBaseline, AnalyzerSubject {
                     it,
                     graphicOverlay = binding.graphicOverlay,
                     onResult = { label ->
+                        // Result dari analisis akan diputar suaranya oleh SoundPlayer
                         if (viewModel.isSoundOn.value == true) {
                             soundPlayer?.playSound(label)
                         }

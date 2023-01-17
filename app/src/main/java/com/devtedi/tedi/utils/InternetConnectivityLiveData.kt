@@ -8,6 +8,12 @@ import android.net.NetworkCapabilities
 import android.net.NetworkRequest
 import androidx.lifecycle.LiveData
 
+/**
+ *
+ * Kelas ini merupakan implementasi dari LiveData, khusus untuk meng-observe kondisi konektivitas device pengguna
+ *
+ * @constructor untuk buat instance dari ObjectDetectionFragment.
+ */
 class InternetConnectivityLiveData(context: Context) : LiveData<InternetConnectivityLiveData.Status>() {
 
     private lateinit var networkCallback: NetworkCallback

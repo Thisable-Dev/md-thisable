@@ -19,27 +19,49 @@ import com.devtedi.tedi.utils.ConstVal.LOCAL_MODEL_PATH_OD
 import com.devtedi.tedi.utils.ConstVal.LOCAL_MODEL_PATH_SL
 import com.devtedi.tedi.utils.ConstVal.PREFS_NAME
 
+/**
+ *
+ * Kelas untuk Penyimpanan pada apptedi
+ *  @property prefs : get the current context SharedPrefences
+ *  @property editor : untuk edit preferences aja
+ */
 class SharedPrefManager(context: Context) {
 
     private var prefs: SharedPreferences = context.applicationContext.getSharedPreferences(PREFS_NAME, Context.MODE_PRIVATE)
     private val editor = prefs.edit()
 
+    /**
+     * Untuk Set String type preferenceKey
+     * @param [prefKey] Nama Keynya , [value] -> Nilai yang hendak kamu simpan
+     */
     fun setStringPreference(prefKey: String, value:String){
         editor.putString(prefKey, value)
         editor.apply()
     }
 
+    /**
+     * Untuk Update String type preferenceKey
+     * @param [prefKey] Nama Keynya , [value] -> Nilai yang hendak kamu simpan
+     */
     fun updateStringPreferenceValue(prefKey: String, value: String) {
         editor.remove(prefKey)
         editor.putString(prefKey, value)
         editor.apply()
     }
 
+    /**
+     * Untuk Set Boolean type preferenceKey
+     * @param [prefKey] Nama Keynya , [value] -> Nilai yang hendak kamu simpan
+     */
     fun setBooleanPreference(prefKey: String, value: Boolean){
         editor.putBoolean(prefKey, value)
         editor.apply()
     }
 
+    /**
+     * Untuk ClearThePreferenceKey
+     * @param [prefKey] Nama Keynya
+     */
 
     fun clearPreferenceByKey(prefKey: String){
         editor.remove(prefKey)

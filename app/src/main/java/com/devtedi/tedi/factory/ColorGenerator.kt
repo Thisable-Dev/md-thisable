@@ -14,8 +14,19 @@ import java.lang.StringBuilder
 import java.util.*
 import kotlin.collections.ArrayList
 
+/**
+ * Kelas Color Generator bertugas untuk melakukan operasi operasi pada gambar untuk ekstraksi warnanya
+ *
+ * */
 class ColorGenerator(private val context : Activity, private val inputImage : Bitmap) : ColorStore(context){
-
+    /**
+     * Step 1 : Konversi dlu bitmap kedalam bentuk MAT
+     * Step 2 : Ini basically konversi ke HSV color format
+     * Step 3 : Buat boundary color, Upper dan lowernya
+     * Step 4 : Dilatasi warnanya
+     * Step 5 : Lakukan Bitwise operation untuk mengetahui warna merah
+     * Step 6 : Check Warna pada Input image
+     */
     init {
         Utils.bitmapToMat(inputImage, inputImageMat)
         Imgproc.cvtColor(inputImageMat, hsvFrame, Imgproc.COLOR_BGR2HSV)
@@ -30,7 +41,9 @@ class ColorGenerator(private val context : Activity, private val inputImage : Bi
     }
 
     override fun doContour(maskColor : Mat, colorName : String )  {
-
+        /***
+         * Basically Hanya melakukan Contour biasa aja sih
+         */
         val contours : MutableList<MatOfPoint> = mutableListOf()
         var bboxContour : Rect = Rect()
         val listOfAreaMaps : MutableMap<Double, String> = mutableMapOf()
@@ -80,6 +93,10 @@ class ColorGenerator(private val context : Activity, private val inputImage : Bi
 
     private fun findMaximum(listOfAreaMaps : MutableMap<Double, String>)
     {
+        /**
+         * Find the first and second primary color yang terbesar pada sebuah gambar
+         * @param listOfAreaMaps -> pada dasarnya itu hanya Input dari contour yang terdeteksi oleh algoritma openCV saja
+         * */
         val sortedKeys = listOfAreaMaps.keys.sortedDescending()
         if(sortedKeys.size == 1) {
             val maximunOne  : Double = sortedKeys[0]
@@ -96,6 +113,10 @@ class ColorGenerator(private val context : Activity, private val inputImage : Bi
 
     private fun checkColorImage()
     {
+        /**
+         *  Melakukan pengencekan warna pada input gambar saja,
+         *
+         * */
         var i = 0
         for (mask in arrOfResultColors)
         {
@@ -110,6 +131,10 @@ class ColorGenerator(private val context : Activity, private val inputImage : Bi
     }
 
     private fun showResult(stringResult : List<String>) {
+        /**
+         * Memberikan hasil warna yang terdeteksi pada user
+         * @param stringResult list dari warna yang terdeteksi
+         * */
         if (stringResult.isEmpty()) {
             context.showCustomToast("Tidak ada warna yang terdeteksi")
             return

@@ -3,6 +3,10 @@ package com.devtedi.tedi.utils
 import android.graphics.Matrix
 import androidx.camera.core.ImageProxy
 
+/***
+ *
+ * Kelas untuk melakukan processing image
+ */
 class ImageProcess {
 
     private val kMaxChannelValue : Int = 262143
@@ -49,6 +53,10 @@ class ImageProcess {
 
     }
 
+    /***
+     * Fungsi untuk melakukan konversi YUV ke ARGB8888
+     * Maaf kak belum bisa jelasin konversi ini
+     */
     fun YUV420ToARGB8888(
         yData: ByteArray,
         uData: ByteArray,
@@ -75,7 +83,11 @@ class ImageProcess {
         }
     }
 
-
+    /**
+     * Fungsi untuk mengembalikan Transformation Matrix dari srcWidth & srcHeight ke destWidth & destHeight
+     * Transformasi --> Mapping doang kata simplenya
+     * @return Matrix berisi transformasi matrix
+     */
     public fun getTransformationMatrix(srcWidth : Int, srcHeight : Int,
                                        dstWidth : Int, dstHeight : Int,
                                        applyRotation : Int, maintainAspectRatio : Boolean ) : Matrix

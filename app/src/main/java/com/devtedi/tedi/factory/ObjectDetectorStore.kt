@@ -7,8 +7,24 @@ import com.devtedi.tedi.core_model.ObjectDetector
 import com.devtedi.tedi.utils.*
 import java.io.File
 
-class ObjectDetectorStore(context: Context) : ModelStore(context) {
+ /**
+  *
+    Factory Class For ObjectDetector
+    - Bisindo ( Signlanguage )
+    - ObjectDetection
+    - Currency Detection
+  *
+  * Tujuannya hanya untuk membentuk model yang diminta oleh Client
+  * @see ModelStore
+  * */
+ class ObjectDetectorStore(context: Context) : ModelStore(context) {
     override suspend fun createModel(type: String, filePath : File): YOLOv5ModelCreator {
+        /*
+                Creator Function, Create Setiap YOLOv5ModelCreator yang dibutuhkan
+                 Oleh Client,
+                    type : Model apa yang pengen di create
+                    filepath : Lokasi Model yang telah di download
+         */
         when (type) {
             const_object_detector -> {
 

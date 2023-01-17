@@ -20,6 +20,11 @@ import com.google.common.util.concurrent.ListenableFuture
 import timber.log.Timber
 import java.util.concurrent.ExecutionException
 
+/**
+ * Kelas untuk mempersiapkan Kamera client
+ * @property cameraProvider ->  allows the applications to check whether any camera exists to fulfill the requirements
+ * @property cameraProviderFuture -> It represent for the result of asynch computation
+ */
 class CameraProcess {
 
     private lateinit var cameraProviderFuture: ListenableFuture<ProcessCameraProvider>;
@@ -43,6 +48,13 @@ class CameraProcess {
         )
     }
 
+    /***
+     * Fungsi untuk mempersiapkan start camera dan juga konfigurasinya
+     * Both untuk preview view dan juga analyzer yang digunakan
+     *
+     * @param analyzer analyzer dari client
+     * @param previewView preview view client
+     */
     fun startCamera(
         context: Context,
         analyzer: ImageAnalysis.Analyzer,

@@ -9,6 +9,24 @@ import com.devtedi.tedi.factory.YOLOv5ModelCreator
 import com.devtedi.tedi.interfaces.observer_analyzer.AnalyzerObserver
 import com.devtedi.tedi.utils.*
 
+
+
+/**
+ *
+ * Kelas ini digunakan sebagai Analyzer untuk inputan image dari preview view
+ * Kelas ini implement
+ *
+ * @ ImageAnalysis.Analyzer -> Interface untuk analyzer untuk dilakukan custom processing pada fungsi analyze
+ * @ AnalyzerObserver -> Observer untuk mendapatkan data ..... #TODO ADD The AnalyzerObserve Docs
+ * @property context context pada fragment/ activity
+ * @property previewView untuk display kameraX feed
+ * @property yolov5TFLiteDetector untuk melakukan prediksi pada setiap frame
+ * @property imageProcess untuk image preprocessing
+ * @property graphicOverlay untuk menggambar bbox
+ * @property onResult untuk handler click listener
+ * @property onDetect untuk mendapatkan state dari AnalyzerSubject
+ */
+
 class FullImageAnalyse(
     val context: Context,
     private val previewView: PreviewView,
@@ -28,6 +46,21 @@ class FullImageAnalyse(
 
     private val soundPlayer = SoundPlayer.getInstance(context)
 
+    /**
+     * Remember : TRANSFORMASI Matrix itu hanya mapping dari a ke b secara simplenya, jadi gausah pusing
+     * Fungsi ini digunakan untuk melakukan processing image disetiap frame dari previewView
+     * Step 1 : Extract informasi dari setiap gambar dan bentuk pula yuvBytes kosong untuk menyimpan informasi yuv dari gambar
+     * Step 2 : Masukan bytes dari gambar kepada yuvBytes
+     * Step 3 : Konversikan YUV ke ARGB888 ( Basically Kotlin default format )
+     * Step 4 : Bentuk imageBitmap kosong dan isi pikselnya dengan rgbBytes yang telah memiliki hasil konversi
+     * Step 5 : Scale, ya untuk scaling gambar dari preview aja
+     * Step 6 : fullScreenTransform : Melakukan transformasi dari current gambar size kepada Scaled gambar size, if any
+     * Step 7 : Simpan Hasil transform pada fullImageBitmap, if ada scale yang pasti bakalan membesar/mengecil depends on scale
+     * Step 8 : Crop imagenya menjadi inputan yang sesuai dengan input yolo model, dengan melakukan transformasi dari preview ke model matrix
+     * Step 9 : Then draw the result dengan menggunakan informasi hasil prediksi
+     * @param [image] Hanya image yang dengan YUV color
+     *
+     */
 
     override fun analyze(image: ImageProxy) {
 

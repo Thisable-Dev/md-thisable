@@ -10,7 +10,24 @@ import com.google.firebase.ml.modeldownloader.FirebaseMlException
 import com.google.firebase.ml.modeldownloader.FirebaseModelDownloader
 import java.io.File
 
-
+/**
+ * Kelas untuk Mengunduh model pada MLFirebase
+ * @property observers ->
+ * @property modelCondition -> Requirement / kebutuhan dalam melakukan pengunduhan pada BASE MODEL
+ * @property modelConditionUpdateLatest -> Requirement / kebutuhan dalam pembaharuan model ( Belum digunakan di App Tedi saat ini)
+ * @property MODEL_CLOUD_CD_NAME ->  Nama Model CurrencyDetector pada Cloud
+ * @property MODEL_CLOUD_OD_NAME ->Nama Model ObjectDetector pada Cloud
+ * @property MODEL_CLOUD_SL_NAME ->Nama Model Signlanguage pada Cloud
+ * @property fileSignLanguage -> Just Empty File untuk hold signlanguage, if any
+ * @property fileCurrencyDetection -> Just Empty File untuk hold CurrencyDetection, if any
+ * @property fileObjectDetection -> Just Empty File untuk hold ObjectDetection, if any
+ * @property isFileSignlanguageDownloaded-> Just Boolean to check whether the SignLanguageModel downloaded or not
+ * @property isFileObjectDetectorDownloaded ->Just Boolean to check whether the ObjectDetectorModel downloaded or not
+ * @property isFileCurrencyDetectorDownloaded ->Just Boolean to check whether the CurrencyDetectorModel downloaded or not
+ * @property downloadType -> What type of download type you want, well simply as that
+ * @property downloadTypeLatest -> Latest
+ *
+ * */
 object CloudModel : CloudModelSubject {
 
     private val observers: ArrayList<CloudModelObserver> = ArrayList()
@@ -35,6 +52,11 @@ object CloudModel : CloudModelSubject {
     private val downloadType = DownloadType.LOCAL_MODEL
     private val downloadTypeLatest = DownloadType.LATEST_MODEL
 
+    /**
+     * Fungsi berfungsi untuk Download model Object detection saja
+     * @return jika fileObjectDetection Tidak ditemukan pada perangkat user, maka download modelnya
+     *
+     * */
     @JvmStatic
     fun downloadObjectDetectionModel(): Boolean {
 
@@ -56,6 +78,11 @@ object CloudModel : CloudModelSubject {
 
     }
 
+    /**
+     * Fungsi berfungsi untuk Download model Currency detection saja
+     * @return jika fileCurrencyDetection Tidak ditemukan pada perangkat user, maka download modelnya
+     *
+     * */
     @JvmStatic
     fun downloadCurrencyDetectionModel(): Boolean {
         FirebaseModelDownloader.getInstance()
@@ -79,6 +106,11 @@ object CloudModel : CloudModelSubject {
         return false
     }
 
+    /**
+     * Fungsi berfungsi untuk Download model SignLanguageModel
+     * @return jika fileSignLanguage Tidak ditemukan pada perangkat user, maka download modelnya
+     *
+     * */
     @JvmStatic
     fun downloadSignLanguageModel(): Boolean {
         FirebaseModelDownloader.getInstance()
@@ -100,8 +132,10 @@ object CloudModel : CloudModelSubject {
         if (fileSignLanguage != null) return true
         return false
     }
-
-
+    /**
+     * Fungsi berfungsi untuk Download Latest model SignLanguageModel
+     *
+     * */
     fun downloadLatestSignlanguageModel() {
         FirebaseModelDownloader.getInstance().getModel(
             MODEL_CLOUD_SL_NAME, downloadTypeLatest, modelConditionUpdateLatest
@@ -130,6 +164,10 @@ object CloudModel : CloudModelSubject {
         return 0;
     }
 
+    /**
+     * Fungsi berfungsi untuk Download Latest model ObjectDetector
+     *
+     * */
     fun downloadLatestObjectDetectionModel() {
 
         FirebaseModelDownloader.getInstance().getModel(
@@ -152,6 +190,10 @@ object CloudModel : CloudModelSubject {
             }
     }
 
+    /**
+     * Fungsi berfungsi untuk Download Latest model CurrencyDetector
+     *
+     * */
     fun downloadLatestCurrencyDetectionModel() {
         FirebaseModelDownloader.getInstance().getModel(
             MODEL_CLOUD_CD_NAME, downloadTypeLatest, modelConditionUpdateLatest
@@ -168,6 +210,9 @@ object CloudModel : CloudModelSubject {
             }
     }
 
+    /***
+     * Fungsi untuk memberitahu Model CurrencyDetector DAPAT di unduh
+     */
     private fun successObjectDetectionListener(it: CustomModel) {
         // Download succesfully
         val tempFile = it.file
@@ -177,7 +222,9 @@ object CloudModel : CloudModelSubject {
 
     }
 
-
+    /***
+     * Fungsi untuk memberitahu Model ObjectDetector SUDAH SELESAI di unduh
+     */
     private fun completedObjectDetectionListener(isLatest: Boolean) {
 
         if (!isLatest) {
@@ -198,6 +245,9 @@ object CloudModel : CloudModelSubject {
         }
     }
 
+    /***
+     * Fungsi untuk memberitahu Model CurrencyDetector DAPAT di unduh
+     */
     private fun successCurrencyDetectionListener(it: CustomModel) {
 
         val tempFile = it.file
@@ -207,6 +257,9 @@ object CloudModel : CloudModelSubject {
 
     }
 
+    /***
+     * Fungsi untuk memberitahu Model CurrencyDetector SUDAH SELESAI di unduh
+     */
     private fun completedCurrencyDetectionListener(isLatest: Boolean) {
         if (!isLatest) {
             isFileCurrencyDetectorDownloaded = true
@@ -217,6 +270,11 @@ object CloudModel : CloudModelSubject {
         }
     }
 
+
+
+    /***
+     * Fungsi untuk memberitahu Model SignLanguageListener DAPAT di unduh
+     */
     private fun successSignLanguageListener(it: CustomModel) {
 
         val tempFile = it.file
@@ -224,7 +282,9 @@ object CloudModel : CloudModelSubject {
             fileSignLanguage = it.file
         }
     }
-
+    /***
+     * Fungsi untuk memberitahu Model Signlanguage SUDAH SELESAI di unduh
+     */
     private fun completedSignLanguageListener(isLatest: Boolean) {
         if (!isLatest) {
             isFileSignlanguageDownloaded = true

@@ -7,7 +7,14 @@ import android.graphics.RectF
 import java.util.Locale
 
 
-
+/**
+ * Kelas untuk handler penggambaran pada preview view nanti
+ * @property graphic -> Just the GraphicOverlay Object
+ * @property objs -> objek dari hasil prediksi
+ * @property boxPaints -> Cuman mendefinisikan Array of paint aja dengan jumlah Banyaknya Warna untuk drawing box
+ * @property textPaints -> Cuman mendefinisikan Array of paint aja dengan jumlah Banyaknya Warna untuk drawing text
+ * @property labelPaints -> Cuman mendefinisikan Array of paint aja dengan jumlah Banyaknya Warna untuk drawing label
+ */
 class ObjectGraphic(var graphic: GraphicOverlay, private var objs: RecognitionRes) : GraphicOverlay.Graphic(graphic)
 {
     private var boxPaints  = Array(NUM_COLORS){Paint()}
@@ -33,6 +40,11 @@ class ObjectGraphic(var graphic: GraphicOverlay, private var objs: RecognitionRe
         }
     }
 
+    /**
+     * Untuk menentukan size setiap teks, label, dan juga ukuran bbox yang akan di draw
+     * Ya pada dasarnya sama saja kek draw bbox ukurannya berapa, pake warna apa, tulisannya ukurannya berapa, white spacingnya brapa
+     * @param [canvas] -> Kanvas untuk di draw
+     */
     override fun draw(canvas: Canvas?)
     {
         val colorID = Math.abs(objs.getLabelId() % NUM_COLORS)

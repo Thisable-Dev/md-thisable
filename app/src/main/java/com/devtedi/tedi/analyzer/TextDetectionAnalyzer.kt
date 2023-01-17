@@ -6,10 +6,25 @@ import android.graphics.Bitmap
 import androidx.camera.core.ImageAnalysis
 import androidx.camera.core.ImageProxy
 import com.devtedi.tedi.utils.image_utility.YuvToRgbConverter
-
+/**
+ *
+    Kelas yang implement interface Analyzer, bisa cek dokumentasinya
+    Inti dari kelas ini adalah Provide Gambar dengan format yang sesuai
+    untuk dapat bekerja pada Model nantinya
+    kelas digunakan untuk TextDetection
+ *
+ * */
 class TextDetectionAnalyzer(private val context: Context) : ImageAnalysis.Analyzer {
 
+    /*
+     */
     private lateinit var currImage : Bitmap
+    /*
+    *
+     Simplenya fungsi Ini cuman ngambil image Data saja lalu di konversi menjadi Rgb
+     karena pada dasarnya image yang diprovide masih dalam bentuk Yuv
+     YUV ? Cari sendiri
+    *  */
     @SuppressLint("UnsafeOptInUsageError")
     override fun analyze(image: ImageProxy) {
         val desiredImage = image.image

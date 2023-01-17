@@ -6,6 +6,12 @@ import android.media.MediaPlayer
 import com.devtedi.tedi.R
 import java.io.IOException
 
+/**
+ *
+ * Kelas ini bertanggung jawab untuk memutar suara hasil analisis machine learning
+ *
+ * @constructor untuk buat instance dari SoundPlayer.
+ */
 class SoundPlayer private constructor(private val context: Context) {
 
     private var isReady: Boolean = false
@@ -14,6 +20,7 @@ class SoundPlayer private constructor(private val context: Context) {
         initMediaPlayer()
     }
 
+    // Map result/label ke resource suara
     private fun getResources(label: String): Int? {
         return when (label) {
             // *********** Object Detection Resources *********** //
@@ -126,6 +133,7 @@ class SoundPlayer private constructor(private val context: Context) {
         }
     }
 
+    // Initialize media player
     private fun initMediaPlayer() {
         mMediaPlayer = MediaPlayer().apply {
             setAudioAttributes(
@@ -146,6 +154,7 @@ class SoundPlayer private constructor(private val context: Context) {
         }
     }
 
+    // Play sound
     fun playSound(label: String) {
         val resource = getResources(label)
         if (resource != null) {
@@ -172,6 +181,7 @@ class SoundPlayer private constructor(private val context: Context) {
         }
     }
 
+    // Release media player resource when lifecycle owner is disposed
     fun dispose() {
         mMediaPlayer?.release()
         mMediaPlayer = null

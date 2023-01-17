@@ -12,8 +12,14 @@ import kotlinx.coroutines.launch
 import java.io.File
 import java.io.IOException
 
+/**
+ *
+ * Kelas ini digunakan sebagai ViewModel dari ObjectDetectionFragment
+ *
+ */
 class ObjectDetectionViewModel : ViewModel() {
 
+    // Instance dari yoloV5 Model
     private val _yolov5TFLiteDetector: MutableLiveData<YOLOv5ModelCreator> = MutableLiveData()
     val yolov5TFLiteDetector: LiveData<YOLOv5ModelCreator> = _yolov5TFLiteDetector
 
@@ -23,14 +29,17 @@ class ObjectDetectionViewModel : ViewModel() {
     private val _isSoundOn: MutableLiveData<Boolean> = MutableLiveData(false)
     val isSoundOn: LiveData<Boolean> = _isSoundOn
 
+    // Untuk mengaktifkan/menonaktifkan suara
     fun toggleSoundOnOff() {
         _isSoundOn.value = isSoundOn.value?.let { !it }
     }
 
+    // Jika sudah tidak digunakan/lifecycle ViewModel berakhir, hapus instance dari model
     fun closeModel() {
         yolov5TFLiteDetector.value?.close()
     }
 
+    // Inisialisasi model yoloV5
     fun initModel(modelName: String, filePath: File, context: Context) {
         _isLoading.value = true
         viewModelScope.launch(Dispatchers.IO) {

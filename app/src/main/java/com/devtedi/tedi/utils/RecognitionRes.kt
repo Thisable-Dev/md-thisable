@@ -2,6 +2,16 @@ package com.devtedi.tedi.utils
 
 import android.graphics.RectF
 
+/**
+ *
+ *  Data Class Untuk Store Informasi hasil model
+ *
+ *@param labelId -> idDari Label
+ *@param labelName -> Nama Labelnya
+ *@param labelScore -> ( label score tertinggi ),
+ *@param confidence -> I dont know this yet :')
+ *@param location -> Lokasi dari bbox
+ */
 data class RecognitionRes(
     private var labelId : Int,
     private var labelName : String,
@@ -10,7 +20,6 @@ data class RecognitionRes(
     private var location : RectF
 )
 {
-
 
     fun getLabelId(): Int {
         return labelId
