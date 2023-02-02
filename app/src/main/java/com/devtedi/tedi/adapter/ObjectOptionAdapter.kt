@@ -3,9 +3,7 @@ package com.devtedi.tedi.adapter
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
-import com.devtedi.tedi.databinding.ItemLayoutDialogObjBinding
 import com.devtedi.tedi.databinding.ItemQuestionsDialogCoreLayoutBinding
-import com.devtedi.tedi.interfaces.ObjectOptionInterface
 
 /**
  *

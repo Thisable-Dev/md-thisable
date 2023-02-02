@@ -9,7 +9,7 @@ import java.io.File
  * Dapat melihat Untuk penjelasannya
  * @see ObjectDetectorType
  *
- *
+ *s
  */
 class ObjectDetector (
     override var inputSize: Size,

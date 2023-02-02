@@ -25,7 +25,6 @@ import com.devtedi.tedi.data.remote.visionapi.model.TextDetectionRequestItem
 import com.devtedi.tedi.databinding.FragmentTextDetectionBinding
 import com.devtedi.tedi.presentation.dialog.TextDetectionResultDialogFragment
 import com.devtedi.tedi.utils.ConstVal.API_KEY
-import com.devtedi.tedi.utils.FrameMetadata
 import com.devtedi.tedi.utils.SoundPlayer
 import com.devtedi.tedi.utils.ext.*
 import com.devtedi.tedi.utils.scaleBitmapDown
@@ -110,7 +109,6 @@ class TextDetectionFragment : Fragment() {
             val image = textDetectionAnalyzer.getDetectedImage()
             soundPlayer?.playSound(getString(R.string.raw_sound_take_pict))
             if (image != null) {
-                val metadata = FrameMetadata(image.width, image.height, 0)
                 val currImage = scaleBitmapDown(image, 640)
 
                 val byteArrayOutputStream = ByteArrayOutputStream()

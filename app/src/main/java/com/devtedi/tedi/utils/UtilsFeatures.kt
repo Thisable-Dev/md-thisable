@@ -2,7 +2,6 @@ package com.devtedi.tedi.utils
 
 import android.app.Activity
 import android.app.AlertDialog
-import android.app.Dialog
 import android.content.Context
 import android.graphics.Bitmap
 import android.graphics.BitmapFactory
@@ -14,11 +13,7 @@ import android.util.Log
 import android.view.View
 import android.widget.Button
 import android.widget.ProgressBar
-import android.widget.Toast
-import androidx.recyclerview.widget.LinearLayoutManager
-import androidx.recyclerview.widget.RecyclerView
 import com.devtedi.tedi.R
-import com.devtedi.tedi.interfaces.ObjectOptionInterface
 import com.devtedi.tedi.interfaces.SignlanguageContentListener
 import com.devtedi.tedi.utils.ext.click
 import com.devtedi.tedi.utils.ext.gone
